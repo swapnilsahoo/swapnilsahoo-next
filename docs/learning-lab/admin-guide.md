@@ -4,6 +4,14 @@ Updated 9 October 2026 from the implemented UI and server API. This guide descri
 
 ## Access and first administrator
 
+### Production administrator — 11 October 2026
+
+The first production administrator is active. The temporary password was replaced through the normal authenticated password-change endpoint with a new independent random password. Actual production checks verified access to the administrator workspace, rejection of the old temporary password, revocation of another signed-in session and final sign-out of the test sessions. No account role or password-change restriction was bypassed in the database.
+
+The permanent password recovery is Windows-owner encrypted in ignored `.data/lab-activation-prj_J7bQ4A0zQBS1u6BWvogfQWVSWef1/admin-password-permanent.dpapi`. The original temporary recovery is retained for the operational audit but no longer authenticates. No password was printed, committed or uploaded. To obtain the current password privately on the same Windows account, run `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/copy-learning-lab-admin-password.ps1 -CopyToClipboard`, paste only into the HTTPS Lab login, and clear the clipboard. The helper refuses copying when clipboard history or cloud sync is enabled. A DPAPI file requires the same Windows account and its keys; a copy of that file alone is not portable recovery.
+
+Do not rerun initial account provisioning or overwrite these recovery files. The authentication secret and existing encrypted backups were preserved unchanged.
+
 The operator configures persistent storage, an authentication secret and the correct Lab base URL through private environment variables. Run `npm.cmd run lab:setup` to initialise the schema and proposed programme content. For the first administrator, supply `LAB_ADMIN_EMAIL`, `LAB_ADMIN_PASSWORD` (at least 12 characters) and optionally `LAB_ADMIN_NAME` privately, then run `npm.cmd run lab:admin`. Remove the bootstrap password from the environment after provisioning. Do not place credentials in source control or public messages. The bootstrap command refuses to overwrite an account or add another administrator once one exists.
 
 Sign in at `/learning-lab/login`, then open `/learning-lab/admin`. Only a database-authorised administrator can use the admin API. Learners receive a separate workspace. Public sign-up and password-recovery email are disabled; recovery and additional administrator provisioning require an authorised operator procedure, not a website role selector. Sessions expire after eight hours, and the **Sign out** control ends the session. Use a separate browser profile for operator work and sign out before leaving a shared device.

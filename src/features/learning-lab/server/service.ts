@@ -10,6 +10,7 @@ import { seedProgrammeContent } from "../store";
 import { getDatabase, getAuthSecret } from "./database";
 import { LabHttpError, type LabActor } from "./errors";
 import { offerDetailsSchema } from "./offers";
+import { drainEmailOutbox, enqueueEnquiryEmails, enquiryEmailState } from "./email";
 
 const slugSchema = z.enum([
   "ai-for-managers",
@@ -110,7 +111,7 @@ export async function saveEnquiry(raw: unknown, ip: string) {
         409,
         "This programme is not accepting new enquiries. Explore another programme or return when registration of interest reopens."
       );
-    return tx.execute({
+    const saved = await tx.execute({
       sql: `INSERT INTO lab_enquiry(id,kind,name,email,programme_slug,organisation,role,learner_count,preferred_timetable,message,marketing_consent,consent_at,source,created_at,updated_at,dedup_key) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(dedup_key) DO UPDATE SET name=excluded.name,role=excluded.role,learner_count=excluded.learner_count,preferred_timetable=excluded.preferred_timetable,message=excluded.message,marketing_consent=excluded.marketing_consent,consent_at=excluded.consent_at,updated_at=excluded.updated_at RETURNING id`,
       args: [
         randomUUID(),
@@ -131,12 +132,39 @@ export async function saveEnquiry(raw: unknown, ip: string) {
         key,
       ],
     });
+    const id = String(saved.rows[0].id);
+    const emailRequested = await enqueueEnquiryEmails(
+      tx,
+      { id, email: v.email, programmeSlug: v.programmeSlug, kind: v.kind },
+      now
+    );
+    return { id, emailRequested };
   });
+  let emailStatus: "not-requested" | "queued" | "accepted" | "needs-review" | "unverified" =
+    "not-requested";
+  if (result.emailRequested) {
+    try {
+      await drainEmailOutbox({ enquiryId: result.id, limit: 2 });
+      emailStatus = await enquiryEmailState(result.id);
+    } catch {
+      // The enquiry was committed before dispatch. Never make a visitor resubmit
+      // a saved enquiry because a provider/status write failed; never log PII.
+      emailStatus = "unverified";
+    }
+  }
+  const emailMessage =
+    emailStatus === "accepted"
+      ? "A confirmation email has been accepted by our email service; inbox delivery is not guaranteed."
+      : emailStatus === "queued"
+        ? "A confirmation email is queued. You do not need to submit this enquiry again."
+        : emailStatus === "needs-review" || emailStatus === "unverified"
+          ? "Email confirmation could not be verified. Your enquiry is saved; you do not need to submit it again."
+          : "No confirmation email has been sent.";
   return {
     ok: true,
-    id: String(result.rows[0].id),
-    message:
-      "Your enquiry has been saved. This records your interest; it does not reserve a place or enrol you. No confirmation email has been sent.",
+    id: result.id,
+    emailStatus,
+    message: `Your enquiry has been saved. This records your interest; it does not reserve a place or enrol you. ${emailMessage}`,
   };
 }
 

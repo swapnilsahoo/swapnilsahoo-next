@@ -18,6 +18,7 @@ const tables = [
   "lab_certificate",
   "lab_enquiry",
   "lab_audit",
+  "lab_email_outbox",
 ];
 try {
   if (command === "init") {
@@ -50,10 +51,12 @@ try {
         args: [adminId],
       });
       if (
-        (await db.execute({
-          sql: "SELECT must_change_password FROM lab_member WHERE user_id=? AND role='admin'",
-          args: [adminId],
-        })).rows[0]?.must_change_password !== 1
+        (
+          await db.execute({
+            sql: "SELECT must_change_password FROM lab_member WHERE user_id=? AND role='admin'",
+            args: [adminId],
+          })
+        ).rows[0]?.must_change_password !== 1
       )
         throw new Error("Temporary administrator password replacement was not confirmed.");
     }
@@ -143,7 +146,20 @@ try {
     const tx = await db.transaction("write");
     try {
       for (const table of tables)
-        for (const row of snapshot[table] || []) {
+        for (const original of snapshot[table] || []) {
+          // Restored mail can never resume delivery automatically. Preserve the
+          // immutable payload/idempotency/provider fields; quarantine queued work.
+          const row =
+            table === "lab_email_outbox" &&
+            ["pending", "processing"].includes(String(original.status))
+              ? {
+                  ...original,
+                  status: "review",
+                  last_error_code: "restored-review-required",
+                  lease_token: null,
+                  lease_expires_at: null,
+                }
+              : original;
           const columns = Object.keys(row);
           if (columns.some((c) => !/^[a-z_]+$/.test(c))) throw new Error("Invalid backup schema.");
           await tx.execute({

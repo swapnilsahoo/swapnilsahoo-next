@@ -16,6 +16,7 @@ const tables = [
   "lab_certificate",
   "lab_enquiry",
   "lab_audit",
+  "lab_email_outbox",
 ] as const;
 type TableRow = Record<string, string | number | null>;
 
@@ -117,7 +118,7 @@ try {
   ]).toString("utf8");
   const snapshot = JSON.parse(decrypted) as Record<string, TableRow[]>;
   if (Object.keys(snapshot).sort().join("|") !== [...tables].sort().join("|"))
-    throw new Error("The actual backup does not contain exactly the eleven supported tables.");
+    throw new Error("The actual backup does not contain exactly the twelve supported tables.");
 
   const emailValues = [...(snapshot.lab_user || []), ...(snapshot.lab_enquiry || [])]
     .map((row) => String(row.email || ""))
@@ -151,7 +152,17 @@ try {
     const tableChecks = [];
     for (const table of tables) {
       const rows = (await restored.execute(`SELECT * FROM ${table}`)).rows as unknown as TableRow[];
-      const expectedRows = snapshot[table];
+      const expectedRows = snapshot[table].map((row) =>
+        table === "lab_email_outbox" && ["pending", "processing"].includes(String(row.status))
+          ? {
+              ...row,
+              status: "review",
+              last_error_code: "restored-review-required",
+              lease_token: null,
+              lease_expires_at: null,
+            }
+          : row
+      );
       const expectedSha256 = fingerprint(expectedRows);
       const restoredSha256 = fingerprint(rows);
       const match = rows.length === expectedRows.length && expectedSha256 === restoredSha256;
@@ -236,7 +247,7 @@ try {
   evidence.pass = true;
   await writeFile(resultPath, `${JSON.stringify(evidence, null, 2)}\n`);
   console.log(
-    "PASS: actual CLI encrypted backup and fresh restore match all 11 tables; sessions remain empty; foreign keys/integrity pass; missing production storage/secret fail closed."
+    "PASS: actual CLI encrypted backup and fresh restore match all 12 tables; pending/processing email is quarantined; sessions remain empty; foreign keys/integrity pass; missing production storage/secret fail closed."
   );
   console.log(
     "Evidence: artifacts/learning-lab/backup-results.json. No secret values or learner records printed."

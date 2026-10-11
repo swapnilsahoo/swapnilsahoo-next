@@ -2,6 +2,11 @@ import { z } from "zod";
 import { getLabAuth, LabHttpError, requireActor } from "@/features/learning-lab/server/auth";
 import { getDatabase, LabUnavailable } from "@/features/learning-lab/server/database";
 import {
+  drainEmailOutbox,
+  getEmailReadiness,
+  sendOperatorEmailTest,
+} from "@/features/learning-lab/server/email";
+import {
   adminMutation,
   adminRecords,
   audit,
@@ -9,6 +14,7 @@ import {
   csv,
   learnerRecords,
   parse,
+  rateLimit,
   saveEnquiry,
   setCertificatePrivacy,
   submitAssignment,
@@ -84,6 +90,10 @@ async function handle(request: Request, context: { params: Promise<{ action: str
       if (path === "learner")
         return response({ ok: true, actor, programmes: await learnerRecords(actor) });
       if (path === "admin") return response({ ok: true, actor, data: await adminRecords() });
+      if (path === "admin/email") {
+        if (actor.isDemo) throw new LabHttpError(403, "A permanent operator account is required.");
+        return response({ ok: true, email: getEmailReadiness() });
+      }
       if (path === "admin/export") {
         const kind = new URL(request.url).searchParams.get("kind") || "leads",
           records = await adminRecords();
@@ -180,6 +190,32 @@ async function handle(request: Request, context: { params: Promise<{ action: str
       for (const cookie of authResponse.headers.getSetCookie())
         updated.headers.append("Set-Cookie", cookie);
       return updated;
+    }
+    if (path === "admin/email/retry" || path === "admin/email/test") {
+      if (actor.isDemo) throw new LabHttpError(403, "A permanent operator account is required.");
+      parse(z.object({}).strict(), data);
+      const email = getEmailReadiness();
+      if (!email.configured)
+        return response(
+          {
+            ok: false,
+            email,
+            error:
+              "Email sending is awaiting a connected, verified provider. No email has been sent.",
+          },
+          503
+        );
+      await rateLimit(`admin-email:${actor.id}`, 2, 600);
+      const result =
+        path === "admin/email/test"
+          ? await sendOperatorEmailTest()
+          : await drainEmailOutbox({ limit: 5 });
+      await audit(actor, path === "admin/email/test" ? "email.operator-test" : "email.retry");
+      return response({
+        ok: true,
+        result,
+        message: "Provider acceptance does not establish inbox delivery.",
+      });
     }
     if (path === "progress") return response(await completeLesson(actor, data));
     if (path === "submissions") return response(await submitAssignment(actor, data));
