@@ -212,9 +212,18 @@ async function managedRecords(backupDirectory, reportDirectory, syncDirectory) {
       if (report.format !== "learning-lab-daily-backup-v1" || report.verified !== true ||
         !filePattern.test(report.file) || name !== report.file + ".report.json" ||
         !/^[a-f0-9]{64}$/.test(report.cipherSha256)) continue;
-      const local = path.join(backupDirectory, report.file), synced = path.join(syncDirectory, report.file);
-      await safeFile(local, backupDirectory); await safeFile(synced, syncDirectory);
-      if (cipherHash(await readFile(local)) !== report.cipherSha256 || cipherHash(await readFile(synced)) !== report.cipherSha256) continue;
+      const local = path.join(backupDirectory, report.file);
+      const needsSyncedPair = report.syncedCopyVerified !== false;
+      // Explicit no-sync mode never inspects the OneDrive path, even for older
+      // manifests. Preserve previous paired records instead of pruning them.
+      if (needsSyncedPair && !syncDirectory) continue;
+      await safeFile(local, backupDirectory);
+      if (cipherHash(await readFile(local)) !== report.cipherSha256) continue;
+      if (needsSyncedPair) {
+        const synced = path.join(syncDirectory, report.file);
+        await safeFile(synced, syncDirectory);
+        if (cipherHash(await readFile(synced)) !== report.cipherSha256) continue;
+      }
       records.push(report);
     } catch { /* Unverified, missing or tampered pairs are preserved for review. */ }
   }
@@ -224,11 +233,17 @@ async function applyRetention(plan, backupDirectory, reportDirectory, syncDirect
   let deleted = 0;
   for (const record of plan.candidates) {
     // Recheck each exact pair immediately before deletion. No pathname globs.
-    const local = path.join(backupDirectory, record.file), synced = path.join(syncDirectory, record.file);
-    await safeDirectory(backupDirectory); await safeDirectory(reportDirectory); await safeDirectory(syncDirectory);
-    await safeFile(local, backupDirectory); await safeFile(synced, syncDirectory);
-    guard(cipherHash(await readFile(local)) === record.cipherSha256 && cipherHash(await readFile(synced)) === record.cipherSha256, "RETENTION_PAIR_CHANGED");
-    await unlink(synced);
+    const local = path.join(backupDirectory, record.file);
+    await safeDirectory(backupDirectory); await safeDirectory(reportDirectory);
+    await safeFile(local, backupDirectory);
+    guard(cipherHash(await readFile(local)) === record.cipherSha256, "RETENTION_PAIR_CHANGED");
+    if (record.syncedCopyVerified !== false) {
+      guard(syncDirectory, "RETENTION_SYNC_PAIR_REQUIRED");
+      const synced = path.join(syncDirectory, record.file);
+      await safeDirectory(syncDirectory); await safeFile(synced, syncDirectory);
+      guard(cipherHash(await readFile(synced)) === record.cipherSha256, "RETENTION_PAIR_CHANGED");
+      await unlink(synced);
+    }
     evidence.partialDeletionPossible = true;
     await unlink(local);
     const manifest = path.join(reportDirectory, record.file + ".report.json");
@@ -247,14 +262,16 @@ export async function runBackupWorkflow(options) {
   const result = {
     format: "learning-lab-daily-operation-v1", at: new Date().toISOString(), passed: false,
     encryptedBackupCreated: false, restoreVerified: false, encryptedSyncedCopyVerified: false,
-    cloudUploadConfirmed: false, syncStatus: "not copied", cleanupPassed: true,
+    oneDriveSkipped: !syncDirectory, cloudUploadConfirmed: false,
+    syncStatus: syncDirectory ? "not copied" : "OneDrive explicitly skipped; private GitHub required by wrapper", cleanupPassed: true,
     retention: { mode: prune ? "prune-managed" : "report-only", candidateCount: 0, deletedCount: 0 },
   };
   let stage = "local paths", lock, restoreFile, restoreAttempted = false;
   const lockFile = path.join(ownerDirectory, "running.lock");
   let operationFile;
   try {
-    await safeDirectory(ownerDirectory); await safeDirectory(syncDirectory);
+    await safeDirectory(ownerDirectory);
+    if (syncDirectory) await safeDirectory(syncDirectory);
     for (const folder of [backupDirectory, reportDirectory, workDirectory]) {
       await mkdir(folder, { recursive: false }).catch(error => { if (error.code !== "EEXIST") throw error; });
       await safeDirectory(folder, ownerDirectory);
@@ -264,7 +281,7 @@ export async function runBackupWorkflow(options) {
     await lock.writeFile(JSON.stringify({ format: "learning-lab-backup-lock-v1", pid: process.pid, at: result.at }));
     const stamp = result.at.replaceAll(":", "-").replace(".", "-");
     const file = `lab-daily-${stamp}-${randomUUID()}.json`;
-    const localFile = path.join(backupDirectory, file), syncedFile = path.join(syncDirectory, file);
+    const localFile = path.join(backupDirectory, file);
     operationFile = path.join(reportDirectory, file + ".operation.json");
     stage = "read-only production snapshot";
     const snapshotRead = await readOnlySnapshot(sourceClient);
@@ -289,14 +306,17 @@ export async function runBackupWorkflow(options) {
     const schemaAfter = (await sourceClient.execute(schemaQuery)).rows;
     guard(schemaAfter.length === snapshotRead.schemaCount && canonicalFingerprint(schemaAfter) === snapshotRead.schemaFingerprint, "PRODUCTION_SCHEMA_CHANGED_DURING_BACKUP");
     result.productionSchemaUnchanged = true;
-    stage = "encrypted synced copy";
-    await safeDirectory(syncDirectory);
-    await copyFile(localFile, syncedFile, constants.COPYFILE_EXCL);
-    await safeFile(syncedFile, syncDirectory);
-    guard(cipherHash(await readFile(syncedFile)) === cipherHash(encrypted), "SYNC_COPY_CONTENT_MISMATCH");
-    result.encryptedSyncedCopyVerified = true; result.syncedFile = syncedFile;
-    result.syncStatus = "locally queued; remote upload not independently confirmed";
-    const report = { format: "learning-lab-daily-backup-v1", file, createdAt: result.at, verified: true, cipherSha256: cipherHash(encrypted), encrypted: true, restored: true, cloudUploadConfirmed: false };
+    if (syncDirectory) {
+      stage = "encrypted synced copy";
+      const syncedFile = path.join(syncDirectory, file);
+      await safeDirectory(syncDirectory);
+      await copyFile(localFile, syncedFile, constants.COPYFILE_EXCL);
+      await safeFile(syncedFile, syncDirectory);
+      guard(cipherHash(await readFile(syncedFile)) === cipherHash(encrypted), "SYNC_COPY_CONTENT_MISMATCH");
+      result.encryptedSyncedCopyVerified = true; result.syncedFile = syncedFile;
+      result.syncStatus = "locally queued; remote upload not independently confirmed";
+    }
+    const report = { format: "learning-lab-daily-backup-v1", file, createdAt: result.at, verified: true, cipherSha256: cipherHash(encrypted), encrypted: true, restored: true, syncedCopyVerified: !!syncDirectory, cloudUploadConfirmed: false };
     await writeFile(path.join(reportDirectory, file + ".report.json"), JSON.stringify(report), { flag: "wx", mode: 0o600 });
     stage = "managed retention";
     const records = await managedRecords(backupDirectory, reportDirectory, syncDirectory);
@@ -360,9 +380,11 @@ async function main() {
     const projectId = process.env.LAB_BACKUP_PROJECT_ID || "";
     guard(/^prj_[a-zA-Z0-9]+$/.test(projectId), "EXPECTED_PROJECT_ID_REQUIRED");
     const ownerDirectory = path.resolve(repoDirectory, `.data/lab-backup-${projectId}`);
-    guard(process.env.LAB_BACKUP_OWNER_DIRECTORY === ownerDirectory && process.env.LAB_BACKUP_SYNC_DIRECTORY, "OWNER_VERIFIED_PATHS_REQUIRED");
+    const skipOneDrive = process.env.LAB_BACKUP_SKIP_ONEDRIVE === "true";
+    guard(!skipOneDrive || /^[a-zA-Z0-9][a-zA-Z0-9-]*\/[a-zA-Z0-9_.-]+$/.test(process.env.LAB_BACKUP_GITHUB_REPOSITORY || ""), "SKIP_ONEDRIVE_REQUIRES_GITHUB");
+    guard(process.env.LAB_BACKUP_OWNER_DIRECTORY === ownerDirectory && (skipOneDrive || process.env.LAB_BACKUP_SYNC_DIRECTORY), "OWNER_VERIFIED_PATHS_REQUIRED");
     client = createClient({ url: databaseUrl, authToken: token });
-    const result = await runBackupWorkflow({ ownerDirectory, syncDirectory: path.resolve(process.env.LAB_BACKUP_SYNC_DIRECTORY), secret: process.env.LAB_AUTH_SECRET || "", sourceClient: client, prune: process.env.LAB_BACKUP_PRUNE === "true" });
+    const result = await runBackupWorkflow({ ownerDirectory, syncDirectory: skipOneDrive ? undefined : path.resolve(process.env.LAB_BACKUP_SYNC_DIRECTORY), secret: process.env.LAB_AUTH_SECRET || "", sourceClient: client, prune: process.env.LAB_BACKUP_PRUNE === "true" });
     process.stdout.write(JSON.stringify(result));
     if (!result.passed) process.exitCode = 1;
   } catch (error) {

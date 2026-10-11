@@ -2,6 +2,8 @@
 
 Verified locally on 8 October 2026 before publication. These checks used synthetic records and made no institutional outreach, purchase, payment or legal commitment. The founder subsequently explicitly authorised public publication with “go live”. Unrelated working-tree changes were preserved.
 
+Current operational results are in [the 11 October closure](operations-closure.md). The dated 10 October section below is historical: its temporary-password requirement and retained-cleanup status have since been resolved, and scheduled backup/retry operations have been added. Actual Tavus read access is now verified; personal avatar training and real transactional email delivery remain incomplete.
+
 ## Production backend activation — 10 October 2026
 
 After the owner's Vercel authentication and Turso terms acceptance, the existing project was connected to `swapnil-learning-lab` on the selected **$0/month Starter** plan. No paid plan or payment method was added. Its initially empty libSQL database received the deployed schema, proposed programme content and approved operator account. Four private core settings and two plain-false launch flags were verified in Production. Published source `89e5936` was redeployed and deployment `dpl_7kY6C2qG5Z7kosCwuyi3Dd1ufL83` was independently confirmed READY/PROMOTED to the canonical website. Existing DNS and unrelated environment settings were preserved.
@@ -78,7 +80,8 @@ Warm transfer includes headers and uncached navigation/resource transfers; cache
 | Status | Scope |
 | --- | --- |
 | Implemented | Public site and three original demos; actual local persistence; established authentication and server roles; learner/admin pilot workflows; validated content editor; rubric feedback; eligibility-gated certificates/minimal verification; protected exports; encrypted backup/restore; environment template, setup/admin guides and private business planning. |
-| Production Configured | Persistent Turso/libSQL database/token, independent authentication secret, canonical HTTPS origin and approved temporary operator account. Actual online enquiry/sign-in acceptance passed on 10 October. The operator must replace the temporary password before administration. |
+| Production Configured | Persistent Turso/libSQL database/token, independent authentication secret, canonical HTTPS origin and approved permanent administrator. Online enquiry/sign-in acceptance passed on 10 October; normal password replacement, administrator access, old-password rejection and session revocation passed on 11 October. |
+| Operations Implemented | Daily encrypted backup with restore/content checks and a verified private GitHub destination; scheduled bounded email retry that skips unconfigured transport; private GET-only Tavus resource readiness. See the closure for actual runs, task availability limits and provider boundaries. |
 | Public Release Authorised | Free courses, learning paths, prepared mentor, optional donation QR and online enquiry/invitation-only sign-in routes. Paid checkout and unapproved programme details remain closed. |
 | Needs Founder Approval | Operator address, policies and professional review, adult pilot support/recovery procedures, employment separation, programme details/pricing/capacity and commercial launch configuration. The public contact email has been explicitly supplied. |
 | Deferred | Payments, automated email invitations/recovery, analytics, trained live face/voice conversations, binary uploads/video hosting, repeat enrolment/cohort editing and curriculum versioning, automated survey/learning-gain/renewal reporting. The prepared lesson-aware mentor is implemented; its real provider service remains disabled. |

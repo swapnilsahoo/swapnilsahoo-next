@@ -73,6 +73,24 @@ try {
   assert.equal(canonicalFingerprint((await source.execute("SELECT * FROM lab_email_outbox")).rows), outboxBefore);
   assert.ok(statements.every(sql => /^SELECT\s/i.test(sql)));
   passed("Source schema and all original queued mail remain unchanged");
+  const noSyncOwner = path.join(fixture, "no-sync-managed"); await mkdir(noSyncOwner);
+  const noSync = await runBackupWorkflow({ ownerDirectory: noSyncOwner, secret, sourceClient: protectedSource });
+  assert.equal(noSync.passed, true); assert.equal(noSync.restoreVerified, true);
+  assert.equal(noSync.oneDriveSkipped, true); assert.equal(noSync.encryptedSyncedCopyVerified, false);
+  assert.equal(Object.hasOwn(noSync, "syncedFile"), false); assert.equal(noSync.cloudUploadConfirmed, false);
+  assert.equal(noSync.retention.verifiedManagedCount, 1);
+  assert.deepEqual(await readdir(path.join(noSyncOwner, "work")), []);
+  assert.equal(canonicalFingerprint((await source.execute("SELECT * FROM lab_email_outbox")).rows), outboxBefore);
+  passed("Explicit no-sync worker still encrypts/restores/cleans privately with source unchanged and no OneDrive/cloud claim");
+  const invalidSkipEnvironment = { ...environment, LAB_DATABASE_URL: "libsql://synthetic.invalid", LAB_DATABASE_AUTH_TOKEN: "synthetic-only-token", LAB_BACKUP_PROJECT_ID: "prj_Synthetic", LAB_BACKUP_OWNER_DIRECTORY: path.resolve(".data/lab-backup-prj_Synthetic"), LAB_BACKUP_SKIP_ONEDRIVE: "true", LAB_BACKUP_GITHUB_REPOSITORY: "" };
+  const invalidSkip = await new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, ["scripts/backup-learning-lab.mjs", "--run"], { cwd: process.cwd(), env: invalidSkipEnvironment, windowsHide: true, stdio: ["ignore", "pipe", "pipe"] });
+    let stdout = ""; child.stdout.on("data", chunk => { stdout += String(chunk); }); child.stderr.resume();
+    child.on("error", () => reject(new Error("Synthetic boundary child failed.")));
+    child.on("close", code => resolve({ code, result: JSON.parse(stdout) }));
+  });
+  assert.equal(invalidSkip.code, 1); assert.equal(invalidSkip.result.failureCode, "SKIP_ONEDRIVE_REQUIRES_GITHUB");
+  passed("No-sync CLI without a GitHub destination is refused before any provider connection");
   const legacy = { ...snapshot }; delete legacy.lab_email_outbox;
   const legacyFile = path.join(fixture, "legacy-eleven-table.json");
   await writeFile(legacyFile, encryptSnapshot(legacy, secret), { flag: "wx" });

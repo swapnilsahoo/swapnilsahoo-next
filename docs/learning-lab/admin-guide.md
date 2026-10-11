@@ -1,6 +1,6 @@
 # Learning Lab — pilot administrator guide
 
-Updated 9 October 2026 from the implemented UI and server API. This guide describes controls, not deployed-service test results. Use [the activation guide](activation.md) for storage, administrator setup and enquiry acceptance checks. Review the relevant operating decisions in [incorporation-and-launch.md](incorporation-and-launch.md) before admitting learners or accepting course fees. No admin control sends email, charges a learner or contacts an institution.
+Updated 11 October 2026 from the implemented UI and server API. Use [the activation guide](activation.md) for storage/setup and [the operations closure](operations-closure.md) for actual deployed checks. Review [incorporation-and-launch.md](incorporation-and-launch.md) before admitting learners or accepting course fees. Existing workspace workflow controls send no messages or charges. Separate protected transactional-email endpoints can send only when an actual verified provider is connected; production sending is currently disabled.
 
 ## Access and first administrator
 

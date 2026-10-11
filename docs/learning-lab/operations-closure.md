@@ -1,0 +1,47 @@
+# Learning Lab operations closure
+
+Updated 11 October 2026. The owner authorised autonomous completion of the remaining operations. This record separates actual production results from implementation tests and provider services that are not yet active.
+
+## Website and administrator
+
+The operational release `2274f84` reached **READY** in Vercel and was promoted to the canonical `www.swapnilsahoo.com` alias before acceptance checks. The later destination adjustment changes the local backup runner; it does not enable payments, mail or provider video. Unrelated working-tree files, including an untracked manual-payment page, were excluded from publication.
+
+The temporary administrator password was replaced through the normal authenticated endpoint with an independent random permanent password. Actual production checks verified permanent administrator access, `mustChangePassword=false`, rejection of the old password, revocation of another signed-in session, uncached private responses and final sign-out. No database role/restriction bypass was used. Owner-only recovery is Windows DPAPI-encrypted; the original authentication secret and encrypted backups remain unchanged. See [the administrator guide](admin-guide.md) and [safe clipboard helper](../../scripts/copy-learning-lab-admin-password.ps1). No password was printed, committed or uploaded.
+
+The exact obsolete temporary restore file from the original activation was checked and removed with native PowerShell. Its absence was verified. No recursive deletion or removal of production data, recovery credentials or encrypted snapshots occurred.
+
+Read-only canonical-site checks passed for the Lab homepage, free-course catalogue, contact and support routes: HTTP 200, correct titles and light defaults despite an old saved dark preference and dark operating-system settings. The mentor launcher remained 56 × 56 pixels; keyboard open/Escape and popup fit passed at 320 × 640 and 390 × 844 with no horizontal overflow or browser errors. These were desktop browser viewport checks, not physical-phone or accessibility certification. No new enquiries, emails or transfers were made during this smoke check.
+
+The published original donation QR returned 90,714 bytes with SHA-256 `993d310c60ec08816f819928eb736299dc4e39d7f3adf7aa47a4b3f64b92b310`, matching the supplied file exactly. No funds were transferred or payment settlement verified.
+
+## Backup operation
+
+The first actual registered-task run read production without migrations, encrypted the snapshot, restored it into a unique private local database, compared all twelve supported tables, checked integrity/foreign keys/session exclusion, removed its temporary restore and independently verified identical encrypted bytes in the owner's private [GitHub backup repository](https://github.com/swapnilsahoo/swapnil-learning-lab-backups). Task Scheduler returned result `0`. No key, recovery file, plaintext rows or report was uploaded.
+
+A later controlled run found that the OneDrive client had re-enabled inherited permissions on its synced destination. It failed before decrypting credentials or reading production. The workflow keeps its strict local privacy checks; it does not repair or weaken that folder's permissions. The registered action was then changed to explicit private-GitHub-only mode, preserving its limited owner identity and both triggers. That actual scheduled run's report, dated **09:11:34 UTC / 14:41:34 IST**, passed with task result **0**: all twelve restored tables matched, integrity/foreign-key/session checks passed, production reads/schema were unchanged, temporary cleanup left zero files, and private GitHub content readback matched. The run skipped OneDrive entirely. Existing encrypted OneDrive copies and all historical backups are preserved. Local copying into OneDrive is not evidence of a Microsoft cloud upload.
+
+The registered **Swapnil Learning Lab Daily Encrypted Backup** schedule is 09:00 IST plus owner logon, using `-Run -SkipOneDrive -GitHubRepository swapnilsahoo/swapnil-learning-lab-backups`. It uses the existing Windows owner with limited permissions, starts missed work when available, requires network access, ignores overlap and does not wake the computer or store a Windows password. It depends on this PC being awake, online and the owner signed in; it is not a continuous cloud scheduler. Default retention reports candidates without deleting existing backups. Restore testing does not establish recovery after loss of the Windows account/DPAPI keys. See [the complete backup limits and recovery procedure](backup-operations.md).
+
+## Transactional confirmations
+
+The deployed outbox and protected email endpoints provide enquiry acknowledgements and operator alerts, bounded retries, stable provider idempotency keys, failure states and quarantine of pending messages on restore. Twenty-three isolated checks exercised actual local authentication/database/route behaviour with mocked email delivery. They did not send mail.
+
+Actual production checks verified administrator-only access, cross-origin denial, rejection of arbitrary recipients and honest 503 responses while sending is disabled. The registered **Swapnil Learning Lab Transactional Email Retry** job ran successfully against production: it authenticated, found the provider unconfigured, skipped sending and signed out. Task result was `0`; accepted/retry/failed/review counts were all zero. It runs every 30 minutes plus owner logon with the same computer/session availability limits as the backup task.
+
+No Resend account/key or verified sending domain is connected. The optional Resend plugin connection was suggested; it has not been confirmed. Sending remains disabled, and existing enquiries are not silently backfilled. No email account, DNS record, subscription or real message was created. A verified owner-controlled sending domain and provider connection are necessary before a controlled actual receipt test and public email-delivery claims. The approved academic contact does not grant access to its institution's domain. See [email operations](email-operations.md).
+
+## Personal conversational avatar
+
+An actual protected production GET on 11 October verified Tavus read access using the runtime API key without exporting it. Complete custom Face, user Voice and user PAL lists each contained **zero** resources. Face/PAL configuration is absent. The provider's plan, custom-training entitlement, voice-creation permissions, price and spending limits were not established by these reads; no undocumented billing/quota endpoint or training request was used as a probe.
+
+A native 1920 × 1080 photo candidate and metadata-free 34.09-second speaking WAV have been prepared privately from the supplied recording. This supports assessing the documented photo-Face plus personal-Voice alternative without automatically requiring another full recording. The soft photograph and inconclusive offline transcript do not establish training acceptance or faithful voice quality. The original clip is unchanged; no training source has been uploaded or published.
+
+The existing popup remains an AI-created animated likeness, optional browser voice questions, prepared answers and a stock-voice prerecorded welcome. It is usable now but is **not** a trained live personal face/voice. Live provider video remains disabled. Twenty-nine isolated readiness checks and actual authenticated/anonymous production checks passed; none trained an avatar or started a conversation.
+
+Closing this part requires access to the owner's actual training entitlement/spending settings and any personal verification the provider presents. Routine deployment access cannot perform the owner's identity verification or establish undisclosed charges. Once an eligible account is confirmed, the private candidates can be assessed, a Face/Voice and reviewed teaching PAL created, and actual appearance, pronunciation, lip synchronisation, microphone start/end, interruption and provider session limits tested before activation. See [the recording/creation options](../digital-avatar-recording-brief.md) and [provider adapter handover](../digital-avatar-provider.md). No paid plan or quota-consuming conversation was started by this release.
+
+## Evidence and boundaries
+
+Safe, ignored evidence includes `artifacts/learning-lab/admin-password-replacement.json`, `operations-live-report.json`, `operations-scheduled-tasks.json`, `operations-backup-task-destination.json` and the protected backup/email run reports under `.data/`. The production build passed compilation, TypeScript and repository prechecks before publication. The final backup runner passed eleven isolated Node checks and eleven mocked/synthetic PowerShell checks, plus scoped lint and no-secret preflight. The later runner/documentation-only adjustment did not change application routes. Real cloud backup readback and actual provider read access are recorded above rather than inferred from mocks. All thirty-five local documentation links checked resolved.
+
+There are no real admitted learners, paid-course purchases or personal live-video sessions established by these checks. Optional donations, free courses and persistent enquiries remain available. Provider connection/training, actual email receipt and personal audiovisual quality are the remaining service boundaries; they are not disguised as completed operations.

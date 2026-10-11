@@ -14,8 +14,16 @@ foreach ($definition in $ast.FindAll({ param($entry) $entry -is [Management.Auto
 $checks=[Collections.Generic.List[string]]::new()
 function Confirm([bool]$Condition,[string]$Name) { if (-not $Condition) { throw $Name }; $checks.Add($Name); Write-Host "PASS $Name" }
 function Must-Fail([scriptblock]$Action,[string]$Code) { try { & $Action; throw 'Expected isolated failure.' } catch { if ($_.Exception.Message -ne $Code) { throw 'Unexpected isolated failure code.' } } }
+Must-Fail { Assert-BackupDestinations -Skip $true -GitHub '' } 'SKIP_ONEDRIVE_REQUIRES_GITHUB'
+Assert-BackupDestinations -Skip $true -GitHub 'synthetic-owner/synthetic-backups'
+Assert-BackupDestinations -Skip $false -GitHub ''
+Confirm $true 'OneDrive may be skipped explicitly only with a nonempty GitHub destination'
 $fixture = Join-Path $repoPath ("artifacts/learning-lab/daily-backup-ps-test-" + [guid]::NewGuid().ToString())
 New-OwnerDirectory $fixture
+$unprotectedChild = Join-Path $fixture 'synthetic-unprotected-sync'
+$null = New-Item -ItemType Directory -Path $unprotectedChild
+Must-Fail { Assert-OwnerOnly -Path $unprotectedChild -Directory $true -AllowCloud $true } 'OWNER_ACL_INHERITANCE_NOT_PROTECTED'
+Confirm $true 'Default sync security refuses inherited permissions without repairing the directory'
 $ownerDirectory = Join-Path $fixture 'managed'; New-OwnerDirectory $ownerDirectory
 $backupDirectory = Join-Path $ownerDirectory 'backups'; New-OwnerDirectory $backupDirectory
 $privateKey = 'synthetic-only-DPAPI-recovery-secret-' + [guid]::NewGuid().ToString()

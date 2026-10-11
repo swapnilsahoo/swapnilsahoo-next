@@ -16,6 +16,7 @@ param(
     [ValidatePattern('^[a-z0-9][a-z0-9-]*$')][string]$ProjectName = 'swapnilsahoo-next',
     [ValidatePattern('^prj_[a-zA-Z0-9]+$')][string]$ProjectId = 'prj_J7bQ4A0zQBS1u6BWvogfQWVSWef1',
     [string]$PersonalOneDriveRoot = '',
+    [switch]$SkipOneDrive,
     [ValidatePattern('^$|^[a-zA-Z0-9][a-zA-Z0-9-]*/[a-zA-Z0-9_.-]+$')][string]$GitHubRepository = '',
     [switch]$PassThru
 )
@@ -28,6 +29,10 @@ $recoveryDirectory = Join-Path $repoPath ".data/lab-activation-$ProjectId"
 $stage = 'local configuration'
 $result = [ordered]@{ format='learning-lab-backup-wrapper-v1'; at=[DateTime]::UtcNow.ToString('o'); passed=$false; mode=$(if ($Run) { 'run' } else { 'preflight' }); cloudUploadConfirmed=$false }
 $savedEnvironment = @{}
+
+function Assert-BackupDestinations([bool]$Skip, [string]$GitHub) {
+    if ($Skip -and [string]::IsNullOrWhiteSpace($GitHub)) { throw 'SKIP_ONEDRIVE_REQUIRES_GITHUB' }
+}
 
 function Assert-OwnerOnly([string]$Path, [bool]$Directory, [bool]$Protected = $true, [bool]$AllowCloud = $false) {
     $entry = Get-Item -LiteralPath $Path -Force
@@ -154,6 +159,7 @@ function Set-PrivateProcessValue([string]$Name, [AllowNull()][string]$Value) {
 
 Push-Location -LiteralPath $repoPath
 try {
+    Assert-BackupDestinations -Skip $SkipOneDrive.IsPresent -GitHub $GitHubRepository
     if ($env:OS -ne 'Windows_NT') { throw 'OWNER_WINDOWS_ACCOUNT_REQUIRED' }
     $node = Get-Command node.exe -ErrorAction SilentlyContinue | Select-Object -First 1
     $vercelCommand = Get-Command vercel.cmd -ErrorAction SilentlyContinue | Select-Object -First 1
@@ -179,18 +185,23 @@ try {
     Assert-OwnerOnly -Path $recoveryDirectory -Directory $true
     $secretPath = Join-Path $recoveryDirectory 'auth-secret.dpapi'
     Assert-OwnerOnly -Path $secretPath -Directory $false -Protected $false
-    $registry = 'HKCU:\Software\Microsoft\OneDrive\Accounts\Personal'
-    if (-not (Test-Path -LiteralPath $registry)) { throw 'PERSONAL_ONEDRIVE_NOT_CONFIGURED' }
-    $configuredRoot = (Get-ItemProperty -LiteralPath $registry -Name UserFolder).UserFolder
-    if (-not $configuredRoot) { throw 'PERSONAL_ONEDRIVE_FOLDER_MISSING' }
-    if (-not $PersonalOneDriveRoot) { $PersonalOneDriveRoot = $configuredRoot }
-    $PersonalOneDriveRoot = [IO.Path]::GetFullPath($PersonalOneDriveRoot).TrimEnd('\')
-    if ($PersonalOneDriveRoot -ine [IO.Path]::GetFullPath($configuredRoot).TrimEnd('\')) { throw 'PERSONAL_ONEDRIVE_FOLDER_MISMATCH' }
-    $rootEntry = Get-Item -LiteralPath $PersonalOneDriveRoot -Force
-    if (-not $rootEntry.PSIsContainer -or $rootEntry.LinkType -or $rootEntry.Target) { throw 'PERSONAL_ONEDRIVE_LINK_REJECTED' }
-    $syncDirectory = Join-Path $PersonalOneDriveRoot 'Learning Lab Encrypted Backups'
-    $result.personalOneDriveConfigured = $true
-    $result.syncClientRunning = [bool](Get-Process -Name OneDrive -ErrorAction SilentlyContinue)
+    $syncDirectory = ''
+    $result.oneDriveSkipped = $SkipOneDrive.IsPresent
+    if (-not $SkipOneDrive) {
+        $registry = 'HKCU:\Software\Microsoft\OneDrive\Accounts\Personal'
+        if (-not (Test-Path -LiteralPath $registry)) { throw 'PERSONAL_ONEDRIVE_NOT_CONFIGURED' }
+        $configuredRoot = (Get-ItemProperty -LiteralPath $registry -Name UserFolder).UserFolder
+        if (-not $configuredRoot) { throw 'PERSONAL_ONEDRIVE_FOLDER_MISSING' }
+        if (-not $PersonalOneDriveRoot) { $PersonalOneDriveRoot = $configuredRoot }
+        $PersonalOneDriveRoot = [IO.Path]::GetFullPath($PersonalOneDriveRoot).TrimEnd('\')
+        if ($PersonalOneDriveRoot -ine [IO.Path]::GetFullPath($configuredRoot).TrimEnd('\')) { throw 'PERSONAL_ONEDRIVE_FOLDER_MISMATCH' }
+        $rootEntry = Get-Item -LiteralPath $PersonalOneDriveRoot -Force
+        if (-not $rootEntry.PSIsContainer -or $rootEntry.LinkType -or $rootEntry.Target) { throw 'PERSONAL_ONEDRIVE_LINK_REJECTED' }
+        $syncDirectory = Join-Path $PersonalOneDriveRoot 'Learning Lab Encrypted Backups'
+        if (Test-Path -LiteralPath $syncDirectory) { Assert-OwnerOnly -Path $syncDirectory -Directory $true -AllowCloud $true }
+        $result.personalOneDriveConfigured = $true
+        $result.syncClientRunning = [bool](Get-Process -Name OneDrive -ErrorAction SilentlyContinue)
+    }
     $result.ownerDirectory = $ownerDirectory; $result.syncedDirectory = $syncDirectory
     $result.retentionMode = $(if ($PruneManagedBackups) { '30 daily + 12 monthly verified managed backups' } else { 'report only; no managed backup deletion' })
     if (-not $Run) {
@@ -202,7 +213,7 @@ try {
     $stage = 'owner-only managed folders'
     New-OwnerDirectory $ownerDirectory
     foreach ($child in @('backups','reports','work')) { New-OwnerDirectory (Join-Path $ownerDirectory $child) }
-    New-OwnerDirectory -Path $syncDirectory -AllowCloud $true
+    if (-not $SkipOneDrive) { New-OwnerDirectory -Path $syncDirectory -AllowCloud $true }
     if ($GitHubRepository) {
         $stage = 'existing private GitHub repository identity'
         Assert-PrivateGitHubRepository
@@ -226,6 +237,7 @@ try {
     foreach ($setting in @{
         LAB_DATABASE_URL=$databaseUrl; LAB_DATABASE_AUTH_TOKEN=$databaseToken; LAB_AUTH_SECRET=$authSecret
         LAB_BACKUP_PROJECT_ID=$ProjectId; LAB_BACKUP_OWNER_DIRECTORY=$ownerDirectory; LAB_BACKUP_SYNC_DIRECTORY=$syncDirectory
+        LAB_BACKUP_SKIP_ONEDRIVE=$(if ($SkipOneDrive) { 'true' } else { 'false' }); LAB_BACKUP_GITHUB_REPOSITORY=$GitHubRepository
         LAB_BACKUP_PRUNE=$(if ($PruneManagedBackups) { 'true' } else { 'false' })
     }.GetEnumerator()) { Set-PrivateProcessValue $setting.Key $setting.Value }
     $stage = 'read-only backup and verified restoration'
@@ -234,7 +246,7 @@ try {
     catch { throw 'BACKUP_WORKER_REPORT_INVALID' }
     $result.operation = $operation
     $result.passed = $worker.Code -eq 0 -and $operation.passed -eq $true
-    $result.syncStatus = 'locally queued; remote upload not independently confirmed'
+    $result.syncStatus = $(if ($SkipOneDrive) { 'OneDrive explicitly skipped; private GitHub required' } else { 'locally queued; remote upload not independently confirmed' })
     # A cleanup-only failure must not hide successful backup/restore outcomes or
     # prevent an independently verified encrypted off-site copy. Still exit failed.
     if (-not $result.passed -and (-not $operation.PSObject.Properties['functionalPassed'] -or $operation.functionalPassed -ne $true)) { throw 'BACKUP_WORKER_FAILED' }
@@ -246,15 +258,16 @@ try {
     }
     if (-not $result.passed) { $stage='exact temporary cleanup'; throw 'BACKUP_WORKER_FAILED' }
     if ($result.cloudUploadConfirmed) {
-        Write-Host 'PASS encrypted backup and fresh restore. Private GitHub content readback confirmed; personal OneDrive copy is locally queued.'
+        if ($SkipOneDrive) { Write-Host 'PASS encrypted backup and fresh restore. Private GitHub content readback confirmed; OneDrive explicitly skipped.' }
+        else { Write-Host 'PASS encrypted backup and fresh restore. Private GitHub content readback confirmed; personal OneDrive copy is locally queued.' }
     } else {
         Write-Host 'PASS encrypted backup, fresh restore and encrypted personal OneDrive copy. Remote upload remains unconfirmed.'
     }
-    if (-not $result.syncClientRunning) { Write-Host 'ATTENTION OneDrive is not running; the encrypted copy awaits the owner client.' }
+    if (-not $SkipOneDrive -and -not $result.syncClientRunning) { Write-Host 'ATTENTION OneDrive is not running; the encrypted copy awaits the owner client.' }
 } catch {
     $result.passed = $false; $result.failedStage = $stage
     # Publish only a fixed code from this script, never native/provider exceptions.
-    $safeCodes = @('OWNER_WINDOWS_ACCOUNT_REQUIRED','OWNER_RUNTIME_DEPENDENCIES_REQUIRED','VERCEL_OFFICIAL_ENTRY_POINT_REQUIRED','PERSONAL_ONEDRIVE_NOT_CONFIGURED','PERSONAL_ONEDRIVE_FOLDER_MISSING','PERSONAL_ONEDRIVE_FOLDER_MISMATCH','PERSONAL_ONEDRIVE_LINK_REJECTED','VERCEL_PROJECT_IDENTITY_MISMATCH','VERCEL_ENVIRONMENT_LIST_SHAPE_INVALID','VERCEL_READ_ONLY_REQUEST_FAILED','VERCEL_JSON_INVALID','PRODUCTION_DATABASE_METADATA_NOT_UNIQUE','PRODUCTION_DATABASE_VALUE_UNREADABLE','PRODUCTION_DATABASE_VALUE_NOT_DECRYPTED','ORIGINAL_AUTH_SECRET_REQUIRED','BACKUP_WORKER_FAILED','BACKUP_WORKER_REPORT_INVALID','PATH_KIND_INVALID','PATH_LINK_REJECTED','OWNER_ACL_INHERITANCE_NOT_PROTECTED','OWNER_ACL_ACCOUNT_MISMATCH','OWNER_ACL_RULE_REQUIRED','OWNER_ACL_BROADER_ACCESS','GITHUB_OWNER_CLI_REQUIRED','GITHUB_PRIVATE_REQUEST_FAILED','GITHUB_JSON_INVALID','GITHUB_OWNER_PRIVATE_REPOSITORY_REQUIRED','GITHUB_BACKUP_PATH_INVALID','GITHUB_ENCRYPTED_BACKUP_SIZE_LIMIT','GITHUB_BACKUP_ENVELOPE_INVALID','GITHUB_BACKUP_CREATE_NOT_CONFIRMED','GITHUB_BACKUP_READBACK_INVALID','GITHUB_BACKUP_READBACK_MISMATCH')
+    $safeCodes = @('SKIP_ONEDRIVE_REQUIRES_GITHUB','OWNER_WINDOWS_ACCOUNT_REQUIRED','OWNER_RUNTIME_DEPENDENCIES_REQUIRED','VERCEL_OFFICIAL_ENTRY_POINT_REQUIRED','PERSONAL_ONEDRIVE_NOT_CONFIGURED','PERSONAL_ONEDRIVE_FOLDER_MISSING','PERSONAL_ONEDRIVE_FOLDER_MISMATCH','PERSONAL_ONEDRIVE_LINK_REJECTED','VERCEL_PROJECT_IDENTITY_MISMATCH','VERCEL_ENVIRONMENT_LIST_SHAPE_INVALID','VERCEL_READ_ONLY_REQUEST_FAILED','VERCEL_JSON_INVALID','PRODUCTION_DATABASE_METADATA_NOT_UNIQUE','PRODUCTION_DATABASE_VALUE_UNREADABLE','PRODUCTION_DATABASE_VALUE_NOT_DECRYPTED','ORIGINAL_AUTH_SECRET_REQUIRED','BACKUP_WORKER_FAILED','BACKUP_WORKER_REPORT_INVALID','PATH_KIND_INVALID','PATH_LINK_REJECTED','OWNER_ACL_INHERITANCE_NOT_PROTECTED','OWNER_ACL_ACCOUNT_MISMATCH','OWNER_ACL_RULE_REQUIRED','OWNER_ACL_BROADER_ACCESS','GITHUB_OWNER_CLI_REQUIRED','GITHUB_PRIVATE_REQUEST_FAILED','GITHUB_JSON_INVALID','GITHUB_OWNER_PRIVATE_REPOSITORY_REQUIRED','GITHUB_BACKUP_PATH_INVALID','GITHUB_ENCRYPTED_BACKUP_SIZE_LIMIT','GITHUB_BACKUP_ENVELOPE_INVALID','GITHUB_BACKUP_CREATE_NOT_CONFIRMED','GITHUB_BACKUP_READBACK_INVALID','GITHUB_BACKUP_READBACK_MISMATCH')
     $code = $_.Exception.Message
     $result.failureCode = $(if ($safeCodes -contains $code) { $code } else { 'PRIVATE_OPERATION_FAILED' })
     Write-Host "FAIL $stage. Raw provider, credential and record details were suppressed."
