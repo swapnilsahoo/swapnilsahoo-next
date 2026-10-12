@@ -11,6 +11,7 @@ if (!process.argv.includes("--preview-ready")) {
   throw new Error("Wait for the integrated Session 1 preview; then pass --preview-ready.");
 }
 const profile = (process.env.SESSION1_TEST_PROFILE || "local").replace(/[^\w-]/g, "-");
+const tableOnly = process.argv.includes("--table-only");
 const output = `artifacts/session1-resources/${profile}`;
 await mkdir(output, { recursive: true });
 const publicDirectory = resolve(fileURLToPath(new URL("../public/", import.meta.url)));
@@ -195,6 +196,44 @@ async function metrics(article, kind, expected) {
   assert.deepEqual(actual, expected, `${kind}: independently expected model outputs`);
   return actual;
 }
+async function fitTableReadability(fit, width) {
+  const state = await fit.locator("table").evaluate(table => {
+    const measure = cell => {
+      const range = document.createRange(); range.selectNodeContents(cell);
+      const rects = [...range.getClientRects()].filter(rect => rect.width && rect.height);
+      const box = cell.getBoundingClientRect();
+      return { text: cell.textContent.trim(), lines: new Set(rects.map(rect => Math.round(rect.top))).size,
+        contained: rects.every(rect => rect.left >= box.left - 1 && rect.right <= box.right + 1) };
+    };
+    const rows = [...table.tBodies[0].rows];
+    const words = rows.flatMap(row => {
+      const node = row.cells[0].firstChild;
+      return [...node.textContent.matchAll(/[A-Za-z]+/g)].map(match => {
+        const range = document.createRange(); range.setStart(node, match.index); range.setEnd(node, match.index + match[0].length);
+        const box=row.cells[0].getBoundingClientRect();
+        const rects=[...range.getClientRects()];
+        return { word: match[0], lines: new Set(rects.map(rect => Math.round(rect.top))).size,
+          contained: rects.every(rect=>rect.top>=box.top-1 && rect.bottom<=box.bottom+1) };
+      });
+    });
+    const wrap = table.parentElement;
+    return { baseline: rows.map(row => measure(row.cells[1])),
+      amounts: ["variable", "contribution", "fixed", "remaining"].map(key => measure(table.querySelector(`[data-fit-metric="${key}"]`))),
+      words, explanation: measure(table.querySelector('[data-fit-metric="breakeven"]')),
+      tableWidth: table.getBoundingClientRect().width, availableWidth: wrap.clientWidth };
+  });
+  for (const cell of [...state.baseline, ...state.amounts]) {
+    assert.equal(cell.lines, 1, `${width}: amount/unit string split across lines: ${cell.text}`);
+    assert.ok(cell.contained, `${width}: amount extends outside its comparison cell`);
+  }
+  for (const word of state.words) {
+    assert.equal(word.lines, 1, `${width}: descriptive word split: ${word.word}`);
+    assert.ok(word.contained, `${width}: descriptive word extends outside its row: ${word.word}`);
+  }
+  assert.ok(state.tableWidth <= state.availableWidth + 1, `${width}: comparison requires horizontal scrolling`);
+  if (width <= 390) assert.ok(state.explanation.lines > 1, `${width}: long break-even explanation must wrap`);
+  return state;
+}
 async function resourceLabs(page, width) {
   const mount = page.locator("#s1-resource-lab");
   for (const key of ["pattern", "fit", "position"]) await mount.locator(`[data-s1rl="${key}"]`).waitFor();
@@ -241,6 +280,7 @@ async function resourceLabs(page, width) {
   const extra = fit.locator('[data-fit="extra"]'); await extra.focus(); await extra.press("Space");
   const conflicting = await metrics(fit, "fit", { variable: 126, contribution: -6, fixed: 2700, capacity: 120, breakeven: null, quantity: 120, remaining: -3420 });
   assert.match(await fit.locator('[data-s1rl-output="fit"]').innerText(), /20.*orders|20.*unserved/i);
+  const tableReadability = await fitTableReadability(fit, width);
   await fit.locator("[data-fit-table]").scrollIntoViewIfNeeded(); await screenshot(page, `fit-consequences-light-${width}`);
   await keyboardClick(fit.locator('[data-s1rl-action="reset"]'));
   assert.equal(await fit.locator("[data-fit]:checked").count(), 0);
@@ -296,10 +336,24 @@ async function resourceLabs(page, width) {
   assert.equal((await positionFeedback.innerText()).trim(), "");
   assert.equal(await mount.locator("input[type='text'], textarea").count(), 0, "New labs use bounded fixed choices, not echoed untrusted text");
   return { mounted: ["pattern", "fit", "position"], patternBranches, patternReset: true,
-    fixedFictionalAssumptions: true, fit: { baseline, coherent, conflicting, reset: true }, positionRuns, positionReset: true };
+    fixedFictionalAssumptions: true, fit: { baseline, coherent, conflicting, tableReadability, reset: true }, positionRuns, positionReset: true };
 }
 
 try {
+  if (tableOnly) {
+    for (const [width, height] of [[320, 600], [390, 844], [1440, 900]]) {
+      const { context, page } = await contextFor(width, height);
+      await visit(page);
+      const fit = page.locator('[data-s1rl="fit"]');
+      for (const key of ["menu", "preorder", "routes", "coord", "extra"]) await fit.locator(`[data-fit="${key}"]`).check();
+      const tableReadability = await fitTableReadability(fit, width);
+      await screenshot(fit.locator(".s1rl-table-wrap"), `fit-table-readable-${width}`);
+      if(width===320) await screenshot(fit.locator('tbody tr:last-child th'), 'fit-remainder-label-320');
+      report.checks.push({ viewport: { width, height }, focusedTableOnly: true,
+        containment: await noOverflow(page, `${width} table`), tableReadability });
+      await context.close();
+    }
+  } else {
   for (const [width, height] of [[1440, 900], [390, 844], [320, 600]]) {
     const { context, page } = await contextFor(width, height);
     await visit(page);
@@ -350,6 +404,7 @@ try {
   await phoenix(missingChart.page); await workshopAndTabs(missingChart.page);
   report.checks.push({ missingChartUIMock: { chartAvailable: false, legacyPhoenixAndWorkshopsStillWork: true, notAnActualCDNOutage: true } });
   await missingChart.context.close();
+  }
   assert.deepEqual(report.writes, []);
   assert.deepEqual(report.pageErrors, []);
   assert.deepEqual(report.consoleErrors, []);
