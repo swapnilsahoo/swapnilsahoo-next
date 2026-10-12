@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Session 1: Introduction to Strategy | PGPM 2026–27 — Dr. Swapnil Sahoo</title>
     <link rel="canonical" href="https://www.swapnilsahoo.com/teaching/1-year-mba/session1.html">
-    <meta name="description" content="Session 1 of Strategic Management (PGPM): what strategy is, why firms need one, and how strategy gets made — Porter, Mintzberg and Collis &amp; Rukstad, with the Nokia, Kodak and Yahoo cautionary tales and the Tesla case.">
+    <meta name="description" content="Learn strategy through Porter, Mintzberg and Collis &amp; Rukstad: business photo stories, intended/emergent strategy diagrams, strategic fit and positioning simulations, and Session 1 study resources.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -324,6 +324,8 @@
       })();
     </script>
     <link rel="stylesheet" href="/teaching/1-year-mba/course-ui.css">
+    <link rel="stylesheet" href="/teaching/1-year-mba/session1-stories.css">
+    <link rel="stylesheet" href="/teaching/1-year-mba/session1-resource-lab.css">
 </head>
 
 <body class="text-slate-700">
@@ -364,7 +366,7 @@
         <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-slate-900 text-white font-display text-sm font-semibold">01</span>
         <div class="min-w-0">
           <p class="truncate font-display text-base font-semibold leading-tight text-slate-900">Introduction to Strategy</p>
-          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/9 activities done</p>
+          <p class="hidden truncate text-[11px] text-slate-500 sm:block">90 minutes · <span id="progPct">0</span>% read · <span id="doneCount">0</span>/9 core checks done</p>
         </div>
       </div>
 
@@ -372,7 +374,7 @@
         <a href="#q1" class="nav-link">What is Strategy?</a>
         <a href="#authors" class="nav-link">The Articles</a>
         <a href="#cases" class="nav-link">Fallen Giants</a>
-        <a href="#examples" class="nav-link">Ten Positions</a>
+        <a href="#examples" class="nav-link">Business Stories</a>
         <a href="#tesla" class="nav-link">Tesla</a>
         <a href="#exhibits" class="nav-link">Exhibits</a>
         <a href="#quiz" class="nav-link">Quiz</a>
@@ -410,7 +412,7 @@
     </div>
     <div class="mt-3 rounded-xl bg-slate-50 p-3">
       <div class="flex items-center justify-between text-xs text-slate-500">
-        <span>Progress</span><span><span id="drawerDone">0</span>/9 activities</span>
+        <span>Core checks</span><span><span id="drawerDone">0</span>/9</span>
       </div>
       <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200">
         <div id="drawerBar" class="h-full rounded-full bg-blue-600 transition-all" style="width:0%"></div>
@@ -445,6 +447,7 @@
       <div class="mt-6 flex flex-wrap gap-3 text-sm">
         <a href="#q1" class="rounded-lg bg-slate-900 px-4 py-2.5 font-semibold text-white hover:bg-slate-800">Start with the definition</a>
         <a href="#readings" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Readings &amp; preparation</a>
+        <a href="#s1-resource-lab" class="rounded-lg border border-slate-300 px-4 py-2.5 font-semibold text-slate-700 hover:bg-slate-50">Try the three decision labs</a>
       </div>
     </div>
     <div class="card p-5">
@@ -859,8 +862,8 @@
                     <div class="lg:col-span-3 grid grid-cols-1 gap-6">
                         <!-- Click-to-reveal Buttons -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                             <button onclick="toggleAnalysis('nokia', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
-                             <button onclick="toggleAnalysis('nokia', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                             <button onclick="toggleAnalysis('nokia', 'porter', this)" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                             <button onclick="toggleAnalysis('nokia', 'mintzberg', this)" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
                         </div>
                         <!-- Hidden Analysis Content -->
                         <div id="nokia-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
@@ -925,8 +928,8 @@
                     </div>
                      <div class="lg:col-span-3 grid grid-cols-1 gap-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <button onclick="toggleAnalysis('kodak', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
-                            <button onclick="toggleAnalysis('kodak', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                            <button onclick="toggleAnalysis('kodak', 'porter', this)" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('kodak', 'mintzberg', this)" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
                         </div>
                         <div id="kodak-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
                              <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
@@ -989,8 +992,8 @@
                     </div>
                      <div class="lg:col-span-3 grid grid-cols-1 gap-6">
                          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <button onclick="toggleAnalysis('yahoo', 'porter')" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
-                            <button onclick="toggleAnalysis('yahoo', 'mintzberg')" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
+                            <button onclick="toggleAnalysis('yahoo', 'porter', this)" class="analysis-button bg-blue-100 hover:bg-blue-200 border border-blue-300 text-blue-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Analyze with Porter's Lens</button>
+                            <button onclick="toggleAnalysis('yahoo', 'mintzberg', this)" class="analysis-button bg-teal-100 hover:bg-teal-200 border border-teal-300 text-teal-800 rounded-md px-4 py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2">Analyze with Mintzberg's Lens</button>
                         </div>
                          <div id="yahoo-porter-analysis" class="analysis-content bg-blue-50 p-4 rounded-lg border border-blue-200 shadow-sm prose-custom text-xs">
                              <p class="font-semibold text-blue-800 mb-1">Porter's Lens:</p>
@@ -1161,16 +1164,16 @@
                         <h4 class="text-rose-700">1. Needs-Based Positioning</h4>
                         <p class="definition">Serving most or all needs of a particular customer group.</p>
                         <div class="example">
-                            <h5>🇮🇳 Urban Company</h5>
-                            <p><strong>Need:</strong> Reliable, quality home/personal care for busy urbanites.</p>
-                            <p><strong>Solution:</strong> Vetted partners via platform.</p>
-                            <p><strong>Position:</strong> Trusted one-stop-shop.</p>
+                            <h5>🇮🇳 Nykaa</h5>
+                            <p><strong>Need:</strong> Beauty shoppers need product choice, authenticity and help choosing.</p>
+                            <p><strong>Activities to examine:</strong> Beauty content, retail assortment and physical product discovery.</p>
+                            <p><strong>Interpretation:</strong> A needs-based lens is useful only if these activities differ from a general retailer's. <a href="#story-nykaa">Read the context and evidence</a>.</p>
                         </div>
                          <div class="example">
-                            <h5>🌍 Netflix</h5>
-                            <p><strong>Need:</strong> On-demand, personalized, ad-free entertainment.</p>
-                            <p><strong>Solution:</strong> Subscription library + recommendations.</p>
-                            <p><strong>Position:</strong> Ultimate personalized entertainment.</p>
+                            <h5>🌍 IKEA</h5>
+                            <p><strong>Need:</strong> Furnish a home affordably while accepting some self-service.</p>
+                            <p><strong>Activities to examine:</strong> Room displays, flat-pack design and a coordinated shopping/assembly process.</p>
+                            <p><strong>Trade-off:</strong> Convenience is partly shifted to the customer or a separately chosen service. <a href="#story-ikea">Trace the activity system</a>.</p>
                         </div>
                     </div>
 
@@ -1179,16 +1182,16 @@
                         <h4 class="text-sky-700">2. Variety-Based Positioning</h4>
                         <p class="definition">Producing a subset of an industry's products or services.</p>
                          <div class="example">
-                            <h5>🇮🇳 Rebel Foods</h5>
-                            <p><strong>Variety:</strong> >45 distinct food brands (Faasos, etc.) from cloud kitchens.</p>
-                            <p><strong>Solution:</strong> Tech platform manages multiple brands efficiently.</p>
-                            <p><strong>Position:</strong> Go-to for any food craving (delivered).</p>
+                            <h5>🇮🇳 Aravind Eye Care</h5>
+                            <p><strong>Subset:</strong> Specialised eye-care services rather than every hospital speciality.</p>
+                            <p><strong>Activities to examine:</strong> Eye-care expertise, dedicated facilities and linked outreach.</p>
+                            <p><strong>Boundary:</strong> Specialisation is a starting point, not proof of advantage. Its outreach also invites an access-based reading.</p>
                         </div>
                          <div class="example">
-                            <h5>🌍 Zara</h5>
-                            <p><strong>Variety:</strong> Constantly rotating "fast fashion" trends.</p>
-                            <p><strong>Solution:</strong> Agile supply chain delivers new styles weekly.</p>
-                            <p><strong>Position:</strong> Affordable, endless fashion variety.</p>
+                            <h5>🌍 Jiffy Lube · Porter's 1996 illustration</h5>
+                            <p><strong>Subset:</strong> Focus on automotive lubrication services rather than the whole repair market.</p>
+                            <p><strong>Activity logic:</strong> Specialised facilities and processes can serve that bounded job differently.</p>
+                            <p><strong>Lesson:</strong> Variety-based means a subset of services, not a large assortment. This is the article's historical illustration, not a current service catalogue.</p>
                         </div>
                     </div>
 
@@ -1197,10 +1200,10 @@
                         <h4 class="text-emerald-700">3. Access-Based Positioning</h4>
                         <p class="definition">Segmenting customers accessible in different ways.</p>
                         <div class="example">
-                            <h5>🇮🇳 Reliance Jio</h5>
-                            <p><strong>Access Barrier:</strong> Lack of affordable internet in rural/low-income India.</p>
-                            <p><strong>Solution:</strong> Free 4G trials, cheap phone, nationwide network.</p>
-                            <p><strong>Position:</strong> Enabler of digital inclusion.</p>
+                            <h5>🇮🇳 Aravind's community outreach</h5>
+                            <p><strong>Access barrier:</strong> Distance, awareness and affordability can keep patients from reaching eye care.</p>
+                            <p><strong>Different activities:</strong> Local community partners, screening camps and referral to hospitals.</p>
+                            <p><strong>Lesson:</strong> Lowering a price alone is not an access position; redesign how customers are reached. <a href="https://aravind.org/outreach/" target="_blank" rel="noopener noreferrer">Read Aravind's account</a>.</p>
                         </div>
                          <div class="example">
                             <h5>🌍 Allegiant Air</h5>
@@ -1228,13 +1231,24 @@
                             <tbody>
                                 <tr><th scope="row">Primary Focus</th><td>Specific customer group</td><td>Subset of products/services</td><td>Unique customer accessibility</td></tr>
                                 <tr><th scope="row">Segmentation</th><td>Customer needs/profile</td><td>Product/service itself</td><td>Geography, scale, channel</td></tr>
-                                <tr><th scope="row">Target Market</th><td>Narrow segment, all needs</td><td>Wide market, specific offering</td><td>Hard-to-reach customers</td></tr>
-                                <tr><th scope="row">Starting Question</th><td class="italic">"**Who** is our target customer?"</td><td class="italic">"**What** product can we excel at?"</td><td class="italic">"**How** can we reach them uniquely?"</td></tr>
+                                <tr><th scope="row">Target Market</th><td>Chosen group and relevant needs</td><td>Customers needing a bounded service</td><td>Customers needing a different delivery system</td></tr>
+                                <tr><th scope="row">Starting Question</th><td class="italic">Whose needs shape the system?</td><td class="italic">Which services will we specialise in?</td><td class="italic">How must reaching customers differ?</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
+            <div id="positioning-prompts" class="s1-flow mt-8">
+  <h3>Start with a question, then change the activities</h3>
+  <p class="mt-3">Consider a <strong>hypothetical lunch firm</strong> in an Indian city. The same market can support different positions. A customer label or a promise alone is insufficient: show how the kitchen, menu, ordering and delivery must work differently.</p>
+  <div class="s1-map-grid">
+    <article><h4>Variety: what will we specialise in?</h4><p><strong>Story:</strong> office workers have plenty of food apps, but want one reliable vegetarian weekday lunch. Offer that limited service, not every cuisine or occasion.</p><p><strong>Activity chain:</strong> narrow menu → pooled ingredient buying → batch preparation → predictable cost. Refuse customised dinner catering.</p><p><strong>Compare:</strong> Porter's 1996 Jiffy Lube illustration focuses on a limited automotive service; Aravind's eye-care specialisation is an Indian starting point to investigate, alongside its access model.</p></article>
+    <article><h4>Needs: whose needs will shape the system?</h4><p><strong>Story:</strong> students in hostels need affordable meals, timetable compatibility and dependable portions. Design the bundle for that group; do not claim to meet everyone's needs.</p><p><strong>Activity chain:</strong> hostel contracts → timetable-based menus → subscription ordering → common delivery slots. Refuse distant corporate events.</p><p><strong>Compare:</strong> IKEA's affordable furnishing system and Nykaa's beauty-focused content/retail system show how a chosen set of needs can shape several activities. <a href="#story-ikea">Read IKEA</a> · <a href="#story-nykaa">Read Nykaa</a>.</p></article>
+    <article><h4>Access: who needs a different way of reaching them?</h4><p><strong>Story:</strong> factories on the city's edge need ordinary lunches, but scattered individual delivery is costly. Serve a cluster through an employer collection point.</p><p><strong>Activity chain:</strong> pooled advance orders → one route → common collection point → lower delivery effort per meal. Refuse one-off doorstep orders across the city.</p><p><strong>Compare:</strong> Allegiant describes service to underserved leisure-travel cities; Aravind uses community partners and outreach camps to address barriers to eye care.</p></article>
+  </div>
+  <p><strong>Do not confuse variety-based positioning with offering lots of variety.</strong> It concerns a subset of services supported by a distinct activity system. Needs, variety and access can combine. Use the strongest starting point, then explain the activities and sacrifice.</p>
+  <div class="s1-links"><a href="#s1-resource-lab">Test a positioning decision</a><a href="https://aravind.org/outreach/" target="_blank" rel="noopener noreferrer">Aravind: outreach evidence</a><a href="https://www.allegiantair.com/about-allegiant" target="_blank" rel="noopener noreferrer">Allegiant: company model</a></div>
+</div>
+</div>
         </section>
 
 <section id="fit-examples" class="py-16 sm:py-24 bg-white"> <!-- Changed BG -->
@@ -1266,7 +1280,7 @@
                         <h4 class="text-orange-600">2. Second-Order Fit (Reinforcing Activities)</h4>
                         <p class="definition">Activities actively reinforce one another; the whole > sum of parts.</p>
                          <div class="example">
-                            <h5>🌍 Southwest Airlines</h5>
+                            <h5>🌍 Southwest Airlines · historical 1996 model</h5>
                             <p><strong>Strategy:</strong> Low-cost, convenient, point-to-point travel.</p>
                             <p><strong>Reinforcement:</strong> Single plane type simplifies maintenance/training -> quick turnarounds -> high utilization -> low fares.</p>
                         </div>
@@ -1311,7 +1325,7 @@
                                 <tr><th scope="row">Definition</th><td>Each activity consistent</td><td>Activities reinforce each other</td><td>Activities optimized across system</td></tr>
                                 <tr><th scope="row">Purpose</th><td>Alignment</td><td>Synergy (Whole > Sum)</td><td>Max efficiency, eliminate waste</td></tr>
                                 <tr><th scope="row">Analogy</th><td>Puzzle pieces fit edges</td><td>Intertwined chain links</td><td>Optimized, interlocked puzzle</td></tr>
-                                <tr><th scope="row">Imitability</th><td>Easy (copy activity)</td><td>Hard (copy system)</td><td>Extremely difficult (copy coordination)</td></tr>
+                                <tr><th scope="row">Imitability</th><td>Depends on the activity and context</td><td>Copying one activity may miss the links</td><td>Coordination can raise copying costs; no guarantee</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -1325,20 +1339,69 @@
       <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Ten positions worth knowing</p>
       <h2 class="mt-2 text-3xl md:text-4xl font-bold text-slate-900">Who refuses what</h2>
       <p class="mt-4 text-slate-600 leading-relaxed">
-        Every firm below is famous for what it will not do. Open one to see the refusal, the trade-off that
-        protects it, and the reason a rival cannot simply add the same thing on Monday morning. Judge each one
-        yourself before you open it.
+        Start with the six photo stories: understand the situation, the decision and the activity mechanism.
+        Then use the ten short position prompts to challenge a proposed trade-off. Company facts and teaching
+        interpretations are distinguished; historical models are not current service guarantees.
       </p>
     </div>
+
+<div class="s1-story-grid mt-8" aria-label="Six business photo stories"><article id="story-apple" class="s1-story-card">
+      <figure><img class="s1-story-photo" src="/images/teaching/session1/apple-m1-macbook.webp" alt="An open 13-inch M1 MacBook Pro on a desk." width="960" height="640" loading="lazy" decoding="async">
+      <figcaption class="s1-story-credit">M1 MacBook Pro, photographed in 2024; the product generation was introduced in 2020. Photo: <a href="https://commons.wikimedia.org/wiki/File:Macbook_Pro_13%22_M1_2020.jpg" target="_blank" rel="noopener noreferrer">DYVER</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. Resized and converted to WebP.</figcaption></figure>
+      <div class="s1-story-copy"><div class="s1-story-kicker">Global example · Apple</div>
+      <h3>A deliberate destination; a longer journey</h3><p>June 2020–June 2023</p><p>In June 2020, Apple announced that Macs would move from Intel processors to Apple-designed silicon.</p>
+      <details><summary>Read the decision story</summary><p><strong>The decision:</strong> It set an approximately two-year goal and equipped developers for the transition. The new Mac Pro completed the lineup in June 2023.</p><p><strong>The activity mechanism:</strong> A common chip architecture linked hardware, macOS and applications. Developer tools, universal binaries and Rosetta 2 helped carry existing software across the change.</p><p><strong>The trade-off:</strong> Architectural control required investment and a managed transition for developers and Intel users; it was more than swapping a component.</p><p><strong>Teaching interpretation:</strong> The announced direction supports a deliberate-strategy reading. Finishing later than the initial goal does not, by itself, establish an emergent strategy.</p><p><strong>What would challenge this reading:</strong> Which decisions departed from prior intentions? What evidence would distinguish learning-driven changes from ordinary implementation delays?</p><p><strong>Company sources:</strong> <a href="https://www.apple.com/newsroom/2020/06/apple-announces-mac-transition-to-apple-silicon/" target="_blank" rel="noopener noreferrer">Apple announces Mac transition to Apple silicon</a> · <a href="https://www.apple.com/newsroom/2023/06/apple-unveils-new-mac-studio-and-brings-apple-silicon-to-mac-pro/" target="_blank" rel="noopener noreferrer">Apple unveils new Mac Studio and brings Apple silicon to Mac Pro</a></p></details>
+      <p class="s1-story-question"><strong>Before you move on:</strong> Can a strategy be deliberate if its timetable changes?</p></div>
+    </article>
+<article id="story-ikea" class="s1-story-card">
+      <figure><img class="s1-story-photo" src="/images/teaching/session1/ikea-self-service-warehouse.webp" alt="Tall racks of flat-pack boxes in IKEA&#x27;s self-service warehouse in Anderlecht." width="800" height="569" loading="lazy" decoding="async">
+      <figcaption class="s1-story-credit">IKEA self-service warehouse, Anderlecht, Belgium, 1 February 2018. Photo: <a href="https://commons.wikimedia.org/wiki/File:IKEA_Anderlecht_self-serve_warehouse_(DSCF3734).jpg" target="_blank" rel="noopener noreferrer">Trougnouf</a> / <a href="https://creativecommons.org/licenses/by/4.0" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Resized and converted to WebP.</figcaption></figure>
+      <div class="s1-story-copy"><div class="s1-story-kicker">Global example · IKEA</div>
+      <h3>Design the box, then design the business</h3><p>Flat-pack model from the 1950s; contemporary services distinguished</p><p>Furniture transport was costly and could damage products. IKEA adopted flat-pack and customer assembly as central parts of its model.</p>
+      <details><summary>Read the decision story</summary><p><strong>The decision:</strong> Product developers design for dense packing from the outset; shoppers can collect flat packs in a self-service area.</p><p><strong>The activity mechanism:</strong> Design, packaging, transport, storage and customer assembly share one constraint: deliver useful furniture with less space and handling cost.</p><p><strong>The trade-off:</strong> Packing requirements can constrain a designer&#x27;s preferred form, while customers contribute time and effort to assembly.</p><p><strong>Teaching interpretation:</strong> This illustrates coordinated effort across activities, rather than a magic benefit from one cheaper warehouse. A needs-based lens asks which budget-conscious furnishing needs the system serves.</p><p><strong>What would challenge this reading:</strong> Would customers still choose the offer if assembly effort rose? Which savings survive when delivery or assembly services are added?</p><p><strong>Company sources:</strong> <a href="https://ikeamuseum.com/en/explore/the-story-of-ikea/flatpacks/" target="_blank" rel="noopener noreferrer">How IKEA took flatpacks to a whole new level</a> · <a href="https://www.ikea.com/in/en/customer-service/knowledge/articles/39c45915-b3e0-424f-9950-97d6ed4bge2b.html" target="_blank" rel="noopener noreferrer">What is the layout of an IKEA store?</a></p></details>
+      <p class="s1-story-question"><strong>Before you move on:</strong> What breaks if a rival copies only the flat pack?</p></div>
+    </article>
+<article id="story-slack" class="s1-story-card">
+      <figure><img class="s1-story-photo" src="/images/teaching/session1/slack-office-san-francisco.webp" alt="Interior of Slack&#x27;s office at 500 Howard Street in San Francisco." width="960" height="640" loading="lazy" decoding="async">
+      <figcaption class="s1-story-credit">Slack office at 500 Howard Street, San Francisco, 20 April 2018; a later setting, not the original Glitch workspace. Photo: <a href="https://commons.wikimedia.org/wiki/File:Slack_HQ_-_500_Howard_(26719574747).jpg" target="_blank" rel="noopener noreferrer">Scott Schiller</a> / <a href="https://creativecommons.org/licenses/by-sa/2.0" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>. Resized and converted to WebP.</figcaption></figure>
+      <div class="s1-story-copy"><div class="s1-story-kicker">Global example · Slack</div>
+      <h3>An internal solution becomes the offer</h3><p>Glitch development and the subsequent commercial pivot</p><p>Tiny Speck&#x27;s team built an internal communication tool while developing the game Glitch.</p>
+      <details><summary>Read the decision story</summary><p><strong>The decision:</strong> After the game ended, the founders chose to develop that tool for wider use instead of returning to email-centric coordination.</p><p><strong>The activity mechanism:</strong> An activity created to solve the team&#x27;s own problem became a candidate product. Recognising its value was followed by an intentional commercialization decision.</p><p><strong>The trade-off:</strong> A useful internal tool was not yet a dependable offer for other organisations; the team needed to serve customers beyond its own workflow.</p><p><strong>Teaching interpretation:</strong> The opportunity emerged outside the original game offering. The subsequent choice to build a business around it was deliberate; &#x27;accidental origin&#x27; does not describe every later decision.</p><p><strong>What would challenge this reading:</strong> What repeated external use or customer feedback validated the opportunity? An origin anecdote alone cannot establish the whole realized strategy.</p><p><strong>Company sources:</strong> <a href="https://slack.com/intl/en-gb/resources/why-use-slack/what-is-slack-and-how-does-it-work" target="_blank" rel="noopener noreferrer">What is Slack and how does it work?</a> · <a href="https://slack.com/intl/en-gb/resources/why-use-slack/how-slacks-own-developers-use-slack" target="_blank" rel="noopener noreferrer">Using Slack like a Slack developer</a></p></details>
+      <p class="s1-story-question"><strong>Before you move on:</strong> At what point does an emergent opportunity become a deliberate commitment?</p></div>
+    </article>
+<article id="story-dmart" class="s1-story-card">
+      <figure><img class="s1-story-photo" src="/images/teaching/session1/dmart-tirupati.webp" alt="DMart storefront in Tirupati with its green-and-white signage." width="960" height="576" loading="lazy" decoding="async">
+      <figcaption class="s1-story-credit">DMart store in Tirupati, 16 February 2017. Photo: <a href="https://commons.wikimedia.org/wiki/File:Dmart_tirupati.jpg" target="_blank" rel="noopener noreferrer">Moulalisaheb.g</a> / <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. Resized and converted to WebP.</figcaption></figure>
+      <div class="s1-story-copy"><div class="s1-story-kicker">Indian example · DMart / Avenue Supermarts</div>
+      <h3>Low prices need a cost system</h3><p>FY 2024–25 disclosures</p><p>A grocery shopper can see a price, but cannot see the procurement and operating choices that sustain it.</p>
+      <details><summary>Read the decision story</summary><p><strong>The decision:</strong> DMart describes an everyday low-cost/everyday low-price model, supported by careful assortment, local sourcing and distribution capabilities.</p><p><strong>The activity mechanism:</strong> Buying and operating costs support recurring low prices rather than occasional discount events. Assortment and logistics must remain consistent with that promise.</p><p><strong>The trade-off:</strong> The model still carries inventory and real-estate commitments. Adding convenience features must be assessed against their cost, rather than assumed to fit automatically.</p><p><strong>Teaching interpretation:</strong> This is a first-order-fit application: several choices align with value retailing. The report also records inventory and competitive risks, so &#x27;flawless fit&#x27; is an unsupported conclusion.</p><p><strong>What would challenge this reading:</strong> Track availability, inventory turnover and operating costs. Would lower prices still be sustainable if those activities weakened?</p><p><strong>Company sources:</strong> <a href="https://api.dmartindia.com/corporate/content/file/v1/6/vLobSX3O9BXYtJt1WfpFGuYr1752926697/Annual%20Report%202024-25.pdf" target="_blank" rel="noopener noreferrer">Avenue Supermarts Annual Report FY 2024–25</a></p></details>
+      <p class="s1-story-question"><strong>Before you move on:</strong> When is a low price a strategy, and when is it merely a promotion?</p></div>
+    </article>
+<article id="story-nykaa" class="s1-story-card">
+      <figure><img class="s1-story-photo" src="/images/teaching/session1/nykaa-launch-2018.webp" alt="Janhvi Kapoor posing in front of a Nykaa-branded backdrop at a launch event." width="585" height="827" loading="lazy" decoding="async">
+      <figcaption class="s1-story-credit">Janhvi Kapoor at a Nykaa launch event, 12 September 2018. A marketing setting; it does not document fulfilment operations. Photo: <a href="https://commons.wikimedia.org/wiki/File:Janhvi_Kapoor_snapped_at_Nykaa_launch_event_(03).jpg" target="_blank" rel="noopener noreferrer">Bollywood Hungama</a> / <a href="https://creativecommons.org/licenses/by/3.0" target="_blank" rel="noopener noreferrer">CC BY 3.0</a> / <a href="https://www.bollywoodhungama.com/news/parties-and-events/janhvi-kapoor-snapped-nykaa-launch-event/janhvi-kapoor-snapped-at-nykaa-launch-event-3/" target="_blank" rel="noopener noreferrer">Original photographer page</a>. Resized and converted to WebP.</figcaption></figure>
+      <div class="s1-story-copy"><div class="s1-story-kicker">Indian example · Nykaa / FSN E-Commerce Ventures</div>
+      <h3>Trust travels across several activities</h3><p>FY 2024–25 beauty-business disclosures</p><p>Beauty shoppers need help choosing products and confidence in their source, not simply an online checkout.</p>
+      <details><summary>Read the decision story</summary><p><strong>The decision:</strong> Nykaa reports content-led education, an inventory-led beauty model sourced from brands or authorised distributors, and a physical-store network.</p><p><strong>The activity mechanism:</strong> Education can support discovery; sourcing addresses authenticity; stores permit trial and advice. Their reinforcement is a testable strategic proposition, not proof that content automatically converts.</p><p><strong>The trade-off:</strong> Owning inventory and operating stores create costs and working-capital exposure alongside the intended trust and availability benefits.</p><p><strong>Teaching interpretation:</strong> Use a needs-based lens for beauty shoppers, then test second-order fit among education, sourcing and retail experience. This does not classify every Nykaa business identically.</p><p><strong>What would challenge this reading:</strong> Would repeat purchase and contribution improve across channels after controlling for discounts? What evidence shows one activity strengthens another?</p><p><strong>Company sources:</strong> <a href="https://www.nykaa.com/media/wysiwyg/uiTools/2025-8/Integrated-Annual-Report-2024-25.pdf#page=65" target="_blank" rel="noopener noreferrer">FSN E-Commerce Ventures Integrated Annual Report 2024–25</a></p></details>
+      <p class="s1-story-question"><strong>Before you move on:</strong> Which link in this trust system would be hardest to copy?</p></div>
+    </article>
+<article id="story-zomato" class="s1-story-card">
+      <figure><img class="s1-story-photo" src="/images/teaching/session1/zomato-delivery-bengaluru.webp" alt="A Zomato delivery partner riding a Yulu bike on a Bengaluru street." width="800" height="450" loading="lazy" decoding="async">
+      <figcaption class="s1-story-credit">Zomato delivery partner on a Yulu bike, Bengaluru, 9 January 2026; a present-day illustration of the delivery activity. Photo: <a href="https://commons.wikimedia.org/wiki/File:Zomato_delivery_partner_on_a_Yulu_bike.jpg" target="_blank" rel="noopener noreferrer">SerChevalerie</a> / <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" target="_blank" rel="noopener noreferrer">CC0</a>. Resized and converted to WebP.</figcaption></figure>
+      <div class="s1-story-copy"><div class="s1-story-kicker">Indian example · Zomato</div>
+      <h3>Learning alongside an expanding intent</h3><p>2010 intentions; 2015–16 online-ordering learning</p><p>Foodiebay started as restaurant information, but its founder&#x27;s 2010 account already described ambitions beyond directory listings.</p>
+      <details><summary>Read the decision story</summary><p><strong>The decision:</strong> Zomato launched online ordering in 2015. Its 2016 accounts describe learning by doing and developing support and delivery capabilities.</p><p><strong>The activity mechanism:</strong> Discovery traffic could feed ordering demand, while order failures created a need for support and fulfilment coordination: new activities had to connect to the existing platform.</p><p><strong>The trade-off:</strong> Taking responsibility for a transaction introduces reliability and fulfilment costs that a restaurant-information service does not carry in the same way.</p><p><strong>Teaching interpretation:</strong> This supports a story of learning alongside intent. The founders&#x27; earlier ambitions and delivery experience prevent a confident &#x27;purely emergent&#x27; label.</p><p><strong>What would challenge this reading:</strong> Find dated plans and repeated operational changes. Which patterns preceded formal commitments, and which implemented an already chosen direction?</p><p><strong>Company sources:</strong> <a href="https://www.zomato.com/blog/foodiebay-second-innings/" target="_blank" rel="noopener noreferrer">Foodiebay – Second Innings</a> · <a href="https://www.zomato.com/blog/two-million-meals-on-heres-what-weve-learned/" target="_blank" rel="noopener noreferrer">Two million meals on, here&#x27;s what we&#x27;ve learned from our online ordering business</a> · <a href="https://www.zomato.com/blog/our-unit-economics-for-food-delivery-in-india/" target="_blank" rel="noopener noreferrer">Our Unit Economics for Food Delivery in India</a></p></details>
+      <p class="s1-story-question"><strong>Before you move on:</strong> Does a new business line prove emergence, or do we need evidence of prior intentions?</p></div>
+    </article></div><p class="mt-4 text-xs text-slate-500">Photographs identify a company, product or setting; they do not prove the proposed strategic mechanism. Open a story for source evidence, interpretation and a question to challenge it.</p>
 
     <div class="mt-8 flex flex-wrap gap-2 border-b border-slate-200" role="tablist" aria-label="Example sets">
       <button type="button" role="tab" data-ex="global" aria-selected="true"
         class="ex-tab -mb-px border-b-2 border-blue-600 px-4 py-2.5 text-sm font-semibold text-blue-700">
-        Five global
+        Global positions
       </button>
       <button type="button" role="tab" data-ex="india" aria-selected="false"
         class="ex-tab -mb-px border-b-2 border-transparent px-4 py-2.5 text-sm font-semibold text-slate-500 hover:text-slate-800">
-        Five Indian
+        Indian positions
       </button>
     </div>
 
@@ -1347,9 +1410,9 @@
     <div class="mt-8 rounded-2xl border border-slate-200 bg-white p-6">
       <h3 class="font-bold text-slate-900">The pattern across all ten</h3>
       <p class="mt-2 text-sm text-slate-600 leading-relaxed">
-        None of these firms is defined by being better. Each is defined by a refusal that costs it something
-        real and would cost a rival more. When you cannot name what a firm refuses, you are usually looking at
-        operational effectiveness wearing the word strategy.
+        A promising position names a customer benefit, the activities that support it and a valuable opportunity
+        that becomes harder to pursue. These are hypotheses to test, not permanent labels. Ask which links a rival
+        could reproduce, what has changed since the example's source period, and what evidence would reverse your judgement.
       </p>
     </div>
   </div>
@@ -1438,7 +1501,7 @@
     </div>
     <div class="card p-5">
       <span class="pill bg-slate-100 text-slate-600">Realised</span>
-      <p class="mt-3 text-sm text-slate-600 leading-relaxed">What the firm actually did. Almost always part deliberate and part emergent; the intended strategy that never happened is simply unrealised.</p>
+      <p class="mt-3 text-sm text-slate-600 leading-relaxed">The pattern the firm actually followed. It can contain deliberate and emergent strands; the framework does not require both in every case. An intended strand that never happens is unrealised.</p>
     </div>
   </div>
 
@@ -1461,6 +1524,19 @@
     </div>
     <ul id="emClassifier" class="mt-4 grid gap-2.5"></ul>
   </div>
+<figure id="strategy-stream" class="s1-flow" aria-labelledby="strategy-stream-title">
+  <h3 id="strategy-stream-title">One firm, five strategy terms</h3>
+  <p class="mt-3">An original hypothetical example: a lunch firm plans office subscriptions and event catering. Over three months it delivers office lunches, drops catering and repeatedly accepts student orders that staff discovered locally. Read the diagram against the dated plan and the actual decisions.</p>
+  <ol class="s1-flow-steps">
+    <li class="s1-flow-node s1-flow-wide"><strong>1 · Intended: the plan before action</strong><p>Launch weekday office subscriptions and a catering service. Intention is evidence of a plan; it is not proof of execution.</p></li>
+    <li class="s1-flow-node"><strong>2 · Deliberate: intention becomes a pattern ↓</strong><p>Office subscriptions are delivered repeatedly, as the original plan specified. This is the realised part of the original intention.</p></li>
+    <li class="s1-flow-node" data-strand="unrealized"><strong>3 · Unrealised: an intended strand is dropped</strong><p>Catering never launches because the same kitchen cannot support both promises. This strand does not enter the realised strategy.</p></li>
+    <li class="s1-flow-node" data-strand="emergent"><strong>4 · Emergent: a pattern without prior intention ↓</strong><p>Staff repeatedly serve nearby student groups although the original plan did not target them. One surprising order alone would not establish a strategy.</p></li>
+    <li class="s1-flow-node s1-flow-wide"><strong>5 · Realised: what the firm actually follows</strong><p>Office subscriptions + the student-serving pattern. Management may now make the student offer deliberate for the next period.</p></li>
+  </ol>
+  <figcaption>This example contains both deliberate and emergent strands; not every realised strategy must contain both. Realised/unrealised describes action relative to intention, not financial success/failure. Adapted conceptually from Mintzberg's assigned 1987 reading and the supplementary Mintzberg &amp; Waters (1985) framework; diagram and scenario are original.</figcaption>
+  <div class="s1-links"><a id="note-mintzberg" href="https://drive.google.com/file/d/1VZSnQwiIC7ED8bPV77rPy2G_77510chu/view?usp=sharing" target="_blank" rel="noopener noreferrer">Open Mintzberg's Strategy Types note</a><a href="#s1-resource-lab">Choose what the firm does next</a><a href="https://mintzberg.org/articles/strategies-deliberate-and-emergent" target="_blank" rel="noopener noreferrer">Supplementary 1985 reference</a></div>
+</figure>
 </section>
 
 <section id="tesla" class="bg-white border-y border-slate-200">
@@ -1744,6 +1820,23 @@
             </div>
         </section>
 
+<section id="s1-resource-lab" class="s1rl" aria-labelledby="s1rl-title">
+  <div class="s1rl-inner">
+    <p class="s1rl-kicker">From study note to decision</p>
+    <h2 id="s1rl-title">Three strategy labs. Choose, observe, reconsider.</h2>
+    <p class="s1rl-intro">Use the three study notes in a fictional Indian meal-service setting. Compare the original plan with a record of actions, connect activities to consequences, and defend a position through its costs and refusals. All scenarios and numbers are original educational assumptions, not company data or business forecasts. Your answers stay in this page; nothing is uploaded or saved.</p>
+    <nav class="s1rl-nav" aria-label="Strategy lab navigation">
+      <a href="#s1rl-pattern">Plan and pattern</a>
+      <a href="#s1rl-fit">Activity fit</a>
+      <a href="#s1rl-position">Positioning choices</a>
+    </nav>
+    <article id="s1rl-pattern" data-s1rl="pattern"><h3>Plan and pattern</h3><p>Inspect an intended plan, recurring observations and the actions that actually follow. <a href="#note-mintzberg">Read the Mintzberg note</a>.</p></article>
+    <article id="s1rl-fit" data-s1rl="fit"><h3>Activity fit</h3><p>Test how fixed menus, preorders and clustered routes connect. <a href="#note-fit">Read the fit note</a>.</p></article>
+    <article id="s1rl-position" data-s1rl="position"><h3>Positioning choices</h3><p>Compare a service subset, a needs bundle and a reach constraint. <a href="#note-positioning">Read the positioning note</a>.</p></article>
+    <noscript><p>Enable JavaScript to use these local simulations. The linked study notes and company stories remain readable without it.</p></noscript>
+  </div>
+</section>
+
 <section id="studio" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
   <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">In the room</p>
   <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Studio: two rounds, one decision each</h2>
@@ -1817,14 +1910,28 @@
   </div>
 </section>
 
+<section id="resource-guides" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
+  <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Your Session 1 study notes</p>
+  <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Read → trace the story → make a decision</h2>
+  <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">Use these three supplied companion notes alongside the assigned articles. The examples on this page distinguish documented company events from teaching interpretations, and clearly label fictional scenarios. A changed outcome alone does not prove emergence, and a coherent activity system does not guarantee profit.</p>
+  <div class="s1-guide-grid mt-6">
+    <article class="s1-guide-card"><h3>Mintzberg's Strategy Types</h3><p>Compare the original intention with repeated actions. Identify deliberate, emergent and unrealised strands before naming the realised pattern.</p><div class="s1-links"><a href="https://drive.google.com/file/d/1VZSnQwiIC7ED8bPV77rPy2G_77510chu/view?usp=sharing" target="_blank" rel="noopener noreferrer">Read the original note ↗</a><a href="#strategy-stream">See the five-term diagram</a></div></article>
+    <article class="s1-guide-card"><h3>Strategic Fit Explained</h3><p>Trace consistency with a promise, reinforcement between activities and coordination that reduces duplicated effort. Explain the causal link rather than awarding a company a permanent fit label.</p><div class="s1-links"><a id="note-fit" href="https://drive.google.com/file/d/1NXGk0YlJ1YYGIUBsKGzWrSlOyOvkKUi2/view?usp=sharing" target="_blank" rel="noopener noreferrer">Read the original note ↗</a><a href="#fit-examples">Trace the three forms of fit</a></div></article>
+    <article class="s1-guide-card"><h3>Strategic Positioning Trigger Questions</h3><p>Start with a specialised service, a particular set of customer needs or a different way of reaching customers. Then specify an activity system and a costly refusal.</p><div class="s1-links"><a id="note-positioning" href="https://drive.google.com/file/d/1QJoeKLMCh_HEsi9oYrjSY0JhbDaB2uy3/view?usp=sharing" target="_blank" rel="noopener noreferrer">Read the original note ↗</a><a href="#positioning-prompts">Compare the three starting points</a></div></article>
+  </div>
+  <p class="mt-4 text-xs text-slate-500 leading-relaxed">Links open the original Drive resources. Use your course account if access is requested. Assigned articles and case-pack PDFs remain subject to their publisher/course access terms; this page hosts original teaching applications, not copies of those readings.</p>
+</section>
+
 <section id="readings" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
   <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Preparation</p>
   <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">Readings for Session 1</h2>
   <p class="mt-3 text-slate-600 max-w-3xl leading-relaxed">
     Read the case last, after the three articles &mdash; it is the material you argue with, and the
     articles are the tools you argue with. The four required items are obtained through the course pack,
-    and the two recommended ones are in the session folder; none is reproduced on this page.
+    and the recommended ones are in the session folder; none is reproduced on this page. The companion notes
+    above help you practise the concepts before the case discussion.
   </p>
+  <div class="s1-links"><a id="session1-folder" href="https://drive.google.com/drive/folders/1FKvvfGngQwrSTkGfXB4K-oD7CHASaPw0" target="_blank" rel="noopener noreferrer">Open the Session 1 resource folder ↗</a><a href="#resource-guides">Return to the three study notes</a></div>
   <ol class="mt-6 grid gap-3">
     <li class="card p-5">
       <span class="pill bg-slate-100 text-slate-600">Case</span>
@@ -1918,7 +2025,7 @@
     </main>
 
     <!-- Modal Structure -->
-    <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
+    <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true" inert class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-[100] opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out">
         <div id="modal-content" class="bg-white rounded-lg shadow-2xl w-full max-w-xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 relative transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
             <h3 id="modal-title" class="text-xl font-semibold text-slate-900 mb-4 pr-8"></h3>
             <div id="modal-body" class="prose-custom text-sm"></div>
@@ -1960,7 +2067,7 @@
             };
             function createChart(company) { /* ... Chart creation logic as before ... */
                 const ctx = document.getElementById(`${company}Chart`);
-                if (!ctx) return;
+                if (!ctx || typeof Chart === 'undefined') return;
                 const data = chartData[company];
                 const title = company === 'nokia' ? 'Global Smartphone Market Share (%)' : 'Market Capitalization ($ Billions)';
                 new Chart(ctx.getContext('2d'), {
@@ -1973,26 +2080,42 @@
              // Modal Logic (as before)
              const modal = document.getElementById('modal');
              const modalContent = document.getElementById('modal-content');
+             let modalReturnFocus = null;
              window.openModal = (title, body) => { /* ... Modal open logic ... */
+                 modalReturnFocus = document.activeElement;
                  document.getElementById('modal-title').innerText = title;
                  document.getElementById('modal-body').innerHTML = body;
                  modal.classList.remove('pointer-events-none', 'hidden');
+                 modal.inert = false;
+                 modal.setAttribute('aria-hidden', 'false');
                  document.body.style.overflow = 'hidden';
+                 modal.querySelector('[aria-label="Close modal"]').focus({preventScroll:true});
                  setTimeout(() => { modal.classList.remove('opacity-0'); modalContent.classList.remove('scale-95', 'opacity-0'); }, 10);
              };
              window.closeModal = () => { /* ... Modal close logic ... */
                  modal.classList.add('opacity-0');
                  modalContent.classList.add('scale-95', 'opacity-0');
                  document.body.style.overflow = '';
+                 modal.inert = true;
+                 modal.setAttribute('aria-hidden', 'true');
+                 if (modalReturnFocus?.isConnected) modalReturnFocus.focus({preventScroll:true});
                  setTimeout(() => modal.classList.add('pointer-events-none', 'hidden'), 300);
              };
              modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+             modal.addEventListener('keydown', e => {
+                 if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeModal(); }
+                 if (e.key === 'Tab') {
+                     const controls = [...modal.querySelectorAll('a[href],button,input,select,textarea,[tabindex="0"]')];
+                     const first = controls[0], last = controls[controls.length-1];
+                     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+                 }
+             });
 
             // Click-to-Reveal Logic for Analyses
-            window.toggleAnalysis = (company, lens) => {
+            window.toggleAnalysis = (company, lens, button) => {
                 const contentDiv = document.getElementById(`${company}-${lens}-analysis`);
-                const button = event.currentTarget; // Get the button that was clicked
-                if (contentDiv) {
+                if (contentDiv && button) {
                     const isVisible = contentDiv.classList.contains('visible');
                     // Hide any other visible analysis for this company
                      const otherLens = lens === 'porter' ? 'mintzberg' : 'porter';
@@ -2063,7 +2186,14 @@
                     simulationContainer.innerHTML = `<div class="p-6 bg-rose-50 rounded-lg border border-rose-200"><h4 class="text-lg font-semibold text-rose-700 mb-3">${step.title}</h4><div class="prose-custom text-sm">${step.analysis}</div><button onclick="restartSimulation()" class="mt-4 px-4 py-1.5 bg-rose-600 text-white text-xs font-medium rounded-md hover:bg-rose-700 transition-colors focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">Restart Simulation</button></div>`;
                 } else {
                     simulationContainer.innerHTML = `<div class="p-6 bg-slate-100 rounded-lg border border-slate-200"><h4 class="text-base font-semibold text-slate-800 mb-4">${step.question}</h4><div class="grid sm:grid-cols-2 gap-4">${step.options.map(opt => `<button data-next="${opt.next}" class="activity-button simulation-button p-3 border-rose-200 bg-rose-50 hover:bg-rose-100 hover:border-rose-300 group focus:ring-rose-400"><strong class="group-hover:text-rose-800">${opt.text.split(':')[0]}:</strong> ${opt.text.split(':').slice(1).join(':').trim()}</button>`).join('')}</div></div>`;
-                    document.querySelectorAll('.simulation-option').forEach(button => button.addEventListener('click', (e) => renderSimulationStep(parseInt(e.currentTarget.dataset.next))));
+                    simulationContainer.querySelectorAll('button[data-next]').forEach(button => {
+                        button.type = 'button';
+                        button.addEventListener('click', e => {
+                            renderSimulationStep(Number(e.currentTarget.dataset.next));
+                            const heading = simulationContainer.querySelector('h4');
+                            if (heading) { heading.tabIndex = -1; heading.focus({preventScroll:true}); }
+                        });
+                    });
                 }
             };
             window.restartSimulation = () => renderSimulationStep(1);
@@ -2082,7 +2212,7 @@
                  { q: "In the 'Phoenix Motors' simulation, choosing 'Rapid Automation' (Step 3A) represents a strategy that prioritizes:", o: ["Incremental learning and adaptation.", "Maintaining operational consistency above all else.", "A deliberate, large-scale bet on achieving scale quickly, accepting high risk.", "Serving a niche market effectively."], a: 2, e: "Building a highly automated factory quickly is a massive, planned investment aimed at achieving scale advantages (a Porter concept), but it limits flexibility and learning (Mintzberg concerns) and carries significant execution risk, as Tesla experienced." },
                  { q: "What does 'fit' mean in Porter's framework?", o: ["How a company's activities interact and reinforce one another.", "Ensuring employees fit the company culture.", "Finding the right market for a product."], a: 0, e: "'Fit' is about synergy. It's when all a company's activities—from marketing to manufacturing to logistics—are interconnected and mutually reinforcing, making the strategy as a whole much harder to imitate than any single part." },
                  { q: "From a Mintzbergian perspective, Kodak's management...", o: ["Should have created a more detailed plan for digital.", "Allowed the deliberate strategy (film) to suppress the emergent strategy (digital).", "Didn't listen to their customers."], a: 1, e: "The invention of the digital camera was a potential emergent strategy from within. However, the powerful, established 'deliberate' strategy focused on protecting film sales, and the formal planning process actively killed this internal innovation." },
-                 { q: "A company's 'realized strategy' (what it actually does), according to Mintzberg, is a blend of:", o: ["Its mission and vision statements.", "Its deliberate (planned) and emergent (unplanned) strategies.", "Its marketing and financial plans."], a: 1, e: "This is a key distinction. Mintzberg argues that no strategy is purely deliberate. The final 'realized' strategy is always a mix of what was intended and what emerged along the way through learning and adaptation." },
+                 { q: "A company's realized strategy can contain which two kinds of pattern?", o: ["Its mission and vision statements.", "Deliberate patterns (realized intentions) and emergent patterns (not originally intended).", "Its marketing and financial plans."], a: 1, e: "Realized strategy is the pattern actually followed. It often combines deliberate and emergent strands, but the framework does not require both in every case. An intended action that never happens is unrealized; commercial success is a different question." },
                  { q: "What was a common theme in the decline of all three giants (Nokia, Kodak, Yahoo)?", o: ["A lack of talented engineers.", "An inability to adapt business models to fundamental industry shifts.", "Insufficient funding for R&D."], a: 1, e: "This is the central lesson. All three were dominant in their respective eras but failed to adapt their strategies and core business models when technology and consumer behavior changed the rules of the game." },
                  { q: "Porter's framework is most useful for analyzing a company's...", o: ["Day-to-day operational details.", "Static position and competitive advantage at a point in time.", "Internal culture and politics."], a: 1, e: "Porter's tools (Five Forces, Value Chain, Positioning) are primarily analytical frameworks for understanding the structure of an industry and a firm's defensible position within it." },
                  { q: "If Porter provides the 'blueprint' for a strategy, Mintzberg explains the...", o: ["Importance of following the blueprint perfectly.", "Process of 'crafting' and learning that must happen during construction.", "Irrelevance of blueprints in the modern world."], a: 1, e: "This synthesizes the two views. Porter offers the analytical structure (the blueprint), while Mintzberg describes the dynamic, hands-on process of learning, adapting, and 'crafting' that brings any plan to life and allows it to evolve." }
@@ -2349,10 +2479,15 @@ function renderStatement(){
   if(!o && !s && !a){ out.hidden=true; warn.hidden=true; return; }
   out.hidden=false;
   const words=(o+" "+s+" "+a).trim().split(/\s+/).filter(Boolean).length;
-  out.innerHTML='<strong>Objective:</strong> '+(o||'<em class="text-slate-400">missing</em>')+
-    '<br><strong>Scope:</strong> '+(s||'<em class="text-slate-400">missing</em>')+
-    '<br><strong>Advantage:</strong> '+(a||'<em class="text-slate-400">missing</em>')+
-    '<br><span class="text-xs text-slate-500">'+words+' words</span>';
+  out.replaceChildren();
+  [['Objective',o],['Scope',s],['Advantage',a]].forEach(([label,value])=>{
+    const line=document.createElement('p'), name=document.createElement('strong');
+    name.textContent=label+': ';
+    line.append(name,document.createTextNode(value||'missing'));
+    out.append(line);
+  });
+  const count=document.createElement('span');
+  count.className='text-xs text-slate-500'; count.textContent=words+' words'; out.append(count);
   const hits=VAGUE.filter(v=>(o+" "+s+" "+a).toLowerCase().includes(v));
   const notes=[];
   if(words>35) notes.push("Over 35 words — a statement nobody can repeat will not travel.");
@@ -2843,29 +2978,29 @@ QUIZ.forEach((item,i)=>{
 (function () {
   var EX = {
     global: [
-      { n: "IKEA", tag: "Variety + cost", pos: "Flat-pack, self-service furniture at a price no full-service retailer can match.",
-        refuse: "Delivery, assembly, sales assistance, and city-centre locations.",
+      { n: "IKEA", tag: "Needs + fit", pos: "An affordable furnishing model supported by flat-pack design and coordinated self-service.",
+        refuse: "In the classic self-service model, bundling every convenience into the base price. IKEA also offers delivery and assembly options; this is not a claim that those services never exist.",
         fit: "Modular design makes flat packing possible; flat packing makes out-of-town warehouses viable; warehouses make self-selection necessary; self-selection removes the sales floor.",
         why: "A department store adding flat-pack keeps its rent, its delivery fleet and its sales staff. It gets the cost of the choice without the saving." },
-      { n: "Southwest Airlines", tag: "Access + cost", pos: "Short-haul, point-to-point flying at bus-like fares.",
-        refuse: "Meals, seat assignments, baggage transfers, hubs, and more than one aircraft type.",
+      { n: "Southwest Airlines", tag: "Historical · 1996", pos: "Porter's historical example of short-haul, point-to-point flying supported by a tailored activity system.",
+        refuse: "In the article's historical model: meals, assigned seats and interline baggage transfers. Do not read this as today's fare or service policy.",
         fit: "One fleet type speeds turnarounds; fast turnarounds raise utilisation; utilisation funds the fare; point-to-point avoids connection waits.",
         why: "Continental tried it as Continental Lite and stopped. A full-service carrier cannot drop baggage transfer on some routes without breaking the hub it depends on elsewhere." },
-      { n: "Vanguard", tag: "Needs-based", pos: "Low-cost index investing owned by its own funds.",
-        refuse: "Star managers, active trading, and sales commissions.",
+      { n: "Vanguard", tag: "Index offer · cost", pos: "The indexed investment offer illustrates a low-cost activity system; it is not the whole Vanguard product catalogue.",
+        refuse: "Within an index-tracking product: paying for stock selection intended to outperform its benchmark. Vanguard also offers actively managed products.",
         fit: "Mutual ownership removes the profit motive that would push fees up; index tracking removes research cost; low turnover removes trading cost.",
         why: "An active manager cutting fees to match Vanguard destroys the revenue that pays the managers who justify the fee." },
-      { n: "In-N-Out Burger", tag: "Variety + focus", pos: "A tiny menu, fresh never frozen, in a handful of states.",
-        refuse: "Franchising, freezers, national expansion, and menu extensions.",
+      { n: "In-N-Out Burger", tag: "Focused-menu illustration", pos: "A focused core menu is a starting point for analysing the connection between freshness, supply and footprint.",
+        refuse: "The teaching hypothesis is that uncontrolled menu and footprint expansion would complicate a fresh-food system, not that the business can never expand.",
         fit: "No freezers forces supply within a day's drive of a distribution centre; that limit forces geographic concentration; concentration keeps quality consistent.",
         why: "A national chain matching the menu still has a frozen supply chain, because its footprint requires one." },
       { n: "Aravind Eye Care", tag: "Access + cost", pos: "High-volume cataract surgery, free for those who cannot pay, funded by those who can.",
         refuse: "Surgeon-paced scheduling, a single price, and low throughput.",
         fit: "Assembly-line theatre design raises surgeon throughput; throughput lowers unit cost; low cost makes cross-subsidy viable; volume produces surgical quality.",
-        why: "A conventional hospital adding free patients simply adds cost, because its theatres are not built to run at that rate." }
+        why: "An alternative hospital would need to examine throughput, safety, demand and financing together. Copying a free-price policy alone does not reproduce the delivery system." }
     ],
     india: [
-      { n: "Reliance Jio", tag: "Access", pos: "All-IP 4G built nationwide before selling a single subscription.",
+      { n: "Reliance Jio", tag: "Launch-era illustration", pos: "The 2016 all-IP 4G launch illustrates a deliberate commitment to a new network and data-oriented offer.",
         refuse: "Legacy 2G and 3G networks, and gradual regional rollout.",
         fit: "Greenfield all-IP means no legacy maintenance; national scale at launch makes free introductory pricing survivable; data-only design fits the smartphone era.",
         why: "Incumbents carried 2G and 3G estates they could not abandon and could not cheaply match free data against." },
@@ -2873,21 +3008,22 @@ QUIZ.forEach((item,i)=>{
         refuse: "Percentage brokerage, advisory services, and a branch network.",
         fit: "No advice means no advisers; no advisers means no branches; no branches means the flat fee clears cost; software substitutes for people.",
         why: "A full-service broker matching the flat fee destroys the commission that funds its advisers, who are the reason clients came." },
-      { n: "Nirma", tag: "Cost", pos: "Detergent for households that had never bought detergent.",
-        refuse: "Premium formulation, urban-first distribution, and expensive media.",
+      { n: "Nirma", tag: "Historical low-price illustration", pos: "A historical low-price detergent offer illustrates the need to align formulation, distribution and target economics.",
+        refuse: "A premium-cost activity system within a low-price offer. This does not imply Nirma never used mass advertising or sold to urban consumers.",
         fit: "Simple formulation lowers input cost; low cost enables rural pricing; rural focus avoids competing where incumbents were strong.",
         why: "An established brand cutting price cannibalises its own premium volume, which is where its profit sits." },
-      { n: "Amul", tag: "Needs-based", pos: "A farmer-owned cooperative capturing the margin normally taken by intermediaries.",
-        refuse: "Private ownership, and buying milk on the open market.",
+      { n: "Amul", tag: "Cooperative system", pos: "Farmer ownership links procurement, processing and a consumer brand; analyse both member interests and customer needs.",
+        refuse: "Making investor returns the sole objective of the member-owned system. Ownership alone does not prove a particular Porter positioning category.",
         fit: "Farmer ownership secures supply; secure supply supports a national brand; brand scale funds procurement reach; procurement reach deepens ownership.",
         why: "A private dairy cannot promise farmers the surplus, because its shareholders are the ones expecting it." },
-      { n: "Dabbawalas of Mumbai", tag: "Access", pos: "Home-cooked lunch delivered across a city at near-perfect reliability.",
-        refuse: "Cooking, refrigeration, motorised transport for the main leg, and written tracking.",
+      { n: "Dabbawalas of Mumbai", tag: "Classic delivery-system illustration", pos: "The classic lunch-delivery model links neighbourhood collection, sorting and timed transport.",
+        refuse: "In the classic model: running a restaurant-style kitchen as part of the same delivery service. Do not infer a current universal rule about tracking or vehicles.",
         fit: "Not cooking removes kitchens entirely; a coded marking system removes literacy as a constraint; rail plus handcart removes traffic risk; local recruitment supplies trust.",
         why: "A logistics firm can buy vans and software and still not have the neighbourhood relationships the system runs on." }
     ]
   };
 
+  EX.india.unshift(EX.global.pop()); // Aravind is an Indian example.
   var grid = document.getElementById("exGrid");
   var tabs = document.querySelectorAll(".ex-tab");
   if (!grid || !tabs.length) return;
@@ -2911,7 +3047,7 @@ QUIZ.forEach((item,i)=>{
             '<p class="mt-1 text-sm text-slate-700">' + e.refuse + "</p></div>" +
           '<div><p class="text-[10px] font-semibold uppercase tracking-wider text-blue-600">The fit</p>' +
             '<p class="mt-1 text-sm text-slate-700">' + e.fit + "</p></div>" +
-          '<div><p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Why copying fails</p>' +
+          '<div><p class="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Why copying one activity may fail</p>' +
             '<p class="mt-1 text-sm text-slate-700">' + e.why + "</p></div>" +
         "</div>";
       var btn = card.querySelector(".ex-open");
@@ -2945,9 +3081,9 @@ QUIZ.forEach((item,i)=>{
   var SECTIONS = [
     ["q1", "What is strategy?"], ["authors", "The three articles"], ["cases", "Fallen giants"],
     ["lenses", "Two lenses"], ["positioning-examples", "Positioning"], ["fit-examples", "Fit"],
-    ["examples", "Ten positions"], ["q2", "Why need one?"], ["q3", "How is it made?"],
+    ["examples", "Business stories"], ["q2", "Why need one?"], ["q3", "How is it made?"],
     ["tesla", "Tesla"], ["exhibits", "Exhibit workshop"], ["activities", "Workshops"],
-    ["studio", "Studio"], ["quiz", "Quiz"], ["check", "Concept check"], ["readings", "Readings"]
+    ["s1-resource-lab", "Three decision labs"], ["studio", "Studio"], ["quiz", "Quiz"], ["check", "Concept check"], ["resource-guides", "Study notes"], ["readings", "Readings"]
   ];
   var KEY = "pgpm-v02-session1-progress";
   var ACTIVITIES = ["sorter", "classifier", "exhibits", "porter", "collis", "quiz", "video", "autopsy", "frontier"];
@@ -3787,5 +3923,6 @@ QUIZ.forEach((item,i)=>{
 })();
 </script>
 <script src="/teaching/1-year-mba/course-ui.js" data-course-session="1" defer></script>
+<script src="/teaching/1-year-mba/session1-resource-lab.js" defer></script>
 </body>
 </html>
