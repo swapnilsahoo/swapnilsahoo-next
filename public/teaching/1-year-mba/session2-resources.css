@@ -1,0 +1,47 @@
+.s2rh{background:var(--paper);color:var(--ink);padding:3.5rem 1rem;border-top:1px solid var(--line)}
+.s2rh-inner{max-width:1080px;margin:auto}
+.s2rh h2{font-size:clamp(1.6rem,4vw,2.3rem);font-weight:700;line-height:1.25;margin:.6rem 0 1rem}
+.s2rh h3{font-size:1.2rem;font-weight:700;line-height:1.4}
+.s2rh h4{font-size:1rem;font-weight:700;line-height:1.45}
+.s2rh p,.s2rh dd{font-size:.9rem;line-height:1.75;color:var(--muted);margin:.7rem 0}
+.s2rh-intro{max-width:80ch}
+.s2rh .s2rh-kicker{font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+.s2rh-card{border:1px solid var(--line);border-radius:1rem;padding:1.25rem;background:var(--card);margin:1.25rem 0 0;scroll-margin-top:var(--sticky-offset,120px)}
+.s2rh-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.s2rh-grid article{min-width:0}
+.s2rh-links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}
+.s2rh a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.s2rh-links a{border:1px solid var(--line);border-radius:.6rem;padding:.65rem .8rem;font-size:.82rem;font-weight:600;background:var(--card)}
+.s2rh-links a:hover{background:var(--accent-soft)}
+.s2rh :is(a,summary,video):focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.s2rh video{display:block;width:100%;aspect-ratio:16/9;background:var(--accent-soft);border-radius:.75rem;margin:1rem 0;scroll-margin-top:var(--sticky-offset,120px)}
+.s2rh summary{font-weight:650;font-size:.9rem;line-height:1.65;cursor:pointer;min-height:44px;padding:.5rem 0}
+.s2rh .s2rh-file{border-top:1px solid var(--line);padding-top:.5rem;margin-top:1rem}
+.s2rh .s2rh-file p{font-size:.8rem;overflow-wrap:anywhere}
+.s2rh .s2rh-small,.s2rh .s2rh-access{font-size:.8rem;line-height:1.75}
+.s2rh-companion{border-top:1px solid var(--line);margin-top:1.25rem;padding-top:1.25rem;scroll-margin-top:var(--sticky-offset,120px)}
+.s2rh-concepts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;margin:1rem 0}
+.s2rh-concepts>div{padding:1rem;border-left:3px solid var(--accent);border-radius:.5rem;background:var(--accent-soft)}
+.s2rh-concepts dt{font-size:.9rem;font-weight:700}
+.s2rh-concepts dd{margin:.4rem 0 0}
+#session2-issue-extensions .s2rh-grid{margin:.8rem 0}
+#session2-issue-extensions article{padding:.9rem;border:1px solid var(--line);border-radius:.65rem}
+@media(max-width:640px){.s2rh{padding:2.5rem .75rem}.s2rh-grid,.s2rh-concepts{grid-template-columns:1fr}.s2rh-card{padding:1rem}}
+@media print{.s2rh{padding:1rem 0}.s2rh video,.s2rh-links{display:none}.s2rh-card::details-content{content-visibility:visible}}
+
+.s2vi{box-sizing:border-box;width:100%;max-width:100%;min-width:0;border:1px solid var(--line);border-radius:1rem;padding:1.25rem;margin:1.5rem 0;background:var(--card);color:var(--ink);scroll-margin-top:var(--sticky-offset,120px)}
+.s2vi h3{font-weight:700;font-size:1.3rem;line-height:1.4}
+.s2vi h4{font-weight:700;font-size:1rem;line-height:1.45}
+.s2vi p,.s2vi figcaption{font-size:.875rem;line-height:1.75;color:var(--muted);margin:.65rem 0}
+.s2vi-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1.5rem;align-items:center;margin:1rem 0}
+.s2vi-figure{margin:0}
+.s2vi-figure svg{display:block;width:100%;max-width:500px;margin:auto}
+.s2vi-figure figcaption{font-size:.75rem}
+.s2vi-guide>div{padding:.9rem;border-left:3px solid var(--accent);border-radius:.5rem;background:var(--accent-soft);margin:.75rem 0}
+.s2vi a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.s2vi-stories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.5rem}
+.s2vi-stories article{border:1px solid var(--line);border-radius:.75rem;padding:1rem;min-width:0}
+.s2vi-stories svg{display:block;width:220px;max-width:100%;height:auto;margin:0 auto .75rem}
+.s2vi summary{cursor:pointer;font-size:.85rem;font-weight:650;line-height:1.7;min-height:44px;padding:.5rem 0}
+.s2vi :is(a,summary):focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media(max-width:640px){.s2vi{padding:1rem}.s2vi-layout,.s2vi-stories{grid-template-columns:1fr}.s2vi-layout{gap:.75rem}}
