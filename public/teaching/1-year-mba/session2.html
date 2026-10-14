@@ -332,6 +332,9 @@
       })();
     </script>
     <link rel="stylesheet" href="/teaching/1-year-mba/course-ui.css">
+<!-- BEGIN:course-learning-assets -->
+<link rel="stylesheet" href="/teaching/1-year-mba/course-learning.css">
+<!-- END:course-learning-assets -->
     <!-- BEGIN:session2-resource-style -->
     <link rel="stylesheet" href="/teaching/1-year-mba/session2-resources.css">
     <!-- END:session2-resource-style -->
@@ -473,6 +476,22 @@
   </div>
 </section>
 
+<!-- BEGIN:course-learning-outcomes -->
+<section id="learning-outcomes" class="course-learning" aria-labelledby="learning-outcomes-title">
+ <div class="course-learning-inner course-learning-card">
+  <p class="course-learning-kicker">Session 2 · Learning outcomes</p>
+  <h2 id="learning-outcomes-title">By the end of this session, you should be able to…</h2>
+  <ol class="course-learning-outcomes">
+    <li><strong>Distinguish core values, core purpose, a vision-level BHAG and vivid description</strong>, explaining what should endure and what can change. <a href="#vision-illustration">Use the vision diagram</a>.</li>
+    <li><strong>Classify organisational statements using the two readings' definitions</strong>, rather than treating every aspiration as a strategy. <a href="#cpSorter">Practise the distinctions</a>.</li>
+    <li><strong>Translate a quantified vision into a same-date value gap</strong>, identifying the baseline, metric and assumptions needed to close it. <a href="#q2work">Work through the value gap</a>.</li>
+    <li><strong>Connect external and internal analysis to a strategic choice</strong>, stating what evidence would challenge that choice. <a href="#q3work">Build the analysis</a>.</li>
+    <li><strong>Defend a recommendation for Tesla using dated case evidence</strong>, separating an enduring purpose from new goals and the leader's preferences. <a href="#caseWork">Argue the case</a>.</li>
+  </ol>
+  <div class="course-learning-links"><a href="#q1">Begin the session</a><a href="#session2-resources">Use the supplied resources</a></div>
+ </div>
+</section>
+<!-- END:course-learning-outcomes -->
 <section id="q1" class="mx-auto max-w-6xl px-4 py-12 md:py-14">
   <p class="text-xs font-semibold uppercase tracking-wider text-blue-600">Question 01 &middot; Collins &amp; Porras (1996)</p>
   <h2 class="mt-2 text-2xl md:text-3xl font-bold text-slate-900">What is the firm for?</h2>
@@ -3738,6 +3757,9 @@ document.addEventListener("DOMContentLoaded", function () {
   SECTIONS.splice(SECTIONS.length - 1, 0, ["session2-resources", "Session 2 resources"]);
   // END:session2-resource-nav
   var KEY = "pgpm-v02-session2-progress";
+/* BEGIN:course-learning-navigation */
+  SECTIONS.unshift(["learning-outcomes", "Learning outcomes"]);
+/* END:course-learning-navigation */
   var ACTIVITIES = ["sort", "whys", "readings", "gap", "forces", "rivals", "case", "exhibits", "ws", "sim", "quiz", "check"];
 
   // ---------- theme ----------
