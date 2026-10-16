@@ -22,6 +22,7 @@ const publicRoot = path.resolve('public');
 const failures = [];
 let scripts = 0;
 let localAssets = 0;
+let recapSteps = 0;
 for (let n = 1; n <= 13; n++) {
   const relative = `teaching/1-year-mba/session${n}.html`;
   const file = path.join(publicRoot, relative);
@@ -36,6 +37,13 @@ for (let n = 1; n <= 13; n++) {
   }
   for (const id of ['top', 'main-header', 'themeBtn', 'drawer', 'readings', 'authors']) {
     if (!new RegExp(`id=["']${id}["']`).test(html)) failures.push(`${relative}: #${id} missing`);
+  }
+  if (n > 1) {
+    const recap = html.match(/<section\b[^>]*\bid="course-recap"[^>]*>[\s\S]*?<\/section>/)?.[0] || '';
+    const previous = [...recap.matchAll(/<li\b[^>]*\bdata-recap-session="(\d+)"/g)].map(match => Number(match[1]));
+    if (previous.length !== n - 1 || previous.some((number, i) => number !== i + 1)) failures.push(`${relative}: recap must connect Session 1 through Session ${n - 1} in order`);
+    if (!recap.includes('course-recap-bridge') || !recap.includes('course-recap-retrieval')) failures.push(`${relative}: recap needs a transition and retrieval question`);
+    recapSteps += previous.length;
   }
   for (const match of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
     if (/\bsrc=|type=["']application\//i.test(match[1])) continue;
@@ -62,5 +70,5 @@ if (failures.length) {
   console.error(`One-year course check failed:\n${failures.map(x => `- ${x}`).join('\n')}`);
   process.exitCode = 1;
 } else {
-  console.log(`One-year course check passed: 13 canonical lessons, assigned author groups, ${scripts} inline scripts, ${localAssets} local asset references, and sequential course-map links.`);
+  console.log(`One-year course check passed: 13 canonical lessons, assigned author groups, ${recapSteps} chronological recap steps, ${scripts} inline scripts, ${localAssets} local asset references, and sequential course-map links.`);
 }

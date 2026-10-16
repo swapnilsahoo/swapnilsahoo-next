@@ -1,6 +1,6 @@
 # One-year MBA: consistent learning flow across the course
 
-Updated 14 October 2026. The remaining lessons now follow the existing course theme and learning pattern. The current [13-session course map](https://www.swapnilsahoo.com/teaching/1-year-mba#course-map) and V0.3 outline determine the sequence; older PGPM folder numbers do not.
+Updated 16 October 2026. The lessons follow the existing course theme and learning pattern. The current [13-session course map](https://www.swapnilsahoo.com/teaching/1-year-mba#course-map) and V0.3 outline determine the sequence; older PGPM folder numbers do not.
 
 ## Delivered changes
 
@@ -15,6 +15,18 @@ Sessions 3–5 and 8–13 additionally contain:
 - Discussion disclosures and links from the existing hero/navigation to the outcomes and practice lab.
 
 The same website favicon is present throughout. Every lesson starts in light mode, including when the operating system or stored preference is dark; the manual dark-mode control remains available. The new additions use existing colour tokens, collapse to one column on narrow screens and provide visible keyboard focus. No provider, login or payment service is needed to use them.
+
+## Cumulative recaps: 16 October update
+
+Sessions 2–13 now include a cumulative recap immediately after the opening learning outcomes. Every recap explicitly follows **Session 1 through the immediately preceding lesson**, in order: Session 9 contains Sessions 1–8; Session 13 contains Sessions 1–12. There are 78 prior-session connections across the course. Existing focused recap panels and all teaching content remain in place.
+
+One clearly fictional Indian business, Nila Foods, connects the concepts. Its dependable weekday meal-service proposal develops from preorders and clustered routes through purpose, industry analysis, co-opetition, capabilities, shared value, competitive positioning, platform experiments, corporate scope, alliances, global choices and organisation. Expansion decisions remain hypotheses. The narrative does not assume that a platform works, an acquisition adds value or the business should expand overseas. Each recap includes a synthesis, the ordered learning journey, a bridge explaining why the current question follows, and a retrieval prompt with a model answer.
+
+Session 2 also revisits Nokia, Kodak and Yahoo through positioning, trade-offs and fit. Dated primary records are linked and separated from teaching interpretations. Nokia's handset-business sale is distinguished from its retained businesses; Kodak's documented digital development is retained rather than reduced to a refusal-to-invent story; Yahoo's portfolio is a question about activity fit, not proof that media and technology are inherently incompatible. These examples do not claim single causes of corporate decline.
+
+The recaps are static HTML and their model answers use native `details` controls. Existing section navigation receives one additional data entry. No new script, handler, account, storage or dependency is needed. New blocks use `course-cumulative` markers; stripping these HTML and navigation-data markers restores the prior source, with one documented editorial exception: a retained Session 2 simulation now calls Yahoo a “fit question” rather than treating its incoherence as established fact. All original questions, numerical engines and teaching panels remain. Shared CSS supplies the responsive layout and colour tokens, including in Sessions 6 and 7.
+
+For future sessions, apply the same rule: include every preceding canonical lesson, explain its contribution to the ongoing decision, then identify the unresolved question that motivates the new lesson. Preserve the fictional/real distinction, source real-business claims, and use retrieval before revealing a model answer. `npm run check:course` enforces complete, chronological recap coverage and the presence of a bridge and retrieval question.
 
 ## Resource mapping
 
@@ -36,7 +48,7 @@ The guides are original summaries and teaching prompts. Licensed source PDFs and
 
 ## Preservation and implementation
 
-New HTML and navigation entries are enclosed in `course-learning` markers. An independent comparison against the original source verified preservation of the old teaching content, numerical engines, case exhibits, questions, reading lists and assessment instructions. The sole edit outside those additions corrects **two Session 13 duration labels from 90 to 120 minutes**, matching the V0.3 two-hour session. No new assessment policy was introduced.
+The 14 October HTML and navigation additions are enclosed in `course-learning` markers. An independent comparison against the original source verified preservation of the old teaching content, numerical engines, case exhibits, questions, reading lists and assessment instructions. That rollout also corrected **two Session 13 duration labels from 90 to 120 minutes**, matching the V0.3 two-hour session. The later recap additions and Yahoo wording clarification are described above. No new assessment policy was introduced.
 
 `public/teaching/1-year-mba/course-learning.css` and `course-learning.js` supply the shared layout and practice behaviour. Each upgraded page supplies its four original questions as JSON. The renderer builds controls with `textContent`, uses no visitor HTML, makes no network request and stores no new learner data. Existing lesson engines and progress systems remain independent. Reset controls stay hidden until a valid question configuration is loaded; a no-JavaScript visitor can read the outcomes, diagrams, cases, guides and discussion prompts.
 

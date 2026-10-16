@@ -43,5 +43,18 @@ html.dark .course-learning button[data-state=chosen]{background:#4c0519;color:#f
 .course-learning :is(a,button,summary):focus-visible{outline:3px solid var(--accent,#4f46e5);outline-offset:3px}
 .course-learning-nav{max-width:1080px;margin:1rem auto;padding:0 1rem;display:flex;flex-wrap:wrap;gap:.65rem}
 .course-learning-nav a{color:var(--accent,#4f46e5);border:1px solid var(--line,#e2e8f0);border-radius:.6rem;padding:.6rem .8rem;font-size:.8rem;min-height:44px;display:inline-flex;align-items:center}
+.course-recap{border-block:1px solid var(--line,#e2e8f0)}
+.course-recap-journey{list-style:none;margin:1.25rem 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.course-recap-journey>li{min-width:0;padding:1.1rem;border:1px solid var(--line,#e2e8f0);border-inline-start:3px solid var(--accent,#4f46e5);border-radius:.75rem;background:var(--card,#fff)}
+.course-recap-journey>li:last-child:nth-child(odd){grid-column:1/-1}
+.course-recap-journey h3{font:700 1rem/1.55 Inter,Arial,sans-serif}
+.course-recap-story{padding-block-start:.65rem;border-block-start:1px solid var(--line,#e2e8f0)}
+.course-recap-fiction,.course-recap-bridge{padding:1rem;border:1px solid var(--line,#e2e8f0);border-radius:.75rem;background:var(--accent-soft,#eef2ff)}
+.course-recap-companies{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+.course-recap-company{margin:.75rem 0}
+.course-recap-sources{font-size:.78rem!important;overflow-wrap:anywhere}
+.course-recap-retrieval{padding-block:1rem}
+@media(max-width:760px){.course-recap-journey,.course-recap-companies{grid-template-columns:1fr}}
+@media print{.course-recap-journey{display:block}.course-recap-journey>li{break-inside:avoid;margin-block:.5rem}}
 @media(max-width:760px){.course-learning-grid,.course-learning-cases{grid-template-columns:1fr}.course-learning{padding:2rem .75rem}.course-learning-card,.course-learning-diagram{padding:1rem}}
 @media print{.course-learning{padding:1rem 0}.course-learning-checks,.course-learning button,.course-learning-nav{display:none}.course-learning details::details-content{content-visibility:visible}.course-learning a{color:#111}.course-learning-diagram{break-inside:avoid}}
