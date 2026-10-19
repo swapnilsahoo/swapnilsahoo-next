@@ -56,5 +56,14 @@ html.dark .course-learning button[data-state=chosen]{background:#4c0519;color:#f
 .course-recap-retrieval{padding-block:1rem}
 @media(max-width:760px){.course-recap-journey,.course-recap-companies{grid-template-columns:1fr}}
 @media print{.course-recap-journey{display:block}.course-recap-journey>li{break-inside:avoid;margin-block:.5rem}}
+.s2h-company-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;align-items:start;margin:1rem 0 2rem}
+.s2h-company{border:1px solid var(--line,#e2e8f0)!important;border-radius:.8rem;padding:.8rem 1rem!important;margin:0!important;min-width:0;background:var(--card,#fff)}
+.s2h-company summary{overflow-wrap:anywhere}
+.s2h-badge,.s2h-status{display:block;font:500 .76rem/1.65 Inter,Arial,sans-serif;color:var(--muted,#475569);margin:.35rem 0}
+.s2h-badge{width:fit-content;border:1px solid var(--line,#e2e8f0);border-radius:.4rem;padding:.2rem .45rem;background:var(--accent-soft,#eef2ff)}
+.s2h-fields>div,.s2h-disney-fields>div{padding:.8rem 0;border-block-start:1px solid var(--line,#e2e8f0)}
+.s2h :is(dt){font-size:.95rem;font-weight:700;line-height:1.6}.s2h dt span{font-weight:500}.s2h dd{margin:.35rem 0 0}
+.s2h-sources,.s2h-caveat{font-size:.8rem!important;overflow-wrap:anywhere}.s2h-region{margin:1.5rem 0}
+@media(max-width:760px){.s2h-company-grid{grid-template-columns:1fr}}
 @media(max-width:760px){.course-learning-grid,.course-learning-cases{grid-template-columns:1fr}.course-learning{padding:2rem .75rem}.course-learning-card,.course-learning-diagram{padding:1rem}}
 @media print{.course-learning{padding:1rem 0}.course-learning-checks,.course-learning button,.course-learning-nav{display:none}.course-learning details::details-content{content-visibility:visible}.course-learning a{color:#111}.course-learning-diagram{break-inside:avoid}}

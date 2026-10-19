@@ -1,6 +1,7 @@
 import { readFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import vm from 'node:vm';
+import { checkSession3Profitability } from './check-session3-profitability.mjs';
 
 // The assigned author groups are taken from the user-supplied PGPM outline V0.2.
 const readings = [
@@ -66,6 +67,8 @@ if (sessions.length !== 13) failures.push('Course map must contain 13 main lesso
 for (const [, n, file] of sessions) {
   if (file !== `session${Number(n)}.html`) failures.push(`Course map Session ${n} points to ${file}`);
 }
+try { await checkSession3Profitability(); }
+catch (error) { failures.push(`Session 3 profitability exhibit: ${error.message}`); }
 if (failures.length) {
   console.error(`One-year course check failed:\n${failures.map(x => `- ${x}`).join('\n')}`);
   process.exitCode = 1;
