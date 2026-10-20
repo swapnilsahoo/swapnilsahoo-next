@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 
 export function CourseFollowUp({ slug, title }: { slug: string; title: string }) {
   const url = `https://www.swapnilsahoo.com/learning-lab/free-courses/${slug}`;
@@ -37,6 +38,11 @@ export function CourseFollowUp({ slug, title }: { slug: string; title: string })
     >
       <h3>Keep this lesson. Share a useful exercise.</h3>
       <p>You can return to this page anytime. Your downloaded worksheet stays with you.</p>
+      <p>
+        <Link className="lab-text-link" href="/learning-lab/pilot">
+          Help improve a lesson: try the voluntary adult pilot →
+        </Link>
+      </p>
       <div className="lab-actions">
         <button
           className="lab-button lab-button-secondary"

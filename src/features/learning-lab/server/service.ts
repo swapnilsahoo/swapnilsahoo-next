@@ -11,6 +11,14 @@ import { getDatabase, getAuthSecret } from "./database";
 import { LabHttpError, type LabActor } from "./errors";
 import { offerDetailsSchema } from "./offers";
 import { drainEmailOutbox, enqueueEnquiryEmails, enquiryEmailState } from "./email";
+import {
+  pilotFeedbackMessage,
+  pilotFeedbackSchema,
+  pilotIntakeIsOpen,
+  pilotNotesEmailIsOpen,
+  pilotLessons,
+  type PilotLessonSlug,
+} from "../pilot";
 
 const slugSchema = z.enum([
   "ai-for-managers",
@@ -86,14 +94,59 @@ export async function rateLimit(key: string, max = 5, seconds = 600) {
   if (Number(row.count) > max)
     throw new LabHttpError(429, "Too many attempts. Please wait a few minutes and try again.");
 }
-export async function saveEnquiry(raw: unknown, ip: string) {
+export async function savePilotFeedback(raw: unknown, ip: string) {
+  if (!pilotIntakeIsOpen())
+    throw new LabHttpError(
+      409,
+      "The voluntary feedback window is 20 October–18 November 2026, India time. New feedback is not being accepted now. Free lessons remain available; email the Lab for a correction or withdrawal."
+    );
+  const feedback = parse(pilotFeedbackSchema, raw);
+  const notesChoiceExpired = feedback.learningNotesConsent && !pilotNotesEmailIsOpen();
+  if (notesChoiceExpired) feedback.learningNotesConsent = false;
+  const lesson = pilotLessons.find((entry) => entry.slug === feedback.lessonSlug)!;
+  const result = await saveEnquiry(
+    {
+      kind: "learner",
+      name: feedback.name,
+      email: feedback.email,
+      programmeSlug: lesson.programmeSlug,
+      message: pilotFeedbackMessage(feedback),
+      adultConfirmed: true,
+      privacyAccepted: true,
+      marketingConsent: false,
+      website: feedback.website,
+      startedAt: feedback.startedAt,
+      source: feedback.source.startsWith("/learning-lab/pilot")
+        ? feedback.source
+        : "/learning-lab/pilot",
+    },
+    ip,
+    { lessonSlug: feedback.lessonSlug }
+  );
+  return notesChoiceExpired
+    ? {
+        ...result,
+        message: `${result.message} The practice-note email window ended on 13 November 2026; no new notes permission was recorded.`,
+      }
+    : result;
+}
+
+// The pilot context is set only by the separately validated server handler. The
+// public programme enquiry schema still accepts only learner/institution kinds.
+export async function saveEnquiry(
+  raw: unknown,
+  ip: string,
+  pilot?: { lessonSlug: PilotLessonSlug }
+) {
   const v = parse(enquirySchema, raw);
   if (Date.now() - v.startedAt < 1200 || Date.now() - v.startedAt > 60 * 60 * 1000)
     throw new LabHttpError(422, "Please reload the form and take a moment to complete it.");
   await rateLimit(`enquiry-ip:${ip}`, 10);
   await rateLimit(`enquiry-email:${v.email}`, 5);
   const key = createHmac("sha256", await getAuthSecret())
-    .update(`${v.kind}:${v.email}:${v.programmeSlug}:${v.organisation.toLowerCase()}`)
+    .update(
+      `${pilot ? `pilot-feedback:${pilot.lessonSlug}` : v.kind}:${v.email}:${v.programmeSlug}:${v.organisation.toLowerCase()}`
+    )
     .digest("hex");
   const now = Date.now();
   const source = v.source.startsWith("/learning-lab")
@@ -106,7 +159,7 @@ export async function saveEnquiry(raw: unknown, ip: string) {
         args: [v.programmeSlug],
       })
     ).rows[0];
-    if (labPublicConfig.launchApproved && availability?.status === "closed")
+    if (!pilot && labPublicConfig.launchApproved && availability?.status === "closed")
       throw new LabHttpError(
         409,
         "This programme is not accepting new enquiries. Explore another programme or return when registration of interest reopens."
@@ -115,7 +168,7 @@ export async function saveEnquiry(raw: unknown, ip: string) {
       sql: `INSERT INTO lab_enquiry(id,kind,name,email,programme_slug,organisation,role,learner_count,preferred_timetable,message,marketing_consent,consent_at,source,created_at,updated_at,dedup_key) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(dedup_key) DO UPDATE SET name=excluded.name,role=excluded.role,learner_count=excluded.learner_count,preferred_timetable=excluded.preferred_timetable,message=excluded.message,marketing_consent=excluded.marketing_consent,consent_at=excluded.consent_at,updated_at=excluded.updated_at RETURNING id`,
       args: [
         randomUUID(),
-        v.kind,
+        pilot ? "pilot-feedback" : v.kind,
         v.name,
         v.email,
         v.programmeSlug,
@@ -133,13 +186,23 @@ export async function saveEnquiry(raw: unknown, ip: string) {
       ],
     });
     const id = String(saved.rows[0].id);
-    const emailRequested = await enqueueEnquiryEmails(
-      tx,
-      { id, email: v.email, programmeSlug: v.programmeSlug, kind: v.kind },
-      now
-    );
+    const emailRequested = pilot
+      ? false
+      : await enqueueEnquiryEmails(
+          tx,
+          { id, email: v.email, programmeSlug: v.programmeSlug, kind: v.kind },
+          now
+        );
     return { id, emailRequested };
   });
+  if (pilot)
+    return {
+      ok: true,
+      id: result.id,
+      emailStatus: "not-requested" as const,
+      message:
+        "Your volunteer feedback has been saved. No email has been sent. It is a self-reported trial, not an assessment, enrolment or permission to publish your work.",
+    };
   let emailStatus: "not-requested" | "queued" | "accepted" | "needs-review" | "unverified" =
     "not-requested";
   if (result.emailRequested) {
@@ -425,7 +488,7 @@ export async function adminRecords() {
     programmes: content.rows,
     certificates: certificates.rows,
     outcomes: {
-      enquiries: leads.rows.filter((x) => !x.is_demo).length,
+      enquiries: leads.rows.filter((x) => !x.is_demo && x.kind !== "pilot-feedback").length,
       enrolments: real.length,
       submissions: realSubmissions.length,
       certificates: realCertificates.length,
@@ -437,7 +500,7 @@ export async function adminRecords() {
               realSubmissions.filter((x) => x.score !== null).length
           )
         : null,
-      note: "Synthetic demo records are excluded. Counts are operational records, not evidence of causal learning gains or employment outcomes. Enquiry count displays the latest 200 records.",
+      note: "Synthetic demo records are excluded. Volunteer feedback is separate from programme enquiries. Counts are operational records, not evidence of causal learning gains or employment outcomes. The enquiry/feedback list displays the latest 200 records.",
     },
   };
 }
@@ -994,6 +1057,15 @@ export async function verifyCertificate(token: string) {
     type: "Certificate of Completion",
   };
 }
+export async function pilotOperatorRecords() {
+  const db = await getDatabase();
+  return (
+    await db.execute(
+      "SELECT id,kind,email,message,marketing_consent,is_demo,updated_at FROM lab_enquiry WHERE kind='pilot-feedback' AND is_demo=0 ORDER BY updated_at DESC LIMIT 200"
+    )
+  ).rows;
+}
+
 export function csv(rows: Record<string, unknown>[], columns: string[]) {
   const cell = (value: unknown) => {
     let text = value === null || value === undefined ? "" : String(value);

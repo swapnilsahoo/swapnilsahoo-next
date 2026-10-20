@@ -91,6 +91,9 @@ export function LabShell({
             </p>
           </div>
           <nav aria-label="Learning Lab information">
+            <Link href="/learning-lab/purpose">Our purpose and planned pathways</Link>
+            <Link href="/learning-lab/weekly-notes">Weekly practice and timeline</Link>
+            <Link href="/learning-lab/pilot">Volunteer pilot</Link>
             <Link href="/learning-lab/catalogue">Open catalogue and learning paths</Link>
             <Link href="/learning-lab/free-courses">Free courses</Link>
             <Link href="/learning-lab/support">Support the Lab</Link>

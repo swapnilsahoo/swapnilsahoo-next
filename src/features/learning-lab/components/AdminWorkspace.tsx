@@ -320,6 +320,11 @@ function AdminRecords({ actor, launchApproved }: { actor: LabActor; launchApprov
               <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
                 {[
                   ["Enquiries", data.outcomes.enquiries],
+                  [
+                    "Volunteer feedback",
+                    data.leads.filter((lead) => !lead.is_demo && lead.kind === "pilot-feedback")
+                      .length,
+                  ],
                   ["Enrolments", data.outcomes.enrolments],
                   ["Submissions", data.outcomes.submissions],
                   ["Valid certificates", data.outcomes.certificates],
@@ -365,11 +370,13 @@ function AdminRecords({ actor, launchApproved }: { actor: LabActor; launchApprov
           )}
           {section === "Enquiries" && (
             <>
-              <h2>Learner and institutional enquiries</h2>
+              <h2>Enquiries and volunteer feedback</h2>
               <p className="lab-small">
                 Assign an administrator and record the next action. Stages are manual operational
                 labels; a booking or delivery label does not confirm payment, access or attendance.
-                This list contains the latest 200 enquiries.
+                This list contains the latest 200 enquiries and volunteer feedback records.
+                Volunteer feedback is self-reported; it is not an assessed completion. Pilot-only
+                follow-up permission is recorded in its message and does not permit marketing.
               </p>
               {data.leads.length === 0 ? (
                 <p className="lab-callout">No enquiries have been recorded.</p>

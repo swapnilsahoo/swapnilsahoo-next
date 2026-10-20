@@ -1,0 +1,38 @@
+name: Learning Lab campaign public health
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 09:07 IST. The script also checks the year and does no scheduled requests
+    # outside 20 October–18 November 2026. GitHub schedules can run late.
+    - cron: "37 3 20-31 10 *"
+    - cron: "37 3 1-18 11 *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: learning-lab-campaign-health
+  cancel-in-progress: false
+
+jobs:
+  public-health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Read repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: scripts/check-learning-lab-campaign.mjs
+          sparse-checkout-cone-mode: false
+      - name: Check public pages and dated releases
+        run: node scripts/check-learning-lab-campaign.mjs
+      - name: Preserve public check evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: learning-lab-public-health-${{ github.run_id }}
+          path: artifacts/learning-lab/campaign-health.json
+          retention-days: 45
+          if-no-files-found: error

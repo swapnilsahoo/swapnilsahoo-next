@@ -3,7 +3,8 @@
 const brandOwner = "Swapnil Sahoo";
 const brandLabel = "Learning Lab";
 const name = `${brandOwner} ${brandLabel}`;
-const description = "A founder-led edtech initiative, currently run on a not-for-profit basis.";
+const description =
+  "A not-for-profit education initiative founded by Dr. Swapnil Sahoo, working to make learning freely accessible to everyone.";
 export const labPublicConfig = {
   name,
   brandOwner,

@@ -9,6 +9,7 @@ import {
 import {
   adminMutation,
   adminRecords,
+  pilotOperatorRecords,
   audit,
   completeLesson,
   csv,
@@ -16,6 +17,7 @@ import {
   parse,
   rateLimit,
   saveEnquiry,
+  savePilotFeedback,
   setCertificatePrivacy,
   submitAssignment,
   verifyCertificate,
@@ -90,6 +92,10 @@ async function handle(request: Request, context: { params: Promise<{ action: str
       if (path === "learner")
         return response({ ok: true, actor, programmes: await learnerRecords(actor) });
       if (path === "admin") return response({ ok: true, actor, data: await adminRecords() });
+      if (path === "admin/pilot") {
+        if (actor.isDemo) throw new LabHttpError(403, "A permanent operator account is required.");
+        return response({ ok: true, records: await pilotOperatorRecords() });
+      }
       if (path === "admin/email") {
         if (actor.isDemo) throw new LabHttpError(403, "A permanent operator account is required.");
         return response({ ok: true, email: getEmailReadiness() });
@@ -145,12 +151,14 @@ async function handle(request: Request, context: { params: Promise<{ action: str
     }
     originCheck(request);
     const data = await body(request);
-    if (path === "enquiries") {
+    if (path === "enquiries" || path === "pilot-feedback") {
       // Trust platform proxy headers only when running on that platform.
       const ip = process.env.VERCEL
         ? request.headers.get("x-vercel-forwarded-for")?.split(",")[0] || "unknown"
         : "local";
-      return response(await saveEnquiry(data, ip));
+      return response(
+        await (path === "pilot-feedback" ? savePilotFeedback(data, ip) : saveEnquiry(data, ip))
+      );
     }
     const actor = await requireActor(
       request.headers,

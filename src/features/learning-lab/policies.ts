@@ -88,6 +88,14 @@ export const labPolicies: LabPolicy[] = [
         ],
       },
       {
+        heading: "Voluntary free-lesson feedback pilot",
+        paragraphs: [
+          "Added on 20 October 2026. The voluntary pilot form asks adults for a name or alias, a real email, the lesson tried, whether the task was completed or stopped, a brief reasoning or stopping point, and instruction clarity. Difficulty, next action and pilot-only email follow-up permission are optional. Email is used to match correction or withdrawal requests and, only if separately permitted, discuss that pilot response or a revised lesson. A separate, initially unticked choice permits the four short pilot practice notes through 13 November 2026. These messages use Google Mail through the operator’s OpenAI-connected Gmail tool, from swapnil.s@greatlakes.edu.in; reply STOP to withdraw. Your most recent pilot response controls both optional email choices across all pilot lessons; leaving a choice unticked in an updated response withdraws it. A STOP reply overrides form choices. To restart these pilot notes after STOP, reply RESUBSCRIBE from the same email. Neither choice subscribes you to general programme marketing.",
+          "Accepted feedback is stored in the same restricted Turso enquiry workspace as other Lab enquiries, labelled separately as volunteer feedback. Repeating an email/lesson combination updates that pilot response; it does not overwrite a programme enquiry. Technical anti-spam and limited source/campaign information are handled as described above. Submitting sends no immediate email; optional practice notes remain a separate choice. The feedback form creates no account, booking, assessment or certificate. New responses are accepted only from 20 October through 18 November 2026, India time; corrections and withdrawal requests can still be emailed after this window. The existing manual retention, access, correction and deletion arrangements apply.",
+          "You may decline or stop without affecting grades, admissions, references or free access. A reported completion is not an observed or assessed learning outcome. Names, work and comments are not published without separate permission; no recording permission is requested or inferred. Use fictional examples and do not submit sensitive personal, student or employer information.",
+        ],
+      },
+      {
         heading: "Voluntary support and external payments",
         paragraphs: [
           "If you choose to email about voluntary assistance or donations, your email provider and the recipient's email service process the message. Share only the information needed to discuss your offer. Clicking an email link does not send a message. Donor names, messages and contributions are not published without separate permission.",

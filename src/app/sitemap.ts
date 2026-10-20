@@ -6,6 +6,9 @@ import { programmes } from "@/features/learning-lab/programmes";
 import { labPolicies } from "@/features/learning-lab/policies";
 import { freeCourses } from "@/features/learning-lab/free-courses";
 import { catalogueResources, learningPaths } from "@/features/learning-lab/catalogue";
+import { getPublishedWeeklyNotes, weeklyNotesPath } from "@/features/learning-lab/weekly-notes";
+
+export const dynamic = "force-dynamic";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
 
@@ -166,7 +169,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority,
   }));
   const known = new Set(entries.map((entry) => entry.url));
-  for (const path of resourceRoutes) {
+  const campaignRoutes = [
+    weeklyNotesPath,
+    "/learning-lab/pilot",
+    "/learning-lab/purpose",
+    ...getPublishedWeeklyNotes().map((note) => `${weeklyNotesPath}/${note.slug}`),
+  ];
+  for (const path of [...resourceRoutes, ...campaignRoutes]) {
     const url = `${siteUrl}${path}`;
     if (!known.has(url)) {
       entries.push({ url, changeFrequency: "monthly", priority: 0.7 });

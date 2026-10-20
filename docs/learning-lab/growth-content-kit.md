@@ -1,17 +1,17 @@
 # Learning Lab: distribution and volunteer pilot kit
 
-Prepared 20 October 2026. These are original drafts for review and later publication, not messages already sent. They link to open lessons rather than an unapproved paid offer. The website changes make the Lab easier to find and add useful tools; this kit supports the next 30 days without claiming traffic, learners or outcomes that have not been measured.
+Execution started 20 October 2026. The owner authorised carrying out this kit. Three individual, voluntary feedback invitations have been sent through the connected owner Gmail account to existing academic/community correspondents; all three were read back with the SENT label. Sending is not evidence of delivery, participation or learning. Private receipts and recipient details are excluded from Git. The website campaign and bounded daily operations are described in [the execution record](growth-execution.md).
 
 ## The next 30 days
 
 | Period | Work | Evidence to record |
 | --- | --- | --- |
-| 20–26 October | Publish the homepage/navigation improvements and three lesson tools; review Search Console if an owner-controlled connection is supplied. | Verified public pages, sitemap, exercise/download checks. Search baseline remains unknown until account access. |
-| 27 October–2 November | Share one exercise post and one short worked example; invite adult volunteers to try one lesson. | Link source, voluntary responses and observed difficulties. A click is not a completed exercise. |
-| 3–9 November | Publish the next learning note through the existing Substack if its owner chooses to; improve recurring usability problems. | Actual publication URL, delivery information available in Substack and concrete revisions. Do not claim delivery before checking it. |
-| 10–18 November | Finish a 10–15-person volunteer pilot if enough people opt in; prepare a short findings note and relevant faculty/student-club introductions. | Number invited, opted in, observed and completed; anonymised learning examples with separate publication permission. |
+| 20–26 October | Launch the public pilot invitation and dated practice series; send the three individual invitations; release the unit-economics note on 23 October at 09:00 IST. | Live URLs, SENT receipts, saved voluntary feedback, actual monitoring reports. Search baseline remains unknown without property access. |
+| 27 October–2 November | Release the AI-brief note on 30 October at 09:00 IST; process actual replies and explicit email choices through the daily runner. | Saved references, separate consent, reconciled sends and private feedback themes. No reminders to nonresponders. |
+| 3–9 November | Release the interview-question note on 6 November at 09:00 IST; continue the voluntary pilot and record concrete usability issues. | Published page/feed entry, opted-in email sends and actual responses. Ratings alone do not establish improvement. |
+| 10–18 November | Release the trade-off note on 13 November at 09:00 IST; close the bounded campaign and summarise the evidence available. | Number invited, opted in and self-reported attempts; consent before publishing work. A 10–15-person pilot is a recruitment target, not a guaranteed result. |
 
-No bulk outreach, social posts, newsletter editions, learner recruitment or email sending occurred as part of preparing this kit. A suggested Friday cadence needs a responsible publisher. The website does not promise one case every Friday or an immediate welcome that has not been verified.
+The three one-time email invitations are executed recruitment. The four website notes publish by server date; the RSS feed follows the same release times. Separately opted-in practice emails are handled by the bounded daily Gmail runner, with withdrawal, STOP and duplicate-send checks. The form does not promise an immediate confirmation email. LinkedIn and Substack posting are not executed: plugin discovery found no connected publishing capability and no browser surface was available. Their drafts below remain available; no contact list was scraped, bulk message sent or institutional endorsement implied.
 
 ## LinkedIn draft 1: growth can reduce profit
 
@@ -43,7 +43,7 @@ Which missing fact should your own workflow always escalate?
 
 ## Four short learning-email drafts
 
-Use these in the existing publication only after its owner chooses the schedule. Proposed Friday dates are 23 October, 30 October, 6 November and 13 November 2026. Dates are planning options, not an activated send schedule. Each edition should link to its lesson and use the publication’s actual unsubscribe mechanism.
+The content below supplies the four practice notes for 23 October, 30 October, 6 November and 13 November 2026. Their website versions open at 09:00 IST. Email is separate: send only to pilot contacts who explicitly choose these four notes, and honour withdrawal or a STOP reply before sending. Existing Substack subscribers are not accessible to this runner and are not imported. See the execution record for actual task registration and computer-availability limits.
 
 ### 1. The discount that needs more capacity
 

@@ -7,6 +7,7 @@ import { freeCourses } from "@/features/learning-lab/free-courses";
 import { CourseMotif } from "@/features/learning-lab/components/FreeCourseLibrary";
 import { LearningPathCards } from "@/features/learning-lab/components/LearningPathCards";
 import { learningPaths } from "@/features/learning-lab/catalogue";
+import { educationPathways, labMission } from "@/features/learning-lab/mission";
 import "@/features/learning-lab/components/catalogue.css";
 
 export const dynamic = "force-dynamic";
@@ -15,11 +16,11 @@ export const metadata: Metadata = {
   title: { absolute: labPublicConfig.name },
   alternates: { canonical: "/learning-lab" },
   description:
-    "Free strategy, applied AI and case-interview practice for MBA students and early-career professionals. Short lessons, worksheets and useful tools from Dr. Swapnil Sahoo.",
+    "Making learning freely accessible to everyone. Explore current free management, AI, research and entrepreneurship resources, plus planned school and engineering pathways.",
   openGraph: {
     title: "Swapnil Sahoo Learning Lab — Start Learning Free",
     description:
-      "Practise strategy, applied AI and case interviews through short lessons, realistic business decisions and useful tools.",
+      "Making learning freely accessible to everyone. Start with free management, applied AI, research and entrepreneurship resources; school and engineering pathways are planned.",
     url: "/learning-lab",
     images: [],
   },
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Swapnil Sahoo Learning Lab",
     description:
-      "Free strategy, applied AI and case-interview practice for MBA students and early-career professionals.",
+      "Free management, applied AI, research and entrepreneurship learning, with school and engineering pathways planned.",
     images: [],
   },
 };
@@ -54,9 +55,9 @@ export default async function LearningLabPage() {
         }}
       />
       <LabHero
-        eyebrow="For MBA students and early-career professionals"
+        eyebrow={labMission.purpose}
         title={labPublicConfig.name}
-        description="Practise strategy, applied AI and case interviews through short lessons and realistic business decisions. Start free, test your reasoning and keep useful work."
+        description="A not-for-profit education initiative founded by Dr. Swapnil Sahoo. Start with free management, applied AI, research and entrepreneurship resources as we build towards the full learning journey."
       >
         <Link href="/learning-lab/catalogue" className="lab-button">
           Find your learning path <span aria-hidden="true">→</span>
@@ -65,6 +66,59 @@ export default async function LearningLabPage() {
           Start a short free course
         </Link>
       </LabHero>
+      <LabSection
+        eyebrow="Our long-term vision"
+        title="Learn freely. Think independently. Build your future."
+      >
+        <div className="lab-grid lab-grid-two">
+          {educationPathways.map((path) => (
+            <article className="lab-card" key={path.id}>
+              <p className="lab-eyebrow">{path.status}</p>
+              <h3>{path.title}</h3>
+              <p>{path.scope}</p>
+              <p className="lab-small">{path.today}</p>
+              <Link className="lab-text-link" href={path.href}>
+                {path.action} →
+              </Link>
+            </article>
+          ))}
+        </div>
+        <p>
+          <Link className="lab-text-link" href="/learning-lab/purpose">
+            Our purpose and proposed institutional structure →
+          </Link>
+        </p>
+      </LabSection>
+      <LabSection
+        className="lab-band"
+        eyebrow="20 October–18 November"
+        title="A month of useful practice."
+      >
+        <div className="lab-grid lab-grid-two">
+          <article className="lab-card">
+            <h3>A new worked example each Friday</h3>
+            <p>
+              Start with today’s short exercise. Four original notes open at 9 am IST on 23 October,
+              30 October, 6 November and 13 November. Try a decision, check your reasoning and keep
+              your work.
+            </p>
+            <Link className="lab-text-link" href="/learning-lab/weekly-notes">
+              See the timeline and start practising →
+            </Link>
+          </article>
+          <article className="lab-card">
+            <h3>Help improve one free lesson</h3>
+            <p>
+              Choose a 20–30-minute task and tell us where the instructions or result need work.
+              This adult volunteer pilot is free and optional. Your feedback stays private; sharing
+              your work publicly requires separate permission.
+            </p>
+            <Link className="lab-text-link" href="/learning-lab/pilot">
+              Try the volunteer pilot →
+            </Link>
+          </article>
+        </div>
+      </LabSection>
       <LabSection eyebrow="Choose a useful direction" title="Four goals. A clear place to begin.">
         <LearningPathCards paths={learningPaths} />
         <div className="lab-actions">

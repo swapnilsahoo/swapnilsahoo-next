@@ -23,8 +23,8 @@ export default function FounderPage() {
             <h2>Background that informs the teaching.</h2>
             <p>
               Dr. Swapnil Sahoo holds a Ph.D. from XLRI Jamshedpur, specialising in Entrepreneurship
-              and Innovation, an MBA from XIMB and a B.Tech from Utkal University. He brings 17 years
-              of corporate experience in strategic and partnership roles to his teaching and
+              and Innovation, an MBA from XIMB and a B.Tech from Utkal University. He brings 17
+              years of corporate experience in strategic and partnership roles to his teaching and
               research on entrepreneurial resourcefulness.
             </p>
             <p>
@@ -43,6 +43,14 @@ export default function FounderPage() {
           </div>
           <aside className="lab-callout">
             <h3>An independent initiative.</h3>
+            <p>
+              Our purpose is to make learning freely accessible to everyone. The proposed
+              institutional home is Swapnil Sahoo Open Learning Foundation, envisaged within the
+              proposed Swapnil Sahoo Ventures Private Limited group. Both entity names and the
+              holding arrangement remain proposed until incorporation and the structure are
+              confirmed.{" "}
+              <Link href="/learning-lab/purpose">Read the purpose and pathway plan →</Link>
+            </p>
             <p>
               Dr. Swapnil Sahoo runs the Learning Lab independently. His academic and professional
               affiliations describe his background; they do not imply sponsorship, endorsement or
