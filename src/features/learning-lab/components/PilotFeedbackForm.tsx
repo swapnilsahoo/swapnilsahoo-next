@@ -26,13 +26,13 @@ export function PilotFeedbackForm({
     startedAt.current = Date.now();
   }, []);
 
-  function showErrors(fields: Record<string, string>) {
-    setErrors(fields);
-    requestAnimationFrame(() => {
-      const input = form.current?.elements.namedItem(Object.keys(fields)[0]);
-      if (input instanceof HTMLElement) input.focus();
-    });
-  }
+  useEffect(() => {
+    if (pending) return;
+    const name = Object.keys(errors)[0];
+    if (!name) return;
+    const input = form.current?.elements.namedItem(name);
+    if (input instanceof HTMLElement) input.focus();
+  }, [errors, pending]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -58,7 +58,7 @@ export function PilotFeedbackForm({
     });
     setError("");
     if (!result.success) {
-      showErrors(
+      setErrors(
         Object.fromEntries(
           result.error.issues.map((issue) => [
             issue.path.join("."),
@@ -84,7 +84,7 @@ export function PilotFeedbackForm({
         fields?: Record<string, string>;
       } = await response.json();
       if (!response.ok || !data.ok || !data.id) {
-        if (data.fields) showErrors(data.fields);
+        if (data.fields) setErrors(data.fields);
         setError(
           data.error ||
             "Your feedback could not be saved. Your entries are still here; please try again."

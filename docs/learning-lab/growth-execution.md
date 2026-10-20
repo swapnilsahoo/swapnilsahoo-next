@@ -6,13 +6,13 @@ The selected institutional names are **Swapnil Sahoo Open Learning Foundation** 
 
 ## Timeline and execution
 
-Operational evidence reviewed on **21 October 2026 at 04:26 IST**. The Windows task was registered on 20 October and is Ready; its next scheduled run is 21 October at 09:20 IST. Task Scheduler has no completed-run timestamp, and the protected campaign directory contains no `latest.json` execution report yet. Registration and the isolated connection tests below are not a completed operator run. Production release and the first full operator result must be recorded after they are actually verified.
+Verified live on **21 October 2026**. Vercel assigned release `4946fb18de411246d9bc661e04292406536efd9b` to the canonical website. The first complete Windows operator run started at 04:38 IST and passed with Task Scheduler result 0: public checks, the restricted feedback read, owner Gmail identity, the three invitation threads and final sign-out were verified. It found zero pilot responses, replies or practice-note opt-ins; zero further messages were due or sent. The next daily run is 21 October at 09:20 IST. The cloud health workflow is active and its [first dispatched run passed](https://github.com/swapnilsahoo/swapnilsahoo-next/actions/runs/39512983074).
 
 | India date/time | Action | How it runs / evidence |
 | --- | --- | --- |
 | 20 October | Invite existing academic/community correspondents. | Three individual invitations were actually sent through the connected owner Gmail and read back with SENT labels. Private receipts are ignored, not published. SENT does not prove delivery, participation or endorsement. |
-| 21 October | Release the campaign pages and voluntary pilot; validate the complete operator. | Implementation and local checks are prepared. Production deployment and the first complete operator run are not established by the 04:26 IST review. |
-| Daily, 09:07 IST | Check the public lessons, pilot, RSS and release gates. | Prepared GitHub Actions workflow with read-only repository permission, public HTTP checks and retained reports. It becomes operative after the workflow is published and enabled. Scheduled jobs may run late. Reports are automated checks, not learner visits. |
+| 21 October | Release the campaign pages and voluntary pilot; validate the complete operator. | Canonical production release, live browser/API checks and the first complete operator run passed. No volunteer response or learning result was fabricated. |
+| Daily, 09:07 IST | Check the public lessons, pilot, RSS and release gates. | Active GitHub Actions workflow with read-only repository permission, public HTTP checks and retained reports. The first dispatched run passed. Scheduled jobs may run late. Reports are automated checks, not learner visits. |
 | 23 October, 09:00 IST | Publish **The discount that needs more capacity**. | Vercel server-date release and RSS; original fictional worked example linked to the calculator. |
 | 30 October, 09:00 IST | Publish **Give your AI brief a missing-fact rule**. | Server-date release and RSS; task, evidence, boundaries and human review. |
 | 6 November, 09:00 IST | Publish **Ask about the last time**. | Server-date release and RSS; behaviour, alternatives and neutral questions. |
@@ -22,7 +22,7 @@ Operational evidence reviewed on **21 October 2026 at 04:26 IST**. The Windows t
 
 ## What is genuinely automatic
 
-The implemented website notes use request-time server dates. Once deployed, they open at the specified IST times without another deployment or this PC being awake. Before release, detail pages return 404 and their bodies are absent; the sitemap and RSS add only published notes. The archive remains available after the campaign.
+The live website notes use request-time server dates. They open at the specified IST times without another deployment or this PC being awake. Before release, detail pages return 404 and their bodies are absent; the sitemap and RSS add only published notes. The archive remains available after the campaign.
 
 The public pilot saves feedback in the existing restricted enquiry store, with isolated per-email/per-lesson updates. It is separate from programme demand and paid enrolment. Adult/voluntary/privacy acknowledgements are required. Clarification contact and the four practice emails are separate optional choices, initially off. The newest response controls those choices across the pilot. A submission gives a saved reference; it does not claim an immediate email, observed completion or assessed outcome.
 
@@ -36,15 +36,18 @@ At most five predefined practice messages can be attempted in one run, with no a
 
 This local operation requires the Windows owner signed in, the computer awake/online and a valid Codex/Gmail account connection within its provider limits. Missed work can run when the machine becomes available. It is not a continuous cloud email service. The task uses the limited interactive owner identity, requires network, ignores overlapping starts and has a 15-minute limit. The runner has its own 13-minute budget and a 14-minute outer process-tree watchdog; it does not wake the computer or store a Windows password. CLI updates can be recovered from the owner's already installed official extension without downloading or installing anything.
 
-Actual complete operator results belong in the owner-only `.data/learning-lab-campaign-2026/` reports. No such report existed at the review time above. A registered task or successful profile lookup is not evidence that a complete run, future send, delivery or learner outcome has succeeded.
+Actual complete operator results are stored in the owner-only `.data/learning-lab-campaign-2026/` reports. The first `latest.json` records `passed: true`, `phase: complete`, `gmailProfileVerified: true`, `signedOut: true`, no pending reconciliation and zero sends. Task Scheduler returned to Ready with result 0. This verifies the first complete run, not future account availability or a real opt-in note delivery. The two remaining triggers are daily operation and owner logon; the expired one-time trigger was removed.
 
 ## Checks actually performed
 
 - On 20 October, a bounded same-owner headless CLI profile test returned the expected Gmail account. A separate documented app-server metadata and single `get_profile` test also passed, without a model turn or any message send. The mechanical app-server path is the implemented operator path.
 - Focused policy tests passed for both dated windows, typed/latest/revoked/conflicting consent, durable STOP, explicit resubscription, quote and sender isolation, untrusted JSON boundaries, and exact SENT recipient/content evidence.
-- Scoped JavaScript lint and PowerShell parsing passed. These checks do not exercise real note delivery, provider approval prompts, a complete scheduled run or future account availability.
+- Scoped JavaScript lint, PowerShell parsing, the production build and TypeScript checks passed. Isolated database tests covered validation, persistence, separate deduplication, consent withdrawal, intake closure and the note-email cutoff.
+- Canonical production checks passed for 17 public entry pages, 100 unique sitemap URLs, all 13 MBA lesson links and an existing exercise's answer, reset and inspected worksheet download. The purpose/homepage matrix passed 12 JavaScript/no-JavaScript and mobile/desktop cases. Light remained the default under a dark operating-system preference.
+- Live weekly-note checks confirmed future 404s, no unreleased bodies in HTML or RSC, correct metadata and a valid zero-item RSS feed before the first release. The cloud workflow completed successfully on the exact release commit and retained its public check report.
+- The live feedback API rejected empty input with 422 and a cross-origin request with 403, both without saving a participant record. Form UI tests use intercepted responses; they do not create volunteers or prove a real email delivery. The first complete owner operation separately verified production authentication, the restricted feedback query and Gmail reads.
 
-The health workflow is scoped to October20-31 and November1-18 and checks the exact 2026 window before network requests. Its calendar triggers can recur in later years, but those runs skip site checks. It has no learner data, secrets, repair privileges or email capability.
+The health workflow is scoped to 20-31 October and 1-18 November and checks the exact 2026 window before network requests. Its calendar triggers can recur in later years, but those runs skip site checks. It has no learner data, secrets, repair privileges or email capability.
 
 ## Access and evidence limits
 
