@@ -47,6 +47,7 @@ export async function checkSession3Profitability() {
   assert.equal(data.history.filter(row=>row.roic<0).length,0);
   assert.equal(data.history.filter(row=>row.roic<row.wacc).length,7);
   assert.deepEqual(data.snapshot.filter(row=>row.roic<0).map(row=>row.industry).sort(),['Coal & Related Energy','Electronics (Consumer & Office)']);
+  const shown=value=>(value<0?'−':'')+(Math.abs(value)*100).toFixed(2)+'%'; // page prints a true minus sign
   const rowMatches=[...html.matchAll(/<li\b[^>]*class="ps-row"[^>]*data-ps-industry="([^"]+)"[^>]*>([\s\S]*?)<\/li>/g)];
   assert.equal(rowMatches.length,168,'Every industry is present as readable static chart content');
   assert.equal((html.match(/<tr data-ps-industry=/g)||[]).length,168,'Every chart value has a data-table row');
@@ -56,8 +57,8 @@ export async function checkSession3Profitability() {
     const rendered = rowMatches.slice(index===0?0:83,index===0?83:168);
     rendered.forEach((match,i)=>{
       assert.equal(decode(match[1]),ordered[i].industry,'Full highest-to-lowest spectrum');
-      assert.ok(match[2].includes((ordered[i].roic*100).toFixed(2)+'%'));
-      assert.ok(match[2].includes((ordered[i].wacc*100).toFixed(2)+'%'));
+      assert.ok(match[2].includes(shown(ordered[i].roic)));
+      assert.ok(match[2].includes(shown(ordered[i].wacc)));
     });
   }
   const symbols = new Set();
