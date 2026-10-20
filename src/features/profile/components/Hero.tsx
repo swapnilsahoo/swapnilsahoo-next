@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
@@ -27,6 +28,19 @@ export function Hero() {
             </span>
             .
           </h1>
+          <div className="border-brand-200 bg-brand-50/70 dark:border-brand-800 dark:bg-brand-900/20 mb-6 max-w-2xl rounded-2xl border p-5">
+            <p className="eyebrow text-brand-700 dark:text-brand-300 mb-2">
+              Swapnil Sahoo Learning Lab
+            </p>
+            <p className="text-ink-700 dark:text-ink-200 mb-4 text-sm leading-relaxed">
+              Free, practical learning for MBA students and early-career professionals. Practise
+              strategy, applied AI and case interviews with lessons and hands-on exercises.
+            </p>
+            <Link href="/learning-lab/free-courses" className="btn-primary">
+              Start learning free
+              <ArrowRightIcon className="h-4 w-4" />
+            </Link>
+          </div>
           <p className="text-ink-700 dark:text-ink-200 mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
             Before joining academia, I spent 17 years in strategic roles at Wipro, Accenture,
             Cognizant, Exilant, TimesofMoney, Mahindra and 42Gears Mobility. That experience now

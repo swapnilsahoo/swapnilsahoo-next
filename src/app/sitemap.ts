@@ -5,7 +5,7 @@ import { blogPosts } from "@/features/writing/data/catalog";
 import { programmes } from "@/features/learning-lab/programmes";
 import { labPolicies } from "@/features/learning-lab/policies";
 import { freeCourses } from "@/features/learning-lab/free-courses";
-import { learningPaths } from "@/features/learning-lab/catalogue";
+import { catalogueResources, learningPaths } from "@/features/learning-lab/catalogue";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.swapnilsahoo.com";
 
@@ -150,10 +150,28 @@ const routes = [
   },
 ] as const;
 
+// Catalogue targets are public, crawlable resources. Strip local exercise
+// fragments and deduplicate against the main route list; no private Lab paths.
+const resourceRoutes = catalogueResources
+  .map((resource) => resource.href.split(/[?#]/)[0])
+  .filter((href) => href.startsWith("/") && !href.startsWith("//"))
+  .concat(
+    Array.from({ length: 13 }, (_, index) => `/teaching/1-year-mba/session${index + 1}.html`)
+  );
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map(({ path, changeFrequency, priority }) => ({
+  const entries: MetadataRoute.Sitemap = routes.map(({ path, changeFrequency, priority }) => ({
     url: `${siteUrl}${path}`,
     changeFrequency,
     priority,
   }));
+  const known = new Set(entries.map((entry) => entry.url));
+  for (const path of resourceRoutes) {
+    const url = `${siteUrl}${path}`;
+    if (!known.has(url)) {
+      entries.push({ url, changeFrequency: "monthly", priority: 0.7 });
+      known.add(url);
+    }
+  }
+  return entries;
 }

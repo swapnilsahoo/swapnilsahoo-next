@@ -15,7 +15,21 @@ export const metadata: Metadata = {
   title: { absolute: labPublicConfig.name },
   alternates: { canonical: "/learning-lab" },
   description:
-    "A founder-led edtech initiative, currently run on a not-for-profit basis. Explore free learning in applied AI, strategy and entrepreneurship, and ways to support its content and infrastructure.",
+    "Free strategy, applied AI and case-interview practice for MBA students and early-career professionals. Short lessons, worksheets and useful tools from Dr. Swapnil Sahoo.",
+  openGraph: {
+    title: "Swapnil Sahoo Learning Lab — Start Learning Free",
+    description:
+      "Practise strategy, applied AI and case interviews through short lessons, realistic business decisions and useful tools.",
+    url: "/learning-lab",
+    images: [],
+  },
+  twitter: {
+    card: "summary",
+    title: "Swapnil Sahoo Learning Lab",
+    description:
+      "Free strategy, applied AI and case-interview practice for MBA students and early-career professionals.",
+    images: [],
+  },
 };
 
 export default async function LearningLabPage() {
@@ -40,9 +54,9 @@ export default async function LearningLabPage() {
         }}
       />
       <LabHero
-        eyebrow="Think clearly. Practise deliberately."
+        eyebrow="For MBA students and early-career professionals"
         title={labPublicConfig.name}
-        description="Build confidence in a business decision, an AI workflow, an interview or a venture test. Start with an open lesson, practise your reasoning and keep useful work."
+        description="Practise strategy, applied AI and case interviews through short lessons and realistic business decisions. Start free, test your reasoning and keep useful work."
       >
         <Link href="/learning-lab/catalogue" className="lab-button">
           Find your learning path <span aria-hidden="true">→</span>
@@ -58,7 +72,10 @@ export default async function LearningLabPage() {
             Search lessons, cases and startup guides →
           </Link>
         </div>
-        <p className="lab-small">Open self-practice, with optional academic resources clearly labelled. No account required.</p>
+        <p className="lab-small">
+          Open self-practice, with optional academic resources clearly labelled. No account
+          required.
+        </p>
       </LabSection>
       <LabSection
         className="lab-band"
@@ -109,9 +126,14 @@ export default async function LearningLabPage() {
             resources are welcome. The free courses remain open whether or not you contribute.
           </p>
           <div className="lab-callout">
-            <p>“I would be grateful for any assistance that helps make the Learning Lab more useful and accessible.”</p>
+            <p>
+              “I would be grateful for any assistance that helps make the Learning Lab more useful
+              and accessible.”
+            </p>
             <p className="lab-small">— Dr. Swapnil Sahoo</p>
-            <Link href="/learning-lab/support" className="lab-text-link">Support the Lab →</Link>
+            <Link href="/learning-lab/support" className="lab-text-link">
+              Support the Lab →
+            </Link>
           </div>
         </div>
       </LabSection>

@@ -6,6 +6,7 @@ import {
   aiDropdown,
   compactMoreDropdown,
   entrepreneurshipDropdown,
+  learningLabNavLink,
   moreDropdown,
   phdDropdown,
   placementsDropdown,
@@ -62,27 +63,24 @@ export function StickyNav() {
           </span>
         </Link>
 
-        {/* Compact tier (roughly 1024–1279px): the handful of items most
-            visitors actually need, directly in the bar, with everything
-            else — Entrepreneurship, Press & Media, and the regular More
-            items — folded into one wider "More". The full row below
-            takes over at xl and this one disappears. */}
-        <div className="hidden items-center gap-1 text-[13px] font-medium whitespace-nowrap lg:flex xl:hidden">
+        {/* Keep the Lab visible while longer academic menus remain in More. */}
+        <div className="hidden items-center gap-1 text-[13px] font-medium whitespace-nowrap lg:flex 2xl:hidden">
           <NavTextLink link={aboutNavLink} />
           <NavDropdownMenu dropdown={researchDropdown} />
           <NavDropdownMenu dropdown={phdDropdown} />
           <NavDropdownMenu dropdown={teachingDropdown} />
-          <NavDropdownMenu dropdown={placementsDropdown} />
+          <NavTextLink link={learningLabNavLink} />
           <NavDropdownMenu dropdown={aiDropdown} />
           <NavDropdownMenu dropdown={compactMoreDropdown} />
         </div>
 
-        {/* Full row (1280px+): every top-level section on its own. */}
-        <div className="hidden items-center gap-1 text-[13px] font-medium whitespace-nowrap xl:flex">
+        {/* Full row (1536px+): every top-level section on its own. */}
+        <div className="hidden items-center gap-1 text-[13px] font-medium whitespace-nowrap 2xl:flex">
           <NavTextLink link={aboutNavLink} />
           <NavDropdownMenu dropdown={researchDropdown} />
           <NavDropdownMenu dropdown={phdDropdown} />
           <NavDropdownMenu dropdown={teachingDropdown} />
+          <NavTextLink link={learningLabNavLink} />
           <NavDropdownMenu dropdown={placementsDropdown} />
           <NavDropdownMenu dropdown={entrepreneurshipDropdown} />
           <NavDropdownMenu dropdown={aiDropdown} />

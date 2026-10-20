@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { LabSection } from "@/features/learning-lab/components/LabShell";
 import { DemoLesson } from "@/features/learning-lab/components/DemoLesson";
 import { CourseMotif } from "@/features/learning-lab/components/FreeCourseLibrary";
+import { CourseTool } from "@/features/learning-lab/components/CourseTools";
+import { CourseFollowUp } from "@/features/learning-lab/components/CourseFollowUp";
 import { freeCourses, getFreeCourse } from "@/features/learning-lab/free-courses";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -16,13 +18,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const course = getFreeCourse(slug);
   if (!course) return { title: "Free course not found" };
   return {
-    title: `${course.title} — Free Course`,
+    title: course.searchTitle || `${course.title} — Free Course`,
     description: course.intro,
     alternates: { canonical: `/learning-lab/free-courses/${slug}` },
     openGraph: {
       title: course.title,
       description: course.intro,
       url: `/learning-lab/free-courses/${slug}`,
+      images: [],
+    },
+    twitter: {
+      card: "summary",
+      title: course.searchTitle || course.title,
+      description: course.intro,
       images: [],
     },
   };
@@ -49,6 +57,27 @@ export default async function FreeCoursePage({ params }: Props) {
             <br />
             By Dr. Swapnil Sahoo · for adult learners · no account required
           </p>
+          <p className="lab-small">
+            <strong>Suggested background:</strong>{" "}
+            {course.slug === "read-your-unit-economics"
+              ? "Basic addition, subtraction and division. Use the supplied fictional figures."
+              : "No specialist background. Use the supplied examples and a notebook."}
+            {course.revisedOn && (
+              <>
+                <br />
+                Updated{" "}
+                <time dateTime={course.revisedOn}>
+                  {new Date(course.revisedOn).toLocaleDateString("en-IN", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    timeZone: "UTC",
+                  })}
+                </time>{" "}
+                · original lesson and tool by Dr. Swapnil Sahoo
+              </>
+            )}
+          </p>
           <div className="lab-actions">
             <a href="#lesson-1" className="lab-button">
               Begin the course ↓
@@ -56,6 +85,11 @@ export default async function FreeCoursePage({ params }: Props) {
             <a href="#practice" className="lab-button lab-button-secondary">
               Go to the exercise
             </a>
+            {course.question && (
+              <a href="#course-tool" className="lab-text-link">
+                Use the free tool ↓
+              </a>
+            )}
           </div>
         </div>
         <aside className="lab-course-outcome">
@@ -70,6 +104,20 @@ export default async function FreeCoursePage({ params }: Props) {
           </div>
         </aside>
       </header>
+      {course.question && (
+        <LabSection
+          id="quick-answer"
+          className="lab-band"
+          eyebrow="Start with the answer"
+          title={course.question}
+        >
+          <p className="lab-lead">{course.shortAnswer}</p>
+          <p className="lab-small">
+            Work through the example, change an assumption and test your own reasoning. Sources are
+            listed with the practice exercise.
+          </p>
+        </LabSection>
+      )}
       <div className="lab-container">
         <nav className="lab-anchor-links" aria-label="Course sections">
           {course.lessons.map((lesson, index) => (
@@ -78,6 +126,7 @@ export default async function FreeCoursePage({ params }: Props) {
             </a>
           ))}
           <a href="#practice">4. Practise + keep your work</a>
+          {course.question && <a href="#course-tool">5. Use the free tool</a>}
         </nav>
       </div>
       {course.lessons.map((lesson, index) => (
@@ -110,6 +159,11 @@ export default async function FreeCoursePage({ params }: Props) {
       >
         <DemoLesson programme={course} freeCourse />
       </LabSection>
+      {course.question && (
+        <LabSection className="lab-band">
+          <CourseTool slug={course.slug} />
+        </LabSection>
+      )}
       <LabSection eyebrow="Keep the momentum" title="One more useful next move.">
         <div className="lab-grid lab-grid-two">
           {related.map((next) => (
@@ -141,6 +195,7 @@ export default async function FreeCoursePage({ params }: Props) {
           This course provides self-practice and written guidance. It does not submit work, certify
           completion or promise a professional outcome.
         </p>
+        <CourseFollowUp slug={course.slug} title={course.title} />
       </LabSection>
     </>
   );

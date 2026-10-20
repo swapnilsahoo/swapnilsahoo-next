@@ -8,6 +8,7 @@ import {
   aboutNavLink,
   aiDropdown,
   entrepreneurshipDropdown,
+  learningLabNavLink,
   moreDropdown,
   phdDropdown,
   placementsDropdown,
@@ -185,6 +186,17 @@ export function MobileNav() {
           aria-label="Mobile navigation"
           className="max-h-[calc(100dvh-7rem-env(safe-area-inset-bottom))] overflow-y-auto overscroll-contain"
         >
+          <Link
+            href={learningLabNavLink.href}
+            prefetch={false}
+            onClick={() => setOpen(false)}
+            className="bg-brand-50 text-brand-800 dark:bg-brand-900/30 dark:text-brand-200 mb-2 block rounded-xl px-3 py-3 focus-visible:outline-2 focus-visible:outline-offset-2"
+          >
+            <span className="block text-sm font-semibold">{learningLabNavLink.label}</span>
+            <span className="mt-1 block text-xs">
+              Free lessons and practical business exercises
+            </span>
+          </Link>
           {groups.map((group) => (
             <div
               key={group}

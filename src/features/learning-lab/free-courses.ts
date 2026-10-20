@@ -7,6 +7,10 @@ export type FreeCourse = {
   minutes: number;
   intro: string;
   output: string;
+  searchTitle?: string;
+  question?: string;
+  shortAnswer?: string;
+  revisedOn?: string;
   programmeSlug: LabProgramme["slug"];
   lessons: { title: string; body: string; example: string; tryIt: string }[];
   demo: LabProgramme["demo"];
@@ -28,6 +32,11 @@ export const freeCourses: FreeCourse[] = [
   {
     slug: "write-an-ai-task-brief",
     title: "Give your AI task a clear brief",
+    searchTitle: "How to Write an AI Task Brief: Free Template & Practice",
+    question: "How do you write a useful AI task brief?",
+    shortAnswer:
+      "Name the task and its boundary, list the evidence the assistant may use, specify an inspectable output, explain how to handle missing facts and name the human reviewer. Use the editable template below, then test it against a difficult example.",
+    revisedOn: "2026-10-20",
     category: "Applied AI",
     minutes: 20,
     intro:
@@ -37,8 +46,7 @@ export const freeCourses: FreeCourse[] = [
     lessons: [
       {
         title: "1. Name the task and its boundary",
-        body:
-          "A useful brief starts with a person and a decision. Specify the work the assistant may prepare and what remains outside its authority. ‘Help with customers’ leaves both unclear. ‘Draft a room-booking reply for a receptionist to check’ defines a smaller task. Then identify the only permitted inputs. Start this exercise with the invented information below; an AI account is optional. You can test the brief by swapping it with a classmate and asking what they would produce.",
+        body: "A useful brief starts with a person and a decision. Specify the work the assistant may prepare and what remains outside its authority. ‘Help with customers’ leaves both unclear. ‘Draft a room-booking reply for a receptionist to check’ defines a smaller task. Then identify the only permitted inputs. Start this exercise with the invented information below; an AI account is optional. You can test the brief by swapping it with a classmate and asking what they would produce.",
         example:
           "Hypothetical business: Sahaj Desk rents meeting rooms. Its receptionist receives: ‘Can six of us book Friday after 5 pm?’ The supplied policy says rooms close at 6 pm and capacity is eight. There is no dated availability sheet. A draft can explain the policy and request a date and duration; it cannot confirm a booking.",
         tryIt:
@@ -46,8 +54,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "2. Make the output inspectable",
-        body:
-          "An instruction such as ‘be accurate’ gives the reviewer little to inspect. Specify an output structure and a rule for missing information. Require a short draft, a list of facts used and a list of unresolved questions. Ask the assistant to distinguish the supplied policy from its own suggestion. If an essential fact is absent, the draft should say what is missing rather than fill the gap. A tidy format helps review; it does not prove that the content is correct.",
+        body: "An instruction such as ‘be accurate’ gives the reviewer little to inspect. Specify an output structure and a rule for missing information. Require a short draft, a list of facts used and a list of unresolved questions. Ask the assistant to distinguish the supplied policy from its own suggestion. If an essential fact is absent, the draft should say what is missing rather than fill the gap. A tidy format helps review; it does not prove that the content is correct.",
         example:
           "Output contract: at most 100 words; use only the supplied enquiry and policy; list the policy facts separately; flag missing date, duration and room availability; never invent a slot, price or booking confirmation. ‘Friday at 5 pm is available’ fails even if the sentence sounds helpful.",
         tryIt:
@@ -55,8 +62,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "3. Give the reviewer a decision",
-        body:
-          "Name who checks the draft and what they check before it is sent. Include policy consistency, unsupported facts, unnecessary personal information, missing questions and tone. Choose at least one difficult example, such as a request that extends beyond closing time. The first trial should reveal whether the brief works, not merely whether a draft can be produced. Record what you changed after review. This is a practical exercise in the context, evaluation and responsibility emphasised by NIST’s voluntary risk guidance.",
+        body: "Name who checks the draft and what they check before it is sent. Include policy consistency, unsupported facts, unnecessary personal information, missing questions and tone. Choose at least one difficult example, such as a request that extends beyond closing time. The first trial should reveal whether the brief works, not merely whether a draft can be produced. Record what you changed after review. This is a practical exercise in the context, evaluation and responsibility emphasised by NIST’s voluntary risk guidance.",
         example:
           "A second enquiry asks for 5:30–7 pm. The receptionist must catch the conflict with the 6 pm closing time. A suitable draft explains that limit and asks whether an earlier slot would work, without asserting that an earlier slot is available.",
         tryIt:
@@ -151,8 +157,7 @@ export const freeCourses: FreeCourse[] = [
     lessons: [
       {
         title: "1. Define success before the trial",
-        body:
-          "Start with the decision the test must inform: should a team trial AI-assisted purchase-request summaries? Define acceptable output before seeing results. The summary must preserve the requested item, quantity and deadline, identify missing approval and contain no invented supplier commitment. Distinguish an editable omission from a critical error that could authorise spending or expose restricted information. Agree who labels a case and how disagreements are resolved. Otherwise, an attractive result can quietly change the meaning of success.",
+        body: "Start with the decision the test must inform: should a team trial AI-assisted purchase-request summaries? Define acceptable output before seeing results. The summary must preserve the requested item, quantity and deadline, identify missing approval and contain no invented supplier commitment. Distinguish an editable omission from a critical error that could authorise spending or expose restricted information. Agree who labels a case and how disagreements are resolved. Otherwise, an attractive result can quietly change the meaning of success.",
         example:
           "Hypothetical team: Ledgerleaf currently spends 12 minutes per purchase request. A reviewer marks each summary ‘acceptable’, ‘needs correction’ or ‘critical failure’. Inventing a supplier’s approval is a critical failure, even when the item description is correct.",
         tryIt:
@@ -160,8 +165,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "2. Include the awkward cases",
-        body:
-          "A small set is useful when it exercises the task’s boundaries. Build ten synthetic cases: four routine requests, two with a missing field, two with contradictory quantities, one containing irrelevant personal details and one asking the assistant to ignore the approval rule. Record the expected handling before running the test. Keep the same cases and criteria for the baseline and assisted workflow. Ten deliberately selected cases can expose weaknesses; they cannot establish a dependable error rate for every future request.",
+        body: "A small set is useful when it exercises the task’s boundaries. Build ten synthetic cases: four routine requests, two with a missing field, two with contradictory quantities, one containing irrelevant personal details and one asking the assistant to ignore the approval rule. Record the expected handling before running the test. Keep the same cases and criteria for the baseline and assisted workflow. Ten deliberately selected cases can expose weaknesses; they cannot establish a dependable error rate for every future request.",
         example:
           "Evaluation columns: case ID, case type, expected handling, observed output, error category, draft time, review/correction time and reviewer note. For a contradictory quantity, the expected handling is ‘flag for clarification’, not ‘pick the most recent-looking number’.",
         tryIt:
@@ -169,8 +173,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "3. Count review time and failures",
-        body:
-          "Measure from the start of the task to a reviewed result. Fast drafting can shift work into correction and exception handling. Compare total time, output quality and escalation together. In the invented result below, 25 minutes are saved across ten cases, but a critical failure blocks unsupervised use. A proportionate next step might be to revise the brief and rerun a fresh, varied set under human review. Adoption is a decision about the complete process and its remaining risks, not a reward for using a tool.",
+        body: "Measure from the start of the task to a reviewed result. Fast drafting can shift work into correction and exception handling. Compare total time, output quality and escalation together. In the invented result below, 25 minutes are saved across ten cases, but a critical failure blocks unsupervised use. A proportionate next step might be to revise the brief and rerun a fresh, varied set under human review. Adoption is a decision about the complete process and its remaining risks, not a reward for using a tool.",
         example:
           "Invented result: baseline 120 minutes; assisted drafting 20 minutes, review/correction 60 and escalation 15, for 95 minutes total. Six outputs are acceptable, three need correction and one invents approval. The 25-minute difference is a test result within this fictional exercise, not a productivity benchmark.",
         tryIt:
@@ -265,8 +268,7 @@ export const freeCourses: FreeCourse[] = [
     lessons: [
       {
         title: "1. Pick the promise before the slogan",
-        body:
-          "‘Better service for everyone’ does not tell a team how to allocate limited time. State which customer problem the business will solve and what dependable experience it promises. In the case below, scheduled collections for local shops and urgent one-off deliveries require different operating patterns. Neither is inherently the best strategy. The useful question is which promise this team can serve distinctively and economically. Porter’s strategy reading offers a lens for examining positioning, trade-offs and fit among activities; the case still needs evidence and judgement.",
+        body: "‘Better service for everyone’ does not tell a team how to allocate limited time. State which customer problem the business will solve and what dependable experience it promises. In the case below, scheduled collections for local shops and urgent one-off deliveries require different operating patterns. Neither is inherently the best strategy. The useful question is which promise this team can serve distinctively and economically. Porter’s strategy reading offers a lens for examining positioning, trade-offs and fit among activities; the case still needs evidence and judgement.",
         example:
           "Hypothetical business: Routewise has two riders. Local shops want predictable twice-daily parcel collections. Individual customers want pickup within 20 minutes anywhere in the city. Routewise cannot currently guarantee both; urgent detours make its scheduled rounds late.",
         tryIt:
@@ -274,8 +276,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "2. Show what the choice requires",
-        body:
-          "Translate the promise into three activities and one boundary. A scheduled shop service might use fixed collection windows, a compact service area and repeat weekly accounts. Declining urgent cross-city requests protects those activities. A premium urgent service might instead keep spare rider capacity and charge for unpredictable routing. A trade-off is the commitment you knowingly limit to make another commitment feasible. An irritating inconvenience is not automatically a strategy; explain why the boundary supports customer value and the operating model.",
+        body: "Translate the promise into three activities and one boundary. A scheduled shop service might use fixed collection windows, a compact service area and repeat weekly accounts. Declining urgent cross-city requests protects those activities. A premium urgent service might instead keep spare rider capacity and charge for unpredictable routing. A trade-off is the commitment you knowingly limit to make another commitment feasible. An irritating inconvenience is not automatically a strategy; explain why the boundary supports customer value and the operating model.",
         example:
           "Scheduled option: two fixed rounds, one neighbourhood, standard parcel limits and weekly billing. Boundary: no guaranteed 20-minute pickup. Urgent option: a smaller booking queue, reserved rider availability and explicit coverage limits. Boundary: no low-priced scheduled volume promise using the same committed capacity.",
         tryIt:
@@ -283,8 +284,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "3. Name the assumption that could overturn it",
-        body:
-          "A defensible choice can be provisional. Identify the uncertain fact most likely to reverse it: sufficient repeat demand, route density, contribution after waiting time or customer acceptance of the service window. Design a bounded test that measures that fact. Comparing headline prices alone misses travel, idle time and reliability. Before the test, specify what would make you continue, revise the boundary or choose a different model. A competitor list becomes useful when it explains the customer’s actual alternative and its implications for your choice.",
+        body: "A defensible choice can be provisional. Identify the uncertain fact most likely to reverse it: sufficient repeat demand, route density, contribution after waiting time or customer acceptance of the service window. Design a bounded test that measures that fact. Comparing headline prices alone misses travel, idle time and reliability. Before the test, specify what would make you continue, revise the boundary or choose a different model. A competitor list becomes useful when it explains the customer’s actual alternative and its implications for your choice.",
         example:
           "Routewise trials one scheduled round with four consenting shops for five operating days. It records parcels, riding and waiting minutes, on-time completion, contribution after delivery costs and whether shops want another week. Five days cannot establish year-round demand, but can expose a badly designed route.",
         tryIt:
@@ -376,6 +376,11 @@ export const freeCourses: FreeCourse[] = [
   {
     slug: "read-your-unit-economics",
     title: "Read your unit economics before you grow",
+    searchTitle: "Break-Even Calculator & Unit Economics: Free Lesson",
+    question: "How many sales do you need to break even?",
+    shortAnswer:
+      "Subtract variable cost per unit from price to find contribution, then divide the period’s fixed costs by that contribution. Round up to a whole sale and compare the result with capacity and demand. If contribution is zero or negative, extra sales cannot cover positive fixed costs in this model.",
+    revisedOn: "2026-10-20",
     category: "Strategy",
     minutes: 25,
     intro:
@@ -385,8 +390,7 @@ export const freeCourses: FreeCourse[] = [
     lessons: [
       {
         title: "1. Follow one sale through the costs",
-        body:
-          "Define a unit and a time period before calculating. Revenue per unit is the selling price in this simplified exercise. Subtract costs that change with that unit to obtain contribution per unit. Contribution then helps cover the period’s fixed costs; it is not automatically profit. Include time and delivery work rather than treating founder effort as free. These educational figures exclude tax, financing and other unlisted costs, so they are a bounded operating calculation rather than a full set of accounts or a pricing recommendation.",
+        body: "Define a unit and a time period before calculating. Revenue per unit is the selling price in this simplified exercise. Subtract costs that change with that unit to obtain contribution per unit. Contribution then helps cover the period’s fixed costs; it is not automatically profit. Include time and delivery work rather than treating founder effort as free. These educational figures exclude tax, financing and other unlisted costs, so they are a bounded operating calculation rather than a full set of accounts or a pricing recommendation.",
         example:
           "Hypothetical business: Tiffin Trail sells one lunch for ₹150. Ingredients cost ₹70, packaging ₹10 and delivery ₹10 per lunch. Variable cost is ₹90 and contribution is ₹60. Monthly fixed costs are ₹12,000, including ₹8,000 kitchen costs and a ₹4,000 allowance for founder administration time.",
         tryIt:
@@ -394,8 +398,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "2. Compare break-even with capacity",
-        body:
-          "For one product with constant price and variable cost within the relevant capacity, break-even units equal fixed costs divided by contribution per unit. Round up when the result is not a whole sale. If contribution is zero or negative, selling more cannot cover positive fixed costs under that model. Next compare the required sales with realistic demand and delivery capacity. A mathematically correct break-even figure is not a forecast that those sales will occur. Fixed costs can also step up when capacity expands.",
+        body: "For one product with constant price and variable cost within the relevant capacity, break-even units equal fixed costs divided by contribution per unit. Round up when the result is not a whole sale. If contribution is zero or negative, selling more cannot cover positive fixed costs under that model. Next compare the required sales with realistic demand and delivery capacity. A mathematically correct break-even figure is not a forecast that those sales will occur. Fixed costs can also step up when capacity expands.",
         example:
           "At ₹60 contribution, ₹12,000 ÷ ₹60 = 200 lunches per month to break even on the stated costs. At 250 lunches, contribution is ₹15,000 and the remaining amount is ₹3,000. The kitchen can currently deliver at most 300 lunches a month. Neither 250 sales nor full capacity is established demand.",
         tryIt:
@@ -403,8 +406,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "3. Test the tempting discount",
-        body:
-          "A discount changes contribution before it changes demand. Work out how much extra volume would be needed and whether the team could serve it. In this case, cutting price by ₹30 halves contribution from ₹60 to ₹30. Even reaching the existing 300-lunch capacity would not cover the stated fixed costs at that price. A discount might still have a bounded purpose, such as a limited acquisition experiment, but its cost and evidence target must be explicit. Higher sales volume alone does not settle the decision.",
+        body: "A discount changes contribution before it changes demand. Work out how much extra volume would be needed and whether the team could serve it. In this case, cutting price by ₹30 halves contribution from ₹60 to ₹30. Even reaching the existing 300-lunch capacity would not cover the stated fixed costs at that price. A discount might still have a bounded purpose, such as a limited acquisition experiment, but its cost and evidence target must be explicit. Higher sales volume alone does not settle the decision.",
         example:
           "Discounted price ₹120 minus ₹90 variable cost leaves ₹30 contribution. Break-even becomes 400 lunches, above 300 capacity. At 250 lunches, ₹7,500 contribution less ₹12,000 fixed costs leaves −₹4,500 on the listed costs. At 300 lunches it leaves −₹3,000.",
         tryIt:
@@ -474,7 +476,8 @@ export const freeCourses: FreeCourse[] = [
         "Do not make the blanket discount on these assumptions. Test the customer’s reason for buying, delivery cost and repeat demand. Consider a bounded promotion only with an explicit cost limit and a plausible path to contribution that covers the relevant costs.",
       ],
       checkpoint: {
-        question: "At ₹120 price, ₹90 variable cost and ₹12,000 fixed cost, how many lunches cover the stated costs?",
+        question:
+          "At ₹120 price, ₹90 variable cost and ₹12,000 fixed cost, how many lunches cover the stated costs?",
         options: ["100 lunches", "200 lunches", "400 lunches"],
         answer: 2,
         explanation:
@@ -483,7 +486,8 @@ export const freeCourses: FreeCourse[] = [
     },
     sources: [
       {
-        title: "US Small Business Administration, Plan your business — break-even point and cost definitions",
+        title:
+          "US Small Business Administration, Plan your business — break-even point and cost definitions",
         url: "https://www.sba.gov/counseling/plan-your-business/",
       },
     ],
@@ -500,8 +504,7 @@ export const freeCourses: FreeCourse[] = [
     lessons: [
       {
         title: "1. Start with your means and limits",
-        body:
-          "When demand is unknown, a detailed revenue forecast can look more certain than its evidence. Begin with the skills, time, relationships and resources actually available. Then state what you can afford to commit if the experiment teaches you that the idea should stop. Sarasvathy’s effectuation research develops affordable loss as an alternative decision logic under uncertainty. An affordable-loss limit is personal and context dependent; it is not an instruction to spend the maximum or a guarantee that a venture is safe.",
+        body: "When demand is unknown, a detailed revenue forecast can look more certain than its evidence. Begin with the skills, time, relationships and resources actually available. Then state what you can afford to commit if the experiment teaches you that the idea should stop. Sarasvathy’s effectuation research develops affordable loss as an alternative decision logic under uncertainty. An affordable-loss limit is personal and context dependent; it is not an instruction to spend the maximum or a guarantee that a venture is safe.",
         example:
           "Hypothetical founder: Meera knows basic balcony-plant care, has six hours over two weekends and can commit up to ₹2,000 without affecting essential expenses. She wants to test a plant-check service. A branded starter kit and advertising package would cost ₹12,000, before any customer has booked.",
         tryIt:
@@ -509,8 +512,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "2. Buy learning in small steps",
-        body:
-          "Choose the least commitment that can reveal the next important uncertainty. Meera can first ask residents about recent plant problems and test a simple booking offer, using her existing tools for work within her competence. Break the commitment into stages so later spending depends on observed behaviour. Include cash, time, customer promises and any borrowed resource in the card. A cheap test that measures the wrong question is still wasteful; specify what the activity is intended to teach.",
+        body: "Choose the least commitment that can reveal the next important uncertainty. Meera can first ask residents about recent plant problems and test a simple booking offer, using her existing tools for work within her competence. Break the commitment into stages so later spending depends on observed behaviour. Include cash, time, customer promises and any borrowed resource in the card. A cheap test that measures the wrong question is still wasteful; specify what the activity is intended to teach.",
         example:
           "Stage one: spend no more than two hours on five voluntary problem interviews. If a clear problem recurs, offer at most three scoped plant-check appointments. Proposed test budget: ₹500 travel, ₹300 consumables and ₹200 contingency, for ₹1,000; up to four more hours. No full kit, paid advertising or guaranteed plant recovery.",
         tryIt:
@@ -518,8 +520,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "3. Decide before enthusiasm takes over",
-        body:
-          "Write stop and continue conditions before inviting participants. A booking is stronger evidence of intent than praise, but it is still not a completed paid service or repeat demand. Track who acts, why others decline, effort per appointment and whether the promise was delivered. Stop when the agreed loss or time limit is reached; you can then make a new, explicit decision based on what was learned. Avoid expanding the budget merely because the previous spending would otherwise feel wasted.",
+        body: "Write stop and continue conditions before inviting participants. A booking is stronger evidence of intent than praise, but it is still not a completed paid service or repeat demand. Track who acts, why others decline, effort per appointment and whether the promise was delivered. Stop when the agreed loss or time limit is reached; you can then make a new, explicit decision based on what was learned. Avoid expanding the budget merely because the previous spending would otherwise feel wasted.",
         example:
           "An illustrative rule: proceed from interviews only if at least three people describe a recent relevant problem. Run the appointment stage only within the ₹1,000 test budget and six total hours. Consider another small test if two people book and attend and the visits are deliverable within scope. These are learning rules for this case, not universal business benchmarks.",
         tryIt:
@@ -610,6 +611,11 @@ export const freeCourses: FreeCourse[] = [
   {
     slug: "ask-better-customer-questions",
     title: "Ask customer questions that reveal behaviour",
+    searchTitle: "Customer Interview Questions: Free Guide & Builder",
+    question: "What should you ask in a customer discovery interview?",
+    shortAnswer:
+      "Ask about a recent real event: what happened, how the person handled it, what was difficult, who decided and what time or money they spent. Avoid leading questions about whether they would like your idea. Adapt the five-question guide below and keep reported behaviour separate from your interpretation.",
+    revisedOn: "2026-10-20",
     category: "Entrepreneurship",
     minutes: 20,
     intro:
@@ -619,8 +625,7 @@ export const freeCourses: FreeCourse[] = [
     lessons: [
       {
         title: "1. Ask about the last time",
-        body:
-          "People can be encouraging about an attractive future idea without facing the problem or intending to buy. Start with a specific recent event. Ask what happened, what the person did, what alternative they used and what effort or cost resulted. Listen for the sequence before presenting your solution. Customer discovery, including the approach used in NSF I-Corps, treats direct customer learning as a way to examine assumptions. This exercise adapts that learning habit; it is not an NSF programme or endorsement.",
+        body: "People can be encouraging about an attractive future idea without facing the problem or intending to buy. Start with a specific recent event. Ask what happened, what the person did, what alternative they used and what effort or cost resulted. Listen for the sequence before presenting your solution. Customer discovery, including the approach used in NSF I-Corps, treats direct customer learning as a way to examine assumptions. This exercise adapts that learning habit; it is not an NSF programme or endorsement.",
         example:
           "Hypothetical idea: MendMeet would collect clothes for local tailoring repairs. ‘Would you use a convenient repair app?’ invites an easy yes. ‘Tell me about the last item you needed repaired. What did you do next?’ can reveal whether finding a tailor, making the trip, the price or something else was difficult.",
         tryIt:
@@ -628,8 +633,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "2. Follow the decision and the alternative",
-        body:
-          "Ask one question at a time and follow the answer. A useful five-question guide covers the recent event, current workaround, difficulty, decision-maker and actual commitment of money or time. Avoid implying that your preferred problem is the important one. Ask permission to take brief notes, record only what is needed and do not request sensitive details. If someone has not experienced the problem, record that too. Their answer may indicate a poor segment rather than a poorly explained pitch.",
+        body: "Ask one question at a time and follow the answer. A useful five-question guide covers the recent event, current workaround, difficulty, decision-maker and actual commitment of money or time. Avoid implying that your preferred problem is the important one. Ask permission to take brief notes, record only what is needed and do not request sensitive details. If someone has not experienced the problem, record that too. Their answer may indicate a poor segment rather than a poorly explained pitch.",
         example:
           "Guide: What happened the last time you needed a clothing repair? How did you handle it? What was hardest, if anything? Who decided where to take it? What time or money did you actually spend? Follow with ‘What happened next?’ when the sequence is unclear. Ask for approximate amounts if exact figures are unnecessary.",
         tryIt:
@@ -637,8 +641,7 @@ export const freeCourses: FreeCourse[] = [
       },
       {
         title: "3. Turn notes into a testable next step",
-        body:
-          "Separate what the person reported, what you infer and what remains unknown. A small convenience sample helps form or challenge hypotheses; it does not measure a whole market. Look for repeated behaviour and contradictions, then choose a modest next test. An opt-in booking for a clearly scoped trial is stronger evidence of action than praise, but a booking, attendance, payment and repeat use are different events. Report the denominator and how participants were selected rather than declaring that customers want the solution.",
+        body: "Separate what the person reported, what you infer and what remains unknown. A small convenience sample helps form or challenge hypotheses; it does not measure a whole market. Look for repeated behaviour and contradictions, then choose a modest next test. An opt-in booking for a clearly scoped trial is stronger evidence of action than praise, but a booking, attendance, payment and repeat use are different events. Report the denominator and how participants were selected rather than declaring that customers want the solution.",
         example:
           "Invented interview notes: six people spoke voluntarily; three report a repair in the last month; two of those describe travel as inconvenient; one says price was the problem. Two agree to hear about a trial pickup. That suggests a travel-related hypothesis for a narrow group, not two customers acquired or a proven business.",
         tryIt:

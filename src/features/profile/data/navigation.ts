@@ -2,6 +2,7 @@ import { researchBranches } from "@/features/research/data/researchAgenda";
 import type { NavDropdown, NavLink } from "@/features/profile/types";
 
 export const aboutNavLink: NavLink = { label: "About", href: "/#about" };
+export const learningLabNavLink: NavLink = { label: "Learning Lab", href: "/learning-lab" };
 
 export const researchDropdown: NavDropdown = {
   label: "Research",
@@ -189,7 +190,6 @@ export const moreDropdown: NavDropdown = {
   label: "More",
   href: "/#gallery",
   items: [
-    { label: "Learning Lab", href: "/learning-lab" },
     { label: "Gallery", href: "/#gallery" },
     { label: "Writing", href: "/writing" },
     {
@@ -273,14 +273,21 @@ export const moreDropdown: NavDropdown = {
 
 /**
  * A wider catch-all "More" used only at the compact nav tier (roughly
- * 1024–1279px, between the phone hamburger and the full desktop row).
- * At that width, About / Research / Teaching / Placement Assistance /
- * AI Initiatives show directly in the bar, so this folds in everything
- * else that the full nav shows separately — Entrepreneurship, Press &
- * Media, and the regular More items — under one trigger.
+ * 1024–1535px, between the phone hamburger and the full desktop row).
+ * Keep Learning Lab directly visible; collect Placement Assistance,
+ * Entrepreneurship, Press & Media, and the regular More items here.
  */
 export const compactMoreDropdown: NavDropdown = {
   label: "More",
   href: moreDropdown.href,
-  items: [...entrepreneurshipDropdown.items, ...secondaryNavLinks, ...moreDropdown.items],
+  items: [
+    {
+      label: placementsDropdown.label,
+      href: placementsDropdown.href,
+      children: placementsDropdown.items,
+    },
+    ...entrepreneurshipDropdown.items,
+    ...secondaryNavLinks,
+    ...moreDropdown.items,
+  ],
 };
