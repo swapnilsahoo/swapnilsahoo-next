@@ -5,15 +5,15 @@ outside the repository.
 
 ## Threat model
 
-`swapnilsahoo.com` is a statically generated public content site. It has **no
-authentication, no database, no user accounts, no sessions, no payments, no
-uploads and no admin surface**. Every page is intended to be readable by anyone,
-and every page except the JSON API is intended to be indexed.
+Updated 22 October 2026. `swapnilsahoo.com` combines public teaching content with
+a private Learning Lab. The Lab has authenticated operator and learner routes,
+database-backed enquiries and submissions, session cookies, and private venture
+workspaces. These records require access control and are not public or intended
+for indexing. Paid checkout remains disabled; optional QR support is external.
 
-That shapes everything below. There is no private data to leak, so the work is
-about keeping the site itself from being turned against its readers (injection,
-clickjacking, transport downgrade), keeping the one API honest, and keeping
-dependencies current.
+The controls below cover public-content delivery alongside these private
+services. CSP is one layer; it does not replace authentication, authorisation,
+input validation, output escaping or private-record retention and backup controls.
 
 The corpora served by the reader (Gita, Ramcharitmanas, Bhagavatam, the
 sahasranamas) are public scripture, already fully rendered into indexable HTML
@@ -41,33 +41,32 @@ enforce the **intersection** of both, so an accidental overlap would silently
 break whichever pages needed the looser policy.
 
 - App routes get a tight policy.
-- The 34 standalone `.html` decks under `public/teaching/` get a looser one —
+- The standalone `.html` documents (53 files under `public/`) get a looser one —
   they are self-contained classroom artefacts that pull Tailwind and Chart.js
   from CDNs and carry inline scripts throughout.
 - `/api/*` gets `default-src 'none'`.
 
 ### Why `'unsafe-inline'` is present in `script-src`
 
-Removing it requires nonces, and nonces require dynamic rendering on every
-request. That would convert a fully static site into per-request SSR — a real
-cost in latency, Vercel spend and SEO — to defend against an injection vector
-that needs attacker-controlled content to exist in the first place. This site has
-none: all content is authored in-repo, and the only dynamic output (JSON-LD) is
-already `JSON.stringify`-escaped with `<` replaced.
+Static app generation and standalone classroom documents use inline scripts.
+The existing `unsafe-inline` allowance is retained for compatibility; this is
+not a claim that private user input has no injection risk. Per-response nonces
+would require a separate rendering and caching change. Private Lab work must
+still be escaped and accessed only through its authorised service.
 
-The directives that do the real work here — `object-src 'none'`, `base-uri
-'self'`, `frame-ancestors 'self'`, `form-action 'self'` and the origin
-allowlists — are all enforced normally. Revisit this if the site ever accepts
-user-submitted content.
+Other directives include `object-src 'none'`, `base-uri 'self'`,
+`frame-ancestors 'self'`, `form-action 'self'` and explicit origin allowlists.
 
 `'unsafe-eval'` is **not** used in production (only in `next dev`, which React
 requires). Tailwind's Play CDN was verified to work on the decks without it.
 
 ## Must be configured outside the repo
 
-Rate limiting cannot live in application code here: the site has no Redis and no
-durable store, and per-instance in-memory counters do not work correctly across
-serverless invocations. It has to be enforced at the edge.
+Lab mutations use persistent database-backed rate limits. The public scripture
+API has a separate page-size ceiling; edge controls can additionally protect
+origin cost and availability. Per-instance memory alone is not a durable limit
+across serverless invocations. The edge suggestions below are an operating
+proposal, not evidence that those rules have been activated.
 
 ### Where the edge actually is
 
@@ -112,14 +111,27 @@ were verified to emit exactly that. Set it only if the canonical host changes.
 Keep **Deployment Protection** off for Production (the site is public), and
 consider enabling it for Preview deployments so drafts are not indexed.
 
-The project has no secrets, so there is nothing else to configure.
+Lab database, authentication and optional provider secrets belong in private
+deployment settings. Do not commit or expose their values. Google Tag Manager's
+container ID is public and does not require a secret.
 
-### Not applicable
+### Forms and tag management
 
-Turnstile, CAPTCHA and honeypots have nothing to protect: there are no forms
-that submit to the server, no login, no signup and no password reset. Adding
-them would cost real users friction for no gain. Revisit if a contact form,
-newsletter signup or comment system is ever added.
+The Lab has real submission and sign-in routes. Its public forms use validation,
+same-origin checks, timing/honeypot controls and bounded rate limits; private
+operations also enforce their own access rules.
+
+GTM-KJMH54BC is installed in the shared app layout, the global-error document and
+all 53 standalone HTML files. The bootstrap is in the head; its hidden noscript
+iframe is the first body child. The app/deck CSP permits the GTM script, image,
+connection and iframe origins plus Google's documented container connection
+origin. Avatar microphone permissions and the API CSP remain separate. This
+installation adds no personal-data events to the data layer. Individual analytics,
+Ads tags, custom variables and preview mode may need their own configuration;
+container installation alone does not verify measurement reports.
+
+References: [Google's installation instructions](https://support.google.com/tagmanager/answer/14847097)
+and [GTM content-security-policy guide](https://developers.google.com/tag-platform/security/guides/csp).
 
 ## Known accepted risks
 

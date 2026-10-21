@@ -1,5 +1,7 @@
 "use client";
 
+import { GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/GoogleTagManager";
+
 export default function GlobalError({
   unstable_retry,
 }: {
@@ -8,7 +10,11 @@ export default function GlobalError({
 }) {
   return (
     <html lang="en">
+      <head>
+        <GoogleTagManagerScript />
+      </head>
       <body>
+        <GoogleTagManagerNoScript />
         <main className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center">
           <h1 className="text-2xl font-bold">Something went wrong</h1>
           <p className="text-ink-600 dark:text-ink-300">

@@ -14,8 +14,8 @@
  * avoidable here without giving up static generation: nonce-based CSP requires
  * dynamic rendering on every request (see Next's CSP guide), which would turn a
  * fully static content site into per-request SSR purely for a hardening measure
- * that buys little on a site with no auth, no sessions and no user-submitted
- * content. The directives that do the real work on this site — `object-src`,
+ * that would also change caching for public teaching pages. The Lab's private
+ * workspace is protected separately. The other directives — `object-src`,
  * `base-uri`, `frame-ancestors`, `form-action` and the origin allowlists — are
  * all enforced normally.
  */
@@ -24,7 +24,8 @@ import { getAvatarFrameOrigins } from "./src/features/digital-avatar/embed-confi
 
 const isDev = process.env.NODE_ENV === "development";
 const avatarFrameOrigins = getAvatarFrameOrigins();
-const avatarFrameSources = avatarFrameOrigins.length ? avatarFrameOrigins.join(" ") : "'none'";
+const tagManagerOrigin = "https://www.googletagmanager.com";
+const appFrameSources = [...avatarFrameOrigins, tagManagerOrigin].join(" ");
 const microphonePolicy = avatarFrameOrigins.length
   ? `(self ${avatarFrameOrigins.map((origin) => `"${origin}"`).join(" ")})`
   : "(self)";
@@ -52,16 +53,16 @@ const APP_CSP = collapse(`
   base-uri 'self';
   object-src 'none';
   frame-ancestors 'self';
-  frame-src ${avatarFrameSources};
+  frame-src ${appFrameSources};
   form-action 'self';
-  script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""};
+  script-src 'self' 'unsafe-inline' ${tagManagerOrigin}${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
-  img-src 'self' data: blob: https://swapnilsahoo.com;
+  img-src 'self' data: blob: https://swapnilsahoo.com ${tagManagerOrigin};
   font-src 'self' data:;
   media-src 'self';
   worker-src 'self' blob:;
   manifest-src 'self';
-  connect-src 'self'${isDev ? " ws: wss:" : ""};
+  connect-src 'self' ${tagManagerOrigin} https://www.google.com${isDev ? " ws: wss:" : ""};
   upgrade-insecure-requests;
 `);
 
@@ -78,13 +79,13 @@ const DECK_CSP = collapse(`
   object-src 'none';
   frame-ancestors 'self';
   form-action 'self';
-  script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com;
+  script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com ${tagManagerOrigin};
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com https://cdnjs.cloudflare.com;
   font-src 'self' data: https://fonts.gstatic.com https://api.fontshare.com https://cdnjs.cloudflare.com;
   img-src 'self' data: blob: https:;
   media-src 'self' https:;
-  connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com;
-  frame-src https://www.youtube.com https://www.youtube-nocookie.com;
+  connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com ${tagManagerOrigin} https://www.google.com;
+  frame-src https://www.youtube.com https://www.youtube-nocookie.com ${tagManagerOrigin};
   upgrade-insecure-requests;
 `);
 

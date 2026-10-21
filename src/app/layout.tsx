@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, JetBrains_Mono, Noto_Serif_Devanagari, Poppins } from "next/font/google";
+import { GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/GoogleTagManager";
 
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
@@ -161,7 +162,11 @@ export default function RootLayout({
       className={`${poppins.variable} ${fraunces.variable} ${jetbrainsMono.variable} ${notoSerifDevanagari.variable} scroll-smooth antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <GoogleTagManagerScript />
+      </head>
       <body>
+        <GoogleTagManagerNoScript />
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
