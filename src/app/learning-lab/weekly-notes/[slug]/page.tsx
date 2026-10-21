@@ -52,7 +52,7 @@ export default async function WeeklyNotePage({ params }: Props) {
         description={note.summary}
       >
         <Link href={weeklyNotesPath} className="lab-text-link">
-          ← Series and release calendar
+          ← All four practices
         </Link>
       </LabHero>
       <article className="lab-container lab-prose" aria-label={note.title}>
@@ -103,7 +103,7 @@ export default async function WeeklyNotePage({ params }: Props) {
           ))}
           <p>
             <Link className="lab-text-link" href={weeklyNotesPath}>
-              See the full series and upcoming dates →
+              See all four practices →
             </Link>
           </p>
           <p>

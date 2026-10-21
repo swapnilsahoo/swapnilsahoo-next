@@ -17,6 +17,7 @@ export type WeeklyNote = {
   title: string;
   summary: string;
   publishesAt: string;
+  practiceEmailAt: string;
   lessonSlug: string;
   lessonLabel: string;
   sections: { heading: string; paragraphs: string[] }[];
@@ -30,7 +31,8 @@ export const weeklyNotes: readonly WeeklyNote[] = [
     title: "The discount that needs more capacity",
     summary:
       "A busy kitchen can sell more lunches and still miss break-even. Test the price, contribution and capacity together.",
-    publishesAt: "2026-10-23T09:00:00+05:30",
+    publishesAt: "2026-10-21T04:57:43+05:30",
+    practiceEmailAt: "2026-10-23T09:00:00+05:30",
     lessonSlug: "read-your-unit-economics",
     lessonLabel: "Unit economics lesson and break-even calculator",
     sections: [
@@ -68,7 +70,8 @@ export const weeklyNotes: readonly WeeklyNote[] = [
     title: "Give your AI brief a missing-fact rule",
     summary:
       "A helpful tone cannot justify an invented booking. Give the assistant evidence, boundaries and a human reviewer.",
-    publishesAt: "2026-10-30T09:00:00+05:30",
+    publishesAt: "2026-10-21T04:57:43+05:30",
+    practiceEmailAt: "2026-10-30T09:00:00+05:30",
     lessonSlug: "write-an-ai-task-brief",
     lessonLabel: "AI task-brief lesson and editable template",
     sections: [
@@ -106,7 +109,8 @@ export const weeklyNotes: readonly WeeklyNote[] = [
     title: "Ask about the last time",
     summary:
       "Replace an encouraging opinion with an account of behaviour, then separate what was said from what you inferred.",
-    publishesAt: "2026-11-06T09:00:00+05:30",
+    publishesAt: "2026-10-21T04:57:43+05:30",
+    practiceEmailAt: "2026-11-06T09:00:00+05:30",
     lessonSlug: "ask-better-customer-questions",
     lessonLabel: "Customer-interview lesson and guide builder",
     sections: [
@@ -144,7 +148,8 @@ export const weeklyNotes: readonly WeeklyNote[] = [
     title: "What would you decline to keep your promise?",
     summary:
       "An attractive order can conflict with a strategic position. Connect the promise, activities and sacrifice before saying yes.",
-    publishesAt: "2026-11-13T09:00:00+05:30",
+    publishesAt: "2026-10-21T04:57:43+05:30",
+    practiceEmailAt: "2026-11-13T09:00:00+05:30",
     lessonSlug: "make-a-strategic-tradeoff",
     lessonLabel: "Strategic trade-off lesson and decision exercise",
     sections: [
@@ -179,12 +184,22 @@ export const weeklyNotes: readonly WeeklyNote[] = [
   },
 ];
 
-export function isWeeklyNotePublished(note: WeeklyNote, now: number = getWeeklyNotesNow()): boolean {
+export function isWeeklyNotePublished(
+  note: WeeklyNote,
+  now: number = getWeeklyNotesNow()
+): boolean {
   return Number.isFinite(now) && now >= Date.parse(note.publishesAt);
 }
 
 export function getPublishedWeeklyNotes(now: number = getWeeklyNotesNow()): WeeklyNote[] {
   return weeklyNotes.filter((note) => isWeeklyNotePublished(note, now));
+}
+
+/** Opening every website practice does not accelerate the separate email schedule. */
+export function getWeeklyNotesDueForEmail(now: number = getWeeklyNotesNow()): WeeklyNote[] {
+  return weeklyNotes.filter(
+    (note) => isWeeklyNotePublished(note, now) && now >= Date.parse(note.practiceEmailAt)
+  );
 }
 
 export function getPublishedWeeklyNote(slug: string, now: number = getWeeklyNotesNow()) {
@@ -202,7 +217,12 @@ export function formatCampaignDate(value: string): string {
 
 function escapeXml(value: string): string {
   return value.replace(/[<>&"']/g, (character) => {
-    return ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&apos;" } as Record<string, string>)[character]!;
+    return (
+      { "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;", "'": "&apos;" } as Record<
+        string,
+        string
+      >
+    )[character]!;
   });
 }
 
@@ -214,5 +234,5 @@ export function buildWeeklyNotesFeed(now: number = getWeeklyNotesNow()): string 
       return `<item><title>${escapeXml(note.title)}</title><link>${url}</link><guid isPermaLink="true">${url}</guid><pubDate>${new Date(note.publishesAt).toUTCString()}</pubDate><description>${escapeXml(note.summary)}</description></item>`;
     })
     .join("");
-  return `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Learning Lab: weekly practice</title><link>${weeklyNotesSite}${weeklyNotesPath}</link><description>Four original free worked examples in strategy, AI and entrepreneurship, released on Fridays from 23 October to 13 November 2026 at 9 am IST.</description><language>en-IN</language><atom:link href="${weeklyNotesSite}${weeklyNotesPath}/feed.xml" rel="self" type="application/rss+xml"/>${items}</channel></rss>`;
+  return `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Learning Lab: weekly practice</title><link>${weeklyNotesSite}${weeklyNotesPath}</link><description>All four original free worked examples in strategy, AI and entrepreneurship are available now. Learn at your own pace.</description><language>en-IN</language><atom:link href="${weeklyNotesSite}${weeklyNotesPath}/feed.xml" rel="self" type="application/rss+xml"/>${items}</channel></rss>`;
 }

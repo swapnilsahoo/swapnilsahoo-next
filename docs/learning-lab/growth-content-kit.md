@@ -4,14 +4,16 @@ Execution started 20 October 2026. The owner authorised carrying out this kit. T
 
 ## The next 30 days
 
+Updated 21 October 2026: the owner requested immediate release of all four website practices. Every worked example is now published together, including RSS and sitemap entries. The weekly dates below are a suggested learning rhythm and the existing optional email cadence, not website access gates.
+
 | Period | Work | Evidence to record |
 | --- | --- | --- |
-| 20–26 October | Launch the public pilot invitation and dated practice series; send the three individual invitations; release the unit-economics note on 23 October at 09:00 IST. | Live URLs, SENT receipts, saved voluntary feedback, actual monitoring reports. Search baseline remains unknown without property access. |
-| 27 October–2 November | Release the AI-brief note on 30 October at 09:00 IST; process actual replies and explicit email choices through the daily runner. | Saved references, separate consent, reconciled sends and private feedback themes. No reminders to nonresponders. |
-| 3–9 November | Release the interview-question note on 6 November at 09:00 IST; continue the voluntary pilot and record concrete usability issues. | Published page/feed entry, opted-in email sends and actual responses. Ratings alone do not establish improvement. |
-| 10–18 November | Release the trade-off note on 13 November at 09:00 IST; close the bounded campaign and summarise the evidence available. | Number invited, opted in and self-reported attempts; consent before publishing work. A 10–15-person pilot is a recruitment target, not a guaranteed result. |
+| 20–26 October | Open all four website examples on 21 October; start with unit economics. Send its optional practice email from 23 October at 09:00 IST. | Live URLs, SENT receipts, saved voluntary feedback, actual monitoring reports. Search baseline remains unknown without property access. |
+| 27 October–2 November | Practise the AI brief; its optional email becomes due on 30 October at 09:00 IST. Process actual replies and explicit email choices through the daily runner. | Saved references, separate consent, reconciled sends and private feedback themes. No reminders to nonresponders. |
+| 3–9 November | Practise customer questions; its optional email becomes due on 6 November at 09:00 IST. Continue the voluntary pilot and record concrete usability issues. | Published page/feed entry, opted-in email sends and actual responses. Ratings alone do not establish improvement. |
+| 10–18 November | Practise strategic trade-offs; its optional email becomes due on 13 November at 09:00 IST. Close the bounded campaign and summarise the evidence available. | Number invited, opted in and self-reported attempts; consent before publishing work. A 10–15-person pilot is a recruitment target, not a guaranteed result. |
 
-The three one-time email invitations are executed recruitment. The four website notes publish by server date; the RSS feed follows the same release times. Separately opted-in practice emails are handled by the bounded daily Gmail runner, with withdrawal, STOP and duplicate-send checks. The form does not promise an immediate confirmation email. LinkedIn and Substack posting are not executed: plugin discovery found no connected publishing capability and no browser surface was available. Their drafts below remain available; no contact list was scraped, bulk message sent or institutional endorsement implied.
+The three one-time email invitations are executed recruitment. All four website notes are published now and included in RSS. Separately opted-in practice emails keep their original weekly cadence and are handled by the bounded daily Gmail runner, with withdrawal, STOP and duplicate-send checks. Releasing the website notes does not queue four early emails. The form does not promise an immediate confirmation email. LinkedIn and Substack posting are not executed: plugin discovery found no connected publishing capability and no browser surface was available. Their drafts below remain available; no contact list was scraped, bulk message sent or institutional endorsement implied.
 
 ## LinkedIn draft 1: growth can reduce profit
 
@@ -43,7 +45,7 @@ Which missing fact should your own workflow always escalate?
 
 ## Four short learning-email drafts
 
-The content below supplies the four practice notes for 23 October, 30 October, 6 November and 13 November 2026. Their website versions open at 09:00 IST. Email is separate: send only to pilot contacts who explicitly choose these four notes, and honour withdrawal or a STOP reply before sending. Existing Substack subscribers are not accessible to this runner and are not imported. See the execution record for actual task registration and computer-availability limits.
+The content below supplies the four practice emails for 23 October, 30 October, 6 November and 13 November 2026, from 09:00 IST. All four website versions are available now. Email is separate: send only to pilot contacts who explicitly choose these four notes, and honour withdrawal or a STOP reply before sending. Existing Substack subscribers are not accessible to this runner and are not imported. See the execution record for actual task registration and computer-availability limits.
 
 ### 1. The discount that needs more capacity
 

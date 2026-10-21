@@ -96,14 +96,14 @@ export default async function LearningLabPage() {
       >
         <div className="lab-grid lab-grid-two">
           <article className="lab-card">
-            <h3>A new worked example each Friday</h3>
+            <h3>Four worked examples, available now</h3>
             <p>
-              Start with today’s short exercise. Four original notes open at 9 am IST on 23 October,
-              30 October, 6 November and 13 November. Try a decision, check your reasoning and keep
-              your work.
+              All four practice notes are open. Try a decision about pricing, AI instructions,
+              customer questions or strategic trade-offs. Check your reasoning and keep your work at
+              your own pace.
             </p>
             <Link className="lab-text-link" href="/learning-lab/weekly-notes">
-              See the timeline and start practising →
+              Explore all four practices →
             </Link>
           </article>
           <article className="lab-card">

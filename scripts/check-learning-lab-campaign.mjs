@@ -5,10 +5,23 @@ import { pathToFileURL } from "node:url";
 
 // This independent monitor intentionally has no application dependencies or credentials.
 export const campaignReleases = [
-  ["the-discount-that-needs-more-capacity", "2026-10-23T09:00:00+05:30"],
-  ["give-your-ai-brief-a-missing-fact-rule", "2026-10-30T09:00:00+05:30"],
-  ["ask-about-the-last-time", "2026-11-06T09:00:00+05:30"],
-  ["what-would-you-decline", "2026-11-13T09:00:00+05:30"],
+  ["the-discount-that-needs-more-capacity", "2026-10-21T04:57:43+05:30"],
+  ["give-your-ai-brief-a-missing-fact-rule", "2026-10-21T04:57:43+05:30"],
+  ["ask-about-the-last-time", "2026-10-21T04:57:43+05:30"],
+  ["what-would-you-decline", "2026-10-21T04:57:43+05:30"],
+];
+
+const noteContent = [
+  ["The discount that needs more capacity", "Tiffin Trail is a fictional lunch business."],
+  [
+    "Give your AI brief a missing-fact rule",
+    "Imagine Sahaj Desk, a fictional shared-workspace receptionist.",
+  ],
+  ["Ask about the last time", "An imagined founder wants to offer a clothing-repair service."],
+  [
+    "What would you decline to keep your promise?",
+    "Consider a fictional delivery business serving shops on predictable scheduled routes.",
+  ],
 ];
 
 export async function runCampaignHealth({
@@ -60,19 +73,37 @@ export async function runCampaignHealth({
           Date.parse(match[1])
         );
         const expected = campaignReleases.filter(([, date]) => now >= Date.parse(date));
+        const items = [...body.matchAll(/<item>([\s\S]*?)<\/item>/g)].map((match) => match[1]);
         assert.equal(
-          dates.length,
+          items.length,
           expected.length,
           "RSS item count must match the released notes."
         );
+        assert.equal(dates.length, items.length, "Each RSS item needs a publication date.");
         assert.ok(
           dates.every((date) => Number.isFinite(date) && date <= now),
           "RSS cannot publish a future item."
         );
-        for (const [slug] of expected)
-          assert.ok(body.includes(`/weekly-notes/${slug}`), `Missing released note: ${slug}`);
+        for (const [slug, date] of expected) {
+          const item = items.filter((item) => item.includes(`/weekly-notes/${slug}</link>`));
+          assert.equal(item.length, 1, `Missing or duplicated RSS note: ${slug}`);
+          const title = noteContent[campaignReleases.findIndex(([key]) => key === slug)][0];
+          assert.ok(item[0].includes(`<title>${title}</title>`), `Wrong RSS title: ${slug}`);
+          assert.ok(
+            item[0].includes(`<pubDate>${new Date(date).toUTCString()}</pubDate>`),
+            `Wrong RSS publication date: ${slug}`
+          );
+        }
       } else if (expectedStatus === 200) {
         assert.match(body, /<h1\b/, "Public reading page must include a server-rendered heading.");
+        const index = campaignReleases.findIndex(
+          ([slug]) => path === `/learning-lab/weekly-notes/${slug}`
+        );
+        if (index >= 0) {
+          const [title, snippet] = noteContent[index];
+          assert.ok(body.includes(`<h1>${title}</h1>`), "Released note heading is missing.");
+          assert.ok(body.includes(snippet), "Released note body is missing.");
+        }
       }
       report.results.push({ path, expectedStatus, status: response.status, passed: true });
     } catch (error) {

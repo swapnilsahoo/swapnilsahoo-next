@@ -15,7 +15,7 @@ import {
 } from "./learning-lab-campaign-policy.mjs";
 import { runCampaignHealth } from "./check-learning-lab-campaign.mjs";
 const require = createRequire(import.meta.url),
-  { getPublishedWeeklyNotes } = require("../src/features/learning-lab/weekly-notes.ts");
+  { getWeeklyNotesDueForEmail } = require("../src/features/learning-lab/weekly-notes.ts");
 const root = resolve(import.meta.dirname, ".."),
   directory = process.env.LAB_CAMPAIGN_DIRECTORY;
 if (!directory || !process.argv.includes("--run"))
@@ -247,7 +247,7 @@ async function run() {
     );
   }
   await atomic(statePath, state);
-  const notes = getPublishedWeeklyNotes(),
+  const notes = getWeeklyNotesDueForEmail(),
     allActions = choices.flatMap((contact) => notes.map((note) => actionFor(contact.email, note)));
   for (const action of allActions.filter((item) => state.outbox[item.key]?.status === "pending"))
     await reconcile(action);
