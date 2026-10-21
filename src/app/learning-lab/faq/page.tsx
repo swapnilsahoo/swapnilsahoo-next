@@ -16,7 +16,11 @@ function getQuestions(enquiriesAvailable: boolean) {
   return [
     [
       "What is the Learning Lab?",
-      "Swapnil Sahoo Learning Lab is a founder-led education initiative hosted on swapnilsahoo.com, currently run on a not-for-profit basis. Its focus is accessible learning in applied AI, strategy and entrepreneurship.",
+      "Swapnil Sahoo Learning Lab helps first-time student entrepreneurs turn a business idea into a small, affordable customer experiment in 14 days, with practical guidance and feedback, free of charge. It is independently run on a not-for-profit basis; wider school-to-doctoral learning remains a long-term ambition.",
+    ],
+    [
+      "How does the free 14-day venture experiment work?",
+      "Read the daily plan, set a time and cost boundary, investigate a real customer problem, run one small test and decide to continue, change or stop. The public planner and worksheets need no account. Adults at college can register for one of up to 20 active founder-feedback places. Successful registration provides a private access code for stage submissions and actual human reviews; no email or general newsletter subscription is created. Review timing is not guaranteed. The code expires after 90 days. A successful decision to stop is a valid learning outcome; a plan or role-play is not an actual customer experiment.",
     ],
     [
       "How can I support the Lab?",

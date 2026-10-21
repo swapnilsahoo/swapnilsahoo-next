@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { requirePageActor } from "@/features/learning-lab/server/auth";
 import { AdminWorkspace } from "@/features/learning-lab/components/AdminWorkspace";
+import { VentureExperimentAdmin } from "@/features/learning-lab/components/VentureExperimentAdmin";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { labPublicConfig } from "@/features/learning-lab/config";
 export const metadata: Metadata = {
@@ -19,6 +20,11 @@ export default async function AdminPage() {
       <LabSection>
         <AdminWorkspace actor={actor} launchApproved={labPublicConfig.launchApproved} />
       </LabSection>
+      {!actor.isDemo && (
+        <LabSection title="14-day venture experiment: founder feedback">
+          <VentureExperimentAdmin />
+        </LabSection>
+      )}
     </>
   );
 }

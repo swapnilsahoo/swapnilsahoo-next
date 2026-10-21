@@ -29,6 +29,13 @@ export const labPolicies: LabPolicy[] = [
         ],
       },
       {
+        heading: "Free 14-day venture experiment",
+        paragraphs: [
+          "The open guide, local planner and downloads are free. The initial founder-feedback pilot is for college students who confirm they are aged 18 or over, with up to 20 active private feedback places. A place exists only after successful registration. Participation creates no paid enrolment, qualification or certificate. The 14-day route is a working plan; customer access, time and review availability may require longer. Completing a real test and making an evidence-supported decision, including stopping, are the learning goals; no commercial outcome is guaranteed.",
+          "The participant controls any customer approach, time and affordable commitment. No spending or outreach is performed by the planner. Describe offers honestly, seek voluntary adult participation, respect a refusal and submit only anonymised evidence. The guide does not authorise collecting payments, using college facilities or claiming institutional endorsement. Written founder feedback appears only after a human saves a review; automated next-task suggestions do not grade work or impersonate the founder. Research, publication and testimonial permission are separate from participating in the pilot.",
+        ],
+      },
+      {
         heading: "Voluntary support",
         paragraphs: [
           "The Lab welcomes voluntary assistance, expertise and donations intended to improve its infrastructure and learning content. The support page provides an email route to offer help and the founder’s original PhonePe QR for an optional manual donation of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. The payment app handles the transfer. The website does not verify transactions, issue automatic confirmations or submit an email automatically.",
@@ -85,6 +92,14 @@ export const labPolicies: LabPolicy[] = [
           "The enquiry form asks for your name, email address and programme of interest. Institutional enquiries also ask for the institution or organisation name, with optional role, approximate adult learner count and preferred timetable. Your message is optional. The form requires confirmation that you are aged 18 or over and acknowledgement of enquiry processing. Please do not include student lists or sensitive personal, student or employer information.",
           "These details are used to record and handle the enquiry, avoid duplicate records and discuss a proposed programme or institutional pilot. Optional permission to receive programme updates is separate, unticked by default and not required to enquire. Registering interest does not enrol you.",
           "The current source field records the Lab page path and, if present, limited campaign parameters such as utm_source, utm_medium and utm_campaign. It is not cross-site tracking. Anti-spam controls use limited technical request information and keyed identifiers for rate limiting. Vercel hosts this website and may maintain operational request logs. When online forms are configured, accepted enquiries are stored in a Turso Cloud libSQL database hosted separately from Vercel. The contact page shows current form availability, and a saved confirmation means the enquiry reached that storage.",
+        ],
+      },
+      {
+        heading: "14-day venture experiment: private feedback",
+        paragraphs: [
+          "Added on 21 October 2026. The optional private pilot collects a name or alias, email, college, idea, skills, relationships described without names, daily time, affordable commitment, customer access and four stages of original work. Adult, college-student and privacy acknowledgements are required. The operator uses these details to provide private feedback, assess evidence and track actual mentoring time. Email is used for identity or privacy handling; no automatic email, marketing permission or research/publication consent is created. Do not include identifiable customer data, contact lists, recordings or confidential records.",
+          "Vercel processes requests and the existing Turso Cloud database stores pilot registrations, work revisions, human reviews, rubric scores and mentoring minutes. A high-entropy private access code is shown once at registration; only its keyed hash is stored. The code is sent in an Authorization header, never a page URL. Keep the separate private-code download safe; worksheets exclude the code. The code is held in page memory during use, not automatically saved in browser storage. Drafts are stored in this browser only if you choose Save on this device; you can clear them. Downloaded files remain under your control.",
+          "The code expires 90 days after registration. After expiry, access is denied; expired private pilot records and their associated work/reviews are deleted at the next database maintenance/bootstrap, not at a guaranteed instant. A participant can withdraw and delete their private pilot record and associated work/reviews using the code. The permanent operator can handle deletion or lost-access requests after checking identity; automatic code recovery by email is not available. These rules apply to this new pilot and do not change retention for other Lab services. Restricted operator exports and backups remain subject to the existing manual retention process. Individual work and comparative research data are not published without separate consent.",
         ],
       },
       {

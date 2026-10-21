@@ -22,9 +22,28 @@ import {
   submitAssignment,
   verifyCertificate,
 } from "@/features/learning-lab/server/service";
+import {
+  deleteVentureExperiment,
+  readVentureExperiment,
+  reviewVentureWork,
+  saveVentureWork,
+  startVentureExperiment,
+  ventureAdminRecords,
+  ventureAvailability,
+  withdrawVentureExperiment,
+} from "@/features/learning-lab/server/venture-experiment";
 export const runtime = "nodejs";
 const response = (data: unknown, status = 200) =>
-  Response.json(data, { status, headers: { "Cache-Control": "no-store", Vary: "Cookie" } });
+  Response.json(data, {
+    status,
+    headers: { "Cache-Control": "no-store", Vary: "Cookie, Authorization" },
+  });
+function privateVentureCode(request: Request) {
+  const authorization = request.headers.get("authorization") || "";
+  if (!authorization.startsWith("Bearer "))
+    throw new LabHttpError(401, "Enter your private access code to continue.");
+  return authorization.slice(7);
+}
 function originCheck(request: Request) {
   const expected = new URL(process.env.LAB_BASE_URL || request.url).origin;
   if (request.headers.get("origin") !== expected)
@@ -79,6 +98,8 @@ async function handle(request: Request, context: { params: Promise<{ action: str
         409
       );
     if (request.method === "GET") {
+      if (path === "venture/availability")
+        return response({ ok: true, ...(await ventureAvailability()) });
       if (action[0] === "verify" && action.length === 2) {
         const record = await verifyCertificate(action[1]);
         return record
@@ -96,6 +117,7 @@ async function handle(request: Request, context: { params: Promise<{ action: str
         if (actor.isDemo) throw new LabHttpError(403, "A permanent operator account is required.");
         return response({ ok: true, records: await pilotOperatorRecords() });
       }
+      if (path === "admin/venture") return response(await ventureAdminRecords(actor));
       if (path === "admin/email") {
         if (actor.isDemo) throw new LabHttpError(403, "A permanent operator account is required.");
         return response({ ok: true, email: getEmailReadiness() });
@@ -151,6 +173,23 @@ async function handle(request: Request, context: { params: Promise<{ action: str
     }
     originCheck(request);
     const data = await body(request);
+    if (path.startsWith("venture/")) {
+      const ip = process.env.VERCEL
+        ? request.headers.get("x-vercel-forwarded-for")?.split(",")[0] || "unknown"
+        : "local";
+      if (path === "venture/start") return response(await startVentureExperiment(data, ip));
+      if (path === "venture/read") {
+        parse(z.object({}).strict(), data);
+        return response(await readVentureExperiment(privateVentureCode(request), ip));
+      }
+      if (path === "venture/save")
+        return response(await saveVentureWork(privateVentureCode(request), data, ip));
+      if (path === "venture/withdraw") {
+        parse(z.object({}).strict(), data);
+        return response(await withdrawVentureExperiment(privateVentureCode(request), ip));
+      }
+      throw new LabHttpError(404, "Unknown request.");
+    }
     if (path === "enquiries" || path === "pilot-feedback") {
       // Trust platform proxy headers only when running on that platform.
       const ip = process.env.VERCEL
@@ -228,6 +267,9 @@ async function handle(request: Request, context: { params: Promise<{ action: str
     if (path === "progress") return response(await completeLesson(actor, data));
     if (path === "submissions") return response(await submitAssignment(actor, data));
     if (path === "certificate-privacy") return response(await setCertificatePrivacy(actor, data));
+    if (path === "admin/venture-review") return response(await reviewVentureWork(actor, data));
+    if (path === "admin/venture-delete")
+      return response(await deleteVentureExperiment(actor, data));
     if (path.startsWith("admin/")) return response(await adminMutation(actor, action[1], data));
     throw new LabHttpError(404, "Unknown request.");
   } catch (error) {

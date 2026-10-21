@@ -78,10 +78,14 @@ const ddl = [
   `CREATE TABLE IF NOT EXISTS lab_email_outbox (id TEXT PRIMARY KEY, enquiry_id TEXT REFERENCES lab_enquiry(id) ON DELETE CASCADE, event_type TEXT NOT NULL CHECK(event_type IN ('receipt','operator','operator-test')), idempotency_key TEXT NOT NULL UNIQUE, payload TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending','processing','accepted','failed','review')), attempts INTEGER NOT NULL DEFAULT 0, first_attempt_at INTEGER, last_attempt_at INTEGER, next_attempt_at INTEGER NOT NULL, lease_token TEXT, lease_expires_at INTEGER, provider_message_id TEXT, last_error_code TEXT, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, UNIQUE(enquiry_id,event_type))`,
   `CREATE TABLE IF NOT EXISTS lab_rate_limit (key TEXT PRIMARY KEY, count INTEGER NOT NULL, expires_at INTEGER NOT NULL)`,
   `CREATE TABLE IF NOT EXISTS lab_audit (id TEXT PRIMARY KEY, actor_id TEXT, action TEXT NOT NULL, entity_id TEXT, created_at INTEGER NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS lab_venture_participant (id TEXT PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL, email_hash TEXT NOT NULL UNIQUE, college TEXT NOT NULL, idea TEXT NOT NULL, constraints_json TEXT NOT NULL, access_hash TEXT NOT NULL UNIQUE, created_at INTEGER NOT NULL, access_expires_at INTEGER NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS lab_venture_work (participant_id TEXT NOT NULL REFERENCES lab_venture_participant(id) ON DELETE CASCADE, stage INTEGER NOT NULL CHECK(stage BETWEEN 1 AND 4), work TEXT NOT NULL, revision INTEGER NOT NULL CHECK(revision>=1), updated_at INTEGER NOT NULL, PRIMARY KEY(participant_id,stage))`,
+  `CREATE TABLE IF NOT EXISTS lab_venture_review (participant_id TEXT NOT NULL REFERENCES lab_venture_participant(id) ON DELETE CASCADE, stage INTEGER NOT NULL CHECK(stage BETWEEN 1 AND 4), work_revision INTEGER NOT NULL CHECK(work_revision>=1), review_revision INTEGER NOT NULL DEFAULT 1 CHECK(review_revision>=1), work_snapshot TEXT NOT NULL, feedback TEXT NOT NULL, rubric_json TEXT NOT NULL, mentoring_minutes INTEGER NOT NULL CHECK(mentoring_minutes BETWEEN 1 AND 180), reviewer_id TEXT NOT NULL REFERENCES lab_user(id), reviewed_at INTEGER NOT NULL, PRIMARY KEY(participant_id,stage,work_revision))`,
   `CREATE INDEX IF NOT EXISTS lab_submission_user ON lab_submission(user_id)`,
   `CREATE INDEX IF NOT EXISTS lab_enrolment_user ON lab_enrolment(user_id)`,
   `CREATE INDEX IF NOT EXISTS lab_session_user ON lab_session(user_id)`,
   `CREATE INDEX IF NOT EXISTS lab_email_due ON lab_email_outbox(status,next_attempt_at)`,
+  `CREATE INDEX IF NOT EXISTS lab_venture_expiry ON lab_venture_participant(access_expires_at)`,
 ];
 
 let connection: Promise<Client> | undefined;
@@ -126,6 +130,14 @@ async function initialise() {
     ])
       if (!enquiryColumns.some((column) => column.name === name))
         await migration.execute(`ALTER TABLE lab_enquiry ADD COLUMN ${name} ${definition}`);
+    const ventureReviewColumns = (await migration.execute("PRAGMA table_info(lab_venture_review)"))
+      .rows;
+    for (const [name, definition] of [
+      ["review_revision", "INTEGER NOT NULL DEFAULT 1"],
+      ["work_snapshot", "TEXT NOT NULL DEFAULT ''"],
+    ])
+      if (!ventureReviewColumns.some((column) => column.name === name))
+        await migration.execute(`ALTER TABLE lab_venture_review ADD COLUMN ${name} ${definition}`);
     await migration.commit();
   } catch (error) {
     await migration.rollback();
@@ -133,6 +145,12 @@ async function initialise() {
   } finally {
     migration.close();
   }
+  // Only the new voluntary venture records expire here. Codes are rejected at
+  // 90 days even when no request has yet triggered this maintenance cleanup.
+  await client.execute({
+    sql: "DELETE FROM lab_venture_participant WHERE access_expires_at<=?",
+    args: [Date.now()],
+  });
   return client;
 }
 

@@ -33,11 +33,11 @@ export function Hero() {
               Swapnil Sahoo Learning Lab
             </p>
             <p className="text-ink-700 dark:text-ink-200 mb-4 text-sm leading-relaxed">
-              Free, practical learning for MBA students and early-career professionals. Practise
-              strategy, applied AI and case interviews with lessons and hands-on exercises.
+              A free 14-day guide for first-time student entrepreneurs: turn an idea into a small,
+              affordable experiment with actual customers, practical guidance and feedback.
             </p>
-            <Link href="/learning-lab/free-courses" className="btn-primary">
-              Start learning free
+            <Link href="/learning-lab/venture-experiment" className="btn-primary">
+              Start your venture experiment
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
           </div>

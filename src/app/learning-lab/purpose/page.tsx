@@ -19,10 +19,13 @@ export default function PurposePage() {
       <LabHero
         eyebrow="Our purpose"
         title={labMission.purpose}
-        description="Swapnil Sahoo Learning Lab is a not-for-profit education initiative founded by Dr. Swapnil Sahoo. We want high-quality learning to be freely available, irrespective of financial circumstances, geographical location or educational background."
+        description="Swapnil Sahoo Learning Lab is a not-for-profit education initiative founded by Dr. Swapnil Sahoo. School-to-doctoral learning is our long-term ambition. Our immediate focus is a free 14-day customer experiment for first-time student entrepreneurs."
       >
-        <Link href="/learning-lab/catalogue" className="lab-button">
-          Explore what is available today →
+        <Link href="/learning-lab/venture-experiment" className="lab-button">
+          Start the free 14-day venture experiment →
+        </Link>
+        <Link href="/learning-lab/catalogue" className="lab-text-link">
+          Explore other open resources →
         </Link>
       </LabHero>
       <LabSection title="Understand. Apply. Question. Act.">

@@ -17,6 +17,10 @@ const free = `${lab}/free-courses`;
 const programmes = `${lab}/programmes`;
 const contact = { label: "Contact the Learning Lab", href: `${lab}/contact` };
 const freeLibrary = { label: "Explore all six free courses", href: free };
+const venture = {
+  label: "Start the free 14-day venture experiment",
+  href: `${lab}/venture-experiment`,
+};
 const support = { label: "Support the Lab", href: `${lab}/support` };
 const donationQr = { label: "View the optional donation QR", href: `${lab}/support#donate` };
 
@@ -173,6 +177,19 @@ const topics: GuidedTopic[] = [
   },
   {
     matches:
+      /\b(14[- ]?day|fourteen[- ]?day|student entrepreneur\w*|business idea|startup idea|venture experiment|founder feedback)\b/i,
+    reply: answer(
+      "The Lab's current focus is a free 14-day venture experiment for first-time college entrepreneurs aged 18 or over. Set a time and money boundary, investigate recent customer behaviour, run one small offer test, and use the evidence to continue, change or stop. Zero spending is valid. The public planner adapts the next task to your constraints; it does not assess your work. An optional pilot has up to 20 active places for written feedback from Dr. Sahoo in a private workspace. Registration and a saved submission are not a completed experiment or an instant review. This assistant cannot enrol you or give the founder's personal feedback.",
+      [venture, { label: "Read all 14 daily tasks", href: `${venture.href}#plan` }, contact],
+      [
+        "How do I set an affordable loss?",
+        "How do I interview customers?",
+        "What can I learn for free?",
+      ]
+    ),
+  },
+  {
+    matches:
       /\b(customer\w*|discovery|interview\w*|validat\w*|demand|willingness to pay|business idea|startup idea|problem interviews?)\b/i,
     reply: answer(
       "Start with ‘Ask customer questions that reveal behaviour’. Ask about the last time the problem occurred, what the person did, the alternative used and the actual effort or cost. The free course provides a five-question guide and an evidence log. Keep reported behaviour, your interpretation and contrary evidence separate. Interest in receiving details, a booking, attendance, payment and repeat use are different events. The next test should examine one remaining uncertainty with people who voluntarily opt in.",
@@ -273,8 +290,9 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(entrepreneur\w*|startup\w*|start[- ]up|venture\w*|start a business|start my business|budget|constraints?)\b/i,
     reply: answer(
-      "For entrepreneurship, combine the free affordable-loss and customer-discovery courses. Bound the money, time and promises of your first test, then ask about recent customer behaviour before committing to a solution. Keep observations distinct from forecasts and compliments. Entrepreneurship Under Constraint is the proposed deeper programme, with a published capstone and rubric focused on evidence, resource commitments and the next decision.",
+      "For entrepreneurship, start the free 14-day venture experiment for adult college students with an idea and limited money. Bound your commitment, investigate recent customer behaviour, run a small test and make an evidence-based decision. Stopping can be a successful outcome. The public planner is open without registration; the optional founder-feedback pilot has up to 20 active places. The affordable-loss and customer-question mini-courses offer extra practice. The separate full Entrepreneurship Under Constraint programme remains proposed.",
       [
+        venture,
         { label: "Set an affordable-loss limit", href: `${free}/set-an-affordable-loss` },
         { label: "Ask better customer questions", href: `${free}/ask-better-customer-questions` },
         {
@@ -293,8 +311,8 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(free|mini[- ]?courses?|self[- ]paced|self[- ]study|learning paths?|learn|learning|teaching|courses?|programmes?|programs?|library|resources?|start|help|hello|hi|hey)\b/i,
     reply: answer(
-      "Choose one of six free, self-paced mini-courses in applied AI, strategy and entrepreneurship. Each has three short lessons, a fictional decision exercise with written feedback, a checkpoint and a downloadable worksheet. Most take about 20–25 minutes; no account, payment or paid AI tool is required. Start with the skill you need today, keep your work and use the related programme page to explore a deeper path.",
-      [freeLibrary, { label: "Explore the proposed full programmes", href: programmes }],
+      "The Lab's current focus is a free 14-day customer experiment for first-time adult college entrepreneurs. Its public planner requires no registration; optional private founder feedback has up to 20 active places. You can also choose six free mini-courses in applied AI, strategy and entrepreneurship, each with short lessons, a fictional decision exercise, a checkpoint and a downloadable worksheet. Most mini-courses take about 20–25 minutes and need no account, payment or paid AI tool.",
+      [venture, freeLibrary, { label: "Explore the proposed full programmes", href: programmes }],
       [
         "Help me write an AI task brief",
         "Help me make a strategic trade-off",

@@ -39,6 +39,7 @@ export async function runCampaignHealth({
   };
   const paths = [
     ["/learning-lab", 200],
+    ["/learning-lab/venture-experiment", 200],
     ["/learning-lab/weekly-notes", 200],
     ["/learning-lab/pilot", 200],
     ...[
@@ -96,6 +97,12 @@ export async function runCampaignHealth({
         }
       } else if (expectedStatus === 200) {
         assert.match(body, /<h1\b/, "Public reading page must include a server-rendered heading.");
+        if (path === "/learning-lab/venture-experiment") {
+          assert.ok(body.includes("Your first customer experiment. Fourteen days to learn."));
+          for (let day = 1; day <= 14; day++) {
+            assert.ok(body.includes(`id="venture-day-${day}"`), `Missing venture day ${day}.`);
+          }
+        }
         const index = campaignReleases.findIndex(
           ([slug]) => path === `/learning-lab/weekly-notes/${slug}`
         );

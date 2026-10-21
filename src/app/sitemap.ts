@@ -173,6 +173,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     weeklyNotesPath,
     "/learning-lab/pilot",
     "/learning-lab/purpose",
+    "/learning-lab/venture-experiment",
     ...getPublishedWeeklyNotes().map((note) => `${weeklyNotesPath}/${note.slug}`),
   ];
   for (const path of [...resourceRoutes, ...campaignRoutes]) {

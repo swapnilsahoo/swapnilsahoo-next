@@ -17,6 +17,9 @@ const tables = [
   "lab_enquiry",
   "lab_audit",
   "lab_email_outbox",
+  "lab_venture_participant",
+  "lab_venture_work",
+  "lab_venture_review",
 ] as const;
 type TableRow = Record<string, string | number | null>;
 
@@ -118,7 +121,7 @@ try {
   ]).toString("utf8");
   const snapshot = JSON.parse(decrypted) as Record<string, TableRow[]>;
   if (Object.keys(snapshot).sort().join("|") !== [...tables].sort().join("|"))
-    throw new Error("The actual backup does not contain exactly the twelve supported tables.");
+    throw new Error("The actual backup does not contain exactly the supported tables.");
 
   const emailValues = [...(snapshot.lab_user || []), ...(snapshot.lab_enquiry || [])]
     .map((row) => String(row.email || ""))

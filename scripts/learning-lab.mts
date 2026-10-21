@@ -19,6 +19,9 @@ const tables = [
   "lab_enquiry",
   "lab_audit",
   "lab_email_outbox",
+  "lab_venture_participant",
+  "lab_venture_work",
+  "lab_venture_review",
 ];
 try {
   if (command === "init") {
@@ -128,7 +131,7 @@ try {
       throw new Error(
         "Supply the encrypted backup path and point LAB_DATABASE_URL at a fresh database."
       );
-    for (const table of ["lab_user", "lab_enquiry", "lab_enrolment"])
+    for (const table of ["lab_user", "lab_enquiry", "lab_enrolment", "lab_venture_participant"])
       if ((await db.execute(`SELECT COUNT(*) AS n FROM ${table}`)).rows[0].n)
         throw new Error("Restore is permitted only into a fresh, empty database.");
     const envelope = JSON.parse(await readFile(process.argv[3], "utf8"));
@@ -192,6 +195,10 @@ try {
         { sql: "DELETE FROM lab_session WHERE expires_at<?", args: [now] },
         { sql: "DELETE FROM lab_auth_rate_limit WHERE last_request<?", args: [now - 86400000] },
         { sql: "DELETE FROM lab_audit WHERE created_at<?", args: [now - 30 * 86400000] },
+        {
+          sql: "DELETE FROM lab_venture_participant WHERE access_expires_at<=?",
+          args: [now],
+        },
       ],
       "write"
     );

@@ -1,17 +1,29 @@
 # Learning Lab: distribution and volunteer pilot kit
 
+## Immediate focus: a student's first customer experiment
+
+Updated 21 October 2026. **Swapnil Sahoo Learning Lab helps first-time student entrepreneurs turn a business idea into a small, affordable customer experiment in 14 days, with practical guidance and feedback, free of charge.**
+
+The first product is now the [free 14-day venture experiment](https://www.swapnilsahoo.com/learning-lab/venture-experiment), for college students aged 18 or over. Its four outputs are an affordable experiment boundary, an evidence log, an actual small test and a supported continue/change/stop decision. The public planner adapts prepared tasks to available skills, time, customer access and an affordable commitment; ₹0 is valid. Up to 20 active private-feedback places support founder-written reviews of the learner's own work. The software does not supply or impersonate those human reviews.
+
+“Democratise education from KG to PhD” remains the long-term umbrella ambition. School, engineering, management and research pathways remain visible with their availability stated, while this single learner problem leads the homepage and immediate product.
+
+This venture pilot is separate from the older short-lesson usability pilot below. The three invitations already sent concerned the older lesson trial; they are not venture registrations, demand evidence or permission to enrol anyone. No new invitation, social post, reminder or mailing-list subscription has been sent for this new offer. See [the venture operating and evaluation protocol](venture-experiment.md) before recruiting or reporting results. No comparative advantage or learning outcome has yet been established.
+
+## Existing short-lesson campaign
+
 Execution started 20 October 2026. The owner authorised carrying out this kit. Three individual, voluntary feedback invitations have been sent through the connected owner Gmail account to existing academic/community correspondents; all three were read back with the SENT label. Sending is not evidence of delivery, participation or learning. Private receipts and recipient details are excluded from Git. The website campaign and bounded daily operations are described in [the execution record](growth-execution.md).
 
 ## The next 30 days
 
 Updated 21 October 2026: the owner requested immediate release of all four website practices. Every worked example is now published together, including RSS and sitemap entries. The weekly dates below are a suggested learning rhythm and the existing optional email cadence, not website access gates.
 
-| Period | Work | Evidence to record |
-| --- | --- | --- |
-| 20–26 October | Open all four website examples on 21 October; start with unit economics. Send its optional practice email from 23 October at 09:00 IST. | Live URLs, SENT receipts, saved voluntary feedback, actual monitoring reports. Search baseline remains unknown without property access. |
-| 27 October–2 November | Practise the AI brief; its optional email becomes due on 30 October at 09:00 IST. Process actual replies and explicit email choices through the daily runner. | Saved references, separate consent, reconciled sends and private feedback themes. No reminders to nonresponders. |
-| 3–9 November | Practise customer questions; its optional email becomes due on 6 November at 09:00 IST. Continue the voluntary pilot and record concrete usability issues. | Published page/feed entry, opted-in email sends and actual responses. Ratings alone do not establish improvement. |
-| 10–18 November | Practise strategic trade-offs; its optional email becomes due on 13 November at 09:00 IST. Close the bounded campaign and summarise the evidence available. | Number invited, opted in and self-reported attempts; consent before publishing work. A 10–15-person pilot is a recruitment target, not a guaranteed result. |
+| Period                | Work                                                                                                                                                          | Evidence to record                                                                                                                                          |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 20–26 October         | Open all four website examples on 21 October; start with unit economics. Send its optional practice email from 23 October at 09:00 IST.                       | Live URLs, SENT receipts, saved voluntary feedback, actual monitoring reports. Search baseline remains unknown without property access.                     |
+| 27 October–2 November | Practise the AI brief; its optional email becomes due on 30 October at 09:00 IST. Process actual replies and explicit email choices through the daily runner. | Saved references, separate consent, reconciled sends and private feedback themes. No reminders to nonresponders.                                            |
+| 3–9 November          | Practise customer questions; its optional email becomes due on 6 November at 09:00 IST. Continue the voluntary pilot and record concrete usability issues.    | Published page/feed entry, opted-in email sends and actual responses. Ratings alone do not establish improvement.                                           |
+| 10–18 November        | Practise strategic trade-offs; its optional email becomes due on 13 November at 09:00 IST. Close the bounded campaign and summarise the evidence available.   | Number invited, opted in and self-reported attempts; consent before publishing work. A 10–15-person pilot is a recruitment target, not a guaranteed result. |
 
 The three one-time email invitations are executed recruitment. All four website notes are published now and included in RSS. Separately opted-in practice emails keep their original weekly cadence and are handled by the bounded daily Gmail runner, with withdrawal, STOP and duplicate-send checks. Releasing the website notes does not queue four early emails. The form does not promise an immediate confirmation email. LinkedIn and Substack posting are not executed: plugin discovery found no connected publishing capability and no browser surface was available. Their drafts below remain available; no contact list was scraped, bulk message sent or institutional endorsement implied.
 
@@ -105,13 +117,13 @@ Use an anonymous participant code and keep only necessary observations. Record p
 
 ## Weekly measurement sheet
 
-| Measure | Definition | Current evidence |
-| --- | --- | --- |
-| Non-brand organic search clicks | Search Console clicks for relevant pages after excluding founder/brand query variants; report date range and filter. | Unknown: property access not verified. |
-| Search impressions / indexed URLs | Search Console performance and URL-inspection/indexing reports; sitemap inclusion is separate. | Unknown: public HTTP checks do not establish indexing. |
-| Exercise completion | A documented completed attempt in the voluntary pilot or a genuinely implemented measurement event. | No real learner completion claimed by this release. |
-| Worksheet downloads | Observed pilot downloads or configured aggregate events. Developer test downloads are not learner demand. | No production audience count available. |
-| Returning learners | Consenting pilot follow-up or an appropriately configured measurement system with its coverage limits. | Unknown. |
-| Substack response | Actual publication views, subscriptions and available delivery metrics in the owner’s publication. | Account-level data not accessed. |
+| Measure                           | Definition                                                                                                           | Current evidence                                       |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| Non-brand organic search clicks   | Search Console clicks for relevant pages after excluding founder/brand query variants; report date range and filter. | Unknown: property access not verified.                 |
+| Search impressions / indexed URLs | Search Console performance and URL-inspection/indexing reports; sitemap inclusion is separate.                       | Unknown: public HTTP checks do not establish indexing. |
+| Exercise completion               | A documented completed attempt in the voluntary pilot or a genuinely implemented measurement event.                  | No real learner completion claimed by this release.    |
+| Worksheet downloads               | Observed pilot downloads or configured aggregate events. Developer test downloads are not learner demand.            | No production audience count available.                |
+| Returning learners                | Consenting pilot follow-up or an appropriately configured measurement system with its coverage limits.               | Unknown.                                               |
+| Substack response                 | Actual publication views, subscriptions and available delivery metrics in the owner’s publication.                   | Account-level data not accessed.                       |
 
 Keep unpaid social/referral traffic separate from organic search. The UTM-tagged draft links distinguish intended distribution sources; they do not create an analytics service or make a traffic measurement by themselves.

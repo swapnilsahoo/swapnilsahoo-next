@@ -32,6 +32,8 @@
     "lab:test:weekly-notes": "node --import tsx scripts/test-learning-lab-weekly-notes.mjs",
     "lab:test:volunteer-pilot": "node --conditions=react-server --import tsx scripts/test-learning-lab-volunteer-pilot.mts",
     "lab:test:campaign-policy": "node scripts/test-learning-lab-campaign-policy.mjs",
+    "lab:test:venture": "node --conditions=react-server --import tsx scripts/test-learning-lab-venture.mts",
+    "lab:test:venture-plan": "node --import tsx scripts/test-learning-lab-venture-experiment.mjs",
     "lab:test:unconfigured": "node scripts/test-learning-lab-unconfigured.mjs",
     "lab:preview": "node scripts/learning-lab-preview.mjs",
     "check:scriptures": "node scripts/check-scripture-corpora.mjs",
