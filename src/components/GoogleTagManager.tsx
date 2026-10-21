@@ -26,10 +26,14 @@ export function GoogleTagManagerScript() {
     <script
       id="google-tag-manager"
       dangerouslySetInnerHTML={{
-        __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        __html: `(function(w,d,s,l,i){var started=false;function start(){if(started)return;started=true;
+w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);}
+var tag=d.getElementById('google-tag');if(tag&&typeof w.gtag==='function'){
+tag.addEventListener('error',start,{once:true});w.gtag('get','G-PTGSDRSVK3','client_id',start);
+}else{start();}
 })(window,document,'script','dataLayer','GTM-KJMH54BC');`,
       }}
     />

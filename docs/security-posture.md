@@ -137,6 +137,12 @@ rules, so it did not also configure this Analytics property. Keep one installati
 for this property if its configuration is moved into GTM later. CSP permits the
 documented non-Ads Analytics collection origins. No private form/workspace values
 are added by this snippet; account-side automatic measurement settings are separate.
+The GTM bootstrap waits for the Google tag's supported readiness callback before
+starting, avoiding a race in which both libraries can request the same loader.
+The callback's returned identifier is ignored; it is not logged, stored or sent
+by the website. A loader-error fallback keeps the GTM bootstrap independent of a
+successful Analytics download. Native history measurement supplies page changes;
+the website does not add a second manual `page_view` event path.
 
 References: [Google's installation instructions](https://support.google.com/tagmanager/answer/14847097)
 and [GTM content-security-policy guide](https://developers.google.com/tag-platform/security/guides/csp).
