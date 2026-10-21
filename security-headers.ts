@@ -57,12 +57,12 @@ const APP_CSP = collapse(`
   form-action 'self';
   script-src 'self' 'unsafe-inline' ${tagManagerOrigin}${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
-  img-src 'self' data: blob: https://swapnilsahoo.com ${tagManagerOrigin};
+  img-src 'self' data: blob: https://swapnilsahoo.com ${tagManagerOrigin} https://*.google-analytics.com;
   font-src 'self' data:;
   media-src 'self';
   worker-src 'self' blob:;
   manifest-src 'self';
-  connect-src 'self' ${tagManagerOrigin} https://www.google.com${isDev ? " ws: wss:" : ""};
+  connect-src 'self' ${tagManagerOrigin} https://*.google-analytics.com https://*.google.com${isDev ? " ws: wss:" : ""};
   upgrade-insecure-requests;
 `);
 
@@ -84,7 +84,7 @@ const DECK_CSP = collapse(`
   font-src 'self' data: https://fonts.gstatic.com https://api.fontshare.com https://cdnjs.cloudflare.com;
   img-src 'self' data: blob: https:;
   media-src 'self' https:;
-  connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com ${tagManagerOrigin} https://www.google.com;
+  connect-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com ${tagManagerOrigin} https://*.google-analytics.com https://*.google.com;
   frame-src https://www.youtube.com https://www.youtube-nocookie.com ${tagManagerOrigin};
   upgrade-insecure-requests;
 `);

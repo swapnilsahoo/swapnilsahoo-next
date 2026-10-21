@@ -1,7 +1,28 @@
+/* eslint-disable @next/next/next-script-for-ga -- Keep the owner's manual snippets in the server-rendered head. */
+
+export function GoogleTag() {
+  return (
+    <>
+      <script
+        id="google-tag"
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-PTGSDRSVK3"
+      />
+      <script
+        id="google-tag-config"
+        dangerouslySetInnerHTML={{
+          __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-PTGSDRSVK3');`,
+        }}
+      />
+    </>
+  );
+}
+
 export function GoogleTagManagerScript() {
   return (
-    // Keep the owner-supplied bootstrap in the server-rendered head, before hydration.
-    // eslint-disable-next-line @next/next/next-script-for-ga
     <script
       id="google-tag-manager"
       dangerouslySetInnerHTML={{

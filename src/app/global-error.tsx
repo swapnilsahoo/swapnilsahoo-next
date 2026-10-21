@@ -1,6 +1,6 @@
 "use client";
 
-import { GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/GoogleTagManager";
+import { GoogleTag, GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/GoogleTagManager";
 
 export default function GlobalError({
   unstable_retry,
@@ -11,6 +11,7 @@ export default function GlobalError({
   return (
     <html lang="en">
       <head>
+        <GoogleTag />
         <GoogleTagManagerScript />
       </head>
       <body>

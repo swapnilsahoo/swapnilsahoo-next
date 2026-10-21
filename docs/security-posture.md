@@ -130,6 +130,14 @@ installation adds no personal-data events to the data layer. Individual analytic
 Ads tags, custom variables and preview mode may need their own configuration;
 container installation alone does not verify measurement reports.
 
+The owner's manual Google tag `G-PTGSDRSVK3` is installed once in each document's
+head, including the standalone HTML pages. It shares the existing data layer
+with GTM. At installation, the published GTM container had no configured tags or
+rules, so it did not also configure this Analytics property. Keep one installation
+for this property if its configuration is moved into GTM later. CSP permits the
+documented non-Ads Analytics collection origins. No private form/workspace values
+are added by this snippet; account-side automatic measurement settings are separate.
+
 References: [Google's installation instructions](https://support.google.com/tagmanager/answer/14847097)
 and [GTM content-security-policy guide](https://developers.google.com/tag-platform/security/guides/csp).
 

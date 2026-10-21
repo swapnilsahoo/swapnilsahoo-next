@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, JetBrains_Mono, Noto_Serif_Devanagari, Poppins } from "next/font/google";
-import { GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/GoogleTagManager";
+import { GoogleTag, GoogleTagManagerNoScript, GoogleTagManagerScript } from "@/components/GoogleTagManager";
 
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
@@ -163,6 +163,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <GoogleTag />
         <GoogleTagManagerScript />
       </head>
       <body>
