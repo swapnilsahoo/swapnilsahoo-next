@@ -29,7 +29,7 @@ Company figures come from the explicitly labelled **TTM** paragraph on each link
 
 ## Implementation and refresh
 
-`public/teaching/1-year-mba/data/profitability-spectrum.json` owns the reviewed numbers, metadata and comparison sets. `scripts/build-session3-profitability.mjs` renders the marked additive HTML and two CSV downloads from that data. Re-running the builder is deterministic. The browser does not fetch data or depend on a chart library for this exhibit.
+`public/teaching/1-year-mba/data/profitability-spectrum.json` owns the reviewed industry numbers and metadata. The GuruFocus company observations live in `scripts/data/session3-company-comparisons.json`, outside `public/`: GuruFocus's [terms](https://www.gurufocus.com/term-of-use) require a commercial licence to redistribute its data, so the page shows each company row with credit and a link to its source, and the download carries no provider figures. `scripts/build-session3-profitability.mjs` renders the marked additive HTML and two CSV downloads from that data. Re-running the builder is deterministic. The browser does not fetch data or depend on a chart library for this exhibit.
 
 `session3-profitability.js` only enhances period selection, industry search, category filtering and result counts. All 168 chart rows, matching tables, native discussions, company comparisons and sources are readable without JavaScript. Existing lesson theme variables provide light by default and manual dark mode. Scoped CSS handles mobile layouts and scrollable tables.
 

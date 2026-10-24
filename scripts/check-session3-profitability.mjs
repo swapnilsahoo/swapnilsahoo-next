@@ -4,6 +4,8 @@ import fs from 'node:fs/promises';
 export async function checkSession3Profitability() {
   const root = 'public/teaching/1-year-mba';
   const data = JSON.parse(await fs.readFile(`${root}/data/profitability-spectrum.json`,'utf8'));
+  assert.equal(data.companies,undefined,'Provider company figures are not redistributed in the public download');
+  data.companies = JSON.parse(await fs.readFile('scripts/data/session3-company-comparisons.json','utf8'));
   const html = await fs.readFile(`${root}/session3.html`,'utf8');
   const approximately = (actual,expected,label) => assert.ok(Math.abs(actual-expected)<1e-12,label);
   const sources = new Map(data.sources.map(source=>[source.file,source]));

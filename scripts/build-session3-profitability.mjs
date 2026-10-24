@@ -3,6 +3,9 @@ import fs from 'node:fs/promises';
 
 const folder = 'public/teaching/1-year-mba';
 const data = JSON.parse(await fs.readFile(`${folder}/data/profitability-spectrum.json`, 'utf8'));
+// Provider (GuruFocus) company observations stay out of public/: the page shows them row by row with credit and links,
+// but the site does not redistribute them as a bulk download.
+data.companies = JSON.parse(await fs.readFile('scripts/data/session3-company-comparisons.json', 'utf8'));
 const file = `${folder}/session3.html`;
 const escape = text => String(text).replace(/[&<>"']/g, value => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[value]));
 const percent = value => `${value < 0 ? '−' : ''}${(Math.abs(value) * 100).toFixed(2)}%`;
