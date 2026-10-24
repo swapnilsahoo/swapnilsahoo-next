@@ -1,6 +1,6 @@
 # Learning Lab operations closure
 
-Updated 11 October 2026. The owner authorised autonomous completion of the remaining operations. This record separates actual production results from implementation tests and provider services that are not yet active.
+Avatar account check updated 24 October 2026; the other operational results below retain their earlier release scope. The owner authorised autonomous completion of the remaining operations. This record separates actual production results from implementation tests and provider services that are not yet active.
 
 ## Website and administrator
 
@@ -32,7 +32,9 @@ No Resend account/key or verified sending domain is connected. The optional Rese
 
 ## Personal conversational avatar
 
-An actual protected production GET on 11 October verified Tavus read access using the runtime API key without exporting it. Complete custom Face, user Voice and user PAL lists each contained **zero** resources. Face/PAL configuration is absent. The provider's plan, custom-training entitlement, voice-creation permissions, price and spending limits were not established by these reads; no undocumented billing/quota endpoint or training request was used as a probe.
+An actual protected production GET on 24 October reverified Tavus read access using the runtime API key without exporting it. Complete custom Face, user Voice and user PAL lists still each contained **zero** resources. Face/PAL configuration is absent. The provider's plan, custom-training entitlement, voice-creation permissions, price and spending limits were not established by these reads; no undocumented billing/quota endpoint or training request was used as a probe. This refresh used only owner authentication, the read-only avatar endpoint and final sign-out; it did not call email retry/test endpoints.
+
+The official Tavus hosted MCP server is now registered in the owner's local Codex configuration, and its OAuth authorization flow has been started. Successful account connection is pending the owner's private sign-in; there is no signed-in browser exposed to this session. The Windows Computer Use helper reported its native pipe unavailable, and browser inventory contained no controllable browser. These access facts do not establish a provider outage. No API key was placed in MCP configuration. No Face/Voice training, image validation, subscription or conversation was started. The existing prepared photo/audio candidates remain private and available.
 
 A native 1920 × 1080 photo candidate and metadata-free 34.09-second speaking WAV have been prepared privately from the supplied recording. This supports assessing the documented photo-Face plus personal-Voice alternative without automatically requiring another full recording. The soft photograph and inconclusive offline transcript do not establish training acceptance or faithful voice quality. The original clip is unchanged; no training source has been uploaded or published.
 
@@ -42,6 +44,6 @@ Closing this part requires access to the owner's actual training entitlement/spe
 
 ## Evidence and boundaries
 
-Safe, ignored evidence includes `artifacts/learning-lab/admin-password-replacement.json`, `operations-live-report.json`, `operations-scheduled-tasks.json`, `operations-backup-task-destination.json` and the protected backup/email run reports under `.data/`. The production build passed compilation, TypeScript and repository prechecks before publication. The final backup runner passed eleven isolated Node checks and eleven mocked/synthetic PowerShell checks, plus scoped lint and no-secret preflight. The later runner/documentation-only adjustment did not change application routes. Real cloud backup readback and actual provider read access are recorded above rather than inferred from mocks. All thirty-five local documentation links checked resolved.
+Safe, ignored evidence includes `artifacts/learning-lab/admin-password-replacement.json`, `operations-live-report.json`, `operations-scheduled-tasks.json`, `operations-backup-task-destination.json`, the 24 October `avatar-account-refresh-report.json` and the protected backup/email run reports under `.data/`. The production build passed compilation, TypeScript and repository prechecks before publication. The final backup runner passed eleven isolated Node checks and eleven mocked/synthetic PowerShell checks, plus scoped lint and no-secret preflight. The later runner/documentation-only adjustment did not change application routes. Real cloud backup readback and actual provider read access are recorded above rather than inferred from mocks. All thirty-five local documentation links checked resolved.
 
 There are no real admitted learners, paid-course purchases or personal live-video sessions established by these checks. Optional donations, free courses and persistent enquiries remain available. Provider connection/training, actual email receipt and personal audiovisual quality are the remaining service boundaries; they are not disguised as completed operations.

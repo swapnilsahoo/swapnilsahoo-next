@@ -1,6 +1,6 @@
 # Swapnil’s digital guide and optional video avatar
 
-Updated 11 October 2026. The user authorised use of his portrait and publication, requested a Section-style Superhuman agent, and specified light mode as the default.
+Updated 24 October 2026. The user authorised use of his portrait and publication, requested a Section-style Superhuman agent, and specified light mode as the default. The 24 October account refresh below supersedes the earlier account-state observation; earlier implementation tests retain their original scope.
 
 ## Implemented experience
 
@@ -49,7 +49,9 @@ The browser receives a conversation ID, expiry and participant URL with its shor
 
 ## Read-only Tavus readiness check
 
-An actual authenticated production check on 11 October verified read access using the existing sensitive, write-only `TAVUS_API_KEY`, without exporting its value. Custom Face, user Voice and user PAL lists all returned zero resources with complete results. `TAVUS_FACE_ID` and `TAVUS_PAL_ID` are absent. The account's plan, custom-training entitlement, voice-creation permissions and spending limits remain unverified. Keep `DIGITAL_AVATAR_ENABLED=false` until a personal Face/Voice and reviewed PAL exist and their audiovisual behaviour is tested. See [the operations closure](learning-lab/operations-closure.md). Turso connectivity does not create an avatar.
+An actual authenticated production check on 24 October reverified read access using the existing sensitive, write-only `TAVUS_API_KEY`, without exporting its value. Custom Face, user Voice and user PAL lists still returned zero resources with complete results. `TAVUS_FACE_ID` and `TAVUS_PAL_ID` are absent. The account's plan, custom-training entitlement, voice-creation permissions and spending limits remain unverified. Keep `DIGITAL_AVATAR_ENABLED=false` until a personal Face/Voice and reviewed PAL exist and their audiovisual behaviour is tested. See [the operations closure](learning-lab/operations-closure.md). Turso connectivity does not create an avatar.
+
+The official [Tavus MCP connection](https://docs.tavus.io/sections/agent-tools/mcp-server) has now been registered locally using `codex mcp add tavus --url https://mcp.tavus.io/mcp`. Account OAuth authorization is pending. No key or bearer token was put in client configuration, and the production key was not exported. This connection can configure and test PALs once authenticated; its documented catalogue does not replace the Face/Voice creation APIs. No personal media has been transmitted through it. The updated [creation brief](digital-avatar-recording-brief.md#account-connection-prepared--24-october-2026) records the available private candidates and the remaining creation sequence.
 
 One owner-supplied recording, `WIN_20261010_21_06_38_Pro.mp4`, was reviewed locally. Its candidate speaking/listening sections do not meet the complete video-training brief: about 15 FPS and inconsistent listening posture cannot be repaired by resampling. A fresh qualifying video is one alternative. To assess reuse without requiring another recording, a native 1920 × 1080 still and a metadata-free 34.09-second speaking WAV were prepared privately from this clip for Tavus's separate photo-Face/personal-Voice path. The photograph remains soft and the local automated transcription was inconclusive; these are candidates, not certified training inputs. See [the detailed review and creation options](digital-avatar-recording-brief.md). The original footage is unchanged; source files and prepared candidates stay private. No personal training, upload or provider acceptance has occurred.
 
