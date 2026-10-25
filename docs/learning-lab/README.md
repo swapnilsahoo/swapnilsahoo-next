@@ -87,7 +87,9 @@ Public publication was explicitly authorised on 8 October 2026. The existing Git
 
 On Vercel, the server rejects file databases and generated local secrets even if `LAB_LOCAL_MODE=true` was copied accidentally. Non-Vercel deployments currently share the local enquiry IP bucket; before using another production host, configure and test its trusted-proxy client-IP handling. An arbitrary `X-Forwarded-For` header is not trusted for public enquiries.
 
-Email, analytics, payments and cloud AI are absent rather than simulated. Forms explicitly say no confirmation email has been sent. The demo lessons run locally in the browser and do not call an AI service. The only browser storage for demo notes is opt-in. Clear notes on shared devices. No marketing pixels or invasive attribution are added.
+Automatic email sending, paid checkout and live cloud AI remain unconfigured. Forms explicitly say no confirmation email has been sent. The demo lessons run locally in the browser and do not call an AI service. The only browser storage for demo notes is opt-in. Clear notes on shared devices.
+
+Google Analytics tag `G-PTGSDRSVK3` and Google Tag Manager `GTM-KJMH54BC` are installed across the site. Production checks on 25 October verified one Google tag/configuration on all 145 checked public URLs, including 53 standalone HTML pages. Live browser checks confirmed accepted page-view requests and one page view per tested location, including client navigation. This does not establish access to private Analytics reports. No custom events containing form answers or private learner work were added. See [the current operations record](operations-closure.md) and [analytics configuration details](../security-posture.md).
 
 ## Backups, restoration and retention
 

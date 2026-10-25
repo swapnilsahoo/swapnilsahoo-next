@@ -14,6 +14,10 @@ Read-only canonical-site checks passed for the Lab homepage, free-course catalog
 
 The published original donation QR returned 90,714 bytes with SHA-256 `993d310c60ec08816f819928eb736299dc4e39d7f3adf7aa47a4b3f64b92b310`, matching the supplied file exactly. No funds were transferred or payment settlement verified.
 
+## Google Analytics installation
+
+The requested manual Google tag `G-PTGSDRSVK3` was already installed in the shared page head, global-error document and all 53 standalone HTML files. The existing `GTM-KJMH54BC` container is retained. The 25 October recheck verified one loader/configuration in all **145 public URLs** inspected. At **19:49 UTC**, four live browser cases confirmed one loader request, one configuration command and one initial page view per tested document. Native client navigation from the Lab to the venture experiment produced one additional page view without another loader/configuration. Google returned **HTTP 204** to actual collection requests; these were not mocked or intercepted. No Google-tag CSP violations were observed. No second tag was added, and private Analytics reports or account settings were not accessed. Ignored evidence is in `artifacts/google-tag/http-report.json` and `browser-report.json`; these QA visits are not evidence of learner acquisition.
+
 ## Backup operation
 
 The first actual registered-task run read production without migrations, encrypted the snapshot, restored it into a unique private local database, compared all twelve supported tables, checked integrity/foreign keys/session exclusion, removed its temporary restore and independently verified identical encrypted bytes in the owner's private [GitHub backup repository](https://github.com/swapnilsahoo/swapnil-learning-lab-backups). Task Scheduler returned result `0`. No key, recovery file, plaintext rows or report was uploaded.
