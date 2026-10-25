@@ -5,7 +5,10 @@ export async function checkSession3Profitability() {
   const root = 'public/teaching/1-year-mba';
   const data = JSON.parse(await fs.readFile(`${root}/data/profitability-spectrum.json`,'utf8'));
   assert.equal(data.companies,undefined,'Provider company figures are not redistributed in the public download');
-  data.companies = JSON.parse(await fs.readFile('scripts/data/session3-company-comparisons.json','utf8'));
+  // The reviewed provider observations live in an ignored private folder. Where it exists (the author's machine) they are
+  // validated in full; elsewhere (the build server) the rendered company table is checked instead.
+  const privateCompanies = 'artifacts/session1-resources/session3-profitability/company-comparisons.json';
+  data.companies = await fs.readFile(privateCompanies,'utf8').then(JSON.parse,()=>null);
   const html = await fs.readFile(`${root}/session3.html`,'utf8');
   const approximately = (actual,expected,label) => assert.ok(Math.abs(actual-expected)<1e-12,label);
   const sources = new Map(data.sources.map(source=>[source.file,source]));
@@ -17,7 +20,7 @@ export async function checkSession3Profitability() {
   assert.equal(data.requested_window_available,false,'No invented 1975–2026 coverage');
   assert.equal(data.history.length,83);
   assert.equal(data.snapshot.length,85);
-  assert.equal(data.companies.groups.length,16);
+  if (data.companies) assert.equal(data.companies.groups.length,16);
   assert.equal(data.historical_window.observations,12);
   const years = Array.from({length:12},(_,i)=>2015+i);
   const snapshot = new Map(data.snapshot.map(row=>[row.industry,row]));
@@ -63,8 +66,11 @@ export async function checkSession3Profitability() {
       assert.ok(match[2].includes(shown(ordered[i].wacc)));
     });
   }
+  const tableRows = (html.match(/<table class="ps-company-table">[\s\S]*?<\/table>/)||[''])[0].match(/<tr><th scope="row">/g)||[];
+  assert.equal(tableRows.length,16,'Sixteen company comparison rows are rendered');
+  assert.equal((html.match(/href="https:\/\/www\.gurufocus\.com\/term\/roic\/[A-Z]+"/g)||[]).length>=32,true,'Every company links to its provider source');
   const symbols = new Set();
-  for (const group of data.companies.groups) {
+  if (data.companies) for (const group of data.companies.groups) {
     assert.ok(snapshot.has(group.industry));
     assert.equal(group.candidates.length,2,'Named two-company screen is disclosed');
     for (const candidate of group.candidates) {
@@ -76,7 +82,7 @@ export async function checkSession3Profitability() {
       assert.equal(candidate.source,`https://www.gurufocus.com/term/roic/${candidate.ticker}`);
     }
   }
-  assert.equal(symbols.size,32);
+  if (data.companies) assert.equal(symbols.size,32);
   const annual = await fs.readFile(`${root}/data/profitability-annual-observations.csv`,'utf8');
   const summary = await fs.readFile(`${root}/data/profitability-spectrum.csv`,'utf8');
   assert.equal(annual.trim().split(/\r?\n/).length,997,'996 annual observations plus header');
@@ -86,7 +92,7 @@ export async function checkSession3Profitability() {
   assert.ok(html.includes('not completed FY2026'));
   assert.ok(html.includes('does not identify an industry-wide or global leader'));
   assert.ok(html.includes('id="puzzle"'),'Existing historical puzzle retained');
-  return '83 twelve-observation averages, 85 current industries, 32 company comparisons, traceable sources and complete static charts';
+  return `83 twelve-observation averages, 85 current industries, 16 company comparison rows${data.companies ? ' (32 private observations verified)' : ''}, traceable sources and complete static charts`;
 }
 
 if (process.argv[1]?.replaceAll('\\','/').endsWith('/check-session3-profitability.mjs')) {
