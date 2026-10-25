@@ -4,9 +4,9 @@ import { z } from "zod";
 import { LabHttpError, type LabActor } from "@/features/learning-lab/server/errors";
 
 const maximumImageBytes = 3 * 1024 * 1024;
-// Exact native owner photograph already reviewed privately for dimensions and
-// metadata. A different file requires a fresh review, not a caller-supplied URL.
-const approvedImageSha256 = "47abc08ab172bab03f439da38f9c93d1a32db92c1c52c135fc56e33b29f929a3";
+// Exact AI-created owner avatar reference reviewed privately. The original
+// native frame failed provider image quality. Callers cannot select other media.
+const approvedImageSha256 = "d041755ac8b6b92988b62c56f7bcd9cab30d8f9b2e166a341706d2d62b1052cd";
 const validationSchema = z
   .object({
     passed: z.boolean(),
@@ -109,7 +109,7 @@ export async function validateAvatarImage(
     if (createHash("sha256").update(image).digest("hex") !== expectedImageSha256)
       throw new LabHttpError(
         422,
-        "Only the exact privately reviewed owner photograph can be validated."
+        "Only the exact reviewed avatar reference can be validated."
       );
     try {
       const response = await fetcher("https://tavusapi.com/v2/faces/image-validation", {
