@@ -29,6 +29,7 @@ $recoveryDirectory = Join-Path $repoPath ".data/lab-activation-$ProjectId"
 $stage = 'local configuration'
 $result = [ordered]@{ format='learning-lab-backup-wrapper-v1'; at=[DateTime]::UtcNow.ToString('o'); passed=$false; mode=$(if ($Run) { 'run' } else { 'preflight' }); cloudUploadConfirmed=$false }
 $savedEnvironment = @{}
+$backupRun = $null
 
 function Assert-BackupDestinations([bool]$Skip, [string]$GitHub) {
     if ($Skip -and [string]::IsNullOrWhiteSpace($GitHub)) { throw 'SKIP_ONEDRIVE_REQUIRES_GITHUB' }
@@ -62,6 +63,67 @@ function New-OwnerDirectory([string]$Path, [bool]$AllowCloud = $false) {
         Set-Acl -LiteralPath $Path -AclObject $acl
     }
     Assert-OwnerOnly -Path $Path -Directory $true -AllowCloud $AllowCloud
+}
+function Get-BackupMutexName([string]$Id) {
+    if ($Id -notmatch '^prj_[a-zA-Z0-9]+$') { throw 'BACKUP_MUTEX_ID_INVALID' }
+    return "Global\SwapnilLearningLabBackup-$([Security.Principal.WindowsIdentity]::GetCurrent().User.Value)-$Id"
+}
+function Exit-BackupRun([object]$Lease) {
+    if ($Lease) { try { $Lease.Mutex.ReleaseMutex() } finally { $Lease.Mutex.Dispose() } }
+}
+function Complete-BackupRun([object]$Lease, [Collections.IDictionary]$Result, [string]$Root, [bool]$WriteStatus) {
+    try { Exit-BackupRun $Lease } catch { $Result.mutexCleanupFailed=$true; $Result.passed=$false }
+    if ($WriteStatus -and (Test-Path -LiteralPath (Join-Path $Root 'reports'))) {
+        try {
+            Assert-OwnerOnly -Path (Join-Path $Root 'reports') -Directory $true
+            $statusFile=Join-Path $Root 'reports/latest-wrapper.json'
+            if (Test-Path -LiteralPath $statusFile) { Assert-OwnerOnly -Path $statusFile -Directory $false -Protected $false }
+            [IO.File]::WriteAllText($statusFile, (ConvertTo-Json -InputObject $Result -Depth 12), [Text.UTF8Encoding]::new($false))
+        } catch { $Result.statusWriteFailed=$true; $Result.passed=$false }
+    }
+}
+function Enter-BackupRun([string]$Root, [string]$Id) {
+    Assert-OwnerOnly -Path $Root -Directory $true
+    $mutex = [Threading.Mutex]::new($false, (Get-BackupMutexName $Id))
+    $held=$false; $abandoned=$false
+    try {
+        try { $held=$mutex.WaitOne(0) }
+        catch [Threading.AbandonedMutexException] { $held=$true; $abandoned=$true }
+        if (-not $held) { throw 'BACKUP_MUTEX_BUSY' }
+        $recovery = [ordered]@{ preserved=$false }
+        $rootPath=[IO.Path]::GetFullPath($Root).TrimEnd('\')
+        $lockPath=Join-Path $rootPath 'running.lock'
+        if (Test-Path -LiteralPath $lockPath) {
+            Assert-OwnerOnly -Path $lockPath -Directory $false -Protected $false
+            $entry=Get-Item -LiteralPath $lockPath -Force
+            if ($entry.Length -gt 1024) { throw 'BACKUP_LOCK_INVALID' }
+            $text=[IO.File]::ReadAllText($lockPath)
+            try { $record=$text | ConvertFrom-Json } catch { throw 'BACKUP_LOCK_INVALID' }
+            if ($null -eq $record -or $record -isnot [pscustomobject]) { throw 'BACKUP_LOCK_INVALID' }
+            $keys=@($record.PSObject.Properties | ForEach-Object { $_.Name } | Sort-Object)
+            $recordTime=[DateTimeOffset]::MinValue
+            if (($keys -join '|') -ne 'at|format|pid' -or $record.format -ne 'learning-lab-backup-lock-v1' -or
+                ($record.pid -isnot [int] -and $record.pid -isnot [long]) -or $record.pid -le 0 -or $record.pid -gt [int]::MaxValue -or
+                -not [DateTimeOffset]::TryParse([string]$record.at,[ref]$recordTime) -or
+                $recordTime.UtcDateTime -gt [DateTime]::UtcNow.AddMinutes(5)) { throw 'BACKUP_LOCK_INVALID' }
+            # A live or reused PID is ambiguous: preserve the lock and fail. CIM
+            # failures also fail closed. All automatic reclaimers hold this OS
+            # mutex; direct Node starts remain create-only and cannot reclaim.
+            if (Get-CimInstance Win32_Process -Filter "ProcessId=$([int]$record.pid)" -OperationTimeoutSec 15 -ErrorAction Stop) { throw 'BACKUP_LOCK_OWNER_ALIVE' }
+            if ([IO.File]::ReadAllText($lockPath) -cne $text) { throw 'BACKUP_LOCK_CHANGED' }
+            $name='running.stale-'+[DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffZ')+'-'+[guid]::NewGuid().ToString()+'.json'
+            $diagnostic=[IO.Path]::GetFullPath((Join-Path $rootPath $name))
+            if ([IO.Path]::GetDirectoryName($diagnostic) -ine $rootPath -or (Test-Path -LiteralPath $diagnostic)) { throw 'BACKUP_LOCK_TARGET_INVALID' }
+            Move-Item -LiteralPath $lockPath -Destination $diagnostic -ErrorAction Stop
+            if ([IO.File]::ReadAllText($diagnostic) -cne $text) { throw 'BACKUP_LOCK_PRESERVATION_FAILED' }
+            $recovery.preserved=$true; $recovery.diagnosticFile=$name; $recovery.ownerProcessAbsent=$true
+        }
+        return [pscustomobject]@{ Mutex=$mutex; Abandoned=$abandoned; Recovery=[pscustomobject]$recovery }
+    } catch {
+        if ($held) { $mutex.ReleaseMutex() }
+        $mutex.Dispose()
+        throw
+    }
 }
 function Invoke-PrivateNative([string]$Command, [string[]]$Arguments, [string]$Label, [string]$InputText) {
     $preference = $ErrorActionPreference
@@ -213,6 +275,9 @@ try {
     $stage = 'owner-only managed folders'
     New-OwnerDirectory $ownerDirectory
     foreach ($child in @('backups','reports','work')) { New-OwnerDirectory (Join-Path $ownerDirectory $child) }
+    $stage='exclusive backup run and stale-lock check'
+    $backupRun=Enter-BackupRun -Root $ownerDirectory -Id $ProjectId
+    $result.abandonedMutexRecovered=$backupRun.Abandoned; $result.lockRecovery=$backupRun.Recovery
     if (-not $SkipOneDrive) { New-OwnerDirectory -Path $syncDirectory -AllowCloud $true }
     if ($GitHubRepository) {
         $stage = 'existing private GitHub repository identity'
@@ -268,6 +333,7 @@ try {
     $result.passed = $false; $result.failedStage = $stage
     # Publish only a fixed code from this script, never native/provider exceptions.
     $safeCodes = @('SKIP_ONEDRIVE_REQUIRES_GITHUB','OWNER_WINDOWS_ACCOUNT_REQUIRED','OWNER_RUNTIME_DEPENDENCIES_REQUIRED','VERCEL_OFFICIAL_ENTRY_POINT_REQUIRED','PERSONAL_ONEDRIVE_NOT_CONFIGURED','PERSONAL_ONEDRIVE_FOLDER_MISSING','PERSONAL_ONEDRIVE_FOLDER_MISMATCH','PERSONAL_ONEDRIVE_LINK_REJECTED','VERCEL_PROJECT_IDENTITY_MISMATCH','VERCEL_ENVIRONMENT_LIST_SHAPE_INVALID','VERCEL_READ_ONLY_REQUEST_FAILED','VERCEL_JSON_INVALID','PRODUCTION_DATABASE_METADATA_NOT_UNIQUE','PRODUCTION_DATABASE_VALUE_UNREADABLE','PRODUCTION_DATABASE_VALUE_NOT_DECRYPTED','ORIGINAL_AUTH_SECRET_REQUIRED','BACKUP_WORKER_FAILED','BACKUP_WORKER_REPORT_INVALID','PATH_KIND_INVALID','PATH_LINK_REJECTED','OWNER_ACL_INHERITANCE_NOT_PROTECTED','OWNER_ACL_ACCOUNT_MISMATCH','OWNER_ACL_RULE_REQUIRED','OWNER_ACL_BROADER_ACCESS','GITHUB_OWNER_CLI_REQUIRED','GITHUB_PRIVATE_REQUEST_FAILED','GITHUB_JSON_INVALID','GITHUB_OWNER_PRIVATE_REPOSITORY_REQUIRED','GITHUB_BACKUP_PATH_INVALID','GITHUB_ENCRYPTED_BACKUP_SIZE_LIMIT','GITHUB_BACKUP_ENVELOPE_INVALID','GITHUB_BACKUP_CREATE_NOT_CONFIRMED','GITHUB_BACKUP_READBACK_INVALID','GITHUB_BACKUP_READBACK_MISMATCH')
+    $safeCodes += @('BACKUP_MUTEX_ID_INVALID','BACKUP_MUTEX_BUSY','BACKUP_LOCK_INVALID','BACKUP_LOCK_OWNER_ALIVE','BACKUP_LOCK_CHANGED','BACKUP_LOCK_TARGET_INVALID','BACKUP_LOCK_PRESERVATION_FAILED')
     $code = $_.Exception.Message
     $result.failureCode = $(if ($safeCodes -contains $code) { $code } else { 'PRIVATE_OPERATION_FAILED' })
     Write-Host "FAIL $stage. Raw provider, credential and record details were suppressed."
@@ -275,14 +341,7 @@ try {
     foreach ($name in $savedEnvironment.Keys) { [Environment]::SetEnvironmentVariable($name, $savedEnvironment[$name], 'Process') }
     $savedEnvironment.Clear()
     $databaseUrl=$null; $databaseToken=$null; $authSecret=$null; $environment=$null; $metadata=$null; $worker=$null
-    if ($Run -and (Test-Path -LiteralPath (Join-Path $ownerDirectory 'reports'))) {
-        try {
-            Assert-OwnerOnly -Path (Join-Path $ownerDirectory 'reports') -Directory $true
-            $statusFile = Join-Path $ownerDirectory 'reports/latest-wrapper.json'
-            if (Test-Path -LiteralPath $statusFile) { Assert-OwnerOnly -Path $statusFile -Directory $false -Protected $false }
-            [IO.File]::WriteAllText($statusFile, (ConvertTo-Json -InputObject $result -Depth 12), [Text.UTF8Encoding]::new($false))
-        } catch { $result.statusWriteFailed=$true; $result.passed=$false }
-    }
+    Complete-BackupRun -Lease $backupRun -Result $result -Root $ownerDirectory -WriteStatus $Run.IsPresent
     Pop-Location
 }
 if ($PassThru) { [pscustomobject]$result }

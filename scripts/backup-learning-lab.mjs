@@ -13,6 +13,12 @@ export const backupTables = Object.freeze([
   "lab_enrolment", "lab_progress", "lab_submission", "lab_certificate",
   "lab_enquiry", "lab_audit",
   "lab_email_outbox",
+  "lab_venture_participant", "lab_venture_work", "lab_venture_review",
+]);
+// These tables were added after the original eleven-table release. Older
+// snapshots/installations remain readable without inventing missing records.
+const optionalBackupTables = new Set([
+  "lab_email_outbox", "lab_venture_participant", "lab_venture_work", "lab_venture_review",
 ]);
 const filePattern = /^lab-daily-(\d{4}-\d{2}-\d{2}T\d{2}-\d{2}-\d{2}-\d{3}Z)-([0-9a-f-]{36})\.json$/;
 const schemaQuery = "SELECT type,name,tbl_name,sql FROM sqlite_master WHERE type IN ('table','index','view','trigger')";
@@ -70,11 +76,11 @@ export function decryptSnapshot(bytes, secret) {
     const decipher = createDecipheriv("aes-256-gcm", key, iv);
     decipher.setAuthTag(tag);
     const snapshot = JSON.parse(Buffer.concat([decipher.update(Buffer.from(envelope.data, "base64")), decipher.final()]).toString("utf8"));
-    const requiredTables = backupTables.filter(table => table !== "lab_email_outbox");
+    const requiredTables = backupTables.filter(table => !optionalBackupTables.has(table));
     guard(Object.keys(snapshot).every(table => backupTables.includes(table)) &&
       requiredTables.every(table => Array.isArray(snapshot[table])) &&
-      (!Object.hasOwn(snapshot, "lab_email_outbox") || Array.isArray(snapshot.lab_email_outbox)), "BACKUP_TABLE_SET_INVALID");
-    snapshot.lab_email_outbox ??= [];
+      [...optionalBackupTables].every(table => !Object.hasOwn(snapshot, table) || Array.isArray(snapshot[table])), "BACKUP_TABLE_SET_INVALID");
+    for (const table of optionalBackupTables) snapshot[table] ??= [];
     return snapshot;
   } catch (error) {
     if (error instanceof BackupFailure) throw error;
@@ -87,13 +93,17 @@ export async function readOnlySnapshot(client) {
   try {
     const schemaRows = (await transaction.execute(schemaQuery)).rows;
     const tableNames = new Set(schemaRows.filter(row => row.type === "table").map(row => row.name));
-    guard(backupTables.filter(table => table !== "lab_email_outbox").every(table => tableNames.has(table)), "DEPLOYED_BACKUP_TABLE_MISSING");
-    const snapshot = {};
-    for (const table of backupTables) snapshot[table] = table === "lab_email_outbox" && !tableNames.has(table) ? [] : (await transaction.execute(`SELECT * FROM ${table}`)).rows;
+    guard(backupTables.filter(table => !optionalBackupTables.has(table)).every(table => tableNames.has(table)), "DEPLOYED_BACKUP_TABLE_MISSING");
+    // Read all tables in one server round trip inside the same read transaction,
+    // rather than extending an interactive transaction across fifteen requests.
+    const present = backupTables.filter(table => tableNames.has(table));
+    const results = await transaction.batch(present.map(table => `SELECT * FROM ${table}`));
+    const snapshot = Object.fromEntries(backupTables.map(table => [table, []]));
+    present.forEach((table, index) => { snapshot[table] = results[index].rows; });
     await transaction.commit();
     return { snapshot, schemaCount: schemaRows.length, schemaFingerprint: canonicalFingerprint(schemaRows) };
   } catch (error) {
-    await transaction.rollback();
+    try { await transaction.rollback(); } catch { /* Preserve the original read failure. */ }
     throw error;
   } finally { transaction.close(); }
 }
@@ -257,7 +267,7 @@ async function applyRetention(plan, backupDirectory, reportDirectory, syncDirect
 }
 
 export async function runBackupWorkflow(options) {
-  const { ownerDirectory, syncDirectory, secret, sourceClient, prune = false } = options;
+  const { ownerDirectory, syncDirectory, secret, sourceClient, prune = false, closeLock = handle => handle.close() } = options;
   const backupDirectory = path.join(ownerDirectory, "backups"), reportDirectory = path.join(ownerDirectory, "reports"), workDirectory = path.join(ownerDirectory, "work");
   const result = {
     format: "learning-lab-daily-operation-v1", at: new Date().toISOString(), passed: false,
@@ -329,6 +339,10 @@ export async function runBackupWorkflow(options) {
     result.failedStage = stage;
     // Only fixed internal codes are published; never provider messages/stacks/rows.
     result.failureCode = error instanceof BackupFailure ? error.code : stage === "concurrent-run lock" && error.code === "EEXIST" ? "ANOTHER_RUN_OR_STALE_LOCK" : "OPERATION_FAILED";
+    if (stage === "read-only production snapshot") {
+      const safeReadCodes = ["TRANSACTION_CLOSED", "SQLITE_BUSY", "SQLITE_ERROR", "SQLITE_READONLY", "SQL_INPUT_ERROR", "UNAUTHORIZED", "TIMEOUT", "SERVER_ERROR", "HRANA_HTTP_ERROR"];
+      result.sourceReadCode = safeReadCodes.includes(error.code) ? error.code : "unclassified";
+    }
   } finally {
     if (restoreAttempted) {
       try { await removeExactRestoreFiles(restoreFile, workDirectory); result.restoreTemporaryFilesRemoved = true; }
@@ -338,8 +352,7 @@ export async function runBackupWorkflow(options) {
       }
     }
     if (lock) {
-      await lock.close();
-      try { await safeFile(lockFile, ownerDirectory); await unlink(lockFile); }
+      try { await closeLock(lock); await safeFile(lockFile, ownerDirectory); await unlink(lockFile); }
       catch { result.cleanupPassed = false; result.lockCleanupCode = "EXACT_LOCK_CLEANUP_FAILED"; }
     }
     result.functionalPassed = result.passed;

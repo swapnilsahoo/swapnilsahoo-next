@@ -26,6 +26,70 @@ Must-Fail { Assert-OwnerOnly -Path $unprotectedChild -Directory $true -AllowClou
 Confirm $true 'Default sync security refuses inherited permissions without repairing the directory'
 $ownerDirectory = Join-Path $fixture 'managed'; New-OwnerDirectory $ownerDirectory
 $backupDirectory = Join-Path $ownerDirectory 'backups'; New-OwnerDirectory $backupDirectory
+$lockRoot=Join-Path $fixture 'lock-fixture'; New-OwnerDirectory $lockRoot
+$mutexId='prj_Synthetic'+[guid]::NewGuid().ToString('N')
+$lease=Enter-BackupRun -Root $lockRoot -Id $mutexId
+Confirm (-not $lease.Abandoned -and -not $lease.Recovery.preserved) 'Fresh wrapper obtains the owner/project OS mutex without inventing stale recovery'
+Exit-BackupRun $lease
+$lockPath=Join-Path $lockRoot 'running.lock'
+$liveText=ConvertTo-Json -InputObject @{format='learning-lab-backup-lock-v1';pid=$PID;at=[DateTime]::UtcNow.ToString('o')} -Compress
+[IO.File]::WriteAllText($lockPath,$liveText)
+Must-Fail { Enter-BackupRun -Root $lockRoot -Id $mutexId } 'BACKUP_LOCK_OWNER_ALIVE'
+Confirm ([IO.File]::ReadAllText($lockPath) -ceq $liveText -and @(Get-ChildItem -LiteralPath $lockRoot -File).Count -eq 1) 'Live or reused owner PID is preserved and never reclaimed'
+Remove-Item -LiteralPath $lockPath
+[IO.File]::WriteAllText($lockPath,'{"format":"learning-lab-backup-lock-v1","pid":true,"at":"2026-10-25T00:00:00Z"}')
+Must-Fail { Enter-BackupRun -Root $lockRoot -Id $mutexId } 'BACKUP_LOCK_INVALID'
+Confirm (Test-Path -LiteralPath $lockPath) 'Malformed lock metadata fails closed without moving the file'
+Remove-Item -LiteralPath $lockPath
+$mutexChildScript=Join-Path $fixture 'mutex-child.ps1'
+[IO.File]::WriteAllText($mutexChildScript,@'
+param([string]$Name,[string]$Marker,[string]$Mode)
+$m=[Threading.Mutex]::new($false,$Name)
+try {
+    if (-not $m.WaitOne(30000)) { exit 2 }
+    [IO.File]::WriteAllText($Marker,[string]$PID)
+    if ($Mode -eq 'abandon') { [Environment]::Exit(0) }
+    $until=[DateTime]::UtcNow.AddSeconds(25)
+    while (-not (Test-Path -LiteralPath ($Marker+'.release')) -and [DateTime]::UtcNow -lt $until) { Start-Sleep -Milliseconds 100 }
+    $m.ReleaseMutex()
+} finally { $m.Dispose() }
+'@)
+function Start-MutexFixture([string]$Mode,[string]$Marker) {
+    $arguments=@('-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',('"'+$mutexChildScript+'"'),'-Name',('"'+(Get-BackupMutexName $mutexId)+'"'),'-Marker',('"'+$Marker+'"'),'-Mode',$Mode)
+    $child=Start-Process -FilePath (Join-Path $PSHOME 'powershell.exe') -ArgumentList $arguments -WindowStyle Hidden -PassThru
+    $until=[DateTime]::UtcNow.AddSeconds(30)
+    while (-not (Test-Path -LiteralPath $Marker) -and -not $child.HasExited -and [DateTime]::UtcNow -lt $until) { Start-Sleep -Milliseconds 100 }
+    if (-not (Test-Path -LiteralPath $Marker)) { throw 'Synthetic mutex child did not become ready.' }
+    return $child
+}
+$mutexReference=[Threading.Mutex]::new($false,(Get-BackupMutexName $mutexId))
+try {
+    $holdMarker=Join-Path $fixture 'mutex-hold.txt'
+    $holder=Start-MutexFixture -Mode 'hold' -Marker $holdMarker
+    try {
+        Must-Fail { Enter-BackupRun -Root $lockRoot -Id $mutexId } 'BACKUP_MUTEX_BUSY'
+        Confirm (-not (Test-Path -LiteralPath $lockPath)) 'A simultaneous wrapper is refused by the OS mutex before lock recovery or provider access'
+    } finally { [IO.File]::WriteAllText(($holdMarker+'.release'),'release'); if (-not $holder.WaitForExit(30000)) { throw 'Synthetic mutex holder did not exit.' }; $holder.Dispose() }
+    $abandonMarker=Join-Path $fixture 'mutex-abandoned.txt'
+    $abandoner=Start-MutexFixture -Mode 'abandon' -Marker $abandonMarker
+    if (-not $abandoner.WaitForExit(30000)) { throw 'Synthetic abandoned mutex child did not exit.' }
+    $deadPid=[int][IO.File]::ReadAllText($abandonMarker); $abandoner.Dispose()
+    $staleText=ConvertTo-Json -InputObject @{format='learning-lab-backup-lock-v1';pid=$deadPid;at=[DateTime]::UtcNow.ToString('o')} -Compress
+    [IO.File]::WriteAllText($lockPath,$staleText)
+    $lease=Enter-BackupRun -Root $lockRoot -Id $mutexId
+    try {
+        $preserved=Join-Path $lockRoot $lease.Recovery.diagnosticFile
+        Confirm ($lease.Abandoned -and $lease.Recovery.preserved -and $lease.Recovery.ownerProcessAbsent -and -not (Test-Path -LiteralPath $lockPath) -and [IO.File]::ReadAllText($preserved) -ceq $staleText) 'Abandoned OS mutex and confirmed dead-PID lock recover with exact protected diagnostic preserved'
+    } finally { Exit-BackupRun $lease }
+} finally { $mutexReference.Dispose() }
+$statusRoot=Join-Path $fixture 'status-fixture'; New-OwnerDirectory $statusRoot
+New-OwnerDirectory (Join-Path $statusRoot 'reports')
+function Exit-BackupRun { throw 'Synthetic mutex cleanup failure.' }
+$statusResult=[ordered]@{passed=$true}
+Complete-BackupRun -Lease ([pscustomobject]@{}) -Result $statusResult -Root $statusRoot -WriteStatus $true
+$savedResult=[IO.File]::ReadAllText((Join-Path $statusRoot 'reports/latest-wrapper.json')) | ConvertFrom-Json
+Confirm (-not $savedResult.passed -and $savedResult.mutexCleanupFailed -and -not ([IO.File]::ReadAllText((Join-Path $statusRoot 'reports/latest-wrapper.json'))).Contains('Synthetic mutex')) 'Mutex cleanup failure is persisted as a safe failed wrapper report'
+Invoke-Expression $functions['Exit-BackupRun']
 $privateKey = 'synthetic-only-DPAPI-recovery-secret-' + [guid]::NewGuid().ToString()
 $secure = ConvertTo-SecureString $privateKey -AsPlainText -Force
 try { [IO.File]::WriteAllText((Join-Path $fixture 'synthetic.dpapi'), (ConvertFrom-SecureString $secure)) } finally { $secure.Dispose() }
