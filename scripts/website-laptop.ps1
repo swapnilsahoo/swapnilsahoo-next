@@ -310,7 +310,12 @@ if ($Mode -eq 'Setup') {
             if ($LASTEXITCODE -ne 0) { throw 'BundlePath is not a readable Git bundle.' }
         }
         Write-Host "Cloning website source into $RepoPath..."
-        $null = Invoke-Git -OutsideRepository -Arguments @('-c','core.longpaths=true','-c','core.autocrlf=false','clone','--',$cloneFrom,$RepoPath)
+        $cloneArguments = @('-c','core.longpaths=true','-c','core.autocrlf=false','clone')
+        # Keep complete commit history, but download historical file contents
+        # only when requested. The checked-out website still contains every file.
+        if (-not $BundlePath -and -not $TestRemote) { $cloneArguments += @('--filter=blob:none','--branch',$Branch) }
+        $cloneArguments += @('--',$cloneFrom,$RepoPath)
+        $null = Invoke-Git -OutsideRepository -Arguments $cloneArguments
         if ($BundlePath) { $null = Invoke-Git -Arguments @('remote','set-url','origin',$script:expectedRemote) }
     }
     Assert-Repository

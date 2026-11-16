@@ -16,7 +16,11 @@ GitHub is the common source of website code. Files that have not been saved, an 
 4. Let installation finish. The website opens in VS Code from `%USERPROFILE%\web\site`, outside OneDrive.
 5. Use **Terminal → Run Task → Website: Start local preview**. Open <http://localhost:3110> and, for the payment page, <http://localhost:3110/learning-lab/checkout>.
 
+The same bootstrap is stored at [scripts/setup-office-laptop.ps1](../scripts/setup-office-laptop.ps1) on the **laptop-sync** branch, so it can be retrieved from GitHub after losing either laptop. Keep the Word guide and a copy of the bootstrap somewhere you can access independently of this computer.
+
 The script checks Git, Node.js 24 and GitHub CLI, and can install missing tools using Windows Package Manager. The project pins pnpm **11.21.0**. It installs the locked dependencies, creates a separate local Learning Lab database, adds the existing Vercel project's nonsecret link and enables the source-sync task. It does not create a new website, cloud database or production administrator.
+
+Initial setup uses Git's partial clone support to avoid downloading every historical version of large assets. All current website files are checked out; older file contents remain available from GitHub when needed.
 
 If your office manages software installation, use its normal IT process for any blocked prerequisite. The script does not change Windows security policies or bypass company controls. If Node is already installed in an incompatible version, resolve that prerequisite before rerunning setup.
 
