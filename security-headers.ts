@@ -1,14 +1,16 @@
 /**
  * Security headers for swapnilsahoo.com.
  *
- * Two Content-Security-Policies are served, and they are deliberately mutually
+ * Content-Security-Policies are served on deliberately mutually
  * exclusive so no response ever carries two CSP headers — browsers enforce the
  * intersection of multiple policies, which would silently break the pages that
  * need the looser one.
  *
- *   1. APP_CSP  — every Next.js-rendered route.
+ *   1. APP_CSP  — Next.js-rendered routes except checkout.
  *   2. DECK_CSP — the standalone teaching decks served as static `.html` files
  *                 out of `public/`, which load Tailwind/Chart.js from CDNs.
+ *   3. Checkout — the application policy plus Razorpay's exact origins.
+ *   4. API      — no scripts, frames or embedding.
  *
  * `'unsafe-inline'` is present in `script-src` for both policies. It is not
  * avoidable here without giving up static generation: nonce-based CSP requires
@@ -34,11 +36,12 @@ const microphonePolicy = avatarFrameOrigins.length
 export const STATIC_DECK_SOURCE = "/:path(.*\\.html)";
 
 /**
- * Everything that is neither a `.html` deck nor an `/api` route, so that each of
- * the three policies lands on a disjoint set of paths and no response is ever
+ * Everything except `.html` decks, `/api` routes and checkout, so that each
+ * policy lands on a disjoint set of paths and no response is ever
  * sent two of them.
  */
-export const APP_SOURCE = "/:path((?!api/)(?!.*\\.html$).*)";
+export const APP_SOURCE = "/:path((?!api/)(?!learning-lab/checkout/?$)(?!.*\\.html$).*)";
+export const CHECKOUT_SOURCE = "/learning-lab/checkout";
 
 function collapse(policy: string) {
   return policy.replace(/\s{2,}/g, " ").trim();
@@ -48,23 +51,28 @@ function collapse(policy: string) {
  * Next.js inlines its bootstrap and flight payloads, and `next dev` additionally
  * needs `eval` for React refresh plus a websocket back to the dev server.
  */
-const APP_CSP = collapse(`
+function appCsp(checkout = false) {
+  const checkoutOrigin = "https://checkout.razorpay.com";
+  const apiOrigin = "https://api.razorpay.com";
+  return collapse(`
   default-src 'self';
   base-uri 'self';
   object-src 'none';
   frame-ancestors 'self';
-  frame-src ${appFrameSources};
+  frame-src ${appFrameSources}${checkout ? ` ${checkoutOrigin} ${apiOrigin}` : ""};
   form-action 'self';
-  script-src 'self' 'unsafe-inline' ${tagManagerOrigin}${isDev ? " 'unsafe-eval'" : ""};
+  script-src 'self' 'unsafe-inline' ${tagManagerOrigin}${checkout ? ` ${checkoutOrigin}` : ""}${isDev ? " 'unsafe-eval'" : ""};
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob: https://swapnilsahoo.com ${tagManagerOrigin} https://*.google-analytics.com;
   font-src 'self' data:;
   media-src 'self';
   worker-src 'self' blob:;
   manifest-src 'self';
-  connect-src 'self' ${tagManagerOrigin} https://*.google-analytics.com https://*.google.com${isDev ? " ws: wss:" : ""};
+  connect-src 'self' ${tagManagerOrigin} https://*.google-analytics.com https://*.google.com${checkout ? ` ${checkoutOrigin} ${apiOrigin} https://lumberjack.razorpay.com` : ""}${isDev ? " ws: wss:" : ""};
   upgrade-insecure-requests;
 `);
+}
+const APP_CSP = appCsp();
 
 /**
  * The decks are self-contained HTML authored for classroom use: inline scripts
@@ -104,12 +112,27 @@ export const BASE_SECURITY_HEADERS = [
     key: "Strict-Transport-Security",
     value: "max-age=63072000; includeSubDomains; preload",
   },
-  // No OAuth popups or cross-origin window handoffs anywhere on the site.
+  // Checkout overrides this for the payment provider's popup handoffs.
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
 ];
 
 export const APP_CSP_HEADER = { key: "Content-Security-Policy", value: APP_CSP };
 export const DECK_CSP_HEADER = { key: "Content-Security-Policy", value: DECK_CSP };
+
+// One CSP on this route, with popup/payment permissions scoped to checkout only.
+export const CHECKOUT_SECURITY_HEADERS = [
+  { key: "Content-Security-Policy", value: appCsp(true) },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+  {
+    key: "Permissions-Policy",
+    value: BASE_SECURITY_HEADERS.find(
+      (header) => header.key === "Permissions-Policy"
+    )!.value.replace(
+      "payment=()",
+      'payment=(self "https://api.razorpay.com" "https://checkout.razorpay.com")'
+    ),
+  },
+];
 
 /**
  * `Cross-Origin-Resource-Policy` is set here rather than site-wide: the site's

@@ -1,0 +1,90 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Website: Start local preview",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/website-laptop.ps1",
+        "-Mode",
+        "Start",
+        "-RepoPath",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Website: Sync now",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/website-laptop.ps1",
+        "-Mode",
+        "Sync",
+        "-RepoPath",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Website: Sync status",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/website-laptop.ps1",
+        "-Mode",
+        "Status",
+        "-RepoPath",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Website: Enable automatic sync",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/website-laptop.ps1",
+        "-Mode",
+        "EnableAutoSync",
+        "-RepoPath",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Website: Disable automatic sync",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/website-laptop.ps1",
+        "-Mode",
+        "DisableAutoSync",
+        "-RepoPath",
+        "${workspaceFolder}"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
