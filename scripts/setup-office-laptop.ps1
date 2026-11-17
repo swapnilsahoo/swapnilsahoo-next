@@ -1,15 +1,15 @@
 #requires -Version 5.1
 # Website source setup only. This file contains no credentials.
 $ErrorActionPreference = 'Stop'
-$setupCommit = '1f5254f960af110a97c7e20e9a0ea52284812b4a'
-$setupSha256 = 'BEEC15FA558CA444CD2274B3538F6C67E7BE6F4B92D841D63D4397BB1C2C2D7C'
+$setupCommit = '1c817066b713ff59ee0f647bb5148ecf7f0a51b8'
+$setupSha256 = 'F814ACE63178F901E512B9BDE40DD7C729FAECE29591CC9205AB139EA01E222B'
 $sourceUrl = "https://raw.githubusercontent.com/swapnilsahoo/swapnilsahoo-next/$setupCommit/scripts/website-laptop.ps1"
 $siteRoot = Join-Path $env:USERPROFILE 'web\site'
 $downloadRoot = Join-Path $env:LOCALAPPDATA 'SwapnilWebsiteSetup'
 $null = New-Item -ItemType Directory -Path $downloadRoot -Force
 $downloadPath = Join-Path $downloadRoot ('website-laptop-' + $setupCommit + '.ps1')
 
-Invoke-WebRequest -UseBasicParsing -Uri $sourceUrl -OutFile $downloadPath
+Invoke-WebRequest -UseBasicParsing -TimeoutSec 60 -Uri $sourceUrl -OutFile $downloadPath
 if ((Get-FileHash -LiteralPath $downloadPath -Algorithm SHA256).Hash -ne $setupSha256) {
     throw 'Downloaded setup did not match the expected checksum. Nothing was executed.'
 }
