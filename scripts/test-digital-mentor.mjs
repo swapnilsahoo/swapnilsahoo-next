@@ -44,6 +44,14 @@ await context.addInitScript(() => {
   });
 });
 await context.route("**/*", (route) => {
+  const resource = new URL(route.request().url());
+  // Keep analytics outside the local read-only interaction check.
+  if (
+    resource.hostname === "www.googletagmanager.com" ||
+    resource.hostname.endsWith(".google-analytics.com") ||
+    (resource.hostname === "www.google.com" && resource.pathname === "/g/collect")
+  )
+    return route.abort("blockedbyclient");
   if (!["GET", "HEAD"].includes(route.request().method())) {
     writes.push(route.request().url());
     return route.abort();

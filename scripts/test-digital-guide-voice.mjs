@@ -159,6 +159,13 @@ async function withVoice(name, mode, test) {
   await context.route("**/*", (route) => {
     const request = route.request();
     const resource = new URL(request.url());
+    // Keep analytics outside the local read-only interaction check.
+    if (
+      resource.hostname === "www.googletagmanager.com" ||
+      resource.hostname.endsWith(".google-analytics.com") ||
+      (resource.hostname === "www.google.com" && resource.pathname === "/g/collect")
+    )
+      return route.abort("blockedbyclient");
     if (
       request.resourceType() === "document" &&
       request.frame().parentFrame() &&

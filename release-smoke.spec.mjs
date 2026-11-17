@@ -1210,7 +1210,7 @@ for (const dropdown of [
     firstLink: "Gallery",
     lastLink: "Contact",
     minimumWidth: 300,
-    adjacentLink: "Writing",
+    adjacentLink: "AI Initiatives",
   },
 ]) {
   test(`desktop header · ${dropdown.label} dropdown`, async ({ page }) => {
