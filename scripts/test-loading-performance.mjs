@@ -129,7 +129,6 @@ try {
   await page.route("**/*", (route) => {
     if (new URL(route.request().url()).searchParams.has("_rsc")) {
       menuRequests++;
-      return route.abort();
     }
     return route.continue();
   });
@@ -137,7 +136,7 @@ try {
   await page.waitForTimeout(1500);
   report.checks.menuPrefetchRequests = menuRequests;
   const menu = page.getByRole("navigation", { name: "Mobile navigation", exact: true });
-  assert(await menu.getByRole("link", { name: "Learning Lab", exact: true }).isVisible());
+  assert(await menu.locator('a[href="/learning-lab"]').isVisible());
   assert(await menu.locator('a[href="/teaching/karma-yoga/india"]').count());
   await page.keyboard.press("Escape");
   assert.equal(
