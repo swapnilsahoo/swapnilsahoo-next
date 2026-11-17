@@ -1207,7 +1207,7 @@ for (const dropdown of [
   },
   {
     label: "More",
-    firstLink: "Gallery",
+    firstLink: "Placement Assistance",
     lastLink: "Contact",
     minimumWidth: 300,
     adjacentLink: "AI Initiatives",

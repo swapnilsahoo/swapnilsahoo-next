@@ -172,6 +172,7 @@ try {
     .filter({ visible: true })
     .waitFor();
   await page.keyboard.press("Escape");
+  await page.mouse.move(0, 0);
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     assert(
@@ -180,6 +181,19 @@ try {
     );
     await page.screenshot({ path: `${directory}/${values.label}-${width}.png` });
   }
+  for (const id of ["publications", "gallery", "contact"]) {
+    await page.locator(`#${id}`).scrollIntoViewIfNeeded();
+    await page.waitForFunction((sectionId) => {
+      for (
+        let element = document.getElementById(sectionId);
+        element;
+        element = element.parentElement
+      )
+        if (Number(getComputedStyle(element).opacity) < 0.99) return false;
+      return true;
+    }, id);
+  }
+  report.checks.scrolledSectionsVisible = true;
   await ui.close();
   report.checks.browserErrors = errors;
   if (!values["measure-only"]) {
