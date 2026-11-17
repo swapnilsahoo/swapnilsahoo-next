@@ -30,7 +30,7 @@ export function Hero() {
           </h1>
           <div className="border-brand-200 bg-brand-50/70 dark:border-brand-800 dark:bg-brand-900/20 mb-6 max-w-2xl rounded-2xl border p-5">
             <p className="eyebrow text-brand-700 dark:text-brand-300 mb-2">
-              Swapnil Sahoo Learning Lab
+              SWAPNIL SAHOO LEARNING LAB PVT LTD
             </p>
             <p className="text-ink-700 dark:text-ink-200 mb-4 text-sm leading-relaxed">
               A free 14-day guide for first-time student entrepreneurs: turn an idea into a small,
