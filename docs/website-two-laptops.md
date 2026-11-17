@@ -56,6 +56,8 @@ Automatic commits are checkpoints, not proof that an edit passes tests. Run the 
 
 Automatic source sync uses **laptop-sync** and does not push `main` or run a deployment. When a set of changes is ready, review and test it, then merge the working branch to `main` using a reviewed pull request and explicitly publish the release to the existing Vercel project.
 
+When the owner says **live**, **go live** or **publish live** for a website change, that is explicit authorization to publish that requested change without another publication confirmation. Complete the checks, review the release diff, merge the release pull request, deploy to the existing project and verify the canonical live website. Preserve unrelated pending work and exclude credentials and local data from both Git and deployment uploads. Finish by restoring the `laptop-sync` working state and automatic source sync, running a final sync, and reporting the deployed commit, verified cloud commit and any pending work. An actual sign-in or merge blocker still needs to be resolved; do not bypass it.
+
 Disable automatic sync before deliberately switching branches or preparing a release. Return to **laptop-sync** and enable it again when that work is complete. The worker checks the branch and pauses if you are elsewhere.
 
 The 16 November project inspection returned no linked Git repository in Vercel. Do not assume a GitHub push publishes this website automatically. Deploying through the signed-in Vercel account is a separate operation; a future Git connection can change that behavior.
@@ -119,6 +121,9 @@ Keep actual credentials, .env files, local data and recovery keys out of Git.
 Do not initialize production, recreate its administrator/database, run production
 email/campaign tasks or register duplicate production-backup schedules.
 Publish to the live website only when I explicitly ask for publication.
+When I say live, go live or publish live, proceed without another publication
+confirmation. Check, publish, verify and complete the housekeeping, including
+restoring laptop-sync and automatic sync and reporting commits/pending work.
 ```
 
 Git's merge behavior is described in [GitHub's remote-work guide](https://docs.github.com/en/get-started/using-git/getting-changes-from-a-remote-repository) and the [Git merge documentation](https://git-scm.com/docs/git-merge).
