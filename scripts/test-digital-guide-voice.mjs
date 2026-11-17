@@ -8,7 +8,10 @@ const base = (process.env.GUIDE_TEST_BASE_URL || "http://localhost:3112").replac
 const profile = (process.env.GUIDE_TEST_PROFILE || "local").replace(/[^\w-]/g, "-");
 const dir = "artifacts/learning-lab/digital-guide";
 await mkdir(dir, { recursive: true });
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({
+  headless: true,
+  ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}),
+});
 const checks = [],
   errors = [],
   blockedWrites = [];

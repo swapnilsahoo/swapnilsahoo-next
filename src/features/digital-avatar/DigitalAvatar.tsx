@@ -634,52 +634,50 @@ export function DigitalAvatar({
               />
             ) : (
               <>
-                {open && (
-                  <video
-                    data-testid="digital-guide-welcome-video"
-                    ref={welcomeVideoRef}
-                    controls
-                    playsInline
-                    preload="none"
-                    hidden={localVoiceActive || welcomeVideoFailed}
-                    poster="/images/profile_pic.jpg"
-                    aria-label="Prerecorded animated welcome with a standard synthetic voice"
-                    onError={(event) => {
-                      if (event.target instanceof HTMLSourceElement) {
-                        welcomeSourceFailuresRef.current.add(event.target);
-                        if (
-                          welcomeSourceFailuresRef.current.size >=
-                          event.currentTarget.querySelectorAll("source").length
-                        )
-                          setWelcomeVideoFailed(true);
-                      } else if (event.target === event.currentTarget && event.currentTarget.error)
+                <video
+                  data-testid="digital-guide-welcome-video"
+                  ref={welcomeVideoRef}
+                  controls
+                  playsInline
+                  preload="none"
+                  hidden={localVoiceActive || welcomeVideoFailed}
+                  poster={open ? "/images/profile_pic.jpg" : undefined}
+                  aria-label="Prerecorded animated welcome with a standard synthetic voice"
+                  onError={(event) => {
+                    if (event.target instanceof HTMLSourceElement) {
+                      welcomeSourceFailuresRef.current.add(event.target);
+                      if (
+                        welcomeSourceFailuresRef.current.size >=
+                        event.currentTarget.querySelectorAll("source").length
+                      )
                         setWelcomeVideoFailed(true);
-                    }}
-                    onLoadStart={() => {
-                      welcomeSourceFailuresRef.current.clear();
-                      setWelcomeVideoFailed(false);
-                    }}
-                    onLoadedData={() => {
-                      welcomeSourceFailuresRef.current.clear();
-                      setWelcomeVideoFailed(false);
-                    }}
-                    onPlay={() => {
-                      cancelSpeech();
-                      stopListening();
-                    }}
-                  >
-                    <source src="/videos/digital-avatar/welcome.mp4" type="video/mp4" />
-                    <source src="/videos/digital-avatar/welcome.webm" type="video/webm" />
-                    <track
-                      default
-                      kind="captions"
-                      src="/videos/digital-avatar/captions.vtt"
-                      srcLang="en"
-                      label="English"
-                    />
-                    Your browser cannot play the welcome. Voice and text remain available below.
-                  </video>
-                )}
+                    } else if (event.target === event.currentTarget && event.currentTarget.error)
+                      setWelcomeVideoFailed(true);
+                  }}
+                  onLoadStart={() => {
+                    welcomeSourceFailuresRef.current.clear();
+                    setWelcomeVideoFailed(false);
+                  }}
+                  onLoadedData={() => {
+                    welcomeSourceFailuresRef.current.clear();
+                    setWelcomeVideoFailed(false);
+                  }}
+                  onPlay={() => {
+                    cancelSpeech();
+                    stopListening();
+                  }}
+                >
+                  <source src="/videos/digital-avatar/welcome.mp4" type="video/mp4" />
+                  <source src="/videos/digital-avatar/welcome.webm" type="video/webm" />
+                  <track
+                    default
+                    kind="captions"
+                    src="/videos/digital-avatar/captions.vtt"
+                    srcLang="en"
+                    label="English"
+                  />
+                  Your browser cannot play the welcome. Voice and text remain available below.
+                </video>
                 {(localVoiceActive || welcomeVideoFailed) && (
                   <AnimatedAvatar
                     active={open}

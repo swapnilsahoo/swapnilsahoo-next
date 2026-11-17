@@ -6,7 +6,10 @@ import { mkdir, writeFile } from "node:fs/promises";
 const profile = (process.env.GUIDE_TEST_PROFILE || "local").replace(/[^\w-]/g, "-");
 const directory = "artifacts/learning-lab/digital-guide";
 await mkdir(directory, { recursive: true });
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({
+  headless: true,
+  ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}),
+});
 const context = await browser.newContext({ viewport: { width: 390, height: 900 } });
 const errors = [],
   writes = [],
