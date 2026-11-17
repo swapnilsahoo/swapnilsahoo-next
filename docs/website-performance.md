@@ -4,13 +4,13 @@ Verified on 17 November 2026 using isolated local production builds, not the dev
 
 | Measurement (median)                          | Before  | After   |
 | --------------------------------------------- | ------- | ------- |
-| Homepage largest contentful paint             | 3.52 s  | 1.86 s  |
-| Learning Lab largest contentful paint         | 2.14 s  | 1.92 s  |
-| Homepage resource bytes                       | 446,151 | 401,182 |
+| Homepage largest contentful paint             | 3.52 s  | 1.91 s  |
+| Learning Lab largest contentful paint         | 2.14 s  | 1.89 s  |
+| Homepage resource bytes                       | 446,151 | 400,705 |
 | Requests triggered by opening the mobile menu | 29      | 0       |
 | Closed guide media/poster requests            | 1       | 0       |
 
-The homepage's main content painted about 47% sooner in this controlled test. The full window load event did not improve consistently; these are local lab measurements, not a promise about every visitor or live Core Web Vitals.
+The homepage's main content painted about 46% sooner in the final controlled test. An earlier three-run batch measured 1.86 s; the final batch confirmed 1.91 s with layout shift below 0.017 on the homepage and zero on the Lab. The full window load event did not improve consistently; these are local lab measurements, not a promise about every visitor or live Core Web Vitals.
 
 Changes keep first-viewport content visible before hydration, mount navigation lists only while open, prefetch individual menu destinations on intent instead of entire menus, load mentor tools on demand, defer the closed guide's poster and avoid preloading the secondary monospace font. Existing scrolling animations, reduced-motion behavior, menu navigation and guide controls remain supported.
 
