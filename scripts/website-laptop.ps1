@@ -47,6 +47,18 @@ function Find-Tool([string]$Name) {
     if ($found) { return $found.Source }
     return $null
 }
+function Get-NativeStatus([string]$Command, [string[]]$Arguments) {
+    # Windows PowerShell 5.1 can turn redirected native stderr into a
+    # terminating error even though an exit status is an expected result.
+    $ErrorActionPreference = 'Continue'
+    & $Command @Arguments *> $null
+    return $LASTEXITCODE
+}
+function Invoke-GitHubLogin([string]$Command) {
+    $ErrorActionPreference = 'Continue'
+    & $Command auth login --hostname github.com --git-protocol https --web
+    if ($LASTEXITCODE -ne 0) { throw 'GitHub sign-in did not finish. Complete it privately, then rerun Setup.' }
+}
 function Refresh-ToolPath {
     $env:PATH = @([Environment]::GetEnvironmentVariable('PATH','Machine'),
         [Environment]::GetEnvironmentVariable('PATH','User'), $env:PATH) -join ';'
@@ -86,22 +98,23 @@ function Require-Node {
         throw 'This project requires Node.js 24.19.0 or a newer 24.x release. Select/install Node 24, reopen PowerShell, and rerun.'
     }
 }
-function Invoke-Git([string[]]$Arguments, [switch]$OutsideRepository) {
+function Invoke-Git([string[]]$Arguments, [switch]$OutsideRepository, [switch]$ShowProgress) {
     $gitArguments = $Arguments
     if (-not $OutsideRepository) { $gitArguments = @('-C',$RepoPath) + $Arguments }
     $start = [Diagnostics.ProcessStartInfo]::new()
     $start.FileName = $script:git
     $start.Arguments = (@($gitArguments | ForEach-Object { Quote-Argument $_ }) -join ' ')
     $start.UseShellExecute = $false; $start.CreateNoWindow = $true
-    $start.RedirectStandardOutput = $true; $start.RedirectStandardError = $true
+    $start.RedirectStandardOutput = $true
+    $start.RedirectStandardError = -not $ShowProgress
     $process = [Diagnostics.Process]::new(); $process.StartInfo = $start
     try {
         if (-not $process.Start()) { throw 'Git could not start.' }
         $stdout = $process.StandardOutput.ReadToEndAsync()
-        $stderr = $process.StandardError.ReadToEndAsync()
+        if (-not $ShowProgress) { $stderr = $process.StandardError.ReadToEndAsync() }
         $process.WaitForExit()
         $output = $stdout.GetAwaiter().GetResult()
-        $null = $stderr.GetAwaiter().GetResult()
+        if (-not $ShowProgress) { $null = $stderr.GetAwaiter().GetResult() }
         if ($process.ExitCode -ne 0) { throw 'Git did not complete. Check access and the checkout state, then rerun.' }
         if ($output.Length) { return $output.TrimEnd([char[]]"`r`n") -split '\r?\n' }
     } finally { $process.Dispose() }
@@ -227,8 +240,8 @@ function Invoke-Local([string]$Command, [string[]]$Arguments, [switch]$AllowTest
 }
 function Write-NewPrivateSettings {
     $envFile = Join-Path $RepoPath '.env.local'
-    & $script:git -C $RepoPath ls-files --error-unmatch -- .env.local *> $null
-    if ($LASTEXITCODE -eq 0) { throw '.env.local is tracked. Remove credentials from tracked source before using this helper.' }
+    $trackedEnv = @(Invoke-Git -Arguments @('ls-files','--','.env.local'))
+    if ($trackedEnv.Count) { throw '.env.local is tracked. Remove credentials from tracked source before using this helper.' }
     if (-not (Test-Path -LiteralPath $envFile)) {
         $lines = @('# Local preview only. Never copy production credentials here.')
         foreach ($entry in $localSettings.GetEnumerator()) { $lines += ($entry.Key + '=' + $entry.Value) }
@@ -252,19 +265,18 @@ function Configure-Author {
     if (-not $gh -and $InstallMissingTools) { Install-Tool 'GitHub.cli'; $gh = Find-Tool 'gh.exe' }
     $account = $null
     if ($gh -and -not $TestRemote) {
-        & $gh auth status --hostname github.com *> $null
-        if ($LASTEXITCODE -ne 0 -and $ConnectGitHub) {
-            & $gh auth login --hostname github.com --git-protocol https --web
-            if ($LASTEXITCODE -ne 0) { throw 'GitHub sign-in did not finish. Complete it privately, then rerun Setup.' }
-            & $gh auth status --hostname github.com *> $null
+        $authStatus = Get-NativeStatus $gh @('auth','status','--hostname','github.com')
+        if ($authStatus -ne 0 -and $ConnectGitHub) {
+            Invoke-GitHubLogin $gh
+            $authStatus = Get-NativeStatus $gh @('auth','status','--hostname','github.com')
+            if ($authStatus -ne 0) { throw 'GitHub CLI sign-in could not be verified. Rerun after resolving account access.' }
         }
-        if ($LASTEXITCODE -eq 0) {
+        if ($authStatus -eq 0) {
             $raw = & $gh api user --jq '{login: .login, id: .id, name: .name}' 2>$null
             if ($LASTEXITCODE -eq 0) { $account = $raw | ConvertFrom-Json }
             if (-not $account -or $account.login -ne 'swapnilsahoo') { throw 'Sign GitHub CLI into the personal swapnilsahoo account before enabling sync.' }
             if ($ConnectGitHub) {
-                & $gh auth setup-git --hostname github.com
-                if ($LASTEXITCODE -ne 0) { throw 'GitHub Git authentication setup failed. Resolve it and rerun Setup.' }
+                if ((Get-NativeStatus $gh @('auth','setup-git','--hostname','github.com')) -ne 0) { throw 'GitHub Git authentication setup failed. Resolve it and rerun Setup.' }
             }
         }
     }
@@ -310,17 +322,23 @@ if ($Mode -eq 'Setup') {
             if ($LASTEXITCODE -ne 0) { throw 'BundlePath is not a readable Git bundle.' }
         }
         Write-Host "Cloning website source into $RepoPath..."
-        $cloneArguments = @('-c','core.longpaths=true','-c','core.autocrlf=false','clone')
-        # Keep complete commit history, but download historical file contents
-        # only when requested. The checked-out website still contains every file.
-        if (-not $BundlePath -and -not $TestRemote) { $cloneArguments += @('--filter=blob:none','--branch',$Branch) }
+        $cloneArguments = @('-c','core.longpaths=true','-c','core.autocrlf=false')
+        if (-not $BundlePath -and -not $TestRemote) { $cloneArguments += @('-c','http.version=HTTP/1.1') }
+        $cloneArguments += @('clone','--progress')
+        # Download every current file without pulling large historical assets.
+        # Older history remains on GitHub and can be fetched separately.
+        if (-not $BundlePath -and -not $TestRemote) { $cloneArguments += @('--depth','1','--branch',$Branch) }
         $cloneArguments += @('--',$cloneFrom,$RepoPath)
-        $null = Invoke-Git -OutsideRepository -Arguments $cloneArguments
+        $null = Invoke-Git -OutsideRepository -ShowProgress -Arguments $cloneArguments
         if ($BundlePath) { $null = Invoke-Git -Arguments @('remote','set-url','origin',$script:expectedRemote) }
     }
     Assert-Repository
+    if (-not (Test-Path -LiteralPath (Join-Path $RepoPath 'package.json') -PathType Leaf)) {
+        throw 'The checkout is incomplete. Preserve this folder and use a new empty setup path.'
+    }
     $null = Invoke-Git -Arguments @('config','--local','core.longpaths','true')
     $null = Invoke-Git -Arguments @('config','--local','core.autocrlf','false')
+    if (-not $TestRemote) { $null = Invoke-Git -Arguments @('config','--local','http.https://github.com/.version','HTTP/1.1') }
     $current = [string](Invoke-Git -Arguments @('branch','--show-current'))
     if ($current -ne $Branch) {
         $dirty = @(Invoke-Git -Arguments @('status','--porcelain'))
@@ -335,6 +353,14 @@ if ($Mode -eq 'Setup') {
     }
     $null = Invoke-Git -Arguments @('config','--local',"branch.$Branch.remote",'origin')
     $null = Invoke-Git -Arguments @('config','--local',"branch.$Branch.merge","refs/heads/$Branch")
+    if (-not $TestRemote -and [string](Invoke-Git -Arguments @('rev-parse','--is-shallow-repository')) -eq 'true') {
+        Write-Host 'Fetching commit history without downloading historical asset files...'
+        try {
+            $null = Invoke-Git -ShowProgress -Arguments @('-c','http.version=HTTP/1.1','fetch','--unshallow','--filter=blob:none','--no-tags','--no-recurse-submodules','origin',"refs/heads/${Branch}:refs/remotes/origin/$Branch")
+        } catch {
+            Write-Warning 'The current website is ready to set up. Git history download did not finish; rerun Setup when online before merging branches with older ancestry.'
+        }
+    }
     Configure-Author
     Write-NewPrivateSettings
     Invoke-Local -Command $script:node -Arguments @($corepackEntry,"pnpm@$pnpmVersion",'install','--frozen-lockfile')

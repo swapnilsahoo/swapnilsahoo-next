@@ -20,7 +20,7 @@ The same bootstrap is stored at [scripts/setup-office-laptop.ps1](../scripts/set
 
 The script checks Git, Node.js 24 and GitHub CLI, and can install missing tools using Windows Package Manager. The project pins pnpm **11.21.0**. It installs the locked dependencies, creates a separate local Learning Lab database, adds the existing Vercel project's nonsecret link and enables the source-sync task. It does not create a new website, cloud database or production administrator.
 
-Initial setup uses Git's partial clone support to avoid downloading every historical version of large assets. All current website files are checked out; older file contents remain available from GitHub when needed.
+Initial setup checks out every current website file first. It then fetches commit history, leaving old versions of large assets on GitHub until you need them. If the history download fails, the current checkout remains usable. Rerun setup while online before merging branches that need older history.
 
 If your office manages software installation, use its normal IT process for any blocked prerequisite. The script does not change Windows security policies or bypass company controls. If Node is already installed in an incompatible version, resolve that prerequisite before rerunning setup.
 

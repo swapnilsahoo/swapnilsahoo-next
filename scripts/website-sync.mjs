@@ -607,6 +607,7 @@ async function commitSources(context, scanner) {
 async function fetchOrigin(context) {
   const result = await runGit(context, [
     "fetch",
+    "--no-filter",
     "--no-tags",
     "--recurse-submodules=no",
     "origin",
