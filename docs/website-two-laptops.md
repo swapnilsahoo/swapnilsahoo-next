@@ -60,7 +60,7 @@ When the owner says **live**, **go live** or **publish live** for a website chan
 
 Disable automatic sync before deliberately switching branches or preparing a release. Return to **laptop-sync** and enable it again when that work is complete. The worker checks the branch and pauses if you are elsewhere.
 
-The 16 November project inspection returned no linked Git repository in Vercel. Do not assume a GitHub push publishes this website automatically. Deploying through the signed-in Vercel account is a separate operation; a future Git connection can change that behavior.
+The 17 November 2026 project inspection verified that Vercel is connected to `swapnilsahoo/swapnilsahoo-next`, with `main` as the production branch. An approved release pull request merged to `main` now starts the production deployment automatically. Verify that the exact merged commit reaches READY and is assigned to the canonical domains; do not create a duplicate CLI deployment when that release is already building or ready. Source sync still uses `laptop-sync` and does not merge it to `main`.
 
 The Vercel project is **swapnilsahoo-next**, under **swapnil-sahoo-s-projects**:
 
