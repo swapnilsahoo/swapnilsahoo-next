@@ -74,6 +74,12 @@ The Vercel project is **swapnilsahoo-next**, under **swapnil-sahoo-s-projects**:
 
 Sign into Vercel separately on each laptop when deployment or project administration is required. The existing domain, cloud database and Vercel environment settings belong to their cloud accounts, so changing laptop does not recreate them. Setup writes only the ignored project-link metadata; it does not pull production secrets into the local development environment.
 
+### Office Vercel tooling verified on 17 November 2026
+
+Vercel CLI **65.16.0** is installed on the office laptop and authenticated as `swapnilsahoo-4369`. Read-only project and deployment inspection succeeded for the existing team and project above. Release PR #23 published commit `5609119a095083582be468513f331d34b40810cb`; Vercel reported READY with both canonical domains assigned, and desktop/mobile public checks verified the requested homepage label and working Lab pages.
+
+The official **Vercel plugin 0.21.3** is installed in Codex's user scope. Its guidance loads in new agent sessions. The shared MCP endpoint `https://mcp.vercel.com` is configured in the user's `~/.codex/config.toml`, and OAuth authentication and documentation search succeeded. Team listing still returned no teams, and project/deployment reads returned `403 forbidden` after renewed team authorization. Treat MCP team access as unresolved, rather than repeatedly asking the owner to sign in again or claiming it is working. Use the already authenticated official CLI for authorized publication and project inspection while that provider authorization issue remains. Keep normal MCP mutation approvals and existing security settings intact.
+
 ## Credentials, data and integrations
 
 GitHub source sync includes website code, content, public assets, configuration templates, scripts and documentation. Actual `.env` files, `.data`, `.vercel`, dependency/build folders, local reports and private recovery files are excluded. The repository is public, so private credentials must stay outside Git. The sync worker checks common secret patterns and known local secret values before uploads; this is an additional check, not a guarantee that every type of private information is detectable.
