@@ -2,14 +2,18 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { getGuidedReply, starters } from "./knowledge";
 import { useBrowserVoice } from "./useBrowserVoice";
 import { AnimatedAvatar } from "./AnimatedAvatar";
-import { MentorPanel } from "./MentorPanel";
 import { getMentorLessonForPath, type MentorMode } from "./lesson-manifest";
 import "./digital-avatar.css";
+
+const MentorPanel = dynamic(() => import("./MentorPanel").then((module) => module.MentorPanel), {
+  loading: () => <p role="status">Loading learning tools...</p>,
+});
 
 type GuideMessage = {
   id: string;
@@ -630,50 +634,52 @@ export function DigitalAvatar({
               />
             ) : (
               <>
-                <video
-                  data-testid="digital-guide-welcome-video"
-                  ref={welcomeVideoRef}
-                  controls
-                  playsInline
-                  preload="none"
-                  hidden={localVoiceActive || welcomeVideoFailed}
-                  poster="/images/profile_pic.jpg"
-                  aria-label="Prerecorded animated welcome with a standard synthetic voice"
-                  onError={(event) => {
-                    if (event.target instanceof HTMLSourceElement) {
-                      welcomeSourceFailuresRef.current.add(event.target);
-                      if (
-                        welcomeSourceFailuresRef.current.size >=
-                        event.currentTarget.querySelectorAll("source").length
-                      )
+                {open && (
+                  <video
+                    data-testid="digital-guide-welcome-video"
+                    ref={welcomeVideoRef}
+                    controls
+                    playsInline
+                    preload="none"
+                    hidden={localVoiceActive || welcomeVideoFailed}
+                    poster="/images/profile_pic.jpg"
+                    aria-label="Prerecorded animated welcome with a standard synthetic voice"
+                    onError={(event) => {
+                      if (event.target instanceof HTMLSourceElement) {
+                        welcomeSourceFailuresRef.current.add(event.target);
+                        if (
+                          welcomeSourceFailuresRef.current.size >=
+                          event.currentTarget.querySelectorAll("source").length
+                        )
+                          setWelcomeVideoFailed(true);
+                      } else if (event.target === event.currentTarget && event.currentTarget.error)
                         setWelcomeVideoFailed(true);
-                    } else if (event.target === event.currentTarget && event.currentTarget.error)
-                      setWelcomeVideoFailed(true);
-                  }}
-                  onLoadStart={() => {
-                    welcomeSourceFailuresRef.current.clear();
-                    setWelcomeVideoFailed(false);
-                  }}
-                  onLoadedData={() => {
-                    welcomeSourceFailuresRef.current.clear();
-                    setWelcomeVideoFailed(false);
-                  }}
-                  onPlay={() => {
-                    cancelSpeech();
-                    stopListening();
-                  }}
-                >
-                  <source src="/videos/digital-avatar/welcome.mp4" type="video/mp4" />
-                  <source src="/videos/digital-avatar/welcome.webm" type="video/webm" />
-                  <track
-                    default
-                    kind="captions"
-                    src="/videos/digital-avatar/captions.vtt"
-                    srcLang="en"
-                    label="English"
-                  />
-                  Your browser cannot play the welcome. Voice and text remain available below.
-                </video>
+                    }}
+                    onLoadStart={() => {
+                      welcomeSourceFailuresRef.current.clear();
+                      setWelcomeVideoFailed(false);
+                    }}
+                    onLoadedData={() => {
+                      welcomeSourceFailuresRef.current.clear();
+                      setWelcomeVideoFailed(false);
+                    }}
+                    onPlay={() => {
+                      cancelSpeech();
+                      stopListening();
+                    }}
+                  >
+                    <source src="/videos/digital-avatar/welcome.mp4" type="video/mp4" />
+                    <source src="/videos/digital-avatar/welcome.webm" type="video/webm" />
+                    <track
+                      default
+                      kind="captions"
+                      src="/videos/digital-avatar/captions.vtt"
+                      srcLang="en"
+                      label="English"
+                    />
+                    Your browser cannot play the welcome. Voice and text remain available below.
+                  </video>
+                )}
                 {(localVoiceActive || welcomeVideoFailed) && (
                   <AnimatedAvatar
                     active={open}

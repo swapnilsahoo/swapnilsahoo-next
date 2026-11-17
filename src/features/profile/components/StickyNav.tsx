@@ -46,6 +46,7 @@ export function StickyNav() {
       <div className="nav-glass flex items-center justify-between rounded-2xl px-3 py-1.5 sm:px-4">
         <Link
           href="/#top"
+          prefetch={false}
           aria-label="Dr. Swapnil Sahoo — home"
           className="flex min-h-11 items-center gap-2"
         >

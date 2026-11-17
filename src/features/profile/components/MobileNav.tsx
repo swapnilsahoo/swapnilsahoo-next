@@ -40,6 +40,7 @@ function MobileLink({
   nested?: boolean;
   onNavigate: () => void;
 }) {
+  const router = useRouter();
   const className = cn(
     "hover:bg-brand-50 dark:hover:bg-brand-900/20 focus-visible:bg-brand-50 dark:focus-visible:bg-brand-900/20 flex min-h-11 items-center rounded-xl px-3 py-2.5 text-sm font-semibold",
     nested &&
@@ -64,12 +65,15 @@ function MobileLink({
     );
   }
 
-  // The whole panel stays mounted (just visually hidden via aria-hidden/inert)
-  // so every group's links render at all times. Default Link prefetch would
-  // eagerly prefetch all of them on mount; we disable that here and prefetch
-  // once the menu is actually opened instead (see MobileNav below).
   return (
-    <Link href={link.href} prefetch={false} className={className} onClick={onNavigate}>
+    <Link
+      href={link.href}
+      prefetch={false}
+      className={className}
+      onPointerEnter={() => router.prefetch(link.href)}
+      onFocus={() => router.prefetch(link.href)}
+      onClick={onNavigate}
+    >
       {link.label}
     </Link>
   );
@@ -79,21 +83,6 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const router = useRouter();
-  const prefetched = useRef(false);
-
-  // Prefetch every mobile nav link only once the menu is actually opened,
-  // instead of the whole always-mounted panel prefetching on page load.
-  useEffect(() => {
-    if (!open || prefetched.current) return;
-    prefetched.current = true;
-    for (const link of mobileLinks) {
-      if (!link.external && link.href.startsWith("/")) router.prefetch(link.href);
-      for (const child of link.children ?? []) {
-        if (!child.external && child.href.startsWith("/")) router.prefetch(child.href);
-      }
-    }
-  }, [open, router]);
 
   useEffect(() => {
     if (!open) return;
@@ -182,58 +171,61 @@ export function MobileNav() {
             : "pointer-events-none -translate-y-1 opacity-0"
         }`}
       >
-        <nav
-          aria-label="Mobile navigation"
-          className="max-h-[calc(100dvh-7rem-env(safe-area-inset-bottom))] overflow-y-auto overscroll-contain"
-        >
-          <Link
-            href={learningLabNavLink.href}
-            prefetch={false}
-            onClick={() => setOpen(false)}
-            className="bg-brand-50 text-brand-800 dark:bg-brand-900/30 dark:text-brand-200 mb-2 block rounded-xl px-3 py-3 focus-visible:outline-2 focus-visible:outline-offset-2"
+        {open && (
+          <nav
+            aria-label="Mobile navigation"
+            className="max-h-[calc(100dvh-7rem-env(safe-area-inset-bottom))] overflow-y-auto overscroll-contain"
           >
-            <span className="block text-sm font-semibold">{learningLabNavLink.label}</span>
-            <span className="mt-1 block text-xs">
-              Free lessons and practical business exercises
-            </span>
-          </Link>
-          {groups.map((group) => (
-            <div
-              key={group}
-              className="border-ink-200 dark:border-ink-700 border-b py-2 last:border-b-0"
+            <Link
+              href={learningLabNavLink.href}
+              prefetch={false}
+              onClick={() => setOpen(false)}
+              className="bg-brand-50 text-brand-800 dark:bg-brand-900/30 dark:text-brand-200 mb-2 block rounded-xl px-3 py-3 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
-              {groupHref[group] ? (
-                <Link
-                  href={groupHref[group]}
-                  onClick={() => setOpen(false)}
-                  className="eyebrow hover:text-brand-700 dark:hover:text-brand-300 block px-3 py-2"
-                >
-                  {group}
-                </Link>
-              ) : (
-                <p className="eyebrow px-3 py-2">{group}</p>
-              )}
-              <ul>
-                {mobileLinks
-                  .filter((link) => link.group === group)
-                  .map((link) => (
-                    <li key={`${group}-${link.label}`}>
-                      <MobileLink link={link} onNavigate={() => setOpen(false)} />
-                      {link.children?.length ? (
-                        <ul aria-label={`${link.label} pages`}>
-                          {link.children.map((child) => (
-                            <li key={child.label}>
-                              <MobileLink link={child} nested onNavigate={() => setOpen(false)} />
-                            </li>
-                          ))}
-                        </ul>
-                      ) : null}
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          ))}
-        </nav>
+              <span className="block text-sm font-semibold">{learningLabNavLink.label}</span>
+              <span className="mt-1 block text-xs">
+                Free lessons and practical business exercises
+              </span>
+            </Link>
+            {groups.map((group) => (
+              <div
+                key={group}
+                className="border-ink-200 dark:border-ink-700 border-b py-2 last:border-b-0"
+              >
+                {groupHref[group] ? (
+                  <Link
+                    href={groupHref[group]}
+                    prefetch={false}
+                    onClick={() => setOpen(false)}
+                    className="eyebrow hover:text-brand-700 dark:hover:text-brand-300 block px-3 py-2"
+                  >
+                    {group}
+                  </Link>
+                ) : (
+                  <p className="eyebrow px-3 py-2">{group}</p>
+                )}
+                <ul>
+                  {mobileLinks
+                    .filter((link) => link.group === group)
+                    .map((link) => (
+                      <li key={`${group}-${link.label}`}>
+                        <MobileLink link={link} onNavigate={() => setOpen(false)} />
+                        {link.children?.length ? (
+                          <ul aria-label={`${link.label} pages`}>
+                            {link.children.map((child) => (
+                              <li key={child.label}>
+                                <MobileLink link={child} nested onNavigate={() => setOpen(false)} />
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        )}
       </div>
     </div>
   );

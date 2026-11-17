@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 import { cn } from "@/lib/cn";
 
@@ -26,37 +26,37 @@ export function Reveal({
   variant?: RevealVariant;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
   useEffect(() => {
     const node = ref.current;
-    if (!node || typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
+    if (!node || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Keep the first viewport readable before hydration; animate only offscreen content.
+    if (node.getBoundingClientRect().top < window.innerHeight) return;
+
+    node.classList.add("reveal-pending");
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          node.classList.remove("reveal-pending");
+          node.classList.add(VARIANT_CLASS[variant]);
           observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+      { threshold: 0, rootMargin: "0px 0px -32px 0px" }
     );
     observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      node.classList.remove("reveal-pending", VARIANT_CLASS[variant]);
+    };
+  }, [variant, className]);
 
   const style: CSSProperties | undefined =
     delay !== undefined ? { animationDelay: `${delay}s` } : undefined;
 
   return (
-    <div
-      ref={ref}
-      className={cn(visible ? VARIANT_CLASS[variant] : "reveal-pending", className)}
-      style={style}
-    >
+    <div ref={ref} className={cn(className)} style={style}>
       {children}
     </div>
   );

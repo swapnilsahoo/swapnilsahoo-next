@@ -29,7 +29,10 @@ async function context(options = {}) {
   const result = await browser.newContext({ viewport: { width: 390, height: 844 }, ...options });
   await result.route("**/*", (route) => {
     const request = route.request();
-    if (new URL(request.url()).origin !== base.origin || !["GET", "HEAD"].includes(request.method()))
+    if (
+      new URL(request.url()).origin !== base.origin ||
+      !["GET", "HEAD"].includes(request.method())
+    )
       return route.abort();
     return route.continue();
   });
@@ -51,7 +54,10 @@ try {
       await cdp.send("Network.enable");
       await cdp.send("Network.setCacheDisabled", { cacheDisabled: true });
       await cdp.send("Network.emulateNetworkConditions", {
-        offline: false, latency: 150, downloadThroughput: 200000, uploadThroughput: 100000,
+        offline: false,
+        latency: 150,
+        downloadThroughput: 200000,
+        uploadThroughput: 100000,
       });
       await cdp.send("Emulation.setCPUThrottlingRate", { rate: 4 });
       await page.addInitScript(() => {
@@ -64,7 +70,10 @@ try {
             if (!entry.hadRecentInput) window.loadingMetrics.cls += entry.value;
         }).observe({ type: "layout-shift", buffered: true });
       });
-      const response = await page.goto(new URL(route, base).href, { waitUntil: "load", timeout: 90000 });
+      const response = await page.goto(new URL(route, base).href, {
+        waitUntil: "load",
+        timeout: 90000,
+      });
       assert.equal(response.status(), 200);
       await page.waitForTimeout(3000);
       const sample = await page.evaluate(() => {
@@ -77,9 +86,11 @@ try {
           htmlBytes: navigation.encodedBodySize,
           resourceBytes: resources.reduce((sum, resource) => sum + resource.encodedBodySize, 0),
           requests: resources.length,
-          scriptBytes: resources.filter((resource) => resource.initiatorType === "script")
+          scriptBytes: resources
+            .filter((resource) => resource.initiatorType === "script")
             .reduce((sum, resource) => sum + resource.encodedBodySize, 0),
-          hiddenMediaRequests: resources.filter((resource) => resource.initiatorType === "video").length,
+          hiddenMediaRequests: resources.filter((resource) => resource.initiatorType === "video")
+            .length,
           domElements: document.querySelectorAll("*").length,
           ...window.loadingMetrics,
         };
@@ -94,14 +105,20 @@ try {
   await blockedScripts.route(/\.js(?:\?|$)/, (route) => route.abort());
   const firstPaintPage = await blockedScripts.newPage();
   await firstPaintPage.goto(base.href, { waitUntil: "load" });
-  report.checks.headingVisibleBeforeHydration = await firstPaintPage.locator("h1").evaluate((heading) => {
-    for (let element = heading; element; element = element.parentElement) {
-      const style = getComputedStyle(element);
-      if (style.display === "none" || style.visibility === "hidden" || Number(style.opacity) === 0)
-        return false;
-    }
-    return heading.getBoundingClientRect().height > 0;
-  });
+  report.checks.headingVisibleBeforeHydration = await firstPaintPage
+    .locator("h1")
+    .evaluate((heading) => {
+      for (let element = heading; element; element = element.parentElement) {
+        const style = getComputedStyle(element);
+        if (
+          style.display === "none" ||
+          style.visibility === "hidden" ||
+          Number(style.opacity) === 0
+        )
+          return false;
+      }
+      return heading.getBoundingClientRect().height > 0;
+    });
   await blockedScripts.close();
 
   const ui = await context();
@@ -123,34 +140,62 @@ try {
   assert(await menu.getByRole("link", { name: "Learning Lab", exact: true }).isVisible());
   assert(await menu.locator('a[href="/teaching/karma-yoga/india"]').count());
   await page.keyboard.press("Escape");
-  assert.equal(await page.getByRole("button", { name: "Open site menu", exact: true }).getAttribute("aria-expanded"), "false");
+  assert.equal(
+    await page
+      .getByRole("button", { name: "Open site menu", exact: true })
+      .getAttribute("aria-expanded"),
+    "false"
+  );
   await page.unroute("**/*");
 
   await page.getByTestId("digital-guide-launcher").click();
   await page.getByTestId("digital-guide-dialog").waitFor({ state: "visible" });
   await page.getByTestId("digital-guide-welcome-video").waitFor({ state: "visible" });
-  await page.getByRole("combobox", { name: "Learning tools", exact: true }).selectOption("find-path");
+  await page
+    .getByRole("combobox", { name: "Learning tools", exact: true })
+    .selectOption("find-path");
   await page.getByRole("heading", { name: "Find a useful starting point", exact: true }).waitFor();
   await page.getByTestId("digital-guide-close").click();
-  assert(await page.getByTestId("digital-guide-launcher").evaluate((element) => element === document.activeElement));
+  assert(
+    await page
+      .getByTestId("digital-guide-launcher")
+      .evaluate((element) => element === document.activeElement)
+  );
 
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto(base.href, { waitUntil: "networkidle" });
-  const teaching = page.getByRole("button", { name: "Teaching submenu", exact: true }).filter({ visible: true });
+  const teaching = page
+    .getByRole("button", { name: "Teaching submenu", exact: true })
+    .filter({ visible: true });
   await teaching.hover();
-  await page.getByRole("link", { name: "For India · Mehalchauri", exact: true }).filter({ visible: true }).waitFor();
+  await page
+    .getByRole("link", { name: "For India · Mehalchauri", exact: true })
+    .filter({ visible: true })
+    .waitFor();
   await page.keyboard.press("Escape");
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
-    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Overflow at ${width}px`);
+    assert(
+      await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1),
+      `Overflow at ${width}px`
+    );
     await page.screenshot({ path: `${directory}/${values.label}-${width}.png` });
   }
   await ui.close();
   report.checks.browserErrors = errors;
   if (!values["measure-only"]) {
-    assert(report.checks.headingVisibleBeforeHydration, "The heading must render before hydration.");
-    assert(report.checks.menuPrefetchRequests <= 2, "Opening the menu must not preload the whole website.");
-    assert(report.samples.every((sample) => sample.hiddenMediaRequests === 0), "Closed guide media loaded early.");
+    assert(
+      report.checks.headingVisibleBeforeHydration,
+      "The heading must render before hydration."
+    );
+    assert(
+      report.checks.menuPrefetchRequests <= 2,
+      "Opening the menu must not preload the whole website."
+    );
+    assert(
+      report.samples.every((sample) => sample.hiddenMediaRequests === 0),
+      "Closed guide media loaded early."
+    );
     assert.deepEqual(errors, []);
   }
   console.log(JSON.stringify(report.checks));

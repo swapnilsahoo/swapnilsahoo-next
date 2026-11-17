@@ -27,6 +27,7 @@ const fraunces = Fraunces({
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
+  preload: false,
 });
 
 const notoSerifDevanagari = Noto_Serif_Devanagari({

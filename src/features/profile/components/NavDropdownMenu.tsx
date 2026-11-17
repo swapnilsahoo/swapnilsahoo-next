@@ -17,6 +17,7 @@ function DropdownLink({
   nested?: boolean;
   onNavigate: () => void;
 }) {
+  const router = useRouter();
   const className = nested ? "nav-child" : undefined;
 
   if (item.external) {
@@ -33,15 +34,16 @@ function DropdownLink({
     );
   }
 
-  // These links sit inside a hover-triggered dropdown that stays mounted
-  // (just visually hidden) at all times, so Next.js's default
-  // prefetch-on-mount would eagerly prefetch every item in every dropdown
-  // across the whole site as soon as the page loads. We disable that here
-  // and prefetch on hover-open instead (see NavDropdownMenu below), which
-  // still makes the actually-clicked link feel instant without the
-  // background cost of prefetching links no one is about to click.
+  // Prefetch the intended destination, rather than every link in an opened menu.
   return (
-    <Link href={item.href} prefetch={false} className={className} onClick={onNavigate}>
+    <Link
+      href={item.href}
+      prefetch={false}
+      className={className}
+      onPointerEnter={() => router.prefetch(item.href)}
+      onFocus={() => router.prefetch(item.href)}
+      onClick={onNavigate}
+    >
       {item.label}
     </Link>
   );
@@ -57,21 +59,6 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
   const menuTransform = alignRight
     ? `translateY(${open ? "0" : "4px"})`
     : `translateX(-50%) translateY(${open ? "0" : "4px"})`;
-  const router = useRouter();
-  const prefetched = useRef(false);
-
-  // Prefetch this dropdown's own links only once it's actually opened,
-  // instead of every dropdown on the page eagerly prefetching on mount.
-  const prefetchItems = () => {
-    if (prefetched.current) return;
-    prefetched.current = true;
-    for (const item of dropdown.items) {
-      if (!item.external) router.prefetch(item.href);
-      for (const child of item.children ?? []) {
-        if (!child.external) router.prefetch(child.href);
-      }
-    }
-  };
 
   const clearCloseTimeout = () => {
     if (closeTimeout.current) {
@@ -137,7 +124,6 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         clearCloseTimeout();
         if (!open) hoverOpened.current = true;
         setOpen(true);
-        prefetchItems();
       }}
       onMouseLeave={scheduleClose}
       onBlur={(event) => {
@@ -156,7 +142,6 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
           className="flex min-h-11 items-center rounded-lg py-1.5 pr-3 pl-1.5"
           onClick={(event) => {
             clearCloseTimeout();
-            prefetchItems();
             if (event.detail === 0) {
               hoverOpened.current = false;
               setOpen((value) => !value);
@@ -206,20 +191,21 @@ export function NavDropdownMenu({ dropdown }: { dropdown: NavDropdown }) {
         }}
       >
         <ul>
-          {dropdown.items.map((item) => (
-            <li key={item.label}>
-              <DropdownLink item={item} onNavigate={closeMenu} />
-              {item.children?.length ? (
-                <ul aria-label={`${item.label} pages`}>
-                  {item.children.map((child) => (
-                    <li key={child.label}>
-                      <DropdownLink item={child} nested onNavigate={closeMenu} />
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-            </li>
-          ))}
+          {open &&
+            dropdown.items.map((item) => (
+              <li key={item.label}>
+                <DropdownLink item={item} onNavigate={closeMenu} />
+                {item.children?.length ? (
+                  <ul aria-label={`${item.label} pages`}>
+                    {item.children.map((child) => (
+                      <li key={child.label}>
+                        <DropdownLink item={child} nested onNavigate={closeMenu} />
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </li>
+            ))}
         </ul>
       </div>
     </div>
