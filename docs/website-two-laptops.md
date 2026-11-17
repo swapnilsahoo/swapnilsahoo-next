@@ -62,6 +62,14 @@ Disable automatic sync before deliberately switching branches or preparing a rel
 
 The 17 November 2026 project inspection verified that Vercel is connected to `swapnilsahoo/swapnilsahoo-next`, with `main` as the production branch. An approved release pull request merged to `main` now starts the production deployment automatically. Verify that the exact merged commit reaches READY and is assigned to the canonical domains; do not create a duplicate CLI deployment when that release is already building or ready. Source sync still uses `laptop-sync` and does not merge it to `main`.
 
+### Fast publication
+
+The owner wants publication to start promptly when they say **live**. Prepare the reviewed release and relevant validation while editing. Reuse the working GitHub/Vercel connection, authenticated CLI and passing exact-head checks; do not repeat setup, plugin installation or unresolved MCP troubleshooting during publication. For an isolated text change, scoped validation and the passing Vercel preview checks are sufficient without another dependency installation or duplicate full local build. Broaden validation for behavior, dependency or configuration changes and failures.
+
+Merge only the requested reviewed change through its pull request and let the existing `main` integration create one production deployment. As soon as the exact commit is READY, the canonical domains are assigned and a targeted public read verifies the requested result, report the live URL. Finish source reconciliation, temporary release cleanup, automatic-sync restoration and final cloud verification afterward; do not delay the live-status update until unrelated housekeeping is finished.
+
+For reference, the homepage-name production deployment on 17 November 2026 spent **48.7 seconds** between Vercel's `buildingAt` and `ready` timestamps. Its longer overall handoff included first-time laptop setup, sign-ins, duplicated local validation and MCP authorization troubleshooting. Build and queue time still vary. A prebuilt, verified Production deployment can be promoted promptly; an ordinary Preview deployment is not interchangeable with Production because its environment can differ. Do not promise seconds for an unbuilt release or weaken checks to achieve that claim.
+
 The Vercel project is **swapnilsahoo-next**, under **swapnil-sahoo-s-projects**:
 
 ```json
@@ -130,6 +138,10 @@ Publish to the live website only when I explicitly ask for publication.
 When I say live, go live or publish live, proceed without another publication
 confirmation. Check, publish, verify and complete the housekeeping, including
 restoring laptop-sync and automatic sync and reporting commits/pending work.
+Prepare checks while editing. For small text changes, reuse passing exact-head
+checks and the working GitHub/Vercel pipeline; avoid repeated setup, MCP
+troubleshooting and duplicate full builds. Report the verified live URL promptly,
+then finish housekeeping. Be honest about remaining build/queue time.
 ```
 
 Git's merge behavior is described in [GitHub's remote-work guide](https://docs.github.com/en/get-started/using-git/getting-changes-from-a-remote-repository) and the [Git merge documentation](https://git-scm.com/docs/git-merge).
