@@ -431,10 +431,11 @@ async function secretScanner(context) {
     const info = await fs.stat(location).catch(() => null);
     if (!info?.isFile()) continue;
     if (info.size > 1024 * 1024) fail("secret");
-    // Handles the dotenv forms used here; quoted multiline PEM values are also protected.
+    // Horizontal whitespace must not consume the next setting after an empty value.
+    // Quoted multiline PEM values are still protected.
     const content = (await fs.readFile(location, "utf8")).replace(/^\uFEFF/, "");
     const assignment =
-      /^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(?:"((?:[^"\\]|\\[\s\S])*)"|'([^']*)'|([^\r\n]*))/gm;
+      /^[\t ]*(?:export[\t ]+)?([A-Za-z_][A-Za-z0-9_]*)[\t ]*=[\t ]*(?:"((?:[^"\\]|\\[\s\S])*)"|'([^']*)'|([^\r\n]*))/gm;
     for (const match of content.matchAll(assignment)) {
       if (
         !/(?:SECRET|TOKEN|PASSWORD|PASSWD|PRIVATE_KEY|API_KEY|AUTH_KEY|ACCESS_KEY|CREDENTIAL|SIGNING_KEY|ENCRYPTION_KEY|DATABASE_URL)/i.test(

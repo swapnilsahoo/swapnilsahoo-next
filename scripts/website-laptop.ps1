@@ -393,10 +393,18 @@ if ($Mode -eq 'EnableAutoSync') {
     $wrapper = Join-Path $RepoPath 'scripts\website-laptop.ps1'
     if (-not (Test-Path -LiteralPath $wrapper -PathType Leaf)) { throw 'The PowerShell helper must be present inside the checkout before scheduling.' }
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent().Name
-    $arguments = '-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File ' + (Quote-Argument $wrapper) +
+    # Give the entire process tree an invisible console before PowerShell starts.
+    # WindowStyle Hidden alone can still flash when Windows Terminal is the default.
+    $consoleHost = Join-Path $env:WINDIR 'System32\conhost.exe'
+    if (-not (Test-Path -LiteralPath $consoleHost -PathType Leaf)) {
+        throw 'Windows console host is missing. Automatic sync was not registered; use manual sync until Windows is repaired.'
+    }
+    $powershell = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
+    $arguments = '--headless ' + (Quote-Argument $powershell) +
+        ' -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File ' + (Quote-Argument $wrapper) +
         ' -Mode Sync -RepoPath ' + (Quote-Argument $RepoPath) + ' -Branch ' + (Quote-Argument $Branch) +
         ' -NodePath ' + (Quote-Argument $script:node)
-    $action = New-ScheduledTaskAction -Execute (Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe') -Argument $arguments -WorkingDirectory $RepoPath
+    $action = New-ScheduledTaskAction -Execute $consoleHost -Argument $arguments -WorkingDirectory $RepoPath
     $minute = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Minutes 1)
     $logon = New-ScheduledTaskTrigger -AtLogOn -User $identity
     $principal = New-ScheduledTaskPrincipal -UserId $identity -LogonType Interactive -RunLevel Limited

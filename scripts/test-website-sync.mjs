@@ -217,6 +217,53 @@ try {
     await fs.unlink(path.join(office, "src/accidental-secret.txt"));
     sync(office, ["--resume"]);
 
+    // Blank values must not consume the next assignment as a fake credential.
+    // Values after blank fields, indentation and quoted multiline values stay guarded.
+    const guardedValues = [
+      "synthetic-indented-private-value",
+      "synthetic-exported-private-value",
+      "synthetic-multiline-first\nsynthetic-multiline-second",
+    ];
+    await put(
+      office,
+      ".env.local",
+      [
+        "LAB_DATABASE_AUTH_TOKEN=",
+        "LAB_AUTH_SECRET=",
+        "",
+        "export LAB_ADMIN_PASSWORD = \t",
+        "LAB_ADMIN_NAME=",
+        "  LAB_EMPTY_SECRET = ",
+        "LAB_PUBLIC_SETTING=harmless-public-setting",
+        `  INDENTED_SECRET = '${guardedValues[0]}'`,
+        `export\tEXPORTED_TOKEN = ${guardedValues[1]}`,
+        `MULTILINE_PRIVATE_KEY="${guardedValues[2]}"`,
+        "",
+      ].join("\r\n")
+    );
+    await put(
+      office,
+      "src/empty-setting-names.txt",
+      "LAB_AUTH_SECRET=\nLAB_ADMIN_NAME=\nLAB_PUBLIC_SETTING=harmless-public-setting\n"
+    );
+    sync(office);
+    cleanIndex(office);
+    assert.equal(head(office), cloud());
+    assert.equal(git(office, "ls-files", ".env.local"), "");
+    for (const value of guardedValues) {
+      const safeHead = head(office);
+      await put(office, "src/accidental-secret.txt", value);
+      const message = sync(office, [], 2);
+      assert.ok(message.includes("possible credential"));
+      assert.equal(message.includes(value), false);
+      assert.equal(head(office), safeHead);
+      assert.equal(cloud(), safeHead);
+      cleanIndex(office);
+      await fs.unlink(path.join(office, "src/accidental-secret.txt"));
+      sync(office, ["--resume"]);
+    }
+    console.log("PASS blank dotenv fields, horizontal whitespace and multiline secret guards");
+
     // Prefix protection works without dotenv, and errors do not echo the token.
     const token = "gh" + "p_" + "A".repeat(36);
     await put(personal, "src/token.txt", token);

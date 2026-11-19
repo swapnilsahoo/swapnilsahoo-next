@@ -52,6 +52,14 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\website-laptop
 
 Automatic commits are checkpoints, not proof that an edit passes tests. Run the checks appropriate to a change before publishing it.
 
+### Quiet background sync
+
+Unattended source sync uses Windows' `conhost.exe --headless` to give PowerShell and its Node/Git children an invisible console. The task still runs each minute and at sign-in; it must not open an editor, browser or terminal over your work. `-WindowStyle Hidden` alone can still flash with Windows Terminal, as tracked in [Microsoft's terminal issue](https://github.com/microsoft/terminal/issues/12464). The Task Scheduler **Hidden** checkbox is not a substitute for a headless launch.
+
+After receiving a launcher update on either laptop, rerun **Website: Enable automatic sync** once. This updates that checkout's existing task rather than adding another one. Use **Website: Sync status** to verify actual source sync, not just the outer launcher's Task Scheduler exit code. A headless launch does not dismiss errors or authorize a paused sync to resume.
+
+If a terminal reappears, temporarily use **Website: Disable automatic sync**, inspect the task action and sync status, then repair the cause before re-enabling it. Do not delete the checkout, disable unrelated startup programs, change Windows security settings or terminate all PowerShell/Node processes. Manual local-preview and VS Code task terminals remain available when you explicitly start them.
+
 ## Publishing the public website
 
 Automatic source sync uses **laptop-sync** and does not push `main` or run a deployment. When a set of changes is ready, review and test it, then merge the working branch to `main` using a reviewed pull request and explicitly publish the release to the existing Vercel project.
