@@ -9,13 +9,13 @@ import { useLabHydrated } from "./useLabHydrated";
 const storageKey = "learning-lab-venture-experiment-v1";
 const stages = [
   {
-    title: "Set your boundary",
+    title: "Set your limits",
     days: "Days 1–3",
     prompt:
       "My idea and customer:\nSkills and resources I already have:\nTime I can commit each day:\nMoney I can afford to lose (₹0 is valid):\nPeople I can reach, described by role rather than name:\nWhat I will not risk:\nMy next small action:",
   },
   {
-    title: "Investigate the problem",
+    title: "Talk to customers",
     days: "Days 4–6",
     prompt:
       "Customer group and problem assumption:\nQuestions about the last time the problem happened:\nEvidence log (use P1, P2; no names or contact details):\nDate | participant code | observed action or exact anonymised words | my interpretation\nWhat contradicted my assumption:\nWhat I still do not know:",
@@ -27,7 +27,7 @@ const stages = [
       "Specific offer and customer:\nAction I will ask a customer to take:\nSuccess / change / stop thresholds, chosen before the test:\nTime and money limit:\nPermission and delivery arrangements:\nActual test dates and number approached:\nActual customer actions (not just compliments):\nActual cost, time and delivery effort:\nWhat went differently from my plan:",
   },
   {
-    title: "Make a decision",
+    title: "Make the call",
     days: "Days 12–14",
     prompt:
       "My decision: continue / change / stop\nEvidence supporting the decision:\nEvidence against the decision:\nObserved customer actions versus assumptions:\nCosts and delivery effort:\nWhat I learned from any founder feedback:\nWhat remains uncertain:\nMy next bounded step, or why I am stopping:",
@@ -430,9 +430,8 @@ export function VentureExperimentWorkspace({
               ))}
             </ul>
             <p className="lab-small">
-              These are prepared suggestions, adjusted to the constraints you entered. They do not
-              establish that a test is safe, feasible or completed. The planner caps suggested
-              experiment spending at ₹1,000 or your lower chosen limit; you do not need to spend
+              Suggestions only, based on what you entered. They do not make a test safe, feasible or
+              complete. Spending is capped at ₹1,000 or your lower limit; you never need to spend
               anything.
             </p>
           </div>
@@ -469,9 +468,8 @@ export function VentureExperimentWorkspace({
               aria-describedby="venture-work-help"
             />
             <p id="venture-work-help" className="lab-small">
-              Separate what actually happened from what you expect. An empty template, a planned
-              interview or a positive comment does not establish a completed customer experiment.
-              Maximum 6,000 characters.
+              Keep what happened separate from what you expect. A template, a planned interview or a
+              compliment is not a completed test. Up to 6,000 characters.
             </p>
           </div>
           <button

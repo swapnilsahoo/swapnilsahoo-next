@@ -1,40 +1,40 @@
 export const ventureExperimentPath = "/learning-lab/venture-experiment";
 
 export const venturePositioning =
-  "Swapnil Sahoo Learning Lab helps first-time student entrepreneurs turn a business idea into a small, affordable customer experiment in 14 days, with practical guidance and feedback, free of charge.";
+  "A free 14-day guide for first-time student entrepreneurs: turn your business idea into one small customer test, get feedback, and decide what to do next.";
 
 export const ventureStages = [
   {
     id: "constraints",
-    title: "Establish constraints",
+    title: "Set your limits",
     days: "Days 1–3",
     description:
-      "Start with your skills, relationships, available time and an affordable commitment. Choose a problem you can investigate without building a business first.",
-    output: "A realistic experiment boundary",
+      "Start from your skills, contacts, time and a budget you can afford. Pick a problem you can explore without building a business.",
+    output: "Clear time, cost and stop limits",
   },
   {
     id: "investigate",
-    title: "Investigate the problem",
+    title: "Talk to customers",
     days: "Days 4–6",
     description:
-      "Ask potential customers about recent behaviour and their existing alternatives. Separate what you observed or heard from what you assumed.",
-    output: "An evidence log with observations, interpretations and unknowns",
+      "Ask people what they actually did recently and what they use now. Keep what you heard separate from what you assume.",
+    output: "An evidence log: observations, interpretations, unknowns",
   },
   {
     id: "test",
     title: "Run one small test",
     days: "Days 7–11",
     description:
-      "Offer one specific, honestly described next step. Record actual customer action and delivery effort against a threshold chosen before the test.",
-    output: "A completed experiment record, including refusals and no responses",
+      "Make one specific, honest offer. Count what customers actually do against a target you set beforehand.",
+    output: "A test record, including refusals and no-replies",
   },
   {
     id: "decide",
-    title: "Make a decision",
+    title: "Make the call",
     days: "Days 12–14",
     description:
-      "Review evidence, costs and effort; invite feedback; and defend a decision to continue, change or stop. Stopping can be a successful learning outcome.",
-    output: "A defensible decision and one next action",
+      "Weigh results, costs and effort, get feedback, then choose continue, change or stop. Stopping can be the right answer.",
+    output: "A decision you can defend and one next step",
   },
 ] as const;
 
@@ -52,127 +52,127 @@ export const ventureDays: readonly VentureDay[] = [
     day: 1,
     stage: "constraints",
     title: "Write your starting decision",
-    task: "Before using the guide, write a one-page plan: whose problem, what you believe, the test you would run, a demand threshold and your current continue/change/stop decision. Record today's date; retain this unchanged as your baseline.",
-    output: "A dated baseline plan and the question you most need to resolve",
+    task: "Before reading further, write one page: whose problem, what you believe, the test you would run, the result that would count as demand, and whether you would continue, change or stop today. Date it and leave it unchanged. This is your baseline.",
+    output: "A dated baseline plan and your biggest open question",
   },
   {
     day: 2,
     stage: "constraints",
     title: "Set what you can afford to commit",
-    task: "List useful skills, adult contacts, minutes available each day and a maximum affordable cost, including zero. Name what you will not risk: tuition, borrowing, essential expenses, confidential data or commitments you cannot fulfil.",
-    output: "A time and cost ceiling, existing resources, and a stop rule",
+    task: "List your useful skills, adult contacts, minutes per day and the most you can spend (₹0 is fine). Write down what you will not risk: tuition, loans, essential expenses, confidential data or promises you cannot keep.",
+    output: "A time and cost limit, your resources and a stop rule",
   },
   {
     day: 3,
     stage: "constraints",
     title: "Choose one reachable customer problem",
-    task: "Choose one adult customer group you can reach respectfully. Write a recent situation, their present alternative and your untested assumption. Arrange permission to speak with them; a classmate role-play is preparation, not customer evidence.",
-    output: "One narrow customer/problem statement and a permission-based access plan",
+    task: "Pick one adult customer group you can reach respectfully. Note a recent situation they faced, what they use now and your untested assumption. Get permission to talk to them. Role-play with classmates is practice, not evidence.",
+    output: "One narrow customer problem and a plan to reach them with permission",
   },
   {
     day: 4,
     stage: "investigate",
     title: "Prepare questions about behaviour",
-    task: "Write five neutral questions beginning with 'Tell me about the last time…'. Ask what happened, what they used instead and their approximate effort or cost. Avoid pitching, leading questions and requests for private records. Ask permission to take anonymous notes.",
-    output: "Five interview questions and a short voluntary-participation introduction",
+    task: "Write five neutral questions that start 'Tell me about the last time…'. Ask what happened, what they used instead and what it cost them in time or money. Do not pitch, lead or ask for private records. Ask before taking anonymous notes.",
+    output: "Five questions and a short, voluntary introduction",
   },
   {
     day: 5,
     stage: "investigate",
     title: "Hear the first accounts",
-    task: "Invite up to three relevant adults to a short conversation, without pressure. Record recent behaviour in your own words, separately from your interpretation. Accept refusals. If no one participates, record the attempts and investigate access rather than inventing answers.",
-    output: "Anonymous evidence entries labelled reported behaviour, interpretation and unknown",
+    task: "Invite up to three relevant adults to a short chat, with no pressure. Note what they did, separately from what you think it means. Accept refusals. If no one agrees, record your attempts and fix access. Never invent answers.",
+    output: "Anonymous notes labelled behaviour, interpretation or unknown",
   },
   {
     day: 6,
     stage: "investigate",
     title: "Look for a contradiction",
-    task: "Seek an account that might disprove your assumption. Compare the problem, existing alternatives and circumstances across the conversations. A few accessible participants do not represent the whole market. Select one uncertainty worth testing next.",
-    output: "A revised problem statement, contradictory evidence and one testable assumption",
+    task: "Look for an account that could prove you wrong. Compare problems, alternatives and situations across your conversations. A few people are not the whole market. Pick one uncertainty to test next.",
+    output: "A revised problem statement, the contradicting evidence and one testable assumption",
   },
   {
     day: 7,
     stage: "test",
     title: "Define a small offer and a pass rule",
-    task: "Describe a bounded service or prototype, who it is for, what is and is not available, and the real action you will count. Before inviting anyone, write the denominator, deadline, success threshold, cost ceiling and stopping condition. Choose a free reservation or trial if payment is unnecessary.",
-    output: "A one-page experiment card with an observable action and a pre-set threshold",
+    task: "Describe a small service or prototype: who it is for, what is and is not included, and the real action you will count. Before inviting anyone, write how many people you will ask, the deadline, the pass mark, your cost limit and when you will stop. If payment is not needed, use a free reservation or trial.",
+    output: "A one-page experiment card with a countable action and a pre-set pass mark",
   },
   {
     day: 8,
     stage: "test",
     title: "Make the smallest honest demonstration",
-    task: "Use paper, an existing free tool or a manually delivered sample. Show exactly what can be provided; label mockups and prototypes. Check that the work fits the time and cost ceiling. Do not order inventory, borrow or buy software to make the example look impressive.",
-    output: "A clearly labelled sample and a realistic delivery/cost estimate",
+    task: "Use paper, a free tool or a sample you deliver by hand. Show exactly what you can provide and label any mockup. Stay within your time and cost limit. Do not buy stock, borrow or pay for software to look impressive.",
+    output: "A labelled sample and a realistic delivery and cost estimate",
   },
   {
     day: 9,
     stage: "test",
     title: "Invite a bounded customer action",
-    task: "Make the specific offer to a small, relevant group of consenting adults. State the terms and limitations plainly, avoid spam or repeated contact after refusal, and do not use assessed students or institutional branding as leverage. Record how many people actually received the offer.",
-    output: "A dated invitation record and a count of people reached, without personal identifiers",
+    task: "Make the offer to a small group of relevant adults who have agreed to hear it. State the terms and limits plainly. No spam, no follow-ups after a no, and no using students you assess or your institution's name as leverage. Count how many people actually got the offer.",
+    output: "A dated invitation record and a count of people reached, with no names",
   },
   {
     day: 10,
     stage: "test",
     title: "Observe action and delivery effort",
-    task: "Record actual reservations, use or another pre-defined action, plus refusals and no responses. If a trial is accepted, deliver only what you can safely fulfil and time your work. Compliments, page views and hypothetical willingness to pay are not purchases.",
-    output: "Counts with denominators, actual time/cost, and any fulfilment problems",
+    task: "Record real reservations, use or the action you chose, plus refusals and no-replies. If someone takes up a trial, deliver only what you can safely do, and time it. Compliments, page views and 'I would pay for that' are not purchases.",
+    output: "Counts out of the number asked, real time and cost, and any delivery problems",
   },
   {
     day: 11,
     stage: "test",
     title: "Close the experiment honestly",
-    task: "Finish the test at its stated deadline and settle any commitment you made. Record what actually happened, including a zero result. Note limitations such as friends-only recruitment or missing customers. If no real customer test occurred, mark it incomplete; planning alone is not completion.",
-    output: "An experiment record comparing the pre-set threshold with actual results",
+    task: "End the test on its deadline and honour any commitment you made. Record what happened, even a zero. Note limits such as friends-only recruiting. If no real customer test happened, mark it incomplete. Planning alone does not count.",
+    output: "A record comparing your pre-set pass mark with actual results",
   },
   {
     day: 12,
     stage: "decide",
     title: "Compare value with effort and cost",
-    task: "Calculate approximate cost per completed trial and include your own time. Separate a free-trial action from evidence of willingness to pay. Compare alternatives and identify which conclusion the small sample cannot support.",
-    output: "A simple cost/effort table and an evidence-supported interpretation",
+    task: "Work out the rough cost per completed trial, including your own time. A free-trial sign-up does not prove people will pay. Compare alternatives and note what your small sample cannot tell you.",
+    output: "A simple cost and effort table and an evidence-based reading of it",
   },
   {
     day: 13,
     stage: "decide",
     title: "Request feedback on your reasoning",
-    task: "Prepare an anonymous one-page review: original assumption, experiment, threshold, results and provisional decision. Ask a reviewer what evidence is missing and what else could explain the result. Record the feedback and your response; do not claim founder feedback until it is received.",
-    output: "A reviewable evidence packet and a feedback/revision log",
+    task: "Prepare an anonymous one-page summary: assumption, test, pass mark, results and provisional decision. Ask a reviewer what is missing and what else could explain the result. Log their feedback and your response. Do not claim founder feedback until you have it.",
+    output: "A reviewable evidence packet and a feedback log",
   },
   {
     day: 14,
     stage: "decide",
     title: "Defend continue, change or stop",
-    task: "Write a final one-page decision using the same headings as Day 1. Cite your evidence, costs, limitations and feedback. Choose continue, change or stop and name one affordable next step. Compare your baseline and final work with the same rubric, including any incomplete experiment.",
-    output: "A final decision memo, rubric comparison and actual days/hours spent",
+    task: "Write a one-page decision using your Day 1 headings. Cite evidence, costs, limits and feedback. Choose continue, change or stop, and name one affordable next step. Score Day 1 and Day 14 with the same rubric, even if the test is incomplete.",
+    output: "A final decision memo, rubric comparison and actual days and hours spent",
   },
 ];
 
 export const ventureExample = {
   title: "Asha's campus presentation practice",
-  note: "Entirely hypothetical Indian student example; the names, counts and costs are invented teaching assumptions, not Learning Lab results.",
+  note: "Hypothetical example. Names, numbers and costs are invented for teaching; they are not Lab results.",
   context:
-    "Asha is an adult college student in Pune. She thinks fellow adult students struggle to rehearse a three-minute project presentation. She can organise a practice meeting, has 30 minutes a day and chooses a ₹0 spending ceiling.",
+    "Asha, an adult college student in Pune, thinks fellow students struggle to rehearse three-minute project presentations. She has 30 minutes a day, can organise a practice meeting and sets a ₹0 budget.",
   stages: [
     {
       stage: "constraints",
       story:
-        "She rules out building an app or charging for an untested service. Her boundary is one free 20-minute practice session, using an already available meeting space with permission; no grades or employment outcomes are promised.",
+        "No app, and no charging for an untested service. Her limit: one free 20-minute practice session in a room she has permission to use. No grades or job outcomes promised.",
     },
     {
       stage: "investigate",
       story:
-        "Three volunteers describe their latest presentation preparation. Two struggled to keep within the time limit; one already practises effectively alone. Asha records those reported experiences separately from her belief that a practice group would help.",
+        "Three volunteers describe their last presentation preparation. Two struggled with the time limit; one already practises well alone. She records what they said separately from her belief that a group would help.",
     },
     {
       stage: "test",
       story:
-        "Before inviting anyone, she sets a modest rule: continue investigating if at least two of six relevant adults offered a place actually attend. She offers one clearly described free session, records three reservations and two attendees, and spends 50 minutes preparing and running it. A reservation is not attendance or evidence of willingness to pay.",
+        "Her rule, set in advance: keep going if at least two of the six adults offered a place actually attend. Three reserve, two attend, and it takes her 50 minutes. A reservation is not attendance, and attendance is not payment.",
     },
     {
       stage: "decide",
       story:
-        "Her attendance threshold was met, but the friends-only sample and free price limit the conclusion. She chooses 'change': shorten preparation before another free test. She does not infer a viable paid business or publish participant names. If nobody had attended, an evidence-supported stop could also have been useful.",
+        "The pass mark was met, but a friends-only sample and a free price limit what she can conclude. She chooses 'change': shorten the preparation and run another free test. She claims no paid business and publishes no names. Had nobody come, stopping would also have been a sound decision.",
     },
   ],
 } as const;
@@ -216,17 +216,10 @@ export const ventureEvidenceRubric = [
   },
 ] as const;
 
+// The pilot's full evaluation protocol is in docs/learning-lab/venture-experiment.md.
 export const ventureEvaluation = {
-  baseline:
-    "Retain the unaided Day 1 plan. Record a baseline score using the four 0–2 criteria. With no actual test yet, the execution criterion can legitimately score zero; do not invent missing evidence.",
-  final:
-    "Score the Day 14 packet using the same criteria and instructions. Report each criterion and total out of 8, whether an actual customer experiment was completed, calendar days, founder/reviewer minutes and learner hours. Record non-completion and withdrawals rather than excluding them.",
   completion:
-    "A completed experiment requires a pre-stated assumption, honest specific offer made to actual relevant adults, a dated action/no-action record with a denominator, and a continue/change/stop decision. An executed test with zero demand can qualify; a role-play, plan or unlaunched offer does not.",
-  comparison:
-    "For the proposed first 20-person guided pilot, predefine a fair comparison with similar consenting learners using a named existing free resource. Record starting experience, customer access, task, time window, support received and the same completion/rubric rules. Use an assessor unaware of group where feasible and report all starters, assessed learners and missing outcomes. Define allocation before recruitment; do not withhold promised support.",
-  limits:
-    "This is an evaluation plan, not an established advantage. Before/after improvement alone does not prove the guide caused it. Small, self-selected or non-random groups cannot justify a superiority claim; report uncertainty and actual mentoring hours before expanding the free programme.",
+    "A completed experiment needs four things: an assumption stated in advance, an honest offer made to real, relevant adults, a dated record of who acted out of how many were asked, and a continue, change or stop decision. A real test with zero demand counts. A role-play, a plan or an offer never made does not.",
 } as const;
 
 export type VentureConstraints = {
