@@ -393,22 +393,38 @@ if ($Mode -eq 'EnableAutoSync') {
     $wrapper = Join-Path $RepoPath 'scripts\website-laptop.ps1'
     if (-not (Test-Path -LiteralPath $wrapper -PathType Leaf)) { throw 'The PowerShell helper must be present inside the checkout before scheduling.' }
     $identity = [Security.Principal.WindowsIdentity]::GetCurrent().Name
-    $arguments = '-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File ' + (Quote-Argument $wrapper) +
+    # Windows 11 can show a Terminal window for console programs started by Task Scheduler,
+    # even with -WindowStyle Hidden. Prefer the windowless launcher, which also keeps the
+    # task's exit code. If this laptop cannot run it (for example under managed application
+    # control), give the process tree an invisible console with Windows' headless console host.
+    $powershell = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
+    $command = (Quote-Argument $powershell) +
+        ' -NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File ' + (Quote-Argument $wrapper) +
         ' -Mode Sync -RepoPath ' + (Quote-Argument $RepoPath) + ' -Branch ' + (Quote-Argument $Branch) +
         ' -NodePath ' + (Quote-Argument $script:node)
-    # Windows 11 shows a Terminal window for console programs started by Task Scheduler,
-    # even with -WindowStyle Hidden. Run through the windowless launcher instead.
-    $windowless = Join-Path $RepoPath 'scripts\windowless-task.ps1'
-    if (-not (Test-Path -LiteralPath $windowless -PathType Leaf)) { throw 'The windowless task helper is missing. Update the checkout.' }
-    $launcher = @(& $windowless -PrintLauncher)[-1]
-    $powershellExe = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
-    $action = New-ScheduledTaskAction -Execute $launcher -Argument ((Quote-Argument $powershellExe) + ' ' + $arguments) -WorkingDirectory $RepoPath
+    $launcher = $null
+    try {
+        $candidate = @(& (Join-Path $RepoPath 'scripts\windowless-task.ps1') -PrintLauncher)[-1]
+        $probe = Start-Process -FilePath $candidate -ArgumentList ((Quote-Argument (Join-Path $env:WINDIR 'System32\cmd.exe')) + ' /d /c exit 7') -Wait -PassThru
+        if ($probe.ExitCode -eq 7) { $launcher = $candidate }
+    } catch { $launcher = $null }
+    if ($launcher) {
+        $action = New-ScheduledTaskAction -Execute $launcher -Argument $command -WorkingDirectory $RepoPath
+        $launchMode = 'windowless launcher'
+    } else {
+        $consoleHost = Join-Path $env:WINDIR 'System32\conhost.exe'
+        if (-not (Test-Path -LiteralPath $consoleHost -PathType Leaf)) {
+            throw 'Neither the windowless launcher nor the Windows console host can run. Automatic sync was not registered; use manual sync until this is repaired.'
+        }
+        $action = New-ScheduledTaskAction -Execute $consoleHost -Argument ('--headless ' + $command) -WorkingDirectory $RepoPath
+        $launchMode = 'headless console host'
+    }
     $minute = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Minutes 1)
     $logon = New-ScheduledTaskTrigger -AtLogOn -User $identity
     $principal = New-ScheduledTaskPrincipal -UserId $identity -LogonType Interactive -RunLevel Limited
     $settings = New-ScheduledTaskSettingsSet -Hidden -StartWhenAvailable -RunOnlyIfNetworkAvailable -MultipleInstances IgnoreNew -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Minutes 5)
     Register-ScheduledTask -TaskName $taskName -Action $action -Trigger @($minute,$logon) -Principal $principal -Settings $settings -Description 'Synchronizes saved website source on the selected Git branch. No deployment or private data sync.' -Force | Out-Null
-    Write-Host "Enabled $taskName (each minute and owner logon while signed in, awake and online)."
+    Write-Host "Enabled $taskName via the $launchMode (each minute and owner logon while signed in, awake and online)."
     return
 }
 $workerMode = if ($Mode -eq 'Status') { '--status' } else { '--once' }

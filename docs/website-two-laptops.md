@@ -52,11 +52,21 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\website-laptop
 
 Automatic commits are checkpoints, not proof that an edit passes tests. Run the checks appropriate to a change before publishing it.
 
-Scheduled tasks run through a small windowless launcher built locally by [scripts/windowless-task.ps1](../scripts/windowless-task.ps1). Windows 11 otherwise opens a visible Terminal window for every scheduled PowerShell run, which `-WindowStyle Hidden` cannot prevent. **Website: Enable automatic sync** registers the windowless form. If a window keeps appearing on a laptop whose task was registered earlier, convert its existing tasks in place; triggers, settings and exit codes are preserved:
+### Quiet background sync
+
+Unattended tasks run each minute and at sign-in; they must not open an editor, browser or terminal over your work. Windows 11 can hand a console program started by Task Scheduler to Windows Terminal, and `-WindowStyle Hidden` alone can still flash, as tracked in [Microsoft's terminal issue](https://github.com/microsoft/terminal/issues/12464). The Task Scheduler **Hidden** checkbox is not a substitute for a windowless launch.
+
+**Website: Enable automatic sync** registers the task through a small windowless launcher that [scripts/windowless-task.ps1](../scripts/windowless-task.ps1) builds locally with the C# compiler included in Windows. It starts PowerShell and its Node/Git children with no console window and passes the real exit code back to Task Scheduler. Registration test-runs the launcher first. If a laptop cannot run it, for example under managed application control, registration falls back to Windows' `conhost.exe --headless`, which is also invisible but reports only the outer launcher's exit code.
+
+After receiving a launcher update on either laptop, rerun **Website: Enable automatic sync** once. This updates that checkout's existing task rather than adding another one. Use **Website: Sync status** to verify actual source sync. A windowless launch does not dismiss errors or authorize a paused sync to resume.
+
+Other scheduled tasks for this project, such as the personal laptop's Learning Lab operator, backup and email tasks, can be converted in place. Triggers, settings and exit codes are preserved:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\windowless-task.ps1 -TaskName 'Swapnil*'
 ```
+
+If a terminal reappears, temporarily use **Website: Disable automatic sync**, inspect the task action and sync status, then repair the cause before re-enabling it. Do not delete the checkout, disable unrelated startup programs, change Windows security settings or terminate all PowerShell/Node processes. Manual local-preview and VS Code task terminals remain available when you explicitly start them.
 
 ## Publishing the public website
 
