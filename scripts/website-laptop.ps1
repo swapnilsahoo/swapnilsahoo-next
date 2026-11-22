@@ -396,7 +396,13 @@ if ($Mode -eq 'EnableAutoSync') {
     $arguments = '-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File ' + (Quote-Argument $wrapper) +
         ' -Mode Sync -RepoPath ' + (Quote-Argument $RepoPath) + ' -Branch ' + (Quote-Argument $Branch) +
         ' -NodePath ' + (Quote-Argument $script:node)
-    $action = New-ScheduledTaskAction -Execute (Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe') -Argument $arguments -WorkingDirectory $RepoPath
+    # Windows 11 shows a Terminal window for console programs started by Task Scheduler,
+    # even with -WindowStyle Hidden. Run through the windowless launcher instead.
+    $windowless = Join-Path $RepoPath 'scripts\windowless-task.ps1'
+    if (-not (Test-Path -LiteralPath $windowless -PathType Leaf)) { throw 'The windowless task helper is missing. Update the checkout.' }
+    $launcher = @(& $windowless -PrintLauncher)[-1]
+    $powershellExe = Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
+    $action = New-ScheduledTaskAction -Execute $launcher -Argument ((Quote-Argument $powershellExe) + ' ' + $arguments) -WorkingDirectory $RepoPath
     $minute = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Minutes 1)
     $logon = New-ScheduledTaskTrigger -AtLogOn -User $identity
     $principal = New-ScheduledTaskPrincipal -UserId $identity -LogonType Interactive -RunLevel Limited

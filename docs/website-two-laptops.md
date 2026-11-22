@@ -52,6 +52,12 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\website-laptop
 
 Automatic commits are checkpoints, not proof that an edit passes tests. Run the checks appropriate to a change before publishing it.
 
+Scheduled tasks run through a small windowless launcher built locally by [scripts/windowless-task.ps1](../scripts/windowless-task.ps1). Windows 11 otherwise opens a visible Terminal window for every scheduled PowerShell run, which `-WindowStyle Hidden` cannot prevent. **Website: Enable automatic sync** registers the windowless form. If a window keeps appearing on a laptop whose task was registered earlier, convert its existing tasks in place; triggers, settings and exit codes are preserved:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\windowless-task.ps1 -TaskName 'Swapnil*'
+```
+
 ## Publishing the public website
 
 Automatic source sync uses **laptop-sync** and does not push `main` or run a deployment. When a set of changes is ready, review and test it, then merge the working branch to `main` using a reviewed pull request and explicitly publish the release to the existing Vercel project.
