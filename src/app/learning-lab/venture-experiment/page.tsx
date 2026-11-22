@@ -40,20 +40,16 @@ export default function VentureExperimentPage() {
         description={venturePositioning}
       >
         <a href="#start" className="lab-button">
-          Set your experiment boundary →
+          Get your next task →
         </a>
         <a href="#plan" className="lab-button lab-button-secondary">
           Read the 14-day plan
         </a>
       </LabHero>
-      <LabSection
-        eyebrow="The question you are here to answer"
-        title="What should I do next, and what evidence would justify continuing?"
-      >
+      <LabSection eyebrow="The goal" title="One real test. One clear decision.">
         <p className="lab-lead">
-          Work on your own idea, with a commitment you can afford and a customer group you can
-          actually reach. The target is one completed experiment and a defensible decision.
-          Continuing, changing and stopping are all legitimate outcomes.
+          Use your own idea, a budget you can afford and customers you can actually reach. Continue,
+          change and stop are all valid outcomes.
         </p>
         <div className="lab-grid lab-grid-two">
           {ventureStages.map((stage) => (
@@ -62,40 +58,28 @@ export default function VentureExperimentPage() {
               <h3>{stage.title}</h3>
               <p>{stage.description}</p>
               <p>
-                <strong>Your output:</strong> {stage.output}.
+                <strong>You leave with:</strong> {stage.output}.
               </p>
             </article>
           ))}
         </div>
         <p className="lab-small">
-          Start any day. Aim for about 30 minutes a day plus agreed customer conversations and a
-          small test; your actual time depends on access and the idea. ₹0 is a valid spending limit.
-          No subscription, payment, incorporation, grades or certificate are required.
+          Start any day. Plan on about 30 minutes a day, plus customer conversations and one small
+          test. ₹0 is a valid budget. No payment, company, grades or certificate needed.
         </p>
       </LabSection>
-      <LabSection
-        id="start"
-        className="lab-band"
-        eyebrow="Your idea, your constraints"
-        title="Start with the next affordable step."
-      >
+      <LabSection id="start" className="lab-band" eyebrow="Start here" title="Get your next task.">
         <p>
-          The public planner and downloads are free without registration. An optional
-          founder-feedback pilot has up to 20 active places. A successful registration creates a
-          private workspace for your submissions and reviews; it sends no email and creates no
-          general mailing-list subscription.
+          The planner and downloads are free, with no sign-up. For founder feedback, register for
+          one of up to 20 active pilot places. Registration creates a private workspace. It sends no
+          email and adds you to no mailing list.
         </p>
         <VentureExperimentWorkspace available={isLabServiceConfigured()} />
       </LabSection>
-      <LabSection
-        id="plan"
-        eyebrow="Read it all before you commit"
-        title="The 14-day working plan."
-      >
+      <LabSection id="plan" eyebrow="Day by day" title="The 14-day plan.">
         <p>
-          Keep the first plan unchanged so you can compare it with the final decision. If time,
-          access or feedback takes longer, record the actual days; do not label an unrun test
-          complete.
+          Keep your Day 1 plan unchanged so you can compare it with your final decision. If a step
+          takes longer, record the real days. A test you did not run is not complete.
         </p>
         {ventureStages.map((stage) => (
           <section key={stage.id} style={{ marginTop: "2rem" }}>
@@ -127,7 +111,7 @@ export default function VentureExperimentPage() {
           </section>
         ))}
       </LabSection>
-      <LabSection className="lab-band" eyebrow="A worked illustration" title={ventureExample.title}>
+      <LabSection className="lab-band" eyebrow="Worked example" title={ventureExample.title}>
         <p className="lab-small">{ventureExample.note}</p>
         <p className="lab-lead">{ventureExample.context}</p>
         <div className="lab-grid lab-grid-two">
@@ -139,16 +123,12 @@ export default function VentureExperimentPage() {
           ))}
         </div>
       </LabSection>
-      <LabSection
-        id="evidence"
-        eyebrow="What counts as useful learning"
-        title="A completed test is more than a positive opinion."
-      >
+      <LabSection id="evidence" eyebrow="What counts" title="A real test, not a positive opinion.">
         <p className="lab-lead">{ventureEvaluation.completion}</p>
         <p>
-          The same four criteria score the starting plan and final packet from 0–2 each, for a total
-          out of 8. A human reviewer explains the scores; the next-task tool does not grade your
-          work.
+          Your Day 1 plan and Day 14 packet are scored on the same four criteria, 0–2 each, out of
+          8. A person explains the scores; the planner never grades you. Write your Day 1 plan
+          before reading the guide, so it shows your real starting point.
         </p>
         <div className="lab-grid lab-grid-two">
           {ventureEvidenceRubric.map((criterion) => (
@@ -162,61 +142,47 @@ export default function VentureExperimentPage() {
             </article>
           ))}
         </div>
-        <p>{ventureEvaluation.baseline}</p>
         <p className="lab-small">
-          Call a starting plan unaided only if it was collected before the learner saw this guide or
-          received feedback. Otherwise mark it as aided and report that limitation.
-        </p>
-        <p>{ventureEvaluation.final}</p>
-        <p className="lab-small">
-          The first pilot is a learning and delivery test. There are no claimed completion rates,
-          learning gains or superiority results yet. Comparable learners, consistent tasks and
-          transparent missing outcomes are needed before drawing comparative conclusions.
+          This is a new pilot. No completion rates, learning gains or comparisons are claimed yet.
         </p>
       </LabSection>
       <LabSection
         className="lab-band"
-        eyebrow="Founder-led feedback"
-        title="Review your own work, then revise it."
+        eyebrow="Founder feedback"
+        title="Submit, read the review, revise."
       >
-        <p>
-          Dr. Swapnil Sahoo reviews work in the initial feedback pilot. Submit at the four stage
-          checkpoints and return with your private access code to read the actual written review.
-          Until a review is saved, the workspace shows that it is awaiting review. No immediate
-          reply or fixed turnaround is guaranteed; continue with the guide and allow time to revise.
-        </p>
-        <p>
-          Your access code is shown only when registration succeeds. Keep its private download safe.
-          It is not emailed, cannot be looked up by email, and expires 90 days after registration.
-          Use the withdrawal control to delete your pilot work and release your place, or contact
-          the operator for a privacy request. Publication and use in comparative research require
-          separate permission.
-        </p>
-        <p>
-          Submit anonymised observations: “Customer A declined” is enough. Do not upload names,
-          phone numbers, private messages, recordings or confidential business information. The
-          existing{" "}
-          <Link className="lab-text-link" href="/learning-lab/policies/privacy">
-            privacy notice
-          </Link>{" "}
-          explains storage and access.
-        </p>
+        <ul className="lab-prose">
+          <li>
+            <strong>Reviews:</strong> Dr. Swapnil Sahoo reviews pilot work at each of the four
+            stages. Return with your private access code to read the written review. There is no
+            fixed turnaround, so keep working through the guide meanwhile.
+          </li>
+          <li>
+            <strong>Access code:</strong> shown once, when you register. Save the download. It is
+            not emailed, cannot be recovered by email and expires after 90 days.
+          </li>
+          <li>
+            <strong>Your control:</strong> withdraw at any time to delete your work and free your
+            place. Your work is never published or used in research without separate permission.
+          </li>
+          <li>
+            <strong>Keep it anonymous:</strong> &ldquo;Customer A declined&rdquo; is enough. No
+            names, phone numbers, messages, recordings or confidential information. See the{" "}
+            <Link className="lab-text-link" href="/learning-lab/policies/privacy">
+              privacy notice
+            </Link>
+            .
+          </li>
+        </ul>
       </LabSection>
-      <LabSection
-        eyebrow="Other ways to learn"
-        title="Free access alone does not establish an advantage."
-      >
-        <p>
-          These independent resources provide useful alternatives. The Lab’s approach to test is
-          guidance fitted to your constraints and feedback on your own small experiment. No
-          partnership or superiority is implied.
-        </p>
+      <LabSection eyebrow="Alternatives" title="Other free places to learn.">
+        <p>Independent resources. No partnership is implied.</p>
         <ul className="lab-prose">
           <li>
             <a className="lab-text-link" href="https://www.startupschool.org/">
               YC Startup School
             </a>
-            : a free online startup course and weekly progress support.
+            : a free online startup course with weekly progress support.
           </li>
           <li>
             <a
@@ -225,22 +191,15 @@ export default function VentureExperimentPage() {
             >
               Startup India Learning Program
             </a>
-            : free entrepreneurship learning with English and Hindi options.
+            : free entrepreneurship learning in English and Hindi.
           </li>
           <li>
             <a className="lab-text-link" href="https://www.nsf.gov/funding/initiatives/i-corps">
               NSF I-Corps
             </a>
-            : an established experiential customer-discovery model for research commercialisation;
-            its audience and programme scope differ from this student pilot.
+            : a customer-discovery model for research teams, broader in scope than this pilot.
           </li>
         </ul>
-        <p className="lab-small">
-          For the Lab pilot’s comparison plan, define allocation and comparable starting constraints
-          before recruitment, use the same completion rules and rubric, and record every starter and
-          actual mentoring minute. The pilot service does not itself obtain research or publication
-          consent.
-        </p>
         <Link
           href="/learning-lab/free-courses/ask-better-customer-questions"
           className="lab-text-link"

@@ -13,14 +13,14 @@ export const metadata: Metadata = {
   description: venturePositioning,
   alternates: { canonical: "/learning-lab" },
   openGraph: {
-    title: "Your first customer experiment | Swapnil Sahoo Learning Lab",
+    title: "Test your business idea in 14 days | Swapnil Sahoo Learning Lab",
     description: venturePositioning,
     url: "/learning-lab",
     images: [],
   },
   twitter: {
     card: "summary",
-    title: "Your first customer experiment",
+    title: "Test your business idea in 14 days",
     description: venturePositioning,
     images: [],
   },
@@ -30,51 +30,53 @@ export default function LearningLabPage() {
   return (
     <>
       <LabHero
-        eyebrow="Free 14-day venture experiment · College students aged 18+"
-        title="Turn your business idea into a customer experiment."
+        eyebrow="Free · For college students aged 18+"
+        title="Test your business idea with real customers in 14 days."
         description={venturePositioning}
       >
         <Link href={`${ventureExperimentPath}#start`} className="lab-button">
-          Start your 14-day experiment →
+          Start your experiment →
         </Link>
         <Link href={`${ventureExperimentPath}#plan`} className="lab-button lab-button-secondary">
-          See the daily plan
+          See the 14-day plan
         </Link>
       </LabHero>
-      <LabSection
-        eyebrow="One audience. One practical problem."
-        title="An idea, limited money, and no clear next step."
-      >
+      <LabSection eyebrow="Why it exists" title="An idea, little money and no clear next step?">
         <div className="lab-split">
           <div className="lab-prose">
             <p className="lab-lead">
-              “What should I do next, what can I afford to commit, and what evidence would justify
-              continuing?”
+              Skip the app, the company and the course fee. Run one small, honest test with real
+              customers, then make a decision you can defend. Plan on about 30 minutes a day, plus a
+              few customer conversations.
             </p>
-            <p>
-              Start with one reachable customer problem. Use the skills, relationships and time you
-              already have to design a small test. You do not need to build an app, incorporate a
-              business or buy a course.
-            </p>
+            <div className="lab-stat-row">
+              <div>
+                <span>Cost</span>
+                <strong>Free</strong>
+              </div>
+              <div>
+                <span>Length</span>
+                <strong>14 days</strong>
+              </div>
+              <div>
+                <span>Time</span>
+                <strong>~30 min a day</strong>
+              </div>
+            </div>
           </div>
           <aside className="lab-callout">
-            <h3>One experiment. A better-supported decision.</h3>
-            <p>
-              Produce an affordable test boundary, an evidence log, results from an actual customer
-              experiment, and a decision to continue, change or stop.
-            </p>
-            <p className="lab-small">
-              A decision to stop can be a successful outcome. Fourteen days is the working plan;
-              record actual time and access barriers honestly.
-            </p>
+            <h3>You finish with</h3>
+            <ul>
+              <li>A time and cost limit you can afford (₹0 counts)</li>
+              <li>A log of what customers actually did</li>
+              <li>One completed customer test</li>
+              <li>A clear decision: continue, change or stop</li>
+            </ul>
+            <p className="lab-small">Stopping is a valid result.</p>
           </aside>
         </div>
       </LabSection>
-      <LabSection
-        className="lab-band"
-        eyebrow="From intention to evidence"
-        title="Four stages that build on your own work."
-      >
+      <LabSection className="lab-band" eyebrow="How it works" title="Four stages, one experiment.">
         <div className="lab-grid lab-grid-two">
           {ventureStages.map((stage) => (
             <article className="lab-card" key={stage.id}>
@@ -82,129 +84,100 @@ export default function LearningLabPage() {
               <h3>{stage.title}</h3>
               <p>{stage.description}</p>
               <p className="lab-small">
-                <strong>Keep:</strong> {stage.output}.
+                <strong>You leave with:</strong> {stage.output}.
               </p>
             </article>
           ))}
         </div>
       </LabSection>
-      <LabSection
-        eyebrow="Guidance fitted to your constraints"
-        title="A small next step you can actually take."
-      >
+      <LabSection eyebrow="What you get" title="Guidance, feedback and honest evidence.">
         <div className="lab-grid">
           <article>
-            <h3>Your time and affordable commitment</h3>
+            <h3>A plan that fits you</h3>
             <p>
-              Set your own ceiling, including ₹0. The next-task guide adapts to available time,
-              skills and customer access. It does not spend money or contact anyone for you.
+              Enter your time, skills, customer access and budget to get your next task. It never
+              spends money or contacts anyone for you.
             </p>
           </article>
           <article>
-            <h3>Feedback on your own work</h3>
+            <h3>Feedback from the founder</h3>
             <p>
-              The initial founder-led pilot has up to 20 active feedback places. Submit your
-              boundary, questions, test and decision privately, then return to read actual human
-              feedback.
+              Up to 20 learners at a time get written feedback from Dr. Swapnil Sahoo at each stage.
+              Turnaround is not guaranteed.
             </p>
           </article>
           <article>
-            <h3>Evidence before enthusiasm</h3>
+            <h3>Evidence over opinions</h3>
             <p>
-              Separate customer action from compliments, assumptions and role-play. Record refusals,
-              delivery effort and costs as carefully as positive responses.
+              Count what customers do, not what they say. Refusals, no-replies and costs count too.
             </p>
           </article>
         </div>
         <p className="lab-small">
-          The guide and worksheets are free for everyone. A feedback place is confirmed only by a
-          successful registration; review timing is not guaranteed. No funding, business success or
+          The guide and worksheets are free for everyone. No funding, business success or
           certificate is promised.
         </p>
-        <Link href={ventureExperimentPath} className="lab-button">
-          Build your first experiment →
-        </Link>
+        <div className="lab-actions" style={{ alignItems: "center" }}>
+          <Link href={`${ventureExperimentPath}#start`} className="lab-button">
+            Start your experiment →
+          </Link>
+          <Link href={`${ventureExperimentPath}#evidence`} className="lab-text-link">
+            What counts as a completed test →
+          </Link>
+        </div>
       </LabSection>
       <LabSection
         className="lab-band"
-        eyebrow="An approach to test"
-        title="Useful work will establish the advantage."
+        eyebrow="Keep learning"
+        title="Free tools for your next step."
       >
-        <p className="lab-lead">
-          We will assess completed experiments, evidence quality, time taken and actual mentoring
-          hours. A comparison with similar learners using an existing free resource is an evaluation
-          plan, not a result we have already earned.
-        </p>
-        <Link href={`${ventureExperimentPath}#evidence`} className="lab-text-link">
-          See the completion rules and evidence rubric →
-        </Link>
-      </LabSection>
-      <LabSection eyebrow="More open learning" title="Keep useful resources within reach.">
         <div className="lab-grid">
           <article className="lab-card">
-            <h3>Short lessons and tools</h3>
-            <p>
-              Practise customer questions, unit economics, strategic choices and AI task briefs.
-            </p>
+            <h3>Six short courses</h3>
+            <p>Customer questions, unit economics, strategy and AI task briefs.</p>
             <Link href="/learning-lab/free-courses" className="lab-text-link">
-              Explore the six free courses →
+              Explore the courses →
             </Link>
           </article>
           <article className="lab-card">
             <h3>Four worked examples</h3>
-            <p>
-              All weekly practices are open now. Use them whenever they help your next decision.
-            </p>
+            <p>Weekly practice notes, all open now.</p>
             <Link href="/learning-lab/weekly-notes" className="lab-text-link">
               Read and practise →
             </Link>
           </article>
           <article className="lab-card">
-            <h3>The wider catalogue</h3>
-            <p>
-              Management, career, research and entrepreneurship resources remain freely available.
-            </p>
+            <h3>The full catalogue</h3>
+            <p>Free management, career, research and entrepreneurship resources.</p>
             <Link href="/learning-lab/catalogue" className="lab-text-link">
-              Browse the learning catalogue →
+              Browse the catalogue →
             </Link>
           </article>
         </div>
       </LabSection>
-      <LabSection
-        className="lab-band"
-        eyebrow="Founded by Dr. Swapnil Sahoo"
-        title="A focused starting point within a wider purpose."
-      >
+      <LabSection eyebrow="About the Lab" title="Independent and not-for-profit.">
         <div className="lab-split">
-          <div>
-            <p>
-              The long-term ambition is freely accessible learning from school through doctoral
-              study. Our immediate focus is helping first-time student entrepreneurs test one idea
-              under real constraints.
-            </p>
-            <Link href="/learning-lab/purpose" className="lab-text-link">
-              Our long-term purpose and proposed institutional structure →
+          <p>
+            Founded by Dr. Swapnil Sahoo. The long-term goal is free learning from school to
+            doctoral study. Today&rsquo;s focus is helping first-time student entrepreneurs test one
+            idea. Voluntary support helps improve content and infrastructure.
+          </p>
+          <div className="lab-actions" style={{ marginTop: 0 }}>
+            <Link href="/learning-lab/founder" className="lab-text-link">
+              Meet the founder →
             </Link>
-          </div>
-          <div>
-            <p>
-              The Lab is independently run on a not-for-profit basis. Voluntary support helps
-              improve content and infrastructure; the experiment guide and feedback pilot are free.
-            </p>
-            <div className="lab-actions">
-              <Link href="/learning-lab/founder" className="lab-text-link">
-                Meet the founder →
-              </Link>
-              <Link href="/learning-lab/support" className="lab-text-link">
-                Support free learning →
-              </Link>
-              <Link href="/learning-lab/for-colleges" className="lab-text-link">
-                For colleges →
-              </Link>
-              <Link href="/learning-lab/programmes" className="lab-text-link">
-                Other proposed programmes →
-              </Link>
-            </div>
+            <Link href="/learning-lab/purpose" className="lab-text-link">
+              Our long-term purpose →
+            </Link>
+            <Link href="/learning-lab/support" className="lab-text-link">
+              Support free learning →
+            </Link>
+            <Link href="/learning-lab/for-colleges" className="lab-text-link">
+              For colleges →
+            </Link>
+            <Link href="/learning-lab/programmes" className="lab-text-link">
+              Other proposed programmes →
+            </Link>
           </div>
         </div>
       </LabSection>
