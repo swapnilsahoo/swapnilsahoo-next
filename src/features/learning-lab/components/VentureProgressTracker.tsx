@@ -35,9 +35,11 @@ export function VentureProgressTracker() {
     const now = new Date();
     const local = (value: number) => String(value).padStart(2, "0");
     const start =
-      startDate ||
-      `${now.getFullYear()}-${local(now.getMonth() + 1)}-${local(now.getDate())}`;
-    const stamp = now.toISOString().replace(/[-:]/g, "").replace(/.d{3}/, "");
+      startDate || `${now.getFullYear()}-${local(now.getMonth() + 1)}-${local(now.getDate())}`;
+    const stamp = now
+      .toISOString()
+      .replace(/[-:]/g, "")
+      .replace(/\.\d{3}/, "");
     const calendar = buildVentureCalendar(start, reminderTime, ventureDays, pageUrl, stamp);
     if (!calendar) {
       setStatus("Choose a valid start date and time, then try again.");
@@ -184,12 +186,16 @@ export function VentureProgressTracker() {
               />
             </div>
           </div>
-          <button type="button" className="lab-button lab-button-secondary" onClick={downloadReminders}>
+          <button
+            type="button"
+            className="lab-button lab-button-secondary"
+            onClick={downloadReminders}
+          >
             Download 14 calendar reminders (.ics)
           </button>
           <p className="lab-small" style={{ marginTop: "0.6rem" }}>
-            Works with Google Calendar, Apple Calendar and Outlook. The file is made in your browser;
-            the Lab does not send reminders or collect your details.
+            Works with Google Calendar, Apple Calendar and Outlook. The file is made in your
+            browser; the Lab does not send reminders or collect your details.
           </p>
         </fieldset>
       </details>
