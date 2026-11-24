@@ -31,13 +31,27 @@ export const metadata: Metadata = {
     title: "Your first customer experiment in 14 days",
     description: venturePositioning,
     url: ventureExperimentPath,
-    images: [],
+    images: [
+      {
+        url: "/learning-lab/venture-experiment/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "The free 14-day venture experiment: will real people act on your idea, not just say they like it?",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Free 14-day venture experiment",
     description: venturePositioning,
-    images: [],
+    images: [
+      {
+        url: "/learning-lab/venture-experiment/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "The free 14-day venture experiment: will real people act on your idea, not just say they like it?",
+      },
+    ],
   },
 };
 

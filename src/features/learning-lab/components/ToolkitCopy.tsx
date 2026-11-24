@@ -12,6 +12,7 @@ export function CopyBlock({
   text,
   whatsapp = false,
   downloadName,
+  lang,
 }: {
   id?: string;
   title?: string;
@@ -19,6 +20,7 @@ export function CopyBlock({
   text: string;
   whatsapp?: boolean;
   downloadName?: string;
+  lang?: string;
 }) {
   const hydrated = useLabHydrated();
   const textId = useId();
@@ -57,9 +59,9 @@ export function CopyBlock({
 
   return (
     <div className="lab-copy" id={id}>
-      {title && <h3>{title}</h3>}
+      {title && <h3 lang={lang}>{title}</h3>}
       {note && <p className="lab-small">{note}</p>}
-      <pre className="lab-copy-text" id={textId} ref={textRef}>
+      <pre className="lab-copy-text" id={textId} ref={textRef} lang={lang}>
         {text}
       </pre>
       <div className="lab-copy-actions">

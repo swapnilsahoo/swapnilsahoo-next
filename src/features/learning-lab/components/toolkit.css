@@ -280,6 +280,19 @@
   background: var(--lab-tint);
   font-weight: 600;
 }
+.lab-reminders {
+  margin-top: 0.8rem;
+  border-top: 1px solid var(--lab-line);
+  padding-top: 0.4rem;
+}
+.lab-reminders summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--lab-accent);
+}
 .lab-progress-foot {
   display: flex;
   flex-wrap: wrap;
