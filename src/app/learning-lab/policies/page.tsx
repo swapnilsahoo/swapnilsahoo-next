@@ -22,8 +22,8 @@ export default function PoliciesPage() {
         <div className="lab-callout">
           <h3>The current position</h3>
           <p>
-            Everything is free and the website has no checkout. Voluntary contributions are welcome
-            and never required. Registering interest does not reserve a place.
+            Everything is free. The only payment on the website is an optional voluntary
+            contribution, which is never required. Registering interest does not reserve a place.
           </p>
           <p>
             Draft programme policies will be finalised before a programme opens. They are not a

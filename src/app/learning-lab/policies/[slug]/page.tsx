@@ -45,9 +45,9 @@ export default async function PolicyPage({ params }: Props) {
             </h3>
             <p>
               {slug === "privacy"
-                ? "The contact page shows online-enquiry availability. This notice describes the implemented workflow; it does not certify legal compliance. Everything is free, and the website has no checkout."
+                ? "The contact page shows online-enquiry availability. This notice describes the implemented workflow; it does not certify legal compliance. Everything is free; the only payment is an optional contribution."
                 : policy.status === "current"
-                  ? "The Lab charges no fees and the website has no checkout. Voluntary financial assistance and support for its infrastructure and services are welcome and never required."
+                  ? "The Lab charges no fees. Voluntary financial assistance and support for its infrastructure and services are welcome and never required."
                   : "Programmes are still being planned and will be free. This policy will be finalised before a programme opens; it is not a compliance declaration."}
             </p>
           </aside>

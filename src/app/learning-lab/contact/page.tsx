@@ -27,8 +27,8 @@ export default async function ContactPage() {
         title="Tell us what you want to learn."
         description={
           enquiriesAvailable
-            ? "Register interest using the form, email a programme question or discuss an institutional pilot. No payment is collected and no place is reserved."
-            : "Email a programme question or discuss an institutional pilot. Online registration of interest will open after secure service setup. No payment is collected and no place is reserved."
+            ? "Register interest using the form, email a programme question or discuss an institutional pilot. Nothing is charged and no place is reserved."
+            : "Email a programme question or discuss an institutional pilot. Online registration of interest will open after secure service setup. Nothing is charged and no place is reserved."
         }
       />
       <LabSection>
