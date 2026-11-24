@@ -32,6 +32,9 @@ export const labFreeLine =
 /** Voluntary support, in the founder's words. */
 export const labSupportLine =
   "Voluntary financial assistance and support for our infrastructure and services are welcome and appreciated.";
+/** Who receives money today: the founder personally, for both the QR and online contributions. */
+export const labContributionPayeeLine =
+  "For now, contributions go to Dr. Swapnil Sahoo’s own account (payee: SWAPNIL SAHOO), not to the company, and are used for the Lab’s infrastructure and services.";
 /** What support never buys, and the honest tax position. */
 export const labSupportLimits =
   "Support is never required. It does not buy a place, feedback, assessment, a certificate or preferential treatment. No registered-charity status or tax deduction is claimed.";
