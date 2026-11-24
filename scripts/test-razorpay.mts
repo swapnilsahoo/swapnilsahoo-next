@@ -498,3 +498,28 @@ await test("missing or malformed configuration disables checkout before provider
   }
   assert.deepEqual(getCheckoutAvailability(), { available: true, testMode: true });
 });
+
+await test("test keys are refused on Production so real visitors never see simulated payments", async () => {
+  const { callback } = await fixture();
+  const previous = process.env.VERCEL_ENV;
+  try {
+    process.env.VERCEL_ENV = "production";
+    assert.deepEqual(getCheckoutAvailability(), { available: false, testMode: false });
+    for (const handler of [createCheckoutOrder, verifyCheckoutPayment]) {
+      const { gateway, calls } = mockGateway();
+      const body = handler === createCheckoutOrder ? { amount: AMOUNT, currency: "INR" } : callback;
+      await failure(await handler(request(body), gateway), 503);
+      noCalls(calls);
+    }
+    // A live key on Production is accepted; Preview may still use test keys.
+    process.env.RAZORPAY_KEY_ID = "rzp_live_OfflineChecks";
+    assert.deepEqual(getCheckoutAvailability(), { available: true, testMode: false });
+    process.env.RAZORPAY_KEY_ID = KEY_ID;
+    process.env.VERCEL_ENV = "preview";
+    assert.deepEqual(getCheckoutAvailability(), { available: true, testMode: true });
+  } finally {
+    if (previous === undefined) delete process.env.VERCEL_ENV;
+    else process.env.VERCEL_ENV = previous;
+    process.env.RAZORPAY_KEY_ID = KEY_ID;
+  }
+});
