@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { labPublicConfig, labSupportLimits } from "@/features/learning-lab/config";
+import { getCheckoutAvailability } from "@/features/payments/server";
 
 export const metadata: Metadata = {
   title: "Support the Learning Lab",
@@ -15,6 +16,7 @@ const supportEmail = `mailto:${labPublicConfig.businessEmail}?subject=${encodeUR
 const donationQr = "/images/learning-lab/phonepe-donation-qr.jpg";
 
 export default function SupportLabPage() {
+  const online = getCheckoutAvailability();
   return (
     <>
       <LabHero
@@ -52,6 +54,13 @@ export default function SupportLabPage() {
               The full image is provided unchanged. Payments happen in your payment app; this
               website does not verify a transfer or issue an automatic receipt.
             </p>
+            {online.available && !online.testMode && (
+              <p>
+                <Link href="/learning-lab/checkout" className="lab-button lab-button-secondary">
+                  Or contribute online by UPI, card or netbanking →
+                </Link>
+              </p>
+            )}
             <p>
               For a question about your contribution, email{" "}
               <a href={supportEmail}>{labPublicConfig.businessEmail}</a>. Include only the date,

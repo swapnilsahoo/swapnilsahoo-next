@@ -24,7 +24,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
           `Access and attendance alternatives: ${offer.accessTerms || "Not published"}`,
           `Support and feedback: ${offer.supportTerms || "Not published"}`,
           `Cancellation and rescheduling: ${offer.cancellationTerms || "Not published"}`,
-          "An enquiry does not reserve a place. There is no fee and no checkout.",
+          "An enquiry does not reserve a place. There is no fee.",
           "",
         ]
       : [];
@@ -39,7 +39,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
     `Contact: ${labPublicConfig.businessEmail || "See the contact page for availability."}`,
     `Duration: ${programme.duration}`,
     `Format: ${programme.format}`,
-    "Dates and capacity require an approved offer. There is no fee and no checkout.",
+    "Dates and capacity require an approved offer. There is no fee.",
     "",
     ...approvedOffer,
     "WHO IT IS FOR",

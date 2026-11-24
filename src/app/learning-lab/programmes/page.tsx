@@ -68,7 +68,7 @@ export default async function ProgrammesPage() {
           <p>
             Proposed formats may be revised after pilot conversations. Programmes will be free.
             Dates, places and the final delivery arrangement will be confirmed before a programme
-            opens. No payment is collected on this site.
+            opens. Nothing is charged for a programme.
           </p>
           <Link href="/learning-lab/contact" className="lab-text-link">
             Ask about your learning goals →

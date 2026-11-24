@@ -1,5 +1,7 @@
 # Razorpay Standard Checkout
 
+**Status, 24 November 2026:** published as the Lab's voluntary contribution page at `/learning-lab/checkout`, at the founder's request. Everything the Lab offers is free (₹0), so no course, programme or feedback is sold here. Razorpay cannot create a ₹0 order (minimum 100 paise), so the page only takes contributions of ₹1 or more. Orders carry `notes.purpose = learning-lab-contribution`. Production has no Razorpay keys yet: the page shows "opening soon" until live keys (`rzp_live_…`) for the company's activated Razorpay account are added to the Vercel Production environment and the site is redeployed. Test keys are refused on Production (`VERCEL_ENV=production`). The support page shows the online-contribution link only when live keys are configured.
+
 The Next.js App Router integration provides `/learning-lab/checkout`, `POST /api/create-order` and `POST /api/verify-payment`. The supplied test credentials are in the local, Git-ignored `.env`. No secret belongs in source code, browser code, screenshots or Git. `.gitignore` already excludes `.env*` except `.env.example`.
 
 ## Actual test payment verified — 16 November 2026

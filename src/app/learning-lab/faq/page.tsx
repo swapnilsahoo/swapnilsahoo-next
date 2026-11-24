@@ -25,13 +25,13 @@ function getQuestions(enquiriesAvailable: boolean) {
     ],
     [
       "How can I support the Lab?",
-      "Everything is free and nothing is required. Voluntary financial assistance and support for our infrastructure and services are welcome and appreciated. You can offer content feedback, subject expertise, accessibility help or technical assistance, or contribute any amount using the original PhonePe QR on the Support the Lab page. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. A contribution does not buy a place, feedback, assessment or a certificate, and this website does not verify transfers or issue an automatic confirmation.",
+      "Everything is free and nothing is required. Voluntary financial assistance and support for our infrastructure and services are welcome and appreciated. You can offer content feedback, subject expertise, accessibility help or technical assistance, or contribute any amount using the original PhonePe QR on the Support the Lab page or, when open, the online contribution page. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. A contribution does not buy a place, feedback, assessment or a certificate, and this website does not verify transfers or issue an automatic confirmation.",
     ],
     [
       "Do I have to pay for anything?",
       enquiriesAvailable
-        ? "No. Everything the Lab offers is free, including future programmes, and there is no checkout. The full programmes are still being planned: register interest using the online form on the contact page, or email a programme question. Dates, capacity and delivery details are not set yet. An enquiry or a voluntary contribution does not reserve a place or create an enrolment."
-        : "No. Everything the Lab offers is free, including future programmes, and there is no checkout. The full programmes are still being planned: email a programme question using the contact page. Online interest forms will open after secure service setup. Dates, capacity and delivery details are not set yet. An enquiry or a voluntary contribution does not reserve a place or create an enrolment.",
+        ? "No. Everything the Lab offers is free, including future programmes. Nothing is charged. The full programmes are still being planned: register interest using the online form on the contact page, or email a programme question. Dates, capacity and delivery details are not set yet. An enquiry or a voluntary contribution does not reserve a place or create an enrolment."
+        : "No. Everything the Lab offers is free, including future programmes. Nothing is charged. The full programmes are still being planned: email a programme question using the contact page. Online interest forms will open after secure service setup. Dates, capacity and delivery details are not set yet. An enquiry or a voluntary contribution does not reserve a place or create an enrolment.",
     ],
     [
       "Who are the programmes for?",

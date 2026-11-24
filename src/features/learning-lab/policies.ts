@@ -36,7 +36,7 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Everything is free",
         paragraphs: [
-          "The Lab charges no fees. The free courses, the 14-day venture experiment, the founder toolkit, the open catalogue, written founder feedback and any future programmes are free. The website has no checkout and never asks for card or bank details.",
+          "The Lab charges no fees. The free courses, the 14-day venture experiment, the founder toolkit, the open catalogue, written founder feedback and any future programmes are free. The only payment on the website is an optional voluntary contribution. Card, UPI and bank details are entered in Razorpay's secure checkout window, never on the Lab's pages, and the Lab never sees or stores them.",
           "Voluntary financial assistance and support for the Lab's infrastructure and services are welcome and appreciated. They are never required, and they do not buy a place, feedback, assessment, a certificate or preferential treatment.",
         ],
       },
@@ -57,8 +57,8 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Voluntary support",
         paragraphs: [
-          "The support page offers an email route to give your time or expertise and the founder’s original PhonePe QR for a voluntary contribution of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. The payment app handles the transfer. The website does not verify transactions, issue automatic confirmations or submit an email automatically.",
-          "Contributions support the Lab's infrastructure and services. No registered-charity status or tax deduction is claimed. If you sent a contribution by mistake, for example a duplicate or the wrong amount, email the Lab with the date, amount and transaction reference and it will be returned to the account it came from.",
+          "The support page offers an email route to give your time or expertise, the founder’s original PhonePe QR and, when open, an online contribution page using Razorpay. Choose any amount. The QR image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. For QR transfers the website does not verify transactions or issue automatic confirmations. On the online page, the website confirms a Razorpay payment only after checking it with Razorpay.",
+          "Contributions support the Lab's infrastructure and services. No registered-charity status or tax deduction is claimed. If you sent a contribution by mistake, for example a duplicate or the wrong amount, email the Lab with the date, amount and transaction or order reference. An online contribution is refunded through Razorpay to the method you used; a QR transfer is returned to the account it came from.",
         ],
       },
       {
@@ -103,7 +103,7 @@ export const labPolicies: LabPolicy[] = [
         paragraphs: [
           `Updated on 24 November 2026 to name the company that runs the Lab. The operator is ${labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo; contact swapnil.s@greatlakes.edu.in for an enquiry or privacy question. Academic employers and institutions do not sponsor or operate the Lab by virtue of the founder's biography or contact email.`,
           "The contact page shows whether online enquiries are available. When a form is offered, your entries are sent to the website when you submit it. A saved confirmation means the enquiry was accepted into configured storage; it does not confirm an email, enrolment or booking. If online forms are unavailable, the email link opens your email app and the website does not save or send that message.",
-          "This notice describes the implemented workflow and does not certify legal compliance. Everything the Lab offers is free, and the website has no checkout.",
+          "This notice describes the implemented workflow and does not certify legal compliance. Everything the Lab offers is free; the only payment on the website is an optional voluntary contribution.",
         ],
       },
       {
@@ -134,7 +134,9 @@ export const labPolicies: LabPolicy[] = [
         heading: "Voluntary support and external payments",
         paragraphs: [
           "If you choose to email about voluntary assistance or contributions, your email provider and the recipient's email service process the message. Share only the information needed to discuss your offer. Clicking an email link does not send a message. Supporters' names, messages and contributions are not published without separate permission.",
-          "Optional voluntary contributions use the original QR displayed on the support page. Your chosen payment app, bank and payment services process the transfer under their own terms and privacy notices. This website has no contribution form, payment gateway, public supporter list or transaction-verification service. It does not receive an automatic payment confirmation or issue an automatic receipt. A transfer does not create a learner account, enrolment or certificate eligibility.",
+          "QR contributions: your chosen payment app, bank and payment services process the transfer under their own terms and privacy notices. The website receives no confirmation of a QR transfer and issues no automatic receipt.",
+          "Online contributions, added on 24 November 2026: the contribution page loads Razorpay's checkout script, which contacts Razorpay. You enter only the amount on the Lab's page. Razorpay's window collects your contact details and payment method under Razorpay's own terms and privacy policy (https://razorpay.com/privacy/). To confirm a contribution, the website's server receives the order and payment identifiers, amount and status from Razorpay; it does not store them in the Lab's database. Records are kept in the company's Razorpay account for accounting, refunds and legal obligations. The Lab never receives your card, UPI PIN or bank login.",
+          "A contribution does not create a learner account, enrolment or certificate eligibility. There is no public supporter list, and names, messages and amounts are not published without separate permission.",
         ],
       },
       {
@@ -150,7 +152,7 @@ export const labPolicies: LabPolicy[] = [
           "Authentication requires essential session cookies. Free-course and demonstration notes stay on the page unless you choose to save them in this browser or download a worksheet. They are not sent to the Lab by these exercises. A separate learner-workspace submission is required for assessment. Browser-stored notes can be cleared in the exercise or using your browser's site-data controls.",
           "Google Tag Manager (container GTM-KJMH54BC) loads across the website to manage tags. Loading it contacts Google and provides standard request information such as your IP address, browser and the page address. The individual measurement services depend on tags configured and published in that container; installing the container alone does not establish which analytics reports are available. This installation adds no custom data-layer events containing form answers, worksheet text, private access codes or founder feedback. Google services operate under Google's privacy terms.",
           "The Google tag G-PTGSDRSVK3 is also installed once per page for Google Analytics measurement. It can collect page views, page addresses and titles, browser/device information and cookie-based identifiers; enabled automatic events depend on the Analytics property settings. Browser cookie controls and tracking protections can limit collection. This manual installation does not add names, emails, worksheet answers, private access codes or founder feedback to measurement events. Analytics report access and processing are managed in the owner's Google Analytics account.",
-          "Public exercises do not send your work to an AI provider. General marketing email is not configured, and the website has no checkout. Optional QR contributions are processed in your chosen payment app, not on this website. External resource links have the destination provider's own privacy terms.",
+          "Public exercises do not send your work to an AI provider. General marketing email is not configured. Optional contributions are processed in your payment app or in Razorpay's checkout window, as described above. External resource links have the destination provider's own privacy terms.",
         ],
       },
       {
@@ -204,7 +206,7 @@ export const labPolicies: LabPolicy[] = [
         heading: "Voluntary contributions",
         paragraphs: [
           "Contributions are voluntary support for the Lab's infrastructure and services, not payment for anything. They are not needed for any place, feedback or certificate.",
-          "If you sent a contribution by mistake, for example a duplicate or the wrong amount, email the Lab with the date, amount and transaction reference. After the transfer is identified, it will be returned to the account it came from. These terms do not limit any rights you have under applicable law.",
+          "If you sent a contribution by mistake, for example a duplicate or the wrong amount, email the Lab with the date, amount and transaction or order reference. Once identified, an online contribution is refunded through Razorpay to the method you used, and a QR transfer is returned to the account it came from. Razorpay or your bank sets how long the refund takes to appear. These terms do not limit any rights you have under applicable law.",
         ],
       },
     ],

@@ -28,7 +28,7 @@ const paidOrder = {
   amount: AMOUNT,
   currency: "INR",
   receipt: RECEIPT,
-  notes: { purpose: "learning-lab-payment" },
+  notes: { purpose: "learning-lab-contribution" },
   status: "paid",
   amount_paid: AMOUNT,
   amount_due: 0,
@@ -159,7 +159,7 @@ await test("creates bounded INR orders and returns only public checkout data", a
     assert.equal(body.order_id, ORDER_ID);
     assert.equal(calls.create.length, 1);
     assert.match(calls.create[0].receipt, /^[A-Za-z0-9_-]{1,40}$/);
-    assert.deepEqual(calls.create[0].notes, { purpose: "learning-lab-payment" });
+    assert.deepEqual(calls.create[0].notes, { purpose: "learning-lab-contribution" });
     const token = String(body.order_token);
     const [payload, signature] = token.split(".");
     assert.equal(signature, mac(`checkout-context:v1:${payload}`));

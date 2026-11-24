@@ -4,7 +4,7 @@ import Razorpay from "razorpay";
 import { z } from "zod";
 import { MAX_PAYMENT_PAISE, MIN_PAYMENT_PAISE, PAYMENT_CURRENCY } from "./contracts";
 
-const PURPOSE = "learning-lab-payment";
+const PURPOSE = "learning-lab-contribution";
 const CONTEXT_TTL_SECONDS = 30 * 60;
 const MAX_BODY_BYTES = 4096;
 const orderId = z.string().regex(/^order_[A-Za-z0-9]{1,64}$/);
@@ -73,10 +73,13 @@ class PaymentHttpError extends Error {
 function configuration() {
   const keyId = process.env.RAZORPAY_KEY_ID?.trim();
   const secret = process.env.RAZORPAY_KEY_SECRET?.trim();
-  if (!keyId || !/^rzp_(test|live)_[A-Za-z0-9]+$/.test(keyId) || !secret) {
+  // Test keys only simulate payments, so they are never offered to real visitors on production.
+  const testKeyOnProduction =
+    process.env.VERCEL_ENV === "production" && Boolean(keyId?.startsWith("rzp_test_"));
+  if (!keyId || !/^rzp_(test|live)_[A-Za-z0-9]+$/.test(keyId) || !secret || testKeyOnProduction) {
     throw new PaymentHttpError(
       503,
-      "Online checkout is not configured. Please contact the Learning Lab."
+      "Online contributions are not open yet. Please use the QR on the support page or contact the Learning Lab."
     );
   }
   return { keyId, secret };

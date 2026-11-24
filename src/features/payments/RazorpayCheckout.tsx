@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
@@ -41,7 +42,7 @@ export function RazorpayCheckout({
   testMode: boolean;
 }) {
   const [ready, setReady] = useState(false);
-  const [amount, setAmount] = useState("1.00");
+  const [amount, setAmount] = useState("");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
@@ -85,8 +86,8 @@ export function RazorpayCheckout({
         setRetry(null);
         setMessage(
           testMode
-            ? "Test payment verified and captured. No real money was charged."
-            : "Payment verified and captured. Keep the reference below and contact the Learning Lab for the next steps."
+            ? "Test contribution verified and captured. No real money was charged."
+            : "Thank you. Your contribution is confirmed. Keep the reference below for your records."
         );
       } else {
         setRetry(payload);
@@ -161,7 +162,7 @@ export function RazorpayCheckout({
         currency: order.currency,
         order_id: order.order_id,
         name: "Swapnil Sahoo Learning Lab",
-        description: testMode ? "Test payment" : "Agreed Learning Lab payment",
+        description: testMode ? "Test contribution" : "Voluntary contribution",
         theme: { color: "#194c45" },
         handler: (result) => {
           if (confirming) return;
@@ -205,16 +206,22 @@ export function RazorpayCheckout({
   }
 
   return (
-    <section className="lab-card" aria-label="Online payment">
+    <section className="lab-card" aria-label="Online contribution">
       <p className="lab-eyebrow">{testMode ? "Razorpay test mode" : "Razorpay secure checkout"}</p>
-      <h2>{testMode ? "Try a test payment" : "Pay an agreed amount"}</h2>
+      <h2>{testMode ? "Try a test contribution" : "Contribute online"}</h2>
       <p>
         {testMode
           ? "Use Razorpay test payment details. This simulates a payment without charging real money."
-          : "Continue only after the Learning Lab has confirmed the purpose, amount and terms with you."}
+          : "Choose any amount. Pay by UPI, card, netbanking or wallet in Razorpay’s secure window; the Lab never sees your card or bank details."}
       </p>
       {!available ? (
-        <p role="status">Online checkout is not configured. Please contact the Learning Lab.</p>
+        <p role="status">
+          Online contributions are opening soon. Until then, you can use the{" "}
+          <Link href="/learning-lab/support#donate" className="lab-text-link">
+            PhonePe QR on the support page
+          </Link>
+          .
+        </p>
       ) : (
         <>
           <Script
@@ -241,6 +248,7 @@ export function RazorpayCheckout({
                 max="100000"
                 step="0.01"
                 required
+                placeholder="Any amount, for example 500"
                 value={amount}
                 onChange={(event) => setAmount(event.target.value)}
                 disabled={busy || Boolean(retry) || Boolean(reference)}
@@ -257,16 +265,16 @@ export function RazorpayCheckout({
                 disabled={!ready || busy || Boolean(retry) || Boolean(reference)}
               >
                 {captured
-                  ? "Payment captured"
+                  ? "Contribution received"
                   : reference && !busy
-                    ? "Payment submitted"
+                    ? "Contribution submitted"
                     : busy
                       ? "Please wait…"
                       : !ready
                         ? "Loading checkout…"
                         : testMode
-                          ? "Pay in test mode"
-                          : "Pay with Razorpay"}
+                          ? "Contribute in test mode"
+                          : "Contribute with Razorpay"}
               </button>
               {retry && (
                 <button
@@ -297,8 +305,9 @@ export function RazorpayCheckout({
       )}
       {reference && <p className="lab-small break-all">{reference}</p>}
       <p className="lab-small">
-        Payment does not automatically confirm enrolment, course access or a certificate. Free
-        courses remain free.
+        Everything the Lab offers stays free. A contribution does not buy a place, feedback,
+        assessment, a certificate or preferential treatment. No registered-charity status or tax
+        deduction is claimed.
       </p>
     </section>
   );
