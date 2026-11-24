@@ -21,10 +21,16 @@ import {
   outreachMessages,
   toolkitHref,
 } from "@/features/learning-lab/founder-toolkit";
+import {
+  conversationScriptHindi,
+  conversationScriptHinglish,
+  indianLanguageNote,
+  outreachMessagesHinglish,
+} from "@/features/learning-lab/founder-toolkit-extras";
 
 const path = toolkitHref("talk-to-customers");
 const description =
-  "Free customer interview kit for student founders: word-for-word messages, five questions that get honest answers, and a checker that flags leading or hypothetical questions.";
+  "Free customer interview kit for student founders: word-for-word messages in English, Hinglish and Hindi, five questions that get honest answers, and a checker that flags leading or hypothetical questions.";
 
 export const metadata = toolkitMetadata(
   path,
@@ -118,6 +124,21 @@ export default function TalkToCustomersPage() {
             />
           ))}
         </div>
+        <h3 id="hindi" style={{ marginTop: "2.4rem" }}>
+          Hinglish mein messages
+        </h3>
+        <p className="lab-small">{indianLanguageNote}</p>
+        <div className="lab-grid lab-grid-two">
+          {outreachMessagesHinglish.map((item) => (
+            <CopyBlock
+              key={item.id}
+              id={`message-${item.id}`}
+              title={item.channel}
+              text={item.message}
+              whatsapp={item.id !== "in-person-hinglish"}
+            />
+          ))}
+        </div>
       </LabSection>
 
       <LabSection
@@ -130,6 +151,25 @@ export default function TalkToCustomersPage() {
           writes itself.
         </p>
         <ScriptBuilder />
+        <h3 id="hindi-script" style={{ marginTop: "2.4rem" }}>
+          The same script in Hinglish and Hindi
+        </h3>
+        <p className="lab-small">{indianLanguageNote}</p>
+        <div className="lab-grid lab-grid-two">
+          <CopyBlock
+            title="Hinglish script"
+            text={conversationScriptHinglish}
+            whatsapp
+            downloadName="customer-script-hinglish.txt"
+          />
+          <CopyBlock
+            title="हिंदी स्क्रिप्ट"
+            lang="hi"
+            text={conversationScriptHindi}
+            whatsapp
+            downloadName="customer-script-hindi.txt"
+          />
+        </div>
       </LabSection>
 
       <LabSection
