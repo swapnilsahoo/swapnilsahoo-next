@@ -64,11 +64,11 @@ export default async function ProgrammesPage() {
       </LabSection>
       <LabSection className="lab-band">
         <div className="lab-callout">
-          <h3>Interest first. Programme approval before enrolment.</h3>
+          <h3>Free programmes. Interest first.</h3>
           <p>
-            Proposed formats may be revised after pilot conversations. Dates, fees, places and the
-            final delivery arrangement will be confirmed before any paid offer. No payment is
-            collected on this site.
+            Proposed formats may be revised after pilot conversations. Programmes will be free.
+            Dates, places and the final delivery arrangement will be confirmed before a programme
+            opens. No payment is collected on this site.
           </p>
           <Link href="/learning-lab/contact" className="lab-text-link">
             Ask about your learning goals →

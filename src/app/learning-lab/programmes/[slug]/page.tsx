@@ -283,11 +283,11 @@ export default async function ProgrammePage({ params }: Props) {
             </h2>
             <p className="lab-muted">
               {pilotOpen
-                ? "Review the approved pilot details above and enquire about joining. Submitting an enquiry is free and does not reserve a place or create a paid enrolment."
-                : "Dates, fees and capacity are not confirmed. Registering interest is free, does not reserve a place and does not create a paid enrolment."}
+                ? "Review the approved pilot details above and enquire about joining. The programme is free. Submitting an enquiry does not reserve a place or create an enrolment."
+                : "The programme will be free. Dates and capacity are not confirmed. Registering interest does not reserve a place or create an enrolment."}
             </p>
             <p className="lab-small">
-              Final delivery details and approved policies must be shared before any paid offer.
+              Final delivery details and approved policies will be shared before the programme opens.
             </p>
             <Link href="/learning-lab/faq" className="lab-text-link">
               Practical questions →

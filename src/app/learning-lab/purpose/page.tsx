@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
+import { labPublicConfig, labSupportLine } from "@/features/learning-lab/config";
 import { educationPathways, labMission } from "@/features/learning-lab/mission";
 
 const description =
-  "Free learning across school, engineering, management, research and entrepreneurship: explore what is available today and what is planned. Entity names and the group structure remain proposed.";
+  "Free learning across school, engineering, management, research and entrepreneurship: explore what is available today and what is planned. Everything is free.";
 export const metadata: Metadata = {
   title: "Our Purpose and Learning Pathways",
   description,
@@ -19,7 +20,7 @@ export default function PurposePage() {
       <LabHero
         eyebrow="Our purpose"
         title={labMission.purpose}
-        description="Swapnil Sahoo Learning Lab is a not-for-profit education initiative founded by Dr. Swapnil Sahoo. School-to-doctoral learning is our long-term ambition. Our immediate focus is a free 14-day customer experiment for first-time student entrepreneurs."
+        description="Swapnil Sahoo Learning Lab makes learning free for everyone. It was founded by Dr. Swapnil Sahoo. School-to-doctoral learning is our long-term ambition. Our immediate focus is a free 14-day customer experiment for first-time student entrepreneurs."
       >
         <Link href="/learning-lab/venture-experiment" className="lab-button">
           Start the free 14-day venture experiment →
@@ -88,40 +89,30 @@ export default function PurposePage() {
           Try practical entrepreneurship learning →
         </Link>
       </LabSection>
-      <LabSection
-        eyebrow="Proposed institutional structure"
-        title="Names selected. Incorporation and structure unconfirmed."
-      >
+      <LabSection id="who-runs-the-lab" eyebrow="Who runs the Lab" title="An incorporated company. Free for every learner.">
         <div className="lab-grid">
           <article className="lab-card">
-            <p className="lab-eyebrow">Current public learning platform</p>
-            <h3>Swapnil Sahoo Learning Lab</h3>
+            <p className="lab-eyebrow">The learning platform</p>
+            <h3>{labPublicConfig.name}</h3>
             <p>
-              Independently operated by Dr. Swapnil Sahoo as a not-for-profit education initiative.
+              Free courses, the 14-day venture experiment, the founder toolkit and open resources at
+              swapnilsahoo.com/learning-lab.
             </p>
           </article>
           <article className="lab-card">
-            <p className="lab-eyebrow">Proposed not-for-profit entity</p>
-            <h3>{labMission.proposedFoundation}</h3>
-            <p>
-              The proposed institutional home for the Learning Lab, subject to incorporation and
-              confirmation.
-            </p>
+            <p className="lab-eyebrow">The company</p>
+            <h3>{labPublicConfig.legalName}</h3>
+            <p>Runs the Lab. Founded by Dr. Swapnil Sahoo.</p>
           </article>
           <article className="lab-card">
-            <p className="lab-eyebrow">Proposed holding company</p>
-            <h3>{labMission.proposedCompany}</h3>
-            <p>
-              The foundation is envisaged within this wider proposed group. The holding arrangement
-              and legal structure remain unconfirmed.
-            </p>
+            <p className="lab-eyebrow">How it is sustained</p>
+            <h3>Voluntary support</h3>
+            <p>Everything is free. {labSupportLine}</p>
+            <Link href="/learning-lab/support" className="lab-text-link">
+              Support the Lab →
+            </Link>
           </article>
         </div>
-        <p>
-          The proposed names and arrangement do not change the Lab’s current operator or establish
-          an incorporated foundation, company, subsidiary relationship or approved governance
-          structure.
-        </p>
         <p className="lab-lead">
           <strong>{labMission.promise}</strong>
         </p>

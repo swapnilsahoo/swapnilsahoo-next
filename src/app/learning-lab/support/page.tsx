@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
-import { labPublicConfig } from "@/features/learning-lab/config";
+import { labPublicConfig, labSupportLimits } from "@/features/learning-lab/config";
 
 export const metadata: Metadata = {
   title: "Support the Learning Lab",
   description:
-    "Help improve Learning Lab infrastructure and content through voluntary assistance, expertise or donations. The Lab currently operates on a not-for-profit basis.",
+    "Everything the Learning Lab offers is free. Voluntary financial assistance and support for its infrastructure and services are welcome and appreciated.",
   alternates: { canonical: "/learning-lab/support" },
 };
 
@@ -19,22 +19,26 @@ export default function SupportLabPage() {
     <>
       <LabHero
         eyebrow="Support the Learning Lab"
-        title="Help make useful learning accessible."
-        description="The Learning Lab is a founder-led edtech initiative, currently run on a not-for-profit basis. Voluntary assistance and donations can help improve its infrastructure and learning content."
+        title="Help keep useful learning free."
+        description="Everything the Learning Lab offers is free. Voluntary financial assistance and support for our infrastructure and services are welcome and appreciated."
       >
         <a href="#donate" className="lab-button">
-          Make a voluntary donation <span aria-hidden="true">→</span>
+          Make a voluntary contribution <span aria-hidden="true">→</span>
         </a>
         <a href={supportEmail} className="lab-button lab-button-secondary">
           Offer your support <span aria-hidden="true">→</span>
         </a>
       </LabHero>
-      <LabSection id="donate" eyebrow="Voluntary donations" title="Support the Lab with any amount.">
+      <LabSection
+        id="donate"
+        eyebrow="Voluntary contributions"
+        title="Support the Lab with any amount."
+      >
         <div className="lab-split">
           <div className="lab-prose">
             <p>
-              Your contribution can help improve the Lab’s infrastructure and learning content.
-              Choose an amount that feels right to you; there is no minimum donation.
+              Your contribution helps pay for the Lab’s infrastructure and services: hosting, tools,
+              learning content and feedback for students. Choose any amount; there is no minimum.
             </p>
             <p>
               Scan this original PhonePe QR. The name printed on the image is{" "}
@@ -54,7 +58,7 @@ export default function SupportLabPage() {
               amount and transaction reference needed to identify the transfer.
             </p>
             <p>
-              <Link href="/learning-lab/free-courses">All six free courses remain free →</Link>
+              <Link href="/learning-lab/free-courses">Everything stays free: see the free courses →</Link>
             </p>
           </div>
           <figure className="lab-donation-qr">
@@ -66,7 +70,7 @@ export default function SupportLabPage() {
               unoptimized
             />
             <figcaption className="lab-small">
-              Voluntary support for Learning Lab infrastructure and content.
+              Voluntary support for Learning Lab infrastructure and services.
             </figcaption>
           </figure>
         </div>
@@ -86,11 +90,11 @@ export default function SupportLabPage() {
             </p>
           </article>
           <article className="lab-card">
-            <p className="lab-card-number">02 / Content</p>
-            <h3>Develop useful learning materials</h3>
+            <p className="lab-card-number">02 / Services</p>
+            <h3>Keep feedback and materials free</h3>
             <p className="lab-muted">
-              Support original lessons, practical exercises and worksheets. Offer content review,
-              editing or resources you have permission to share.
+              Support founder feedback for students, college workshops, original lessons and
+              worksheets. Offer content review, editing or resources you have permission to share.
             </p>
           </article>
           <article className="lab-card">
@@ -107,9 +111,8 @@ export default function SupportLabPage() {
         <div className="lab-split">
           <div className="lab-prose">
             <p>
-              “At this stage, I am building the Learning Lab as a not-for-profit edtech initiative.
-              I would be grateful for voluntary assistance or donations that help improve the
-              infrastructure and content.”
+              “Everything the Learning Lab offers is free. Voluntary financial assistance and
+              support for our infrastructure and services are welcome and deeply appreciated.”
             </p>
             <p className="lab-small">— Dr. Swapnil Sahoo</p>
             <p>
@@ -126,18 +129,14 @@ export default function SupportLabPage() {
           </div>
           <aside className="lab-callout">
             <h3>Entirely voluntary.</h3>
+            <p>{labSupportLimits}</p>
             <p>
-              No contribution is required to use the six free courses. Assistance or donations do
-              not purchase enrolment, assessment, a certificate or preferential treatment.
-            </p>
-            <p>
-              Use the original PhonePe QR above to make an optional donation, or email Swapnil
-              to offer your time and expertise. Donations are separate from any course fee.
+              Use the original PhonePe QR above to contribute, or email Swapnil to offer your time
+              and expertise.
             </p>
             <p className="lab-small">
-              “Not-for-profit” describes the Lab’s current purpose. The Lab is independently run by
-              Dr. Swapnil Sahoo and is currently unincorporated; no registered-charity status or tax
-              deduction is claimed here.
+              {labPublicConfig.legalName} runs the Lab. If you sent a contribution by mistake, email
+              the date, amount and transaction reference and it will be returned.
             </p>
           </aside>
         </div>

@@ -74,8 +74,8 @@ export default function ProfessionalsPage() {
               guarantee jobs, promotions, salary increases or successful businesses.
             </p>
             <p>
-              Demonstration lessons are freely accessible. Registering interest is not paid
-              enrolment; delivery details remain proposed.
+              Everything is free, including the demonstration lessons and future programmes.
+              Registering interest does not enrol you; delivery details remain proposed.
             </p>
             <Link href="/learning-lab/faq" className="lab-text-link">
               Read FAQs →

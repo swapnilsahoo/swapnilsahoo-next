@@ -106,4 +106,7 @@ export default function FaqPage() {
             </details>
           ))}
         </div>
-      </Lab
+      </LabSection>
+    </>
+  );
+}

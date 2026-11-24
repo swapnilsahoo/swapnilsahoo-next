@@ -22,7 +22,7 @@ const venture = {
   href: `${lab}/venture-experiment`,
 };
 const support = { label: "Support the Lab", href: `${lab}/support` };
-const donationQr = { label: "View the optional donation QR", href: `${lab}/support#donate` };
+const donationQr = { label: "View the voluntary contribution QR", href: `${lab}/support#donate` };
 const toolkit = `${lab}/toolkit`;
 const toolkitHub = { label: "Open the free founder toolkit", href: toolkit };
 const conversationKit = {
@@ -37,7 +37,7 @@ export const starters = [
   "Help me write an AI task brief",
   "Show me the 13-session MBA course",
   "How do I test a business idea?",
-  "Are paid courses open?",
+  "Do I have to pay anything?",
   "Who is Dr. Swapnil Sahoo?",
 ];
 
@@ -234,7 +234,7 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(donat\w*|voluntary (support|contribution\w*|assistance)|volunteer\w*|non[- ]?profit|not[- ]for[- ]profit|(learning lab|lab|initiative) (run |operated |a )?for[- ]profit|is (this|it) for[- ]profit|financial support|support (the |your |this )?(learning lab|lab|initiative)|contribut\w* (to|towards?|for) (the |your |this )?(learning lab|lab|initiative|infrastructure|content)|help (improve|build|fund|develop|create) (the |your |lab )?(learning )?(content|infrastructure))\b/i,
     reply: answer(
-      "The Learning Lab is currently run on a not-for-profit basis. Voluntary assistance and donations help improve learning content and infrastructure. Visit Support the Lab to offer expertise or use the original PhonePe QR to donate any amount. The image prints SWAPNIL SAHOO; check the recipient in your payment app before sending. All six free courses remain ₹0. A donation does not purchase enrolment, assessment or a certificate. This website cannot verify a transfer or issue an automatic confirmation; paid course checkout remains closed.",
+      "Swapnil Sahoo Learning Lab Private Limited runs the Learning Lab, and everything it offers is free. Voluntary financial assistance and support for its infrastructure and services are welcome and appreciated. Visit Support the Lab to offer expertise or use the original PhonePe QR to contribute any amount. The image prints SWAPNIL SAHOO; check the recipient in your payment app before sending. A contribution does not buy a place, feedback, assessment or a certificate. This website cannot verify a transfer or issue an automatic confirmation, and it has no checkout.",
       [support, donationQr, freeLibrary],
       ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"]
     ),
@@ -260,7 +260,7 @@ const topics: GuidedTopic[] = [
   {
     matches: /\b(qr|upi|payment code|scan to pay|payee|bank details|account number)\b/i,
     reply: answer(
-      "The Support the Lab page displays Dr. Swapnil Sahoo’s original PhonePe QR for optional donations of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient shown in your payment app before sending. Your payment app handles the transfer. This website has no donation checkout or transaction verification, and it cannot confirm receipt automatically. Donations support infrastructure and content, not course enrolment or certificates. Paid course checkout remains closed, and the six free courses remain ₹0.",
+      "The Support the Lab page displays Dr. Swapnil Sahoo’s original PhonePe QR for voluntary contributions of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient shown in your payment app before sending. Your payment app handles the transfer. This website has no checkout or transaction verification, and it cannot confirm receipt automatically. Contributions support the Lab’s infrastructure and services; they never buy a place or a certificate. Everything the Lab offers is free.",
       [donationQr, support, contact],
       ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"]
     ),
@@ -292,7 +292,7 @@ const topics: GuidedTopic[] = [
         { label: "Explore programme rubrics", href: programmes },
         freeLibrary,
       ],
-      ["What can I learn for free?", "Are paid courses open?", "Contact the Lab"]
+      ["What can I learn for free?", "Do I have to pay anything?", "Contact the Lab"]
     ),
   },
   {
@@ -320,7 +320,7 @@ const topics: GuidedTopic[] = [
         { label: "Start the free AI evaluation course", href: `${free}/test-ai-before-adoption` },
         { label: "Explore AI for Managers", href: `${programmes}/ai-for-managers` },
       ],
-      ["Help me write an AI task brief", "What can I learn for free?", "Are paid courses open?"]
+      ["Help me write an AI task brief", "What can I learn for free?", "Do I have to pay anything?"]
     ),
   },
   {
@@ -413,7 +413,7 @@ const topics: GuidedTopic[] = [
       [
         "Show me the 13-session MBA course",
         "How do I calculate unit economics?",
-        "Are paid courses open?",
+        "Do I have to pay anything?",
       ]
     ),
   },
@@ -421,7 +421,7 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(fees?|price|pricing|paid|purchase|pay|payments?|checkout|refund\w*|enrol\w*|enroll\w*|register|registration|cohort|start date|dates?|schedule|timetable|rupees?)\b|₹|\brs\.?\s*\d+/i,
     reply: answer(
-      "The six free mini-courses cost ₹0 and require no account. Full Learning Lab programmes remain proposed: payable fees, dates and places are unconfirmed, and paid course checkout remains closed. Optional donations through the Support the Lab QR are separate from course fees and do not reserve a place or confirm enrolment. This guide cannot take payment or verify a transfer. Visit Contact for current enquiry options, or email the Lab to ask about a programme; opening the email link does not send it automatically.",
+      "Everything the Learning Lab offers is free: the six mini-courses, the 14-day venture experiment, the founder toolkit and founder feedback. The full programmes are still being planned and will also be free; dates and places are not set yet. There is no checkout. Voluntary contributions through the Support the Lab QR are welcome but never required, and they do not reserve a place. Visit Contact for current enquiry options, or email the Lab to ask about a programme; opening the email link does not send it automatically.",
       [freeLibrary, { label: "Check programme availability", href: programmes }, support, contact],
       ["What can I learn for free?", "Is a payment QR available?", "How do the certificates work?"]
     ),
@@ -436,7 +436,7 @@ const topics: GuidedTopic[] = [
         { label: "Discuss an institutional pilot", href: `${lab}/for-colleges` },
         { label: "Open an email to the Lab", href: "mailto:swapnil.s@greatlakes.edu.in" },
       ],
-      ["Who is Dr. Swapnil Sahoo?", "Are paid courses open?", "What can I learn for free?"]
+      ["Who is Dr. Swapnil Sahoo?", "Do I have to pay anything?", "What can I learn for free?"]
     ),
   },
   {
@@ -465,7 +465,7 @@ const topics: GuidedTopic[] = [
       [
         "Help me write an AI task brief",
         "How do I evaluate an AI workflow?",
-        "Are paid courses open?",
+        "Do I have to pay anything?",
       ]
     ),
   },
