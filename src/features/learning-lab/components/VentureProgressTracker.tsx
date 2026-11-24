@@ -131,8 +131,7 @@ export function VentureProgressTracker() {
                 `Day ${next.day} of 14: ${next.title}`,
                 ...(ventureDayHelp[next.day]?.doToday ?? []).map((task) => `- ${task}`),
                 `${pageUrl}#venture-day-${next.day}`,
-              ].join("
-")
+              ].join("\n")
             )}`}
             target="_blank"
             rel="noopener noreferrer"
