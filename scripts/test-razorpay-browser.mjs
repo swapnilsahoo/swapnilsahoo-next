@@ -239,8 +239,8 @@ try {
     order_id: orderId,
   });
   await trigger("success");
-  await waitMessage(/payment verified and captured/i);
-  assert.equal(await payButton.innerText(), "Payment captured");
+  await waitMessage(/contribution verified and captured/i);
+  assert.equal(await payButton.innerText(), "Contribution received");
   assert.equal(await statusButton.count(), 0);
   assert.deepEqual(current.verifications, [
     {
@@ -305,7 +305,7 @@ try {
   await waitEnabled(statusButton);
   await assertNoSecondPayment();
   await statusButton.click();
-  await waitMessage(/payment verified and captured/i);
+  await waitMessage(/contribution verified and captured/i);
   assert.equal(current.verifications.length, 2);
   assert.deepEqual(current.verifications[0], current.verifications[1]);
   assert.equal(await statusButton.count(), 0);
@@ -319,7 +319,7 @@ try {
   await waitEnabled(statusButton);
   await assertNoSecondPayment();
   await statusButton.click();
-  await waitMessage(/payment verified and captured/i);
+  await waitMessage(/contribution verified and captured/i);
   assert.equal(current.verifications.length, 2);
   assert.deepEqual(current.verifications[0], current.verifications[1]);
   await assertNoSecondPayment();
