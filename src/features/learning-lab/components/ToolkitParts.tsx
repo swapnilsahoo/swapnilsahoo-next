@@ -1,0 +1,104 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  siteOrigin,
+  toolkitFreeStatement,
+  toolkitHref,
+  toolkitPath,
+  toolkitTools,
+  whatsappShareHref,
+  type ToolkitSlug,
+} from "../founder-toolkit";
+import { ventureCoreQuestion, ventureExperimentPath } from "../venture-experiment";
+import { LabSection } from "./LabShell";
+import "./toolkit.css";
+
+/** Metadata in the Lab pattern: canonical = route, and explicit Open Graph/Twitter blocks. */
+export function toolkitMetadata(
+  path: string,
+  title: string,
+  description: string,
+  shareTitle = title
+): Metadata {
+  return {
+    title,
+    description,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "website",
+      siteName: "Swapnil Sahoo Learning Lab",
+      title: shareTitle,
+      description,
+      url: path,
+      images: [],
+    },
+    twitter: { card: "summary", title: shareTitle, description, images: [] },
+  };
+}
+
+/** The core question of the 14-day experiment, shown right under the hero. */
+export function VentureQuestion() {
+  return (
+    <div className="lab-container">
+      <aside className="lab-question" aria-label="The question this experiment answers">
+        <p className="lab-eyebrow">The one question you will answer</p>
+        <p className="lab-question-main">{ventureCoreQuestion.question}</p>
+        <p className="lab-question-follow">{ventureCoreQuestion.followUp}</p>
+      </aside>
+    </div>
+  );
+}
+
+export function ToolkitFreeLine() {
+  return (
+    <p className="lab-kit-free">
+      <strong>Free</strong>
+      <span>{toolkitFreeStatement}</span>
+    </p>
+  );
+}
+
+export function ToolkitShare({ text, path }: { text: string; path: string }) {
+  return (
+    <a
+      className="lab-text-link"
+      href={whatsappShareHref(text, `${siteOrigin}${path}`)}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Share on WhatsApp ↗<span className="sr-only"> (opens WhatsApp in a new tab)</span>
+    </a>
+  );
+}
+
+export function ToolkitMore({ current }: { current?: ToolkitSlug }) {
+  return (
+    <LabSection className="lab-band" eyebrow="Keep going" title="More free tools for your 14 days.">
+      <div className="lab-grid">
+        {toolkitTools
+          .filter((tool) => tool.slug !== current)
+          .map((tool) => (
+            <article className="lab-card" key={tool.slug}>
+              <div className="lab-kit-meta">
+                <span className="lab-tag">{tool.when}</span>
+                <span className="lab-tag">{tool.minutes}</span>
+              </div>
+              <h3>{tool.title}</h3>
+              <p>{tool.short}</p>
+              <Link className="lab-text-link" href={toolkitHref(tool.slug)}>
+                Open →
+              </Link>
+            </article>
+          ))}
+      </div>
+      <div className="lab-actions">
+        <Link className="lab-button" href={`${ventureExperimentPath}#plan`}>
+          Follow the 14-day plan →
+        </Link>
+        <Link className="lab-button lab-button-secondary" href={toolkitPath}>
+          All tools
+        </Link>
+      </div>
+    </LabSection>
+  );
+}
