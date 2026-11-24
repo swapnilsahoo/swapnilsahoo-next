@@ -61,6 +61,11 @@ export default function SupportLabPage() {
                 </Link>
               </p>
             )}
+            {online.available && !online.testMode && (
+              <p className="lab-small">
+                Online contributions also go to Dr. Swapnil Sahoo’s own account for now.
+              </p>
+            )}
             <p>
               For a question about your contribution, email{" "}
               <a href={supportEmail}>{labPublicConfig.businessEmail}</a>. Include only the date,

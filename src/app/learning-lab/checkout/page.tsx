@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
-import { labPublicConfig, labSupportLine } from "@/features/learning-lab/config";
+import {
+  labContributionPayeeLine,
+  labPublicConfig,
+  labSupportLine,
+} from "@/features/learning-lab/config";
 import { RazorpayCheckout } from "@/features/payments/RazorpayCheckout";
 import { getCheckoutAvailability } from "@/features/payments/server";
 
@@ -24,6 +28,9 @@ export default function CheckoutPage() {
         description={`Everything the Lab offers is free. ${labSupportLine}`}
       />
       <LabSection className="lab-band">
+        <p className="lab-lead" style={{ marginTop: 0 }}>
+          {labContributionPayeeLine}
+        </p>
         <RazorpayCheckout {...availability} />
         <p className="lab-small mt-6">
           Questions, an uncertain payment status or a contribution made by mistake? Email{" "}

@@ -261,7 +261,7 @@ const topics: GuidedTopic[] = [
   {
     matches: /\b(qr|upi|payment code|scan to pay|payee|bank details|account number)\b/i,
     reply: answer(
-      "The Support the Lab page displays Dr. Swapnil Sahoo’s original PhonePe QR for voluntary contributions of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient shown in your payment app before sending. Your payment app handles the transfer, and this website cannot confirm a QR transfer automatically. When online contributions are open, a Razorpay page on the support page also accepts UPI, card or netbanking. Contributions support the Lab’s infrastructure and services; they never buy a place or a certificate. Everything the Lab offers is free.",
+      "The Support the Lab page displays Dr. Swapnil Sahoo’s original PhonePe QR for voluntary contributions of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient shown in your payment app before sending. Your payment app handles the transfer, and this website cannot confirm a QR transfer automatically. When online contributions are open, a Razorpay page on the support page also accepts UPI, card or netbanking. For now, both go to Dr. Swapnil Sahoo’s own account, not the company’s. Contributions support the Lab’s infrastructure and services; they never buy a place or a certificate. Everything the Lab offers is free.",
       [donationQr, support, contact],
       ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"]
     ),

@@ -161,8 +161,11 @@ export function RazorpayCheckout({
         amount: order.amount,
         currency: order.currency,
         order_id: order.order_id,
-        name: "Swapnil Sahoo Learning Lab",
-        description: testMode ? "Test contribution" : "Voluntary contribution",
+        // The payee is the founder personally for now, so the window names him.
+        name: "Swapnil Sahoo",
+        description: testMode
+          ? "Test contribution"
+          : "Voluntary contribution for Swapnil Sahoo Learning Lab",
         theme: { color: "#194c45" },
         handler: (result) => {
           if (confirming) return;
