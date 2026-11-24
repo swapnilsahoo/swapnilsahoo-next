@@ -16,11 +16,8 @@ export function ProgrammeOfferSummary({ programme }: { programme: PublicLabProgr
         : null,
     ],
     ["IST timetable", offerDetails.timetableIst],
-    [
-      "Total payable fee",
-      availability.feeInr === null ? null : `₹${availability.feeInr.toLocaleString("en-IN")}`,
-    ],
-    ["Tax presentation", offerDetails.taxDisplay],
+    // Everything the Lab offers is free, so no fee or tax line is ever shown.
+    ["Fee", "Free"],
     [
       "Learners",
       availability.capacity === null

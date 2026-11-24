@@ -1,5 +1,7 @@
 # Current purpose and voluntary support
 
+**Status, 24 November 2026:** the founder confirmed that the Lab is incorporated as Swapnil Sahoo Learning Lab Private Limited (the single source is `src/features/learning-lab/entity.ts`). Everything the Lab offers is free, including future programmes, and the website has no checkout. Voluntary financial assistance and support for infrastructure and services are welcome and never required. This supersedes the unincorporated, not-for-profit, proposed-entity and paid-programme statements below, which are kept as history. The CIN and registered office are not yet published.
+
 Updated 9 October 2026, India time.
 
 The founder clarified that the Learning Lab is a not-for-profit edtech initiative at this stage and welcomes voluntary assistance or donations to improve infrastructure and content. This supersedes commercial-first positioning as the description of its current purpose. Existing revenue proposals in older planning documents remain historical proposals, not an approved paid launch.

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { VentureQuestion } from "@/features/learning-lab/components/ToolkitParts";
-import { labPublicConfig } from "@/features/learning-lab/config";
+import { labPublicConfig, labSupportLine } from "@/features/learning-lab/config";
 import {
   toolkitFreeStatement,
   toolkitHref,
@@ -171,8 +171,8 @@ export default function LearningLabPage() {
           </article>
         </div>
         <p className="lab-small">
-          The guide and worksheets are free for everyone. No funding, business success or
-          certificate is promised.
+          Everything here is free for everyone. No funding, business success or certificate is
+          promised.
         </p>
         <div className="lab-actions" style={{ alignItems: "center" }}>
           <Link href={`${ventureExperimentPath}#start`} className="lab-button">
@@ -211,14 +211,17 @@ export default function LearningLabPage() {
       <LabSection
         className="lab-band"
         eyebrow="About the Lab"
-        title="Independent and not-for-profit."
+        title="Independent, and free for every learner."
       >
         <div className="lab-split">
-          <p>
-            Founded by Dr. Swapnil Sahoo. The long-term goal is free learning from school to
-            doctoral study. Today&rsquo;s focus is helping first-time student entrepreneurs test one
-            idea. Voluntary support helps improve content and infrastructure.
-          </p>
+          <div>
+            <p>
+              Run by {labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo. The long-term goal
+              is free learning from school to doctoral study. Today&rsquo;s focus is helping
+              first-time student entrepreneurs test one idea.
+            </p>
+            <p>Everything is free. {labSupportLine}</p>
+          </div>
           <div className="lab-actions" style={{ marginTop: 0 }}>
             <Link href="/learning-lab/founder" className="lab-text-link">
               Meet the founder →

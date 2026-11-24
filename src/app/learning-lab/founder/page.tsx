@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
+import { labPublicConfig, labSupportLine } from "@/features/learning-lab/config";
 
 export const metadata: Metadata = {
   title: "About the Founder",
@@ -15,7 +16,7 @@ export default function FounderPage() {
       <LabHero
         eyebrow="About the founder"
         title="Dr. Swapnil Sahoo"
-        description="A founder interested in how people make decisions, build useful things and act when resources are limited. The Learning Lab is currently run on a not-for-profit basis, with free learning in strategy, entrepreneurship and applied AI."
+        description="A founder interested in how people make decisions, build useful things and act when resources are limited. He founded Swapnil Sahoo Learning Lab, where everything is free: practical learning in entrepreneurship, strategy and applied AI."
       />
       <LabSection>
         <div className="lab-split">
@@ -42,24 +43,19 @@ export default function FounderPage() {
             </p>
           </div>
           <aside className="lab-callout">
-            <h3>An independent initiative.</h3>
+            <h3>An independent company.</h3>
             <p>
-              Our purpose is to make learning freely accessible to everyone. The proposed
-              institutional home is Swapnil Sahoo Open Learning Foundation, envisaged within the
-              proposed Swapnil Sahoo Ventures Private Limited group. Both entity names and the
-              holding arrangement remain proposed until incorporation and the structure are
-              confirmed.{" "}
+              Our purpose is to make learning freely accessible to everyone. Dr. Swapnil Sahoo
+              founded {labPublicConfig.legalName}, the company that runs the Lab.{" "}
               <Link href="/learning-lab/purpose">Read the purpose and pathway plan →</Link>
             </p>
             <p>
-              Dr. Swapnil Sahoo runs the Learning Lab independently. His academic and professional
-              affiliations describe his background; they do not imply sponsorship, endorsement or
-              partnership with the Lab.
+              His academic and professional affiliations describe his background; they do not imply
+              sponsorship, endorsement or partnership with the Lab.
             </p>
             <p>
-              The Lab is currently run on a not-for-profit basis. Voluntary assistance and donations
-              are welcome to help improve its learning content and infrastructure. The free courses
-              remain free; support does not purchase enrolment, assessment or a certificate.
+              Everything the Lab offers is free. {labSupportLine} Support never buys a place,
+              feedback, assessment or a certificate.
             </p>
             <p>
               <Link href="/learning-lab/support">Explore ways to support the Lab →</Link>

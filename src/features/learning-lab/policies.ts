@@ -1,15 +1,26 @@
+import { labPublicConfig } from "./config";
+
 export type LabPolicy = {
   slug: string;
   title: string;
+  /** "current" applies today; "draft" is prepared for future programmes. */
+  status: "current" | "draft";
   summary: string;
   sections: { heading: string; paragraphs: string[] }[];
 };
 
-const draftReview = {
-  heading: "Draft status and operator details",
+const operator = {
+  heading: "Who runs the Lab",
   paragraphs: [
-    "Draft prepared on 8 October 2026 for founder and professional review. It is not a statement that the initiative is legally compliant, and it is not an approved paid-service agreement.",
-    "Swapnil Sahoo Learning Lab is a founder-led edtech initiative hosted on swapnilsahoo.com, independently run by Dr. Swapnil Sahoo and currently operated on a not-for-profit basis. This describes its present purpose, not registered-charity status or tax-deductibility. It is presently unincorporated. The founder has supplied the contact email shown on the contact page. The operator address and any applicable tax details remain to be confirmed before paid enrolment. Academic employers and institutions do not sponsor or operate the Lab by virtue of the founder's biography or contact email.",
+    `Updated on 24 November 2026. Swapnil Sahoo Learning Lab is run by ${labPublicConfig.legalName}, a company founded by Dr. Swapnil Sahoo, and hosted on swapnilsahoo.com. Contact the Lab using the email on the contact page.`,
+    "Academic employers and institutions do not sponsor or operate the Lab by virtue of the founder's biography or contact email.",
+  ],
+};
+
+const futureDraft = {
+  heading: "Status of this policy",
+  paragraphs: [
+    `This is a draft for future programmes, which are still being planned and will be free. It will be finalised before a programme opens, and it is not a statement of legal compliance. ${labPublicConfig.legalName} runs the Lab.`,
   ],
 };
 
@@ -17,36 +28,44 @@ export const labPolicies: LabPolicy[] = [
   {
     slug: "terms",
     title: "Terms of participation and website use",
+    status: "current",
     summary:
-      "Paid-service terms remain a draft for founder and legal review. Email questions are welcome; online forms, when available, record interest only. Fees, dates and enrolment are not confirmed.",
+      "Everything the Lab offers is free. Voluntary financial assistance and support for its infrastructure and services are welcome and never required. These terms cover the website, the free guide, the toolkit and enquiries.",
     sections: [
-      draftReview,
+      operator,
+      {
+        heading: "Everything is free",
+        paragraphs: [
+          "The Lab charges no fees. The free courses, the 14-day venture experiment, the founder toolkit, the open catalogue, written founder feedback and any future programmes are free. The website has no checkout and never asks for card or bank details.",
+          "Voluntary financial assistance and support for the Lab's infrastructure and services are welcome and appreciated. They are never required, and they do not buy a place, feedback, assessment, a certificate or preferential treatment.",
+        ],
+      },
       {
         heading: "What the Lab offers",
         paragraphs: [
-          "The Lab proposes adult professional education in management, strategy, entrepreneurship and applied AI. Programme descriptions state expected skills and learner outputs. They do not promise employment, salaries, promotion, funding or business success.",
-          "Public demonstrations use original hypothetical learning examples. The proposed service is not a degree, a recognised qualification or a claim of accreditation. A Certificate of Completion, if issued after the configured requirements, records completion of the specified Lab programme only.",
+          "The Lab offers free practical learning in entrepreneurship, management, strategy and applied AI, starting with first-time student entrepreneurs. Descriptions state expected skills and learner outputs. They do not promise employment, salaries, promotion, funding or business success.",
+          "Public demonstrations use original hypothetical learning examples. The Lab does not award a degree, a recognised qualification or accreditation. A Certificate of Completion, if issued after the configured requirements, records completion of the specified Lab programme only.",
         ],
       },
       {
         heading: "Free 14-day venture experiment",
         paragraphs: [
-          "The open guide, local planner and downloads are free. The initial founder-feedback pilot is for college students who confirm they are aged 18 or over, with up to 20 active private feedback places. A place exists only after successful registration. Participation creates no paid enrolment, qualification or certificate. The 14-day route is a working plan; customer access, time and review availability may require longer. Completing a real test and making an evidence-supported decision, including stopping, are the learning goals; no commercial outcome is guaranteed.",
+          "The open guide, local planner and downloads are free. The initial founder-feedback pilot is for college students who confirm they are aged 18 or over, with up to 20 active private feedback places. A place exists only after successful registration. Participation is free and creates no enrolment, qualification or certificate. The 14-day route is a working plan; customer access, time and review availability may require longer. Completing a real test and making an evidence-supported decision, including stopping, are the learning goals; no commercial outcome is guaranteed.",
           "The participant controls any customer approach, time and affordable commitment. No spending or outreach is performed by the planner. Describe offers honestly, seek voluntary adult participation, respect a refusal and submit only anonymised evidence. The guide does not authorise collecting payments, using college facilities or claiming institutional endorsement. Written founder feedback appears only after a human saves a review; automated next-task suggestions do not grade work or impersonate the founder. Research, publication and testimonial permission are separate from participating in the pilot.",
         ],
       },
       {
         heading: "Voluntary support",
         paragraphs: [
-          "The Lab welcomes voluntary assistance, expertise and donations intended to improve its infrastructure and learning content. The support page provides an email route to offer help and the founder’s original PhonePe QR for an optional manual donation of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. The payment app handles the transfer. The website does not verify transactions, issue automatic confirmations or submit an email automatically.",
-          "No contribution is required to access the six free courses. A donation does not purchase enrolment, assessment, a certificate, preferential treatment or institutional affiliation. Financial support is separate from any future approved course fee; no registered-charity status or tax deduction is promised.",
+          "The support page offers an email route to give your time or expertise and the founder’s original PhonePe QR for a voluntary contribution of any amount. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. The payment app handles the transfer. The website does not verify transactions, issue automatic confirmations or submit an email automatically.",
+          "Contributions support the Lab's infrastructure and services. No registered-charity status or tax deduction is claimed. If you sent a contribution by mistake, for example a duplicate or the wrong amount, email the Lab with the date, amount and transaction reference and it will be returned to the account it came from.",
         ],
       },
       {
         heading: "Interest enquiries and availability",
         paragraphs: [
-          "An interest enquiry records your request for information. It does not reserve a place, confirm a cohort, create paid enrolment or charge a fee. A saved-enquiry confirmation does not mean an email was sent. The site must report an error if it cannot save your enquiry.",
-          "Before an approved paid cohort, the operator must provide the actual dates, format, capacity, total fee and tax presentation, workload, access period, assessment and cancellation terms. Paid course checkout remains closed until operator eligibility, policies, programme details and accountant-reviewed receipt or invoice handling are confirmed. Optional manual donations are separate from course fees.",
+          "An interest enquiry records your request for information. It does not reserve a place, confirm a cohort or create an enrolment, and nothing is charged. A saved-enquiry confirmation does not mean an email was sent. The site must report an error if it cannot save your enquiry.",
+          "Before a programme opens, the Lab will publish its dates, format, capacity, workload, access period, assessment and cancellation arrangements. Programmes will be free.",
         ],
       },
       {
@@ -59,15 +78,15 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Materials and learner work",
         paragraphs: [
-          "The proposed access licence is for your own learning within the agreed programme. It does not permit redistribution of Lab materials or recordings. Third-party resources retain their own copyright and licence conditions.",
+          "Access to Lab materials is for your own learning. It does not permit redistribution of Lab materials or recordings. Third-party resources retain their own copyright and licence conditions.",
           "Learner work remains the learner's work. The Lab needs limited permission to store, assess and give feedback on a submitted assignment. Publication, testimonial use and use of identifiable work in later teaching require separate permission. No institutional logo, endorsement or co-branded certificate is implied.",
         ],
       },
       {
         heading: "Changes, problems and complaints",
         paragraphs: [
-          "Material changes to an approved cohort must be communicated before they take effect, with fair cancellation or alternative arrangements under the approved policy and applicable law. Mandatory consumer rights are not waived by this draft.",
-          "The founder must approve and publish the business contact, grievance process, support availability, refund terms and dispute provisions after legal review. No exclusive jurisdiction, liability exclusion or arbitration agreement is imposed by this draft.",
+          "Material changes to a programme will be communicated before they take effect, with a fair alternative where possible. These terms may be updated; the date at the top shows the latest version.",
+          "Send questions, problems and complaints to the email on the contact page. These terms do not limit any rights you have under applicable law, and they impose no exclusive jurisdiction, liability exclusion or arbitration agreement.",
         ],
       },
     ],
@@ -75,15 +94,16 @@ export const labPolicies: LabPolicy[] = [
   {
     slug: "privacy",
     title: "Privacy notice",
+    status: "current",
     summary:
-      "How the website handles enquiry details, optional marketing permission and learning records. Online forms depend on configured storage; paid-service policies remain drafts.",
+      "How the website handles enquiry details, optional marketing permission and learning records. Online forms depend on configured storage.",
     sections: [
       {
         heading: "Operator and current enquiry handling",
         paragraphs: [
-          "Updated on 10 October 2026 to describe the website's enquiry handling. The operator is Dr. Swapnil Sahoo; contact swapnil.s@greatlakes.edu.in for an enquiry or privacy question. The Lab is independently run, presently unincorporated and operated on a not-for-profit basis. Academic employers and institutions do not sponsor or operate it by virtue of the founder's biography or contact email.",
+          `Updated on 24 November 2026 to name the company that runs the Lab. The operator is ${labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo; contact swapnil.s@greatlakes.edu.in for an enquiry or privacy question. Academic employers and institutions do not sponsor or operate the Lab by virtue of the founder's biography or contact email.`,
           "The contact page shows whether online enquiries are available. When a form is offered, your entries are sent to the website when you submit it. A saved confirmation means the enquiry was accepted into configured storage; it does not confirm an email, enrolment or booking. If online forms are unavailable, the email link opens your email app and the website does not save or send that message.",
-          "This notice describes the implemented workflow and does not certify legal compliance. Paid-service terms remain drafts; no paid course checkout is enabled.",
+          "This notice describes the implemented workflow and does not certify legal compliance. Everything the Lab offers is free, and the website has no checkout.",
         ],
       },
       {
@@ -113,8 +133,8 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Voluntary support and external payments",
         paragraphs: [
-          "If you choose to email about voluntary assistance or donations, your email provider and the recipient's email service process the message. Share only the information needed to discuss your offer. Clicking an email link does not send a message. Donor names, messages and contributions are not published without separate permission.",
-          "Optional manual donations use the original QR displayed on the support page. Your chosen payment app, bank and payment services process the transfer under their own terms and privacy notices. This website has no donor form, payment gateway, public donor list or transaction-verification service. It does not receive an automatic payment confirmation or issue an automatic receipt. A transfer does not create a learner account, enrolment or certificate eligibility.",
+          "If you choose to email about voluntary assistance or contributions, your email provider and the recipient's email service process the message. Share only the information needed to discuss your offer. Clicking an email link does not send a message. Supporters' names, messages and contributions are not published without separate permission.",
+          "Optional voluntary contributions use the original QR displayed on the support page. Your chosen payment app, bank and payment services process the transfer under their own terms and privacy notices. This website has no contribution form, payment gateway, public supporter list or transaction-verification service. It does not receive an automatic payment confirmation or issue an automatic receipt. A transfer does not create a learner account, enrolment or certificate eligibility.",
         ],
       },
       {
@@ -130,7 +150,7 @@ export const labPolicies: LabPolicy[] = [
           "Authentication requires essential session cookies. Free-course and demonstration notes stay on the page unless you choose to save them in this browser or download a worksheet. They are not sent to the Lab by these exercises. A separate learner-workspace submission is required for assessment. Browser-stored notes can be cleared in the exercise or using your browser's site-data controls.",
           "Google Tag Manager (container GTM-KJMH54BC) loads across the website to manage tags. Loading it contacts Google and provides standard request information such as your IP address, browser and the page address. The individual measurement services depend on tags configured and published in that container; installing the container alone does not establish which analytics reports are available. This installation adds no custom data-layer events containing form answers, worksheet text, private access codes or founder feedback. Google services operate under Google's privacy terms.",
           "The Google tag G-PTGSDRSVK3 is also installed once per page for Google Analytics measurement. It can collect page views, page addresses and titles, browser/device information and cookie-based identifiers; enabled automatic events depend on the Analytics property settings. Browser cookie controls and tracking protections can limit collection. This manual installation does not add names, emails, worksheet answers, private access codes or founder feedback to measurement events. Analytics report access and processing are managed in the owner's Google Analytics account.",
-          "Public exercises do not send your work to an AI provider. General marketing email and paid course checkout remain unconfigured. Optional manual QR donations are processed in your chosen payment app, not on this website. External resource links have the destination provider's own privacy terms.",
+          "Public exercises do not send your work to an AI provider. General marketing email is not configured, and the website has no checkout. Optional QR contributions are processed in your chosen payment app, not on this website. External resource links have the destination provider's own privacy terms.",
         ],
       },
       {
@@ -157,39 +177,34 @@ export const labPolicies: LabPolicy[] = [
         ],
       },
       {
-        heading: "Service configuration and future paid programmes",
+        heading: "Service configuration and future programmes",
         paragraphs: [
           "Online-enquiry availability depends on the private hosting and storage configuration. The published provider details and retention information need to follow the actual setup and any later changes. The contact email above is the route for privacy questions; no response-time guarantee or automated deletion is offered.",
-          "Invited learning, recordings and any future paid programme need their own agreed scope and policies. This notice does not turn a saved enquiry into permission to enrol someone, publish their work, record them or send unrelated marketing. The remaining paid-service drafts and launch checklist support founder and professional review.",
+          "Invited learning, recordings and any future programme need their own agreed scope and policies. This notice does not turn a saved enquiry into permission to enrol someone, publish their work, record them or send unrelated marketing. Draft policies for future programmes will be finalised before those programmes open.",
         ],
       },
     ],
   },
   {
     slug: "refunds",
-    title: "Refund and cancellation policy",
+    title: "Refunds and cancellations",
+    status: "current",
     summary:
-      "Draft for founder, accountant and legal review. Paid course checkout remains closed; registration of interest has no fee or cancellation charge. Optional manual donations are separate from paid bookings.",
+      "Everything is free, so there is no fee to refund or cancel. A voluntary contribution sent by mistake will be returned.",
     sections: [
-      draftReview,
+      operator,
       {
-        heading: "Current interest-only stage",
+        heading: "No fees, nothing to cancel",
         paragraphs: [
-          "No fee is collected for registering interest. An enquiry does not reserve a place or create a paid commitment. There is therefore no paid booking to cancel at this stage.",
+          "The Lab charges no fees for courses, the 14-day experiment, the toolkit, founder feedback or programmes. Registering interest or joining a free activity creates no payment, so there is nothing to refund. You can stop or withdraw at any time without a charge.",
+          "If the Lab cancels or reschedules a free session or programme, it will tell participants as early as it can.",
         ],
       },
       {
-        heading: "Terms needed before a paid offer",
+        heading: "Voluntary contributions",
         paragraphs: [
-          "Before accepting a paid course fee, publish the exact fee and tax display, refund request channel, cancellation cut-offs, cohort minimum, rescheduling options and handling of partially delivered learning. State how and when accepted refunds will be processed and how provider delays or fees are handled. These details must be approved and shown before course checkout.",
-          "A proposed principle is a full refund if the Lab cancels an approved cohort before delivery, with a choice of refund rather than a forced credit if a material reschedule is unacceptable. The founder and lawyer must settle the exact learner-withdrawal and partially delivered service rules. This draft creates no blanket non-refundable fee and does not limit mandatory consumer rights.",
-        ],
-      },
-      {
-        heading: "Problems during delivery",
-        paragraphs: [
-          "Provide a staffed business contact for access problems, cancellation requests and complaints. Assess the actual service delivered, the agreed terms and applicable law. Record the decision and refund reconciliation accurately; refund targets in business planning are never a limit on valid claims.",
-          "Paid enrolment must stay unavailable until merchant eligibility, the approved programme and policies, and accountant-reviewed receipts or invoices are confirmed. A future checkout should be provider-hosted, with verified payment notifications; the Lab must never store card details.",
+          "Contributions are voluntary support for the Lab's infrastructure and services, not payment for anything. They are not needed for any place, feedback or certificate.",
+          "If you sent a contribution by mistake, for example a duplicate or the wrong amount, email the Lab with the date, amount and transaction reference. After the transfer is identified, it will be returned to the account it came from. These terms do not limit any rights you have under applicable law.",
         ],
       },
     ],
@@ -197,10 +212,11 @@ export const labPolicies: LabPolicy[] = [
   {
     slug: "participation",
     title: "Participation and assessment policy",
+    status: "draft",
     summary:
-      "Draft for founder and professional review. Adult learners receive explicit workload, assessment and completion criteria before joining an approved cohort.",
+      "Draft for future programmes. Adult learners receive explicit workload, assessment and completion criteria before joining an approved cohort.",
     sections: [
-      draftReview,
+      futureDraft,
       {
         heading: "Eligibility and access",
         paragraphs: [
@@ -225,7 +241,7 @@ export const labPolicies: LabPolicy[] = [
       {
         heading: "Completion and fair review",
         paragraphs: [
-          "Certificate eligibility depends on the assigned programme's configured lesson completion, attendance and approved capstone score, together with instructor approval. An enquiry, a payment, a login or a completed demonstration does not qualify a learner for a certificate.",
+          "Certificate eligibility depends on the assigned programme's configured lesson completion, attendance and approved capstone score, together with instructor approval. An enquiry, a contribution, a login or a completed demonstration does not qualify a learner for a certificate.",
           "Before an assessed cohort opens, approve deadlines, late work, accessible alternatives, a reassessment or appeal route, and a fair procedure for participation concerns. Do not change published requirements retrospectively to improve completion statistics.",
         ],
       },
@@ -234,10 +250,11 @@ export const labPolicies: LabPolicy[] = [
   {
     slug: "recording",
     title: "Recording and media consent policy",
+    status: "draft",
     summary:
-      "Draft for founder and professional review. Learner contributions and sessions are not recorded by default; recording and promotional permissions are separate.",
+      "Draft for future programmes. Learner contributions and sessions are not recorded by default; recording and promotional permissions are separate.",
     sections: [
-      draftReview,
+      futureDraft,
       {
         heading: "Default and specific consent",
         paragraphs: [
@@ -263,22 +280,23 @@ export const labPolicies: LabPolicy[] = [
   {
     slug: "certificates",
     title: "Certificate of Completion policy",
+    status: "draft",
     summary:
-      "Draft for founder and professional review. Certificates record completion of a Lab programme and imply no degree, recognised qualification or accreditation.",
+      "Draft for future programmes. Certificates record completion of a Lab programme and imply no degree, recognised qualification or accreditation.",
     sections: [
-      draftReview,
+      futureDraft,
       {
         heading: "Eligibility and human approval",
         paragraphs: [
           "A Certificate of Completion can be issued only when the learner meets the assigned programme's configured lesson, attendance and capstone requirements and a human instructor has approved the assessment. The proposed programmes currently require all six lessons, at least 80% live attendance and an instructor-approved capstone score of at least 60 out of 100. Any approved alternative must be documented consistently before issue.",
-          "A saved enquiry, demonstration exercise or payment does not earn a certificate. Demo records and certificates must be labelled as demonstrations and excluded from production outcome reporting.",
+          "A saved enquiry, demonstration exercise or contribution does not earn a certificate. Demo records and certificates must be labelled as demonstrations and excluded from production outcome reporting.",
         ],
       },
       {
         heading: "Meaning and issuer",
         paragraphs: [
           "The document identifies the Lab programme, issuer and issue date. It is a Certificate of Completion for professional education, not a degree, recognised qualification, accreditation, licence to practise or guarantee of employment.",
-          "Use the actual approved operator identity at the time of issue. Do not add a company suffix, employer logo, university seal, institutional credit or co-signatory without verified authority and written permission.",
+          `Certificates are issued by ${labPublicConfig.legalName}. They carry no employer logo, university seal, institutional credit or co-signatory without verified authority and written permission.`,
         ],
       },
       {
@@ -292,7 +310,7 @@ export const labPolicies: LabPolicy[] = [
         heading: "Corrections, reassessment and revocation",
         paragraphs: [
           "Before issuing assessed certificates, approve a staffed process for name corrections, disputed assessment, certificate errors and revocation. An erroneous or invalid issue should be reviewed by an authorised instructor or administrator with an audit record and a fair opportunity for the learner to respond.",
-          "A changed submission needs a new instructor review; eligibility must not be silently preserved after a material change. If revoked, verification should state that status without publishing unnecessary personal reasons. Future incorporation does not automatically transfer old certificate obligations or change the historical issuer.",
+          "A changed submission needs a new instructor review; eligibility must not be silently preserved after a material change. If revoked, verification should state that status without publishing unnecessary personal reasons.",
         ],
       },
     ],

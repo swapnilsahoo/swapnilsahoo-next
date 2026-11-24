@@ -1,8 +1,6 @@
 export const labMission = {
   purpose: "Making learning freely accessible to everyone",
   promise: "Learn freely. Think independently. Build your future.",
-  proposedFoundation: "Swapnil Sahoo Open Learning Foundation",
-  proposedCompany: "Swapnil Sahoo Ventures Private Limited",
 } as const;
 
 export const educationPathways = [
