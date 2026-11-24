@@ -67,6 +67,14 @@ export const toolkitTools = [
     when: "Any day",
     minutes: "Your pace",
   },
+  {
+    slug: "facilitator-kit",
+    title: "Kit for E-Cells and faculty",
+    short:
+      "Run it with a group: a 75-minute session plan, slide outline, report template and grading rubric.",
+    when: "For facilitators",
+    minutes: "75-min session",
+  },
 ] as const;
 
 export type ToolkitSlug = (typeof toolkitTools)[number]["slug"];
