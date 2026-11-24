@@ -6,11 +6,9 @@ import { labPublicConfig } from "../config";
 const navigation = [
   ["14-day venture", "/learning-lab/venture-experiment"],
   ["Free toolkit", "/learning-lab/toolkit"],
-  ["Catalogue", "/learning-lab/catalogue"],
   ["Free courses", "/learning-lab/free-courses"],
-  ["Programmes", "/learning-lab/programmes"],
+  ["Catalogue", "/learning-lab/catalogue"],
   ["For colleges", "/learning-lab/for-colleges"],
-  ["For professionals", "/learning-lab/for-professionals"],
   ["Founder", "/learning-lab/founder"],
   ["Resources", "/learning-lab/resources"],
 ] as const;
@@ -61,7 +59,7 @@ export function LabShell({
             </Link>
           ))}
           <Link href="/learning-lab/contact" className="lab-nav-contact">
-            Register interest <span aria-hidden="true">→</span>
+            Contact <span aria-hidden="true">→</span>
           </Link>
         </div>
       </nav>
@@ -101,6 +99,8 @@ export function LabShell({
             <Link href="/learning-lab/catalogue">Open catalogue and learning paths</Link>
             <Link href="/learning-lab/free-courses">Free courses</Link>
             <Link href="/learning-lab/support">Support the Lab</Link>
+            <Link href="/learning-lab/programmes">Proposed programmes</Link>
+            <Link href="/learning-lab/for-professionals">For professionals</Link>
             <Link href="/digital-guide">AI learning mentor</Link>
             <Link href="/learning-lab/faq">FAQs</Link>
             <Link href="/learning-lab/contact">Contact</Link>

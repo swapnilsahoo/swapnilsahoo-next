@@ -23,13 +23,27 @@ export const metadata: Metadata = {
     title: "Test your business idea in 14 days | Swapnil Sahoo Learning Lab",
     description: venturePositioning,
     url: "/learning-lab",
-    images: [],
+    images: [
+      {
+        url: "/learning-lab/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Swapnil Sahoo Learning Lab: test your business idea with real customers in 14 days. Free.",
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Test your business idea in 14 days",
     description: venturePositioning,
-    images: [],
+    images: [
+      {
+        url: "/learning-lab/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Swapnil Sahoo Learning Lab: test your business idea with real customers in 14 days. Free.",
+      },
+    ],
   },
 };
 
