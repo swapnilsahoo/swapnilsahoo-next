@@ -78,16 +78,16 @@ export function LabShell({
             <p className="lab-eyebrow">{labPublicConfig.name}</p>
             <p className="lab-small">{labPublicConfig.description}</p>
             <p className="lab-small">
-              Independently run by Dr. Swapnil Sahoo. His academic and professional affiliations do
-              not imply sponsorship or endorsement of the Lab.
+              Run by {labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo. His academic and
+              professional affiliations do not imply sponsorship or endorsement of the Lab.
             </p>
             <p className="lab-small">
-              Free self-paced courses and proposed programmes for adults aged 18 and over.
-              Registration of interest is free and does not reserve a paid place.
+              Everything the Lab offers is free, for adults aged 18 and over. There are no fees and
+              no checkout.
             </p>
             <p className="lab-small">
-              Currently run on a not-for-profit basis. Voluntary support helps improve learning
-              content and infrastructure; the free courses remain free.
+              Voluntary financial assistance and support for our infrastructure and services are
+              welcome and appreciated.
             </p>
           </div>
           <nav aria-label="Learning Lab information">

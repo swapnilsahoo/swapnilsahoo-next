@@ -65,16 +65,11 @@ export default async function ContactPage() {
             </p>
             <div className="lab-divider" />
             <p className="lab-small">
-              Operator: {labPublicConfig.operatorName}. The initiative is founder-led and is not
-              presented as an incorporated company.
+              Run by {labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo. Everything the Lab
+              offers is free.
             </p>
             {labPublicConfig.businessAddress && (
               <p className="lab-small">{labPublicConfig.businessAddress}</p>
-            )}
-            {!labPublicConfig.businessAddress && (
-              <p className="lab-small">
-                Operator address and paid-service details remain unconfirmed.
-              </p>
             )}
           </div>
           <EnquiryForm

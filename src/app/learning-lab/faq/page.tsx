@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
+import { labPublicConfig } from "@/features/learning-lab/config";
 import { isLabServiceConfigured } from "@/features/learning-lab/server/capabilities";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +17,7 @@ function getQuestions(enquiriesAvailable: boolean) {
   return [
     [
       "What is the Learning Lab?",
-      "Swapnil Sahoo Learning Lab helps first-time student entrepreneurs turn a business idea into a small, affordable customer experiment in 14 days, with practical guidance and feedback, free of charge. It is independently run on a not-for-profit basis; wider school-to-doctoral learning remains a long-term ambition.",
+      `Swapnil Sahoo Learning Lab helps first-time student entrepreneurs turn a business idea into a small, affordable customer experiment in 14 days, with practical guidance and feedback, free of charge. It is run by ${labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo. Everything the Lab offers is free. Wider school-to-doctoral learning remains a long-term ambition.`,
     ],
     [
       "How does the free 14-day venture experiment work?",
@@ -24,13 +25,13 @@ function getQuestions(enquiriesAvailable: boolean) {
     ],
     [
       "How can I support the Lab?",
-      "Voluntary assistance and donations are welcome to help improve learning content and infrastructure. You can offer content feedback, subject expertise, accessibility help or technical assistance, or choose any amount using the original PhonePe QR on the Support the Lab page. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. All six free courses remain ₹0. Support does not purchase enrolment, assessment or a certificate, and this website does not verify transfers or issue an automatic confirmation.",
+      "Everything is free and nothing is required. Voluntary financial assistance and support for our infrastructure and services are welcome and appreciated. You can offer content feedback, subject expertise, accessibility help or technical assistance, or contribute any amount using the original PhonePe QR on the Support the Lab page. The image prints the payee name SWAPNIL SAHOO; check the recipient in your payment app before sending. A contribution does not buy a place, feedback, assessment or a certificate, and this website does not verify transfers or issue an automatic confirmation.",
     ],
     [
-      "Can I enrol or pay now?",
+      "Do I have to pay for anything?",
       enquiriesAvailable
-        ? "The full programmes are proposed. You can register interest using the online form on the contact page, or email a programme question. Fees, dates, capacity and delivery details are unconfirmed, and paid course checkout remains closed. Optional QR donations are separate from course fees. An enquiry or donation does not reserve a place or create an enrolment."
-        : "The full programmes are proposed. You can email a programme question using the approved contact on the contact page. Online interest forms will open after secure service setup. Fees, dates, capacity and delivery details are unconfirmed, and paid course checkout remains closed. Optional QR donations are separate from course fees. An enquiry or donation does not reserve a place or create an enrolment.",
+        ? "No. Everything the Lab offers is free, including future programmes, and there is no checkout. The full programmes are still being planned: register interest using the online form on the contact page, or email a programme question. Dates, capacity and delivery details are not set yet. An enquiry or a voluntary contribution does not reserve a place or create an enrolment."
+        : "No. Everything the Lab offers is free, including future programmes, and there is no checkout. The full programmes are still being planned: email a programme question using the contact page. Online interest forms will open after secure service setup. Dates, capacity and delivery details are not set yet. An enquiry or a voluntary contribution does not reserve a place or create an enrolment.",
     ],
     [
       "Who are the programmes for?",
@@ -60,7 +61,7 @@ function getQuestions(enquiriesAvailable: boolean) {
     ],
     [
       "Is the Lab affiliated with the founder’s employer?",
-      "The Lab is separate from the founder’s employment. Published founder credentials describe his background; they are not an endorsement, partnership or evidence of Lab outcomes.",
+      "The Lab is run by its own company, separate from the founder’s employment. Published founder credentials describe his background; they are not an endorsement, partnership or evidence of Lab outcomes.",
     ],
     [
       "Can a college request a pilot?",
@@ -72,7 +73,7 @@ function getQuestions(enquiriesAvailable: boolean) {
     ],
     [
       "Are the policies final?",
-      "The privacy notice describes current website and enquiry handling. Programme, cancellation, recording and certificate terms remain drafts for review. The approved offer and paid-service details must be settled before a public paid launch.",
+      "The terms of use, privacy notice and refund note are current. The participation, recording and certificate policies are drafts for future programmes and will be finalised before a programme opens.",
     ],
   ];
 }
@@ -105,7 +106,4 @@ export default function FaqPage() {
             </details>
           ))}
         </div>
-      </LabSection>
-    </>
-  );
-}
+      </Lab
