@@ -76,7 +76,12 @@ export default function FacilitatorKitPage() {
         </div>
       </LabSection>
 
-      <LabSection id="plan" className="lab-band" eyebrow="Session plan" title="Six blocks, 75 minutes.">
+      <LabSection
+        id="plan"
+        className="lab-band"
+        eyebrow="Session plan"
+        title="Six blocks, 75 minutes."
+      >
         <ol className="lab-flow">
           {facilitatorSessionPlan.map((block) => (
             <li key={block.minutes}>
@@ -103,7 +108,11 @@ export default function FacilitatorKitPage() {
         </div>
       </LabSection>
 
-      <LabSection id="materials" eyebrow="Copy and adapt" title="Slide outline and activity report.">
+      <LabSection
+        id="materials"
+        eyebrow="Copy and adapt"
+        title="Slide outline and activity report."
+      >
         <div className="lab-grid lab-grid-two">
           <CopyBlock
             title="Slide outline (8 slides)"
@@ -137,7 +146,10 @@ export default function FacilitatorKitPage() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <Link className="lab-text-link" href={toolkitHref("test-playbooks", "experiment-record")}>
+            <Link
+              className="lab-text-link"
+              href={toolkitHref("test-playbooks", "experiment-record")}
+            >
               See the one-page record students fill in →
             </Link>
           </div>
@@ -155,7 +167,10 @@ export default function FacilitatorKitPage() {
           </div>
         </div>
         <div className="lab-actions">
-          <ToolkitShare text="Free 75-minute customer-test workshop kit for E-Cells and faculty:" path={path} />
+          <ToolkitShare
+            text="Free 75-minute customer-test workshop kit for E-Cells and faculty:"
+            path={path}
+          />
         </div>
       </LabSection>
 

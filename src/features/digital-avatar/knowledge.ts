@@ -25,7 +25,10 @@ const support = { label: "Support the Lab", href: `${lab}/support` };
 const donationQr = { label: "View the optional donation QR", href: `${lab}/support#donate` };
 const toolkit = `${lab}/toolkit`;
 const toolkitHub = { label: "Open the free founder toolkit", href: toolkit };
-const conversationKit = { label: "Customer conversation kit", href: `${toolkit}/talk-to-customers` };
+const conversationKit = {
+  label: "Customer conversation kit",
+  href: `${toolkit}/talk-to-customers`,
+};
 const playbooks = { label: "₹0–₹500 test playbooks", href: `${toolkit}/test-playbooks` };
 const ideaFilter = { label: "One-page idea filter", href: `${toolkit}/idea-filter` };
 
@@ -58,7 +61,10 @@ const topics: GuidedTopic[] = [
       "Feeling nervous is normal. Use the free customer conversation kit: copy a ready-made message for WhatsApp, Instagram, a group post or in person (in English, Hinglish or Hindi), and start with people you already know who have the problem, then friends of friends. Ask five questions about the last time the problem happened; you are not selling anything. Rehearse once with a friend or the free AI role-play prompt first. Three conversations are enough to start.",
       [
         { label: "Copy a ready-made first message", href: `${toolkit}/talk-to-customers#messages` },
-        { label: "Rehearse with a free AI prompt", href: `${toolkit}/ai-practice-prompts#rehearse` },
+        {
+          label: "Rehearse with a free AI prompt",
+          href: `${toolkit}/ai-practice-prompts#rehearse`,
+        },
         venture,
       ],
       [
@@ -78,7 +84,11 @@ const topics: GuidedTopic[] = [
         { label: "Beginner mistakes to dodge", href: `${toolkit}/mistakes` },
         ideaFilter,
       ],
-      ["How do I test my idea with no money?", "I am scared to talk to customers", "Is my idea good?"]
+      [
+        "How do I test my idea with no money?",
+        "I am scared to talk to customers",
+        "Is my idea good?",
+      ]
     ),
   },
   {
@@ -108,7 +118,11 @@ const topics: GuidedTopic[] = [
         { label: "Do not quit after two noes", href: `${toolkit}/mistakes#giving-up` },
         { label: "Where to go after Day 14", href: `${venture.href}#next` },
       ],
-      ["I am scared to talk to customers", "How do I test my idea with no money?", "Is my idea good?"]
+      [
+        "I am scared to talk to customers",
+        "How do I test my idea with no money?",
+        "Is my idea good?",
+      ]
     ),
   },
   {
@@ -117,7 +131,10 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "Start from what people spend today on their current fix: ask about it in your conversations. Then test one clear price in a real offer, such as a reservation at ₹40, and see how many people act. Check your cost per unit with the free unit-economics course before you discount; a discount to get traction often hides a weak offer.",
       [
-        { label: "Read your unit economics (free course)", href: `${free}/read-your-unit-economics` },
+        {
+          label: "Read your unit economics (free course)",
+          href: `${free}/read-your-unit-economics`,
+        },
         playbooks,
         conversationKit,
       ],
@@ -133,7 +150,11 @@ const topics: GuidedTopic[] = [
       /\b(is (my|this) idea (good|any good|worth\w*|viable)|my idea (is )?(good|worth\w*)|idea (worth|viable)|evaluate (my|this|an) idea|filter (my )?idea|no idea what to (do|start|build)|(find|get|need) (an? |good )?(business |startup )?ideas?)\b/i,
     reply: answer(
       "No tool can tell you that in advance; only real people's actions can. Spend 15 minutes on the free idea filter: name one specific person, one problem, what they do today and how you will reach five of them. It tells you the riskiest guess to check first. No idea yet? It also has eight prompts for spotting problems around you.",
-      [ideaFilter, { label: "No idea yet? Start here", href: `${toolkit}/idea-filter#no-idea` }, venture],
+      [
+        ideaFilter,
+        { label: "No idea yet? Start here", href: `${toolkit}/idea-filter#no-idea` },
+        venture,
+      ],
       [
         "I am scared to talk to customers",
         "Should I build an app first?",
@@ -147,7 +168,11 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "Start with a ₹0 test. Pick one of six playbooks, such as a WhatsApp reserve-by-Friday offer, a sign-up sheet with real time slots or doing the service by hand for five people. Write your pass mark first, then count what people actually do out of how many you asked. If you sell food regularly, check FSSAI registration first. The 14-day plan walks you through it day by day.",
       [playbooks, ideaFilter, venture],
-      ["I am scared to talk to customers", "How should I price my product?", "What free tools can I use?"]
+      [
+        "I am scared to talk to customers",
+        "How should I price my product?",
+        "What free tools can I use?",
+      ]
     ),
   },
   {
@@ -156,7 +181,11 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "You never need paid software for a first test. A WhatsApp message and a Google Sheet are enough for most tests. The free tools list covers forms, posters, notes, calls and simple pages, with each tool's free plan checked.",
       [{ label: "Free tools list", href: `${toolkit}/free-tools` }, playbooks, toolkitHub],
-      ["How do I test my idea with no money?", "I am scared to talk to customers", "Is my idea good?"]
+      [
+        "How do I test my idea with no money?",
+        "I am scared to talk to customers",
+        "Is my idea good?",
+      ]
     ),
   },
   {
@@ -194,7 +223,11 @@ const topics: GuidedTopic[] = [
     reply: answer(
       "The free founder toolkit has copy-ready tools for every stage: an idea filter, customer messages and a script, a question checker, six ₹0–₹500 test playbooks with test cards, a mistakes list, free AI practice prompts and a free tools list. No sign-up or payment.",
       [toolkitHub, conversationKit, playbooks],
-      ["I am scared to talk to customers", "Is my idea good?", "How do I test my idea with no money?"]
+      [
+        "I am scared to talk to customers",
+        "Is my idea good?",
+        "How do I test my idea with no money?",
+      ]
     ),
   },
   {

@@ -214,11 +214,7 @@ export const facilitatorUseNote =
 /* ------------------------------------------------------------------ */
 
 const icsEscape = (value: string) =>
-  value
-    .replace(/\\/g, "\\\\")
-    .replace(/;/g, "\\;")
-    .replace(/,/g, "\\,")
-    .replace(/\r?\n/g, "\\n");
+  value.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
 
 /** Folds long lines at 73 characters, as the iCalendar format asks for. */
 const icsFold = (line: string) => {

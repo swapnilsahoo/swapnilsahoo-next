@@ -204,22 +204,53 @@ assert.equal(
 assert.equal(scoreIdeaFilter([true, true, true, true, true, true]).riskiestGuess, null);
 
 // Hindi and Hinglish versions, the facilitator kit and calendar reminders.
-assert.ok(outreachMessagesHinglish.length >= 4 && outreachMessagesHinglish.every(({ message }) => message.length < 400));
+assert.ok(
+  outreachMessagesHinglish.length >= 4 &&
+    outreachMessagesHinglish.every(({ message }) => message.length < 400)
+);
 assert.match(conversationScriptHindi, /[ऀ-ॿ]/, "Hindi script uses Devanagari");
 assert.ok(conversationScriptHinglish.includes("Pichhli baar"));
-assert.equal(facilitatorSessionPlan.at(-1).minutes.endsWith("75"), true, "session plan fills 75 minutes");
+assert.equal(
+  facilitatorSessionPlan.at(-1).minutes.endsWith("75"),
+  true,
+  "session plan fills 75 minutes"
+);
 for (const block of facilitatorSessionPlan) assert.ok(slugs.includes(block.tool), block.title);
 assert.match(facilitatorUseNote, /no partnership is implied/);
 assert.match(facilitatorReportTemplate, /no customer names or personal data/);
-const ics = buildVentureCalendar("2026-12-01", "19:00", ventureDays, "https://www.swapnilsahoo.com/learning-lab/venture-experiment", "20261124T120000Z");
+const ics = buildVentureCalendar(
+  "2026-12-01",
+  "19:00",
+  ventureDays,
+  "https://www.swapnilsahoo.com/learning-lab/venture-experiment",
+  "20261124T120000Z"
+);
 assert.ok(ics && ics.startsWith("BEGIN:VCALENDAR\r\n") && ics.trimEnd().endsWith("END:VCALENDAR"));
 assert.equal((ics.match(/BEGIN:VEVENT/g) || []).length, 14);
 assert.ok(ics.includes("DTSTART:20261201T190000") && ics.includes("DTSTART:20261214T190000"));
-assert.ok(ics.split("\r\n").every((line) => line.length <= 75), "lines are folded");
-const late = buildVentureCalendar("2026-12-31", "23:45", ventureDays.slice(0, 1), "https://x.test/p", "20261124T120000Z");
+assert.ok(
+  ics.split("\r\n").every((line) => line.length <= 75),
+  "lines are folded"
+);
+const late = buildVentureCalendar(
+  "2026-12-31",
+  "23:45",
+  ventureDays.slice(0, 1),
+  "https://x.test/p",
+  "20261124T120000Z"
+);
 assert.ok(late.includes("DTEND:20270101T001500"), "a late reminder ends after midnight");
-for (const [date, time] of [["2026-02-30", "19:00"], ["2026-12-01", "25:00"], ["bad", "19:00"], ["2026-12-01", "7pm"]])
-  assert.equal(buildVentureCalendar(date, time, ventureDays, "https://x.test", "20261124T120000Z"), null, date + " " + time);
+for (const [date, time] of [
+  ["2026-02-30", "19:00"],
+  ["2026-12-01", "25:00"],
+  ["bad", "19:00"],
+  ["2026-12-01", "7pm"],
+])
+  assert.equal(
+    buildVentureCalendar(date, time, ventureDays, "https://x.test", "20261124T120000Z"),
+    null,
+    date + " " + time
+  );
 
 assert.ok(existsSync("src/app/learning-lab/toolkit/page.tsx"), "toolkit hub page is missing");
 for (const slug of slugs)
