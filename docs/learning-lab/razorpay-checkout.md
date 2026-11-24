@@ -18,6 +18,10 @@ The checkout requested contact details. This test used a fictional contact numbe
 
 The Razorpay dashboard's **I have done the transaction** step can now be completed for this test-key account. This verifies local test-mode checkout; it does not deploy the integration or activate live payments.
 
+## Test transaction with the founder's own test keys — 24 November 2026
+
+After the founder supplied a new test key pair for his own Razorpay account (stored only in the ignored local `.env`), a ₹1 test contribution completed through the real Razorpay test checkout on a local production build: test card from the dashboard, card not saved, fictional contact number, mock bank **Success**. The site's server verified the signature and confirmed `captured` with Razorpay. Order `order_U43X8NYK4YZZr0`, payment `pay_U43XRII9Wrjyyr`. No real money was charged. A tampered signature was rejected with HTTP 400. The browser script is local-only in `scratch-plan/rzp-live-test.mjs`.
+
 ## Run and test locally
 
 From the website repository in a PowerShell terminal:
