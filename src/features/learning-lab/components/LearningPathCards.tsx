@@ -6,7 +6,9 @@ export function LearningPathCards({ paths }: { paths: LearningPath[] }) {
     <div className="lab-grid lab-grid-two lab-path-grid">
       {paths.map((path, index) => (
         <article className="lab-card lab-path-card" key={path.slug}>
-          <span className="lab-card-number">0{index + 1} / {path.goal}</span>
+          <span className="lab-card-number">
+            0{index + 1} / {path.goal}
+          </span>
           <h3>{path.title}</h3>
           <p>{path.summary}</p>
           <p className="lab-small">{path.resourceIds.length} ordered steps · open self-practice</p>

@@ -273,6 +273,21 @@ try {
     await fs.unlink(path.join(personal, "src/token.txt"));
     sync(personal, ["--resume"]);
 
+    // Ordinary words that contain "sk-" (e.g. a course slug) are not credentials,
+    // but a delimited sk- key is still refused.
+    await put(personal, "src/course-link.txt", "/learning-lab/free-courses/ask-better-customer-questions\n");
+    sync(personal);
+    const skKey = "s" + "k-proj-" + "B".repeat(32);
+    const skHead = head(personal);
+    await put(personal, "src/sk-token.txt", `OPENAI_KEY=${skKey}\n`);
+    const skMessage = sync(personal, [], 2);
+    assert.ok(skMessage.includes("possible credential"));
+    assert.equal(skMessage.includes(skKey), false);
+    assert.equal(head(personal), skHead);
+    cleanIndex(personal);
+    await fs.unlink(path.join(personal, "src/sk-token.txt"));
+    sync(personal, ["--resume"]);
+
     // Manually committed secrets are checked in outgoing history, including a
     // secret that was removed again in a later local commit.
     const history = await makeClone("History guard");

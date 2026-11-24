@@ -7,6 +7,7 @@ import { labPolicies } from "@/features/learning-lab/policies";
 import { freeCourses } from "@/features/learning-lab/free-courses";
 import { catalogueResources, learningPaths } from "@/features/learning-lab/catalogue";
 import { getPublishedWeeklyNotes, weeklyNotesPath } from "@/features/learning-lab/weekly-notes";
+import { toolkitPath, toolkitTools } from "@/features/learning-lab/founder-toolkit";
 
 export const dynamic = "force-dynamic";
 
@@ -28,6 +29,12 @@ const routes = [
   { path: "", changeFrequency: "monthly", priority: 1 },
   { path: "/digital-guide", changeFrequency: "monthly", priority: 0.65 },
   { path: "/learning-lab", changeFrequency: "monthly", priority: 0.85 },
+  { path: toolkitPath, changeFrequency: "monthly", priority: 0.84 },
+  ...toolkitTools.map((tool) => ({
+    path: `${toolkitPath}/${tool.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  })),
   { path: "/learning-lab/catalogue", changeFrequency: "monthly", priority: 0.82 },
   ...learningPaths.map((learningPath) => ({
     path: `/learning-lab/paths/${learningPath.slug}`,

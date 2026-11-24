@@ -40,11 +40,30 @@ export const accessLabels: Record<CatalogueAccess, string> = {
 
 const keywords: Record<string, string[]> = {
   "write-an-ai-task-brief": ["prompt", "workflow", "instructions", "reviewer", "LLM"],
-  "test-ai-before-adoption": ["evaluation", "accuracy", "workflow", "review time", "AI reliability"],
+  "test-ai-before-adoption": [
+    "evaluation",
+    "accuracy",
+    "workflow",
+    "review time",
+    "AI reliability",
+  ],
   "make-a-strategic-tradeoff": ["strategy", "choice", "trade-off", "opportunity cost", "focus"],
-  "read-your-unit-economics": ["contribution", "margin", "profit", "break-even", "capacity", "numeracy"],
+  "read-your-unit-economics": [
+    "contribution",
+    "margin",
+    "profit",
+    "break-even",
+    "capacity",
+    "numeracy",
+  ],
   "set-an-affordable-loss": ["effectuation", "budget", "experiment", "risk", "venture"],
-  "ask-better-customer-questions": ["customer interviews", "discovery", "behaviour", "demand", "evidence"],
+  "ask-better-customer-questions": [
+    "customer interviews",
+    "discovery",
+    "behaviour",
+    "demand",
+    "evidence",
+  ],
 };
 
 // Public metadata only. Lesson explanations and examples remain in their original source.
@@ -83,7 +102,8 @@ function resource(
     language: "English",
     instructor: "Dr. Swapnil Sahoo",
     access: "open",
-    accessNote: "Public reading and self-practice. No enrolment, human review or certificate included.",
+    accessNote:
+      "Public reading and self-practice. No enrolment, human review or certificate included.",
     ...input,
   };
 }
@@ -98,17 +118,27 @@ export const catalogueResources: CatalogueResource[] = [
     outcome: "A verification, disclosure and ownership checklist for your next AI-assisted draft.",
     audience: "PGDM / MBA students",
     prerequisites: "Read your programme's AI-use rules before applying the examples.",
-    accessNote: "The guide is open. Trying tool examples needs your chosen AI assistant; no tool is needed to read.",
-    keywords: ["AI literacy", "students", "assignments", "disclosure", "verification", "placements"],
+    accessNote:
+      "The guide is open. Trying tool examples needs your chosen AI assistant; no tool is needed to read.",
+    keywords: [
+      "AI literacy",
+      "students",
+      "assignments",
+      "disclosure",
+      "verification",
+      "placements",
+    ],
   }),
   resource({
     id: "ai-workflow-demonstration",
     title: "Inspect an AI workflow adoption decision",
     href: "/learning-lab/programmes/ai-for-managers#demo",
     summary: "Try the programme's original demonstration and inspect its public workflow example.",
-    outcome: "An adoption decision that accounts for errors, review effort and human responsibility.",
+    outcome:
+      "An adoption decision that accounts for errors, review effort and human responsibility.",
     format: "Decision exercise + downloadable text example",
-    accessNote: "The sample is open. The surrounding full programme is proposed; this is not enrolment.",
+    accessNote:
+      "The sample is open. The surrounding full programme is proposed; this is not enrolment.",
     keywords: ["AI", "workflow", "evaluation", "adoption", "review", "pilot"],
   }),
   resource({
@@ -129,7 +159,15 @@ export const catalogueResources: CatalogueResource[] = [
     outcome: "A case structure that follows the problem instead of forcing a memorised template.",
     prerequisites: "Comfort with basic business terms; the foundations path is a useful start.",
     format: "Interactive framework explorer + diagrams + reading",
-    keywords: ["consulting", "case practice", "profitability", "market entry", "growth", "pricing", "M&A"],
+    keywords: [
+      "consulting",
+      "case practice",
+      "profitability",
+      "market entry",
+      "growth",
+      "pricing",
+      "M&A",
+    ],
   }),
   resource({
     id: "guesstimates",
@@ -155,8 +193,10 @@ export const catalogueResources: CatalogueResource[] = [
     id: "case-interview-bank",
     title: "Practise ten cases before revealing the guidance",
     href: "/placements/case-interview-bank",
-    summary: "Original prompts spanning retention, pricing, competitive response, causal reasoning and diligence.",
-    outcome: "An independent case attempt revised against the questions a strong answer should raise.",
+    summary:
+      "Original prompts spanning retention, pricing, competitive response, causal reasoning and diligence.",
+    outcome:
+      "An independent case attempt revised against the questions a strong answer should raise.",
     prerequisites: "Recommended: case frameworks and the three worked case examples.",
     format: "Case prompts + expandable review guidance",
     keywords: ["consulting", "case practice", "product", "retention", "causality", "PE", "VC"],
@@ -165,11 +205,20 @@ export const catalogueResources: CatalogueResource[] = [
     id: "behavioural-interview-evidence",
     title: "Defend the evidence behind an interview story",
     href: "/placements/behavioral-interview-questions",
-    summary: "Leadership, conflict and judgement questions, plus an evidence ladder for resume claims.",
+    summary:
+      "Leadership, conflict and judgement questions, plus an evidence ladder for resume claims.",
     outcome: "A specific interview story with your decisions, actions, results and limitations.",
     prerequisites: "Bring an example from work, an internship, a project or campus responsibility.",
     format: "Question groups + evidence prompts",
-    keywords: ["behavioural", "behavioral", "STAR", "leadership", "resume", "interview", "evidence"],
+    keywords: [
+      "behavioural",
+      "behavioral",
+      "STAR",
+      "leadership",
+      "resume",
+      "interview",
+      "evidence",
+    ],
   }),
   resource({
     id: "startup-playbook",
@@ -179,7 +228,14 @@ export const catalogueResources: CatalogueResource[] = [
     outcome: "A bounded idea, affordable-loss limit, five conversation plan and smallest test.",
     audience: "Students and early founders",
     format: "Interactive principle tabs + activities + checklist",
-    keywords: ["startup", "venture", "effectuation", "customer discovery", "experiment", "entrepreneurship"],
+    keywords: [
+      "startup",
+      "venture",
+      "effectuation",
+      "customer discovery",
+      "experiment",
+      "entrepreneurship",
+    ],
   }),
   resource({
     id: "product-market-fit",
@@ -227,7 +283,8 @@ export const catalogueResources: CatalogueResource[] = [
     href: "/teaching/building-a-durable-advantage",
     summary: "Advantage sources, examples and a one-page map with a copy test.",
     outcome: "A one-page advantage map and a reasoned twelve-month copy test.",
-    prerequisites: "A business idea or fictional company; a partner is useful for the published exercise.",
+    prerequisites:
+      "A business idea or fictional company; a partner is useful for the published exercise.",
     format: "Reading + mapping exercise + PPTX slides",
     keywords: ["strategy", "competitive advantage", "moat", "copy", "venture", "defensibility"],
   }),
@@ -239,11 +296,13 @@ export const catalogueResources: CatalogueResource[] = [
     outcome: "A route to deeper strategy sessions, reading lists and interactive activities.",
     audience: "MBA learners and readers with business-analysis background",
     level: "Academic depth",
-    prerequisites: "Business-analysis background; assigned readings and course materials may need separate access.",
+    prerequisites:
+      "Business-analysis background; assigned readings and course materials may need separate access.",
     duration: "13 academic sessions; not a self-paced completion estimate",
     format: "Academic course map + linked session resources",
     access: "academic",
-    accessNote: "The map is public. Academic enrolment, licensed readings and course-folder access are separate.",
+    accessNote:
+      "The map is public. Academic enrolment, licensed readings and course-folder access are separate.",
     keywords: ["MBA", "strategy", "academic", "industry analysis", "formulation", "implementation"],
   }),
   resource({
@@ -253,11 +312,20 @@ export const catalogueResources: CatalogueResource[] = [
     summary: "Interactive strategy activities, a productivity frontier and decision-memo practice.",
     outcome: "An explained strategic choice and a first decision-memo attempt.",
     level: "Academic depth",
-    prerequisites: "Start with the strategic-choice mini-course; consult the session's reading/access notes.",
+    prerequisites:
+      "Start with the strategic-choice mini-course; consult the session's reading/access notes.",
     format: "Interactive session + reading + workshops + checks",
     access: "academic",
-    accessNote: "Public session activities are available. Referenced course-pack readings remain separately accessed.",
-    keywords: ["strategy", "Porter", "activity system", "productivity frontier", "trade-off", "MBA"],
+    accessNote:
+      "Public session activities are available. Referenced course-pack readings remain separately accessed.",
+    keywords: [
+      "strategy",
+      "Porter",
+      "activity system",
+      "productivity frontier",
+      "trade-off",
+      "MBA",
+    ],
   }),
   resource({
     id: "mba-strategy-quiz-one",
@@ -269,21 +337,25 @@ export const catalogueResources: CatalogueResource[] = [
     prerequisites: "Read the corresponding MBA strategy session first.",
     format: "Interactive quiz + worked rationales",
     access: "academic",
-    accessNote: "Public practice only. Quiz performance does not award academic marks or Lab certification.",
+    accessNote:
+      "Public practice only. Quiz performance does not award academic marks or Lab certification.",
     keywords: ["strategy", "quiz", "misconception", "review", "MBA", "practice"],
   }),
   resource({
     id: "business-simulation-outline",
     title: "Connect strategy to cross-functional simulation decisions",
     href: "/teaching/business-simulation",
-    summary: "A twenty-session academic outline across markets, operations, finance, people and ESG.",
+    summary:
+      "A twenty-session academic outline across markets, operations, finance, people and ESG.",
     outcome: "A framework for explaining how business decisions affect one another.",
     level: "Academic depth",
-    prerequisites: "MBA-level business knowledge. Running the named simulation requires separate course/provider access.",
+    prerequisites:
+      "MBA-level business knowledge. Running the named simulation requires separate course/provider access.",
     duration: "20-session academic outline; not a self-paced completion estimate",
     format: "Course outline + decision/debrief guidance",
     access: "academic",
-    accessNote: "Reading the page is open. It does not provide a simulation licence, account or academic enrolment.",
+    accessNote:
+      "Reading the page is open. It does not provide a simulation licence, account or academic enrolment.",
     keywords: ["simulation", "Cesim", "operations", "finance", "ESG", "strategy", "MBA"],
   }),
   resource({
@@ -294,7 +366,8 @@ export const catalogueResources: CatalogueResource[] = [
     outcome: "A view of an experimental practice tool and its current setup requirements.",
     format: "Directory + external beta application links",
     access: "beta",
-    accessNote: "Optional external prototypes. Check each app's credentials/data requirements; no live assessment or reliability is promised.",
+    accessNote:
+      "Optional external prototypes. Check each app's credentials/data requirements; no live assessment or reliability is promised.",
     keywords: ["AI Viva Bot", "viva", "oral interview", "beta", "prototype", "external app"],
   }),
 ];
@@ -307,61 +380,140 @@ export const learningPaths: LearningPath[] = [
     summary: "Follow the money, make a choice, explain an assumption and support a recommendation.",
     audience: "Adult beginners and students building confidence with business reasoning",
     prerequisites: "Basic arithmetic; use the worked examples before trying the larger cases.",
-    resourceIds: ["read-your-unit-economics", "make-a-strategic-tradeoff", "guesstimates", "worked-case-examples"],
-    optionalIds: ["mba-strategy-map", "mba-strategy-session-one", "mba-strategy-quiz-one", "business-simulation-outline"],
+    resourceIds: [
+      "read-your-unit-economics",
+      "make-a-strategic-tradeoff",
+      "guesstimates",
+      "worked-case-examples",
+    ],
+    optionalIds: [
+      "mba-strategy-map",
+      "mba-strategy-session-one",
+      "mba-strategy-quiz-one",
+      "business-simulation-outline",
+    ],
     challenge: {
       title: "Write a one-page decision memo",
-      brief: "Choose a fictional business from the lessons or a case you have worked. Compare two feasible choices and recommend one using the available numbers and constraints.",
-      prompts: ["What decision must be made, and what are the two choices?", "Which two facts or calculations support your recommendation?", "What assumption, capacity limit or trade-off matters most?", "What small test would make you revise the decision?"],
-      checks: ["Distinguish supplied facts from assumptions.", "Show units and intermediate arithmetic.", "Explain the choice you are giving up.", "Name a test and a revision trigger."],
+      brief:
+        "Choose a fictional business from the lessons or a case you have worked. Compare two feasible choices and recommend one using the available numbers and constraints.",
+      prompts: [
+        "What decision must be made, and what are the two choices?",
+        "Which two facts or calculations support your recommendation?",
+        "What assumption, capacity limit or trade-off matters most?",
+        "What small test would make you revise the decision?",
+      ],
+      checks: [
+        "Distinguish supplied facts from assumptions.",
+        "Show units and intermediate arithmetic.",
+        "Explain the choice you are giving up.",
+        "Name a test and a revision trigger.",
+      ],
     },
   },
   {
     slug: "applied-ai-for-managers",
     title: "Applied AI for Managers",
     goal: "Use AI with evidence and human review",
-    summary: "Specify a bounded task, inspect an evaluation and defend a practical adoption decision.",
+    summary:
+      "Specify a bounded task, inspect an evaluation and defend a practical adoption decision.",
     audience: "Non-technical adult learners, management students and early-career professionals",
-    prerequisites: "No coding required for the open lessons. Use synthetic information; an AI account is optional for the initial exercises.",
-    resourceIds: ["write-an-ai-task-brief", "test-ai-before-adoption", "ai-for-students", "ai-workflow-demonstration"],
+    prerequisites:
+      "No coding required for the open lessons. Use synthetic information; an AI account is optional for the initial exercises.",
+    resourceIds: [
+      "write-an-ai-task-brief",
+      "test-ai-before-adoption",
+      "ai-for-students",
+      "ai-workflow-demonstration",
+    ],
     optionalIds: ["beta-ai-tools"],
     challenge: {
       title: "Build an inspectable workflow proposal",
-      brief: "Use a fictional task from the lessons. Write the allowed inputs, draft/review stages and a small evaluation plan. If you try an AI tool, use only synthetic inputs and record its actual outputs; a paper walkthrough is also useful.",
-      prompts: ["What may the assistant prepare, and what remains a human decision?", "What counts as a pass, a revision or escalation?", "Which awkward cases and review-time costs will you include?", "What result would justify a limited trial, and what would stop it?"],
-      checks: ["Use permitted inputs and flag missing facts.", "Keep generated claims separate from evidence.", "Count review and correction effort.", "Name the human owner and rollback condition."],
+      brief:
+        "Use a fictional task from the lessons. Write the allowed inputs, draft/review stages and a small evaluation plan. If you try an AI tool, use only synthetic inputs and record its actual outputs; a paper walkthrough is also useful.",
+      prompts: [
+        "What may the assistant prepare, and what remains a human decision?",
+        "What counts as a pass, a revision or escalation?",
+        "Which awkward cases and review-time costs will you include?",
+        "What result would justify a limited trial, and what would stop it?",
+      ],
+      checks: [
+        "Use permitted inputs and flag missing facts.",
+        "Keep generated claims separate from evidence.",
+        "Count review and correction effort.",
+        "Name the human owner and rollback condition.",
+      ],
     },
   },
   {
     slug: "career-and-case-practice",
     title: "Career and Case Practice",
     goal: "Prepare for interviews and analytical roles",
-    summary: "Connect a role to your evidence, practise cases and make your reasoning easier to follow.",
+    summary:
+      "Connect a role to your evidence, practise cases and make your reasoning easier to follow.",
     audience: "MBA students and adult learners preparing for analytical interviews",
-    prerequisites: "Basic business numeracy; bring an experience or project you can discuss honestly.",
-    resourceIds: ["placement-readiness", "case-frameworks", "guesstimates", "worked-case-examples", "case-interview-bank", "behavioural-interview-evidence"],
+    prerequisites:
+      "Basic business numeracy; bring an experience or project you can discuss honestly.",
+    resourceIds: [
+      "placement-readiness",
+      "case-frameworks",
+      "guesstimates",
+      "worked-case-examples",
+      "case-interview-bank",
+      "behavioural-interview-evidence",
+    ],
     optionalIds: ["beta-ai-tools"],
     challenge: {
       title: "Keep an interview evidence and practice log",
-      brief: "Choose one target role, attempt one case without revealing guidance, then record one experience-based answer. Compare both attempts with the source prompts and revise a specific weakness.",
-      prompts: ["What role are you targeting and what evidence supports the choice?", "How did you structure the case and check the arithmetic?", "What did you do personally in your interview story?", "What changed after you reviewed the guidance or rehearsed with a partner?"],
-      checks: ["Make claims specific and defensible.", "Attempt the case before opening its guidance.", "Explain assumptions and competing interpretations.", "Record a concrete revision; self-review is not a hiring prediction."],
+      brief:
+        "Choose one target role, attempt one case without revealing guidance, then record one experience-based answer. Compare both attempts with the source prompts and revise a specific weakness.",
+      prompts: [
+        "What role are you targeting and what evidence supports the choice?",
+        "How did you structure the case and check the arithmetic?",
+        "What did you do personally in your interview story?",
+        "What changed after you reviewed the guidance or rehearsed with a partner?",
+      ],
+      checks: [
+        "Make claims specific and defensible.",
+        "Attempt the case before opening its guidance.",
+        "Explain assumptions and competing interpretations.",
+        "Record a concrete revision; self-review is not a hiring prediction.",
+      ],
     },
   },
   {
     slug: "entrepreneurship-under-constraint",
     title: "Entrepreneurship Under Constraint",
     goal: "Test a venture without betting everything",
-    summary: "Set your limits, ask about real behaviour, check the economics and design a small test.",
+    summary:
+      "Set your limits, ask about real behaviour, check the economics and design a small test.",
     audience: "Students, aspiring founders and people exploring a small venture",
-    prerequisites: "No funding or coding required to start. Basic arithmetic helps with the economics step.",
-    resourceIds: ["set-an-affordable-loss", "ask-better-customer-questions", "read-your-unit-economics", "startup-playbook", "product-market-fit", "pitching-storytelling"],
+    prerequisites:
+      "No funding or coding required to start. Basic arithmetic helps with the economics step.",
+    resourceIds: [
+      "set-an-affordable-loss",
+      "ask-better-customer-questions",
+      "read-your-unit-economics",
+      "startup-playbook",
+      "product-market-fit",
+      "pitching-storytelling",
+    ],
     optionalIds: ["hiring-first-team", "raising-money", "durable-advantage"],
     challenge: {
       title: "Prepare a venture decision dossier",
-      brief: "Develop a hypothetical venture or a safe experiment you can genuinely run. Separate what customers did from what you infer, explain the cost/capacity limit and decide the next bounded step.",
-      prompts: ["What problem and recent customer behaviour will you investigate?", "What time/money can you afford to lose?", "What do contribution, break-even and capacity imply?", "What evidence would make you continue, change or stop?"],
-      checks: ["Distinguish compliments, bookings, payments and repeat use.", "Separate observations from interpretations.", "Include delivery costs and capacity.", "Set a budget, a learning question and a stopping condition."],
+      brief:
+        "Develop a hypothetical venture or a safe experiment you can genuinely run. Separate what customers did from what you infer, explain the cost/capacity limit and decide the next bounded step.",
+      prompts: [
+        "What problem and recent customer behaviour will you investigate?",
+        "What time/money can you afford to lose?",
+        "What do contribution, break-even and capacity imply?",
+        "What evidence would make you continue, change or stop?",
+      ],
+      checks: [
+        "Distinguish compliments, bookings, payments and repeat use.",
+        "Separate observations from interpretations.",
+        "Include delivery costs and capacity.",
+        "Set a budget, a learning question and a stopping condition.",
+      ],
     },
   },
 ];
@@ -378,7 +530,8 @@ export function filterCatalogue(
 ) {
   const words = (filters.query || "").trim().toLowerCase().split(/\s+/).filter(Boolean);
   return resources.filter((item) => {
-    const searchable = `${item.title} ${item.summary} ${item.outcome} ${item.audience} ${item.keywords.join(" ")}`.toLowerCase();
+    const searchable =
+      `${item.title} ${item.summary} ${item.outcome} ${item.audience} ${item.keywords.join(" ")}`.toLowerCase();
     return (
       (!filters.access || item.access === filters.access) &&
       (!filters.level || item.level === filters.level) &&

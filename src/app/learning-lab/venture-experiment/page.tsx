@@ -2,7 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { VentureExperimentWorkspace } from "@/features/learning-lab/components/VentureExperimentWorkspace";
+import { VentureProgressTracker } from "@/features/learning-lab/components/VentureProgressTracker";
+import { ToolkitShare, VentureQuestion } from "@/features/learning-lab/components/ToolkitParts";
 import { isLabServiceConfigured } from "@/features/learning-lab/server/capabilities";
+import {
+  nextStepLadder,
+  toolkitHref,
+  toolkitPath,
+  toolkitTool,
+  ventureDayHelp,
+  type ToolkitSlug,
+} from "@/features/learning-lab/founder-toolkit";
 import {
   ventureDays,
   ventureEvidenceRubric,
@@ -31,6 +41,13 @@ export const metadata: Metadata = {
   },
 };
 
+const stageTools: Record<(typeof ventureStages)[number]["id"], ToolkitSlug> = {
+  constraints: "idea-filter",
+  investigate: "talk-to-customers",
+  test: "test-playbooks",
+  decide: "ai-practice-prompts",
+};
+
 export default function VentureExperimentPage() {
   return (
     <>
@@ -46,6 +63,7 @@ export default function VentureExperimentPage() {
           Read the 14-day plan
         </a>
       </LabHero>
+      <VentureQuestion />
       <LabSection eyebrow="The goal" title="One real test. One clear decision.">
         <p className="lab-lead">
           Use your own idea, a budget you can afford and customers you can actually reach. Continue,
@@ -60,11 +78,18 @@ export default function VentureExperimentPage() {
               <p>
                 <strong>You leave with:</strong> {stage.output}.
               </p>
+              <Link className="lab-text-link" href={toolkitHref(stageTools[stage.id])}>
+                Free tool: {toolkitTool(stageTools[stage.id]).title} →
+              </Link>
             </article>
           ))}
         </div>
         <p className="lab-small">
-          Start any day. Plan on about 30 minutes a day, plus customer conversations and one small
+          Every stage has a free, copy-ready tool in the{" "}
+          <Link className="lab-text-link" href={toolkitPath}>
+            founder toolkit
+          </Link>
+          . Start any day. Plan on about 30 minutes a day, plus customer conversations and one small
           test. ₹0 is a valid budget. No payment, company, grades or certificate needed.
         </p>
       </LabSection>
@@ -78,38 +103,61 @@ export default function VentureExperimentPage() {
       </LabSection>
       <LabSection id="plan" eyebrow="Day by day" title="The 14-day plan.">
         <p>
-          Keep your Day 1 plan unchanged so you can compare it with your final decision. If a step
-          takes longer, record the real days. A test you did not run is not complete.
+          About 30 minutes a day. Each day has a short “do this today” list, one thing to watch out
+          for and the tool to use. Keep your Day 1 page unchanged so you can compare it with your
+          final decision. If a step takes longer, take longer; a test you did not run is not
+          complete.
         </p>
+        <VentureProgressTracker />
         {ventureStages.map((stage) => (
-          <section key={stage.id} style={{ marginTop: "2rem" }}>
+          <section key={stage.id} style={{ marginTop: "2.4rem" }}>
             <h3>
               {stage.days}: {stage.title}
             </h3>
-            <ol
-              start={ventureDays.find((day) => day.stage === stage.id)!.day}
-              className="lab-prose"
-            >
+            <ol className="lab-days">
               {ventureDays
                 .filter((day) => day.stage === stage.id)
-                .map((day) => (
-                  <li
-                    key={day.day}
-                    id={`venture-day-${day.day}`}
-                    style={{ marginBottom: "1.4rem" }}
-                  >
-                    <strong>
-                      Day {day.day}: {day.title}
-                    </strong>
-                    <p>{day.task}</p>
-                    <p className="lab-small">
-                      <strong>Keep:</strong> {day.output}.
-                    </p>
-                  </li>
-                ))}
+                .map((day) => {
+                  const help = ventureDayHelp[day.day];
+                  return (
+                    <li className="lab-day" key={day.day} id={`venture-day-${day.day}`}>
+                      <span className="lab-day-label">Day {day.day}</span>
+                      <h4>{day.title}</h4>
+                      <p className="lab-small" style={{ marginBottom: "0.4rem" }}>
+                        <strong>Do this today</strong>
+                      </p>
+                      <ul className="lab-today">
+                        {help.doToday.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                      <p className="lab-watch">
+                        <strong>Watch out.</strong> {help.watchOut}
+                      </p>
+                      {help.tool && (
+                        <Link className="lab-text-link" href={help.tool.href}>
+                          Use: {help.tool.label} →
+                        </Link>
+                      )}
+                      <details>
+                        <summary>Full guidance for Day {day.day}</summary>
+                        <p>{day.task}</p>
+                        <p className="lab-small">
+                          <strong>Keep:</strong> {day.output}.
+                        </p>
+                      </details>
+                    </li>
+                  );
+                })}
             </ol>
           </section>
         ))}
+        <div className="lab-actions">
+          <ToolkitShare
+            text="Free 14-day plan to test your business idea with real customers:"
+            path={ventureExperimentPath}
+          />
+        </div>
       </LabSection>
       <LabSection className="lab-band" eyebrow="Worked example" title={ventureExample.title}>
         <p className="lab-small">{ventureExample.note}</p>
@@ -175,37 +223,49 @@ export default function VentureExperimentPage() {
           </li>
         </ul>
       </LabSection>
-      <LabSection eyebrow="Alternatives" title="Other free places to learn.">
-        <p>Independent resources. No partnership is implied.</p>
-        <ul className="lab-prose">
-          <li>
-            <a className="lab-text-link" href="https://www.startupschool.org/">
-              YC Startup School
-            </a>
-            : a free online startup course with weekly progress support.
-          </li>
-          <li>
-            <a
-              className="lab-text-link"
-              href="https://www.startupindia.gov.in/santhali/content/sih/en/learning-and-development_v2.html"
-            >
-              Startup India Learning Program
-            </a>
-            : free entrepreneurship learning in English and Hindi.
-          </li>
-          <li>
-            <a className="lab-text-link" href="https://www.nsf.gov/funding/initiatives/i-corps">
-              NSF I-Corps
-            </a>
-            : a customer-discovery model for research teams, broader in scope than this pilot.
-          </li>
-        </ul>
-        <Link
-          href="/learning-lab/free-courses/ask-better-customer-questions"
-          className="lab-text-link"
-        >
-          Practise a neutral customer question first →
-        </Link>
+      <LabSection id="next" eyebrow="After Day 14" title="Where to go next, whatever you decide.">
+        <div className="lab-grid">
+          {nextStepLadder.map((step) => (
+            <article className="lab-card" key={step.decision}>
+              <p className="lab-card-number">{step.decision}</p>
+              <p style={{ color: "var(--lab-ink)" }}>{step.advice}</p>
+              {step.links.length > 0 && (
+                <ul>
+                  {step.links.map((link) => (
+                    <li key={link.url}>
+                      <a
+                        className="lab-text-link"
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.label} ↗<span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                      <span className="lab-small"> {link.note}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
+        <p className="lab-small" style={{ marginTop: "1.2rem" }}>
+          Independent resources. No partnership is implied.
+        </p>
+        <div className="lab-actions">
+          <Link className="lab-text-link" href={toolkitHref("test-playbooks", "experiment-record")}>
+            Make your one-page experiment record →
+          </Link>
+          <Link className="lab-text-link" href={toolkitHref("learn-from-yc")}>
+            Learn from Y Combinator, free →
+          </Link>
+          <Link
+            href="/learning-lab/free-courses/ask-better-customer-questions"
+            className="lab-text-link"
+          >
+            Practise a neutral customer question →
+          </Link>
+        </div>
       </LabSection>
     </>
   );

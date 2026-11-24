@@ -3,6 +3,13 @@ export const ventureExperimentPath = "/learning-lab/venture-experiment";
 export const venturePositioning =
   "A free 14-day guide for first-time student entrepreneurs: turn your business idea into one small customer test, get feedback, and decide what to do next.";
 
+/** The one question the 14-day experiment helps a student answer, in two parts. */
+export const ventureCoreQuestion = {
+  question: "Will real people act on my idea, not just say they like it?",
+  followUp:
+    "And based on what they actually do, should I continue, change or stop, without risking more than I can afford?",
+} as const;
+
 export const ventureStages = [
   {
     id: "constraints",
