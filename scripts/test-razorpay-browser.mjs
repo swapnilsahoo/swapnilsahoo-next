@@ -290,6 +290,9 @@ try {
   scenarios += 1;
 
   await start({ createStatus: 401 });
+  // Contributors choose their own amount; the field starts empty.
+  assert.equal(await amountInput.inputValue(), "");
+  await amountInput.fill("500");
   await payButton.click();
   await waitMessage(/checkout session expired/i);
   await waitEnabled(payButton);
