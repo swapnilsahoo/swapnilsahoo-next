@@ -1,5 +1,7 @@
 # Swapnil Sahoo Learning Lab — site audit and launch brief
 
+**Status, 24 November 2026:** the founder confirmed that the Lab is incorporated as Swapnil Sahoo Learning Lab Private Limited (the single source is `src/features/learning-lab/entity.ts`). Everything the Lab offers is free, including future programmes, and the website has no checkout. Voluntary financial assistance and support for infrastructure and services are welcome and never required. This supersedes the unincorporated, not-for-profit, proposed-entity and paid-programme statements below, which are kept as history. The CIN and registered office are not yet published.
+
 Prepared 8 October 2026. This is a build and pilot planning document, not approval to publish, collect production data, charge learners or approach institutions.
 
 ## First customer and smallest useful release

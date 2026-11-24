@@ -15,8 +15,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
           "APPROVED PILOT DETAILS — ENQUIRE ABOUT JOINING",
           `Start: ${programme.availability.startsAt || "Not published"}`,
           `IST timetable: ${offer.timetableIst || "Not published"}`,
-          `Total payable fee: ${programme.availability.feeInr === null ? "Not published" : `INR ${programme.availability.feeInr}`}`,
-          `Tax presentation: ${offer.taxDisplay || "Not published"}`,
+          "Fee: Free",
           `Minimum learners: ${offer.minCohort ?? "Not published"}`,
           `Maximum learners: ${programme.availability.capacity ?? "Not published"}`,
           `Instructor: ${offer.instructor || "Not published"}`,
@@ -25,7 +24,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ slu
           `Access and attendance alternatives: ${offer.accessTerms || "Not published"}`,
           `Support and feedback: ${offer.supportTerms || "Not published"}`,
           `Cancellation and rescheduling: ${offer.cancellationTerms || "Not published"}`,
-          "An enquiry does not reserve a place. Payments on this site remain disabled.",
+          "An enquiry does not reserve a place. There is no fee and no checkout.",
           "",
         ]
       : [];

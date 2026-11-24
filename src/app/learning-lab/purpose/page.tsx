@@ -89,7 +89,11 @@ export default function PurposePage() {
           Try practical entrepreneurship learning →
         </Link>
       </LabSection>
-      <LabSection id="who-runs-the-lab" eyebrow="Who runs the Lab" title="An incorporated company. Free for every learner.">
+      <LabSection
+        id="who-runs-the-lab"
+        eyebrow="Who runs the Lab"
+        title="An incorporated company. Free for every learner."
+      >
         <div className="lab-grid">
           <article className="lab-card">
             <p className="lab-eyebrow">The learning platform</p>

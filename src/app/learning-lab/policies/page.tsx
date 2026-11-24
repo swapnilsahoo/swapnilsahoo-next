@@ -33,7 +33,9 @@ export default function PoliciesPage() {
         <div className="lab-grid" style={{ marginTop: "2rem" }}>
           {labPolicies.map((policy) => (
             <article className="lab-card" key={policy.slug}>
-              <span className="lab-tag">{policy.status === "current" ? "Current" : "Draft · future programmes"}</span>
+              <span className="lab-tag">
+                {policy.status === "current" ? "Current" : "Draft · future programmes"}
+              </span>
               <h3>{policy.title}</h3>
               <p>{policy.summary}</p>
               <Link href={`/learning-lab/policies/${policy.slug}`} className="lab-text-link">

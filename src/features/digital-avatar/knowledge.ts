@@ -1,4 +1,5 @@
 import type { MentorLesson } from "./lesson-manifest";
+import { labLegalName } from "../learning-lab/entity";
 import { lessonExplanation } from "./mentor";
 
 export type AvatarReply = {
@@ -234,7 +235,7 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(donat\w*|voluntary (support|contribution\w*|assistance)|volunteer\w*|non[- ]?profit|not[- ]for[- ]profit|(learning lab|lab|initiative) (run |operated |a )?for[- ]profit|is (this|it) for[- ]profit|financial support|support (the |your |this )?(learning lab|lab|initiative)|contribut\w* (to|towards?|for) (the |your |this )?(learning lab|lab|initiative|infrastructure|content)|help (improve|build|fund|develop|create) (the |your |lab )?(learning )?(content|infrastructure))\b/i,
     reply: answer(
-      "Swapnil Sahoo Learning Lab Private Limited runs the Learning Lab, and everything it offers is free. Voluntary financial assistance and support for its infrastructure and services are welcome and appreciated. Visit Support the Lab to offer expertise or use the original PhonePe QR to contribute any amount. The image prints SWAPNIL SAHOO; check the recipient in your payment app before sending. A contribution does not buy a place, feedback, assessment or a certificate. This website cannot verify a transfer or issue an automatic confirmation, and it has no checkout.",
+      `${labLegalName} runs the Learning Lab, and everything it offers is free. Voluntary financial assistance and support for its infrastructure and services are welcome and appreciated. Visit Support the Lab to offer expertise or use the original PhonePe QR to contribute any amount. The image prints SWAPNIL SAHOO; check the recipient in your payment app before sending. A contribution does not buy a place, feedback, assessment or a certificate. This website cannot verify a transfer or issue an automatic confirmation, and it has no checkout.`,
       [support, donationQr, freeLibrary],
       ["How can I support the Lab?", "What can I learn for free?", "Contact the Lab"]
     ),

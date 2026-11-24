@@ -42,9 +42,6 @@ export default async function ProgrammePage({ params }: Props) {
     programme.availability.startsAt
       ? `Start: ${new Date(programme.availability.startsAt).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kolkata" })}`
       : null,
-    programme.availability.feeInr !== null
-      ? `Approved fee: ₹${programme.availability.feeInr.toLocaleString("en-IN")}`
-      : null,
     programme.availability.capacity !== null
       ? `Approved capacity: ${programme.availability.capacity}`
       : null,
@@ -287,7 +284,8 @@ export default async function ProgrammePage({ params }: Props) {
                 : "The programme will be free. Dates and capacity are not confirmed. Registering interest does not reserve a place or create an enrolment."}
             </p>
             <p className="lab-small">
-              Final delivery details and approved policies will be shared before the programme opens.
+              Final delivery details and approved policies will be shared before the programme
+              opens.
             </p>
             <Link href="/learning-lab/faq" className="lab-text-link">
               Practical questions →

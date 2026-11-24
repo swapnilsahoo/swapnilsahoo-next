@@ -42,8 +42,8 @@ export default function SupportLabPage() {
             </p>
             <p>
               Scan this original PhonePe QR. The name printed on the image is{" "}
-              <strong>SWAPNIL SAHOO</strong>. Check the recipient shown in your payment app
-              before confirming your transfer.
+              <strong>SWAPNIL SAHOO</strong>. Check the recipient shown in your payment app before
+              confirming your transfer.
             </p>
             <a href={donationQr} download="Swapnil-Sahoo-PhonePe-QR.jpg" className="lab-button">
               Download the original QR
@@ -58,7 +58,9 @@ export default function SupportLabPage() {
               amount and transaction reference needed to identify the transfer.
             </p>
             <p>
-              <Link href="/learning-lab/free-courses">Everything stays free: see the free courses →</Link>
+              <Link href="/learning-lab/free-courses">
+                Everything stays free: see the free courses →
+              </Link>
             </p>
           </div>
           <figure className="lab-donation-qr">

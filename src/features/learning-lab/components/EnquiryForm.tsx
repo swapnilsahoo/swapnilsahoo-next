@@ -168,8 +168,8 @@ export function EnquiryForm({
         <h3>Enquiry saved</h3>
         <p>{savedMessage}</p>
         <p className="lab-small">
-          Nothing is charged; everything is free. An enquiry does not confirm enrolment, a date or
-          a place.
+          Nothing is charged; everything is free. An enquiry does not confirm enrolment, a date or a
+          place.
         </p>
         <button
           type="button"

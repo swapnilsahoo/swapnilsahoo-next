@@ -1,3 +1,5 @@
+import { labLegalName } from "./entity";
+
 // Public operator details are deliberately separate from the academic profile.
 // Contact details are set explicitly by the founder; they imply no institutional endorsement.
 const brandOwner = "Swapnil Sahoo";
@@ -5,9 +7,7 @@ const brandLabel = "Learning Lab";
 const name = `${brandOwner} ${brandLabel}`;
 const description =
   "Free practical guidance for first-time student entrepreneurs: turn an idea into a small, affordable customer experiment in 14 days.";
-// The incorporated company that runs the Lab (confirmed by the founder on 24 November 2026).
-// Edit this one value if the registered name differs; every public mention reads it.
-const legalName = "Swapnil Sahoo Learning Lab Private Limited";
+const legalName = labLegalName;
 export const labPublicConfig = {
   name,
   brandOwner,
