@@ -82,8 +82,7 @@ export function LabShell({
               professional affiliations do not imply sponsorship or endorsement of the Lab.
             </p>
             <p className="lab-small">
-              Everything the Lab offers is free, for adults aged 18 and over. There are no fees and
-              no checkout.
+              Everything the Lab offers is free, for adults aged 18 and over. There are no fees.
             </p>
             <p className="lab-small">
               Voluntary financial assistance and support for our infrastructure and services are

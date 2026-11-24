@@ -1,6 +1,6 @@
 # Current purpose and voluntary support
 
-**Status, 24 November 2026:** the founder confirmed that the Lab is incorporated as Swapnil Sahoo Learning Lab Private Limited (the single source is `src/features/learning-lab/entity.ts`). Everything the Lab offers is free, including future programmes, and the website has no checkout. Voluntary financial assistance and support for infrastructure and services are welcome and never required. This supersedes the unincorporated, not-for-profit, proposed-entity and paid-programme statements below, which are kept as history. The CIN and registered office are not yet published.
+**Status, 24 November 2026:** the founder confirmed that the Lab is incorporated as Swapnil Sahoo Learning Lab Private Limited (the single source is `src/features/learning-lab/entity.ts`). Everything the Lab offers is free, including future programmes, and the website has no checkout. Voluntary financial assistance and support for infrastructure and services are welcome and never required. This supersedes the unincorporated, not-for-profit, proposed-entity and paid-programme statements below, which are kept as history. The CIN and registered office are not yet published. Online contributions through Razorpay are described in [razorpay-checkout.md](razorpay-checkout.md).
 
 Updated 9 October 2026, India time.
 

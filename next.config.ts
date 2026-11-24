@@ -5,6 +5,8 @@ import {
   APP_CSP_HEADER,
   APP_SOURCE,
   BASE_SECURITY_HEADERS,
+  CHECKOUT_SECURITY_HEADERS,
+  CHECKOUT_SOURCE,
   DECK_CSP_HEADER,
   STATIC_DECK_SOURCE,
 } from "./security-headers";
@@ -25,10 +27,11 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/:path*", headers: BASE_SECURITY_HEADERS },
-      // Exactly one of the next two matches any given path, so a response never
+      // Exactly one content policy matches a path, so a response never
       // carries two Content-Security-Policy headers.
       { source: STATIC_DECK_SOURCE, headers: [DECK_CSP_HEADER] },
       { source: APP_SOURCE, headers: [APP_CSP_HEADER] },
+      { source: CHECKOUT_SOURCE, headers: CHECKOUT_SECURITY_HEADERS },
       { source: "/api/:path*", headers: API_SECURITY_HEADERS },
     ];
   },
