@@ -23,6 +23,11 @@ const venture = {
 };
 const support = { label: "Support the Lab", href: `${lab}/support` };
 const donationQr = { label: "View the optional donation QR", href: `${lab}/support#donate` };
+const toolkit = `${lab}/toolkit`;
+const toolkitHub = { label: "Open the free founder toolkit", href: toolkit };
+const conversationKit = { label: "Customer conversation kit", href: `${toolkit}/talk-to-customers` };
+const playbooks = { label: "₹0–₹500 test playbooks", href: `${toolkit}/test-playbooks` };
+const ideaFilter = { label: "One-page idea filter", href: `${toolkit}/idea-filter` };
 
 export const starters = [
   "What can I learn for free?",
@@ -44,6 +49,154 @@ function answer(text: string, links: AvatarReply["links"], suggestions: string[]
 // Prepared website guidance only. This module has no network, storage, account,
 // assessment or payment actions and does not generate answers with a language model.
 const topics: GuidedTopic[] = [
+  // Real first-time founder questions. Listed first so that words such as "college",
+  // "save", "store" or "price" in a student's question reach the toolkit, not Lab admin answers.
+  {
+    matches:
+      /\b(scared|afraid|nervous|shy|fear\w*|anxious|anxiety|hesitat\w*|introvert\w*)\b|\b(talk|talking|speak|speaking) to (strangers|people|customers)\b|\b(approach|message|text|dm) (people|strangers|customers|someone)\b|\bwhat (do|should) i say\b|\bcold (message|messaging|outreach)\b/i,
+    reply: answer(
+      "Feeling nervous is normal. Use the free customer conversation kit: copy a ready-made message for WhatsApp, Instagram, a group post or in person (in English, Hinglish or Hindi), and start with people you already know who have the problem, then friends of friends. Ask five questions about the last time the problem happened; you are not selling anything. Rehearse once with a friend or the free AI role-play prompt first. Three conversations are enough to start.",
+      [
+        { label: "Copy a ready-made first message", href: `${toolkit}/talk-to-customers#messages` },
+        { label: "Rehearse with a free AI prompt", href: `${toolkit}/ai-practice-prompts#rehearse` },
+        venture,
+      ],
+      [
+        "Should I build an app first?",
+        "My friends love my idea. Is that enough?",
+        "How do I test my idea with no money?",
+      ]
+    ),
+  },
+  {
+    matches:
+      /\b(build|make|develop|code|create)\b.{0,20}\b(app|website|platform|software)\b|\bapp first\b|\bneed (an?|my) (app|website)\b/i,
+    reply: answer(
+      "Not yet. Do the job by hand for three to five people first, using WhatsApp and a spreadsheet. If they ask you to do it again, that is your sign to build. The do-it-by-hand playbook has the steps and a pass mark, and the mistakes list explains why building first usually wastes weeks.",
+      [
+        { label: "Do it by hand for five people", href: `${toolkit}/test-playbooks#do-it-by-hand` },
+        { label: "Beginner mistakes to dodge", href: `${toolkit}/mistakes` },
+        ideaFilter,
+      ],
+      ["How do I test my idea with no money?", "I am scared to talk to customers", "Is my idea good?"]
+    ),
+  },
+  {
+    matches:
+      /\b(friends?|family|parents|people) (said|say|says|told|like|liked|love|loved|think)\b|\b(love|like)d? my idea\b|\bis (that|this|it) enough\b|\bcompliments?\b|\b(likes|followers|views)\b/i,
+    reply: answer(
+      "Kind words are a start, but they cost people nothing, so they are not evidence. Count what people do: reservations, bookings, turning up, coming back. Set a pass mark before you test, such as at least 5 of 25 reserve by Friday, and count close friends and family separately. The signal ladder shows how strong each kind of response is.",
+      [
+        { label: "See the signal ladder", href: `${toolkit}/test-playbooks#signals` },
+        { label: "Fill in a test card", href: `${toolkit}/test-playbooks#cards` },
+        { label: "Why asking friends misleads", href: `${toolkit}/mistakes#asking-friends` },
+      ],
+      [
+        "How do I test my idea with no money?",
+        "Nobody replied to my messages",
+        "I am scared to talk to customers",
+      ]
+    ),
+  },
+  {
+    matches:
+      /\b(nobody|no one|no-one|none)\b.{0,15}\b(repl\w*|respond\w*|answer\w*|came|signed|bought|interested)\b|\bno repl(y|ies)\b|\b(ignored|ghosted|rejected)\b|\b(everyone|they all|people) said no\b/i,
+    reply: answer(
+      "That is data, not failure. Most people are busy rather than rude. Send at least ten short, honest messages before judging, and try a warmer route: a friend of a friend, a group admin or a senior. If a real offer still gets zero after a fair try, write it down as 0 of N and decide whether to change or stop. An honest stop is a good result.",
+      [
+        { label: "Try a warmer first message", href: `${toolkit}/talk-to-customers#messages` },
+        { label: "Do not quit after two noes", href: `${toolkit}/mistakes#giving-up` },
+        { label: "Where to go after Day 14", href: `${venture.href}#next` },
+      ],
+      ["I am scared to talk to customers", "How do I test my idea with no money?", "Is my idea good?"]
+    ),
+  },
+  {
+    matches:
+      /\b(price|pricing|charge)\b.{0,25}\b(my|our|the) (product|snacks?|food|service|items?|session|tuition|class|idea)\b|\bhow much (should|do|can) i charge\b|\bwhat (price|should i charge)\b|\bset (a|my|the) price\b|\bprice my\b/i,
+    reply: answer(
+      "Start from what people spend today on their current fix: ask about it in your conversations. Then test one clear price in a real offer, such as a reservation at ₹40, and see how many people act. Check your cost per unit with the free unit-economics course before you discount; a discount to get traction often hides a weak offer.",
+      [
+        { label: "Read your unit economics (free course)", href: `${free}/read-your-unit-economics` },
+        playbooks,
+        conversationKit,
+      ],
+      [
+        "How do I test my idea with no money?",
+        "My friends love my idea. Is that enough?",
+        "What free tools can I use?",
+      ]
+    ),
+  },
+  {
+    matches:
+      /\b(is (my|this) idea (good|any good|worth\w*|viable)|my idea (is )?(good|worth\w*)|idea (worth|viable)|evaluate (my|this|an) idea|filter (my )?idea|no idea what to (do|start|build)|(find|get|need) (an? |good )?(business |startup )?ideas?)\b/i,
+    reply: answer(
+      "No tool can tell you that in advance; only real people's actions can. Spend 15 minutes on the free idea filter: name one specific person, one problem, what they do today and how you will reach five of them. It tells you the riskiest guess to check first. No idea yet? It also has eight prompts for spotting problems around you.",
+      [ideaFilter, { label: "No idea yet? Start here", href: `${toolkit}/idea-filter#no-idea` }, venture],
+      [
+        "I am scared to talk to customers",
+        "Should I build an app first?",
+        "How do I test my idea with no money?",
+      ]
+    ),
+  },
+  {
+    matches:
+      /\b(no money|without money|zero budget|zero rupees|little money|low[- ]cost|cheap(ly)?|small budget|save money|tight budget)\b|\b(test|validate|check)\b.{0,12}\b(my|this|an|the) idea\b|\b(sell|selling)\b|\bhomemade\b|\bside hustle\b|\bfirst (customer|sale)s?\b|\blocal (shop|store)s?\b/i,
+    reply: answer(
+      "Start with a ₹0 test. Pick one of six playbooks, such as a WhatsApp reserve-by-Friday offer, a sign-up sheet with real time slots or doing the service by hand for five people. Write your pass mark first, then count what people actually do out of how many you asked. If you sell food regularly, check FSSAI registration first. The 14-day plan walks you through it day by day.",
+      [playbooks, ideaFilter, venture],
+      ["I am scared to talk to customers", "How should I price my product?", "What free tools can I use?"]
+    ),
+  },
+  {
+    matches:
+      /\b(free tools?|which (app|apps|tool|tools|software)|what (app|apps|tools?|software) (should|can|do)|google forms?|canva|landing page|website builder)\b/i,
+    reply: answer(
+      "You never need paid software for a first test. A WhatsApp message and a Google Sheet are enough for most tests. The free tools list covers forms, posters, notes, calls and simple pages, with each tool's free plan checked.",
+      [{ label: "Free tools list", href: `${toolkit}/free-tools` }, playbooks, toolkitHub],
+      ["How do I test my idea with no money?", "I am scared to talk to customers", "Is my idea good?"]
+    ),
+  },
+  {
+    matches:
+      /\b(e-?cells?|iic|innovation council|facilitat\w*|session plan|run (this|a) (session|workshop)|my (class|students)|student club)\b/i,
+    reply: answer(
+      "There is a free kit for running this with a group: a 75-minute customer-test workshop plan, an eight-slide outline, an activity report template you can adapt, and a grading rubric for faculty. No registration with the Lab is needed.",
+      [
+        { label: "Open the facilitator kit", href: `${toolkit}/facilitator-kit` },
+        toolkitHub,
+        { label: "Discuss an institutional pilot", href: `${lab}/for-colleges` },
+      ],
+      ["What can I learn for free?", "How do I test a business idea?", "Contact the Lab"]
+    ),
+  },
+  {
+    matches:
+      /\b(kaise|karu|karun|karoon|karna|karni|shuru|dhandha|dhanda|vyapar|vyapaar|baat|bechna|bechu|paise)\b|[ऀ-ॿ]/i,
+    reply: answer(
+      "Hindi aur Hinglish mein bhi madad hai. The customer conversation kit has ready-made messages and the full interview script in Hinglish and Hindi. Start with the idea filter, talk to three people who have the problem, then run one ₹0 test from the playbooks.",
+      [
+        { label: "Hinglish and Hindi messages", href: `${toolkit}/talk-to-customers#hindi` },
+        toolkitHub,
+        venture,
+      ],
+      [
+        "I am scared to talk to customers",
+        "How do I test my idea with no money?",
+        "What can I learn for free?",
+      ]
+    ),
+  },
+  {
+    matches: /\b(toolkit|templates?|scripts?|worksheets?|checklists?)\b/i,
+    reply: answer(
+      "The free founder toolkit has copy-ready tools for every stage: an idea filter, customer messages and a script, a question checker, six ₹0–₹500 test playbooks with test cards, a mistakes list, free AI practice prompts and a free tools list. No sign-up or payment.",
+      [toolkitHub, conversationKit, playbooks],
+      ["I am scared to talk to customers", "Is my idea good?", "How do I test my idea with no money?"]
+    ),
+  },
   {
     matches:
       /\b(donat\w*|voluntary (support|contribution\w*|assistance)|volunteer\w*|non[- ]?profit|not[- ]for[- ]profit|(learning lab|lab|initiative) (run |operated |a )?for[- ]profit|is (this|it) for[- ]profit|financial support|support (the |your |this )?(learning lab|lab|initiative)|contribut\w* (to|towards?|for) (the |your |this )?(learning lab|lab|initiative|infrastructure|content)|help (improve|build|fund|develop|create) (the |your |lab )?(learning )?(content|infrastructure))\b/i,
@@ -180,7 +333,7 @@ const topics: GuidedTopic[] = [
       /\b(14[- ]?day|fourteen[- ]?day|student entrepreneur\w*|business idea|startup idea|venture experiment|founder feedback)\b/i,
     reply: answer(
       "The Lab's current focus is a free 14-day venture experiment for first-time college entrepreneurs aged 18 or over. Set a time and money boundary, investigate recent customer behaviour, run one small offer test, and use the evidence to continue, change or stop. Zero spending is valid. The public planner adapts the next task to your constraints; it does not assess your work. An optional pilot has up to 20 active places for written feedback from Dr. Sahoo in a private workspace. Registration and a saved submission are not a completed experiment or an instant review. This assistant cannot enrol you or give the founder's personal feedback.",
-      [venture, { label: "Read all 14 daily tasks", href: `${venture.href}#plan` }, contact],
+      [venture, { label: "Read all 14 daily tasks", href: `${venture.href}#plan` }, toolkitHub],
       [
         "How do I set an affordable loss?",
         "How do I interview customers?",
@@ -198,11 +351,8 @@ const topics: GuidedTopic[] = [
           label: "Start the free customer-discovery course",
           href: `${free}/ask-better-customer-questions`,
         },
+        { label: "Copy word-for-word customer scripts", href: `${toolkit}/talk-to-customers` },
         { label: "Set an affordable-loss limit", href: `${free}/set-an-affordable-loss` },
-        {
-          label: "Explore Entrepreneurship Under Constraint",
-          href: `${programmes}/entrepreneurship-under-constraint`,
-        },
       ],
       [
         "How do I set an affordable loss?",
