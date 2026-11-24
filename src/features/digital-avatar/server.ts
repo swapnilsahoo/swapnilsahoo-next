@@ -5,12 +5,7 @@ import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { labLegalName } from "../learning-lab/entity";
 import { getApprovedOneMindUrl } from "./embed-config";
-import {
-  buildMentorLessonContext,
-  getMentorLesson,
-  mentorModes,
-  type MentorMode,
-} from "./lesson-manifest";
+import { buildMentorLessonContext, getMentorLesson, mentorModes, type MentorMode } from "./lesson-manifest";
 
 const api = "https://tavusapi.com/v2/conversations";
 const cookieName = "digital-avatar-session";
@@ -64,18 +59,11 @@ function configuration(): Config | null {
     const parsed: unknown = JSON.parse(process.env.TAVUS_LESSON_DOCUMENT_IDS || "{}");
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return null;
     for (const [lessonId, ids] of Object.entries(parsed)) {
-      if (
-        !getMentorLesson(lessonId) ||
-        !Array.isArray(ids) ||
-        ids.length > 10 ||
-        ids.some((id) => typeof id !== "string" || !providerId.test(id))
-      )
-        return null;
+      if (!getMentorLesson(lessonId) || !Array.isArray(ids) || ids.length > 10 ||
+        ids.some((id) => typeof id !== "string" || !providerId.test(id))) return null;
     }
     documents = parsed as Record<string, string[]>;
-  } catch {
-    return null;
-  }
+  } catch { return null; }
   let origin: string;
   try {
     const url = new URL(process.env.DIGITAL_AVATAR_BASE_URL || "");
@@ -113,19 +101,7 @@ function configuration(): Config | null {
     durationSeconds > 300
   )
     return null;
-  return {
-    apiKey,
-    faceId,
-    palId,
-    secret,
-    origin,
-    databaseUrl,
-    databaseToken,
-    dailyLimit,
-    durationSeconds,
-    documents,
-    local,
-  };
+  return { apiKey, faceId, palId, secret, origin, databaseUrl, databaseToken, dailyLimit, durationSeconds, documents, local };
 }
 
 // Safe in statically rendered layouts: no network, headers, cookies or database IO.
@@ -341,10 +317,7 @@ async function endUpstream(config: Config, conversationId: string) {
 let databaseWork: Promise<unknown> = Promise.resolve();
 function serializeDatabaseWork<T>(work: () => Promise<T>): Promise<T> {
   const result = databaseWork.then(work, work);
-  databaseWork = result.then(
-    () => undefined,
-    () => undefined
-  );
+  databaseWork = result.then(() => undefined, () => undefined);
   return result;
 }
 
@@ -376,10 +349,7 @@ async function createSession(request: Request) {
   )
     throw new AvatarHttpError(422, "Please confirm consent before starting.");
   const options = consent as Record<string, unknown>;
-  if (
-    options.lessonId !== undefined &&
-    (typeof options.lessonId !== "string" || !getMentorLesson(options.lessonId))
-  )
+  if (options.lessonId !== undefined && (typeof options.lessonId !== "string" || !getMentorLesson(options.lessonId)))
     throw new AvatarHttpError(422, "Choose a published free lesson before starting this tutor.");
   if (options.mode !== undefined && !mentorModes.includes(options.mode as MentorMode))
     throw new AvatarHttpError(422, "Choose a supported learning mode.");
@@ -446,12 +416,10 @@ async function createSession(request: Request) {
       throw new Error("Invalid provider room");
     url.searchParams.set("t", result.meeting_token);
     const expiresAt = Date.now() + config.durationSeconds * 1000;
-    await serializeDatabaseWork(() =>
-      client.execute({
-        sql: "UPDATE digital_avatar_session SET conversation_id=?,expires_at=? WHERE id=?",
-        args: [conversationId, expiresAt, id],
-      })
-    );
+    await serializeDatabaseWork(() => client.execute({
+      sql: "UPDATE digital_avatar_session SET conversation_id=?,expires_at=? WHERE id=?",
+      args: [conversationId, expiresAt, id],
+    }));
     const expiry = expiresAt + cookieGraceSeconds * 1000;
     return {
       session: {
@@ -470,12 +438,10 @@ async function createSession(request: Request) {
     // An ambiguous create timeout may have allocated a room. Preserve the slot
     // until its hard expiry unless the provider has confirmed that it ended.
     if (ended)
-      await serializeDatabaseWork(() =>
-        client.execute({
+      await serializeDatabaseWork(() => client.execute({
           sql: "UPDATE digital_avatar_session SET ended_at=? WHERE id=?",
           args: [Date.now(), id],
-        })
-      ).catch(() => undefined);
+        })).catch(() => undefined);
     throw new AvatarHttpError(
       503,
       "The video provider could not start a conversation. Please use the website guide."
@@ -500,12 +466,10 @@ async function endSession(request: Request) {
     );
   const client = await database(config);
   const row = (
-    await serializeDatabaseWork(() =>
-      client.execute({
-        sql: "SELECT conversation_id,ended_at,expires_at FROM digital_avatar_session WHERE id=?",
-        args: [id],
-      })
-    )
+    await serializeDatabaseWork(() => client.execute({
+      sql: "SELECT conversation_id,ended_at,expires_at FROM digital_avatar_session WHERE id=?",
+      args: [id],
+    }))
   ).rows[0];
   if (!row) throw new AvatarHttpError(401, "This video session is no longer available.");
   const ended =
@@ -516,11 +480,9 @@ async function endSession(request: Request) {
       503,
       "The provider could not confirm the end of this call. Try Stop again; the configured call-duration limit remains in place."
     );
-  await serializeDatabaseWork(() =>
-    client.execute({
-      sql: "UPDATE digital_avatar_session SET ended_at=? WHERE id=?",
-      args: [Date.now(), id],
-    })
-  );
+  await serializeDatabaseWork(() => client.execute({
+    sql: "UPDATE digital_avatar_session SET ended_at=? WHERE id=?",
+    args: [Date.now(), id],
+  }));
   return { cookie: cookie(config, "", 0) };
 }
