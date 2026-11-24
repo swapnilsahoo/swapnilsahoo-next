@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const policy = labPolicies.find((p) => p.slug === slug);
   return policy
     ? {
-        title: policy.slug === "privacy" ? policy.title : `${policy.title} — Draft`,
+        title: policy.status === "current" ? policy.title : `${policy.title} — Draft`,
         description: policy.summary,
         alternates: { canonical: `/learning-lab/policies/${slug}` },
       }
@@ -25,18 +25,30 @@ export default async function PolicyPage({ params }: Props) {
   return (
     <>
       <LabHero
-        eyebrow={slug === "privacy" ? "Current website and enquiry handling" : "Draft policy · Professional review required"}
+        eyebrow={
+          policy.status === "current"
+            ? "Current policy · updated 24 November 2026"
+            : "Draft policy · for future programmes"
+        }
         title={policy.title}
         description={policy.summary}
       />
       <LabSection>
         <div className="lab-prose">
           <aside className="lab-callout">
-            <h3>{slug === "privacy" ? "How the current workflow handles information." : "A working draft, not a compliance declaration."}</h3>
+            <h3>
+              {slug === "privacy"
+                ? "How the current workflow handles information."
+                : policy.status === "current"
+                  ? "Everything is free."
+                  : "A draft for future programmes."}
+            </h3>
             <p>
               {slug === "privacy"
-                ? "The contact page shows online-enquiry availability. This notice describes the implemented workflow; it does not certify legal compliance. Programme terms remain drafts and paid course checkout is disabled."
-                : "This document needs professional review, confirmed operator details and approval for the final service. Programmes remain proposed and paid course checkout is disabled."}
+                ? "The contact page shows online-enquiry availability. This notice describes the implemented workflow; it does not certify legal compliance. Everything is free, and the website has no checkout."
+                : policy.status === "current"
+                  ? "The Lab charges no fees and the website has no checkout. Voluntary financial assistance and support for its infrastructure and services are welcome and never required."
+                  : "Programmes are still being planned and will be free. This policy will be finalised before a programme opens; it is not a compliance declaration."}
             </p>
           </aside>
           {policy.sections.map((section) => (

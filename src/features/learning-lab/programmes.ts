@@ -34,7 +34,7 @@ const programmeDrafts: LabProgramme[] = [
     duration:
       "Proposed: four weeks; six 90-minute live sessions plus approximately two hours of independent work each week.",
     format:
-      "Proposed small-cohort online workshops, guided practice and instructor feedback. Dates, capacity and fees are not yet confirmed.",
+      "Proposed small-cohort online workshops, guided practice and instructor feedback. Free of charge; dates and capacity are not yet confirmed.",
     outcomes: [
       "Map a workflow and distinguish an AI use case from a conventional automation opportunity.",
       "Write a task brief with permitted inputs, output criteria, evidence requirements and a human reviewer.",
@@ -174,7 +174,7 @@ const programmeDrafts: LabProgramme[] = [
     duration:
       "Proposed: three weeks; six 90-minute live sessions plus approximately two hours of independent work each week.",
     format:
-      "Proposed small-cohort case workshops with original case packets, peer challenge and instructor feedback. Dates, capacity and fees are not yet confirmed.",
+      "Proposed small-cohort case workshops with original case packets, peer challenge and instructor feedback. Free of charge; dates and capacity are not yet confirmed.",
     outcomes: [
       "Separate the decision, established facts, assumptions and missing evidence in a case.",
       "Compare plausible options using criteria relevant to the business problem.",
@@ -311,7 +311,7 @@ const programmeDrafts: LabProgramme[] = [
     duration:
       "Proposed: four weeks; six 90-minute live sessions plus approximately three hours of independent work each week.",
     format:
-      "Proposed small-cohort workshops, customer-discovery practice and instructor feedback. Dates, capacity and fees are not yet confirmed.",
+      "Proposed small-cohort workshops, customer-discovery practice and instructor feedback. Free of charge; dates and capacity are not yet confirmed.",
     outcomes: [
       "Describe a customer problem using observed behaviour rather than a feature wish list.",
       "Map available means, constraints and an affordable-loss boundary.",

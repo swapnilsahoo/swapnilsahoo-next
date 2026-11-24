@@ -168,7 +168,8 @@ export function EnquiryForm({
         <h3>Enquiry saved</h3>
         <p>{savedMessage}</p>
         <p className="lab-small">
-          No fee has been charged. An enquiry does not confirm enrolment, a date or a place.
+          Nothing is charged; everything is free. An enquiry does not confirm enrolment, a date or a
+          place.
         </p>
         <button
           type="button"
@@ -209,8 +210,8 @@ export function EnquiryForm({
         {kind === "institution" ? "Discuss an institutional pilot" : "Register your interest"}
       </h3>
       <p className="lab-small">
-        Proposed programmes. Dates, fees and places will be shared only after approval. Required
-        fields are marked *.
+        Proposed programmes, free of charge. Dates and places will be shared once confirmed.
+        Required fields are marked *.
       </p>
       {error && (
         <div className="lab-status lab-status-error" role="alert">
