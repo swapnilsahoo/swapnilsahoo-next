@@ -2,6 +2,7 @@ import { chromium } from "playwright";
 import { mkdir, writeFile } from "node:fs/promises";
 import { programmes } from "../src/features/learning-lab/programmes.ts";
 import { labPolicies } from "../src/features/learning-lab/policies.ts";
+import { toolkitTools } from "../src/features/learning-lab/founder-toolkit.ts";
 
 // Run: node --import tsx scripts/test-learning-lab-browser.mjs
 // LAB_TEST_BASE_URL selects an explicitly local development/production preview.
@@ -39,6 +40,9 @@ const assert = (condition, message) => {
 };
 const routes = [
   "/learning-lab",
+  "/learning-lab/venture-experiment",
+  "/learning-lab/toolkit",
+  ...toolkitTools.map((tool) => `/learning-lab/toolkit/${tool.slug}`),
   "/learning-lab/programmes",
   ...programmes.map((p) => `/learning-lab/programmes/${p.slug}`),
   ...[

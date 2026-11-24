@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
+import { VentureQuestion } from "@/features/learning-lab/components/ToolkitParts";
 import { labPublicConfig } from "@/features/learning-lab/config";
+import {
+  toolkitFreeStatement,
+  toolkitHref,
+  toolkitPath,
+  toolkitTools,
+} from "@/features/learning-lab/founder-toolkit";
 import {
   ventureExperimentPath,
   venturePositioning,
@@ -37,10 +44,11 @@ export default function LearningLabPage() {
         <Link href={`${ventureExperimentPath}#start`} className="lab-button">
           Start your experiment →
         </Link>
-        <Link href={`${ventureExperimentPath}#plan`} className="lab-button lab-button-secondary">
-          See the 14-day plan
+        <Link href={toolkitPath} className="lab-button lab-button-secondary">
+          Open the free toolkit
         </Link>
       </LabHero>
+      <VentureQuestion />
       <LabSection eyebrow="Why it exists" title="An idea, little money and no clear next step?">
         <div className="lab-split">
           <div className="lab-prose">
@@ -76,7 +84,38 @@ export default function LearningLabPage() {
           </aside>
         </div>
       </LabSection>
-      <LabSection className="lab-band" eyebrow="How it works" title="Four stages, one experiment.">
+      <LabSection
+        className="lab-band"
+        eyebrow="Free founder toolkit"
+        title="Copy-ready tools, so you never start from a blank page."
+      >
+        <div className="lab-grid">
+          {toolkitTools.slice(0, 6).map((tool) => (
+            <article className="lab-card" key={tool.slug}>
+              <span className="lab-tag">
+                {tool.when} · {tool.minutes}
+              </span>
+              <h3>{tool.title}</h3>
+              <p>{tool.short}</p>
+              <Link href={toolkitHref(tool.slug)} className="lab-text-link">
+                Open →
+              </Link>
+            </article>
+          ))}
+        </div>
+        <p className="lab-small" style={{ marginTop: "1.2rem" }}>
+          {toolkitFreeStatement}
+        </p>
+        <div className="lab-actions">
+          <Link href={toolkitPath} className="lab-button">
+            See the whole toolkit →
+          </Link>
+          <Link href={toolkitHref("learn-from-yc")} className="lab-text-link">
+            Free Y Combinator reading list →
+          </Link>
+        </div>
+      </LabSection>
+      <LabSection eyebrow="How it works" title="Four stages, one experiment.">
         <div className="lab-grid lab-grid-two">
           {ventureStages.map((stage) => (
             <article className="lab-card" key={stage.id}>
@@ -90,7 +129,11 @@ export default function LearningLabPage() {
           ))}
         </div>
       </LabSection>
-      <LabSection eyebrow="What you get" title="Guidance, feedback and honest evidence.">
+      <LabSection
+        className="lab-band"
+        eyebrow="What you get"
+        title="Guidance, feedback and honest evidence."
+      >
         <div className="lab-grid">
           <article>
             <h3>A plan that fits you</h3>
@@ -126,11 +169,7 @@ export default function LearningLabPage() {
           </Link>
         </div>
       </LabSection>
-      <LabSection
-        className="lab-band"
-        eyebrow="Keep learning"
-        title="Free tools for your next step."
-      >
+      <LabSection eyebrow="Keep learning" title="More free learning.">
         <div className="lab-grid">
           <article className="lab-card">
             <h3>Six short courses</h3>
@@ -155,7 +194,11 @@ export default function LearningLabPage() {
           </article>
         </div>
       </LabSection>
-      <LabSection eyebrow="About the Lab" title="Independent and not-for-profit.">
+      <LabSection
+        className="lab-band"
+        eyebrow="About the Lab"
+        title="Independent and not-for-profit."
+      >
         <div className="lab-split">
           <p>
             Founded by Dr. Swapnil Sahoo. The long-term goal is free learning from school to

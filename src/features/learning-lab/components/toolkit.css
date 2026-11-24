@@ -1,0 +1,366 @@
+/* Founder toolkit: copy blocks, question checker, daily checklists and progress tracker.
+   Uses the Lab tokens so the light default and the toggled dark theme both work. */
+.lab {
+  --lab-warn: #9a4b00;
+  --lab-warn-tint: #fbf0e2;
+  --lab-good: #1f6b43;
+}
+.dark .lab {
+  --lab-warn: #ffc27a;
+  --lab-warn-tint: #2e2618;
+  --lab-good: #8fdcb0;
+}
+
+.lab-kit-free {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  border: 1px solid var(--lab-line);
+  background: var(--lab-surface);
+  padding: 0.7rem 1rem;
+  font-size: 0.92rem;
+  margin-top: 1.4rem;
+}
+.lab-kit-free strong {
+  color: var(--lab-good);
+}
+
+.lab-question {
+  border-left: 4px solid var(--lab-accent);
+  background: var(--lab-surface);
+  box-shadow: 0 0 0 1px var(--lab-line);
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 2.5rem;
+}
+.lab-question .lab-eyebrow {
+  margin-bottom: 0.5rem;
+}
+.lab-question-main {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+  line-height: 1.25;
+  margin-bottom: 0.5rem !important;
+  color: var(--lab-ink);
+}
+.lab-question-follow {
+  color: var(--lab-muted);
+  margin: 0 !important;
+  font-size: 1rem;
+}
+
+.lab-kit-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.lab-kit-meta .lab-tag {
+  margin-bottom: 0.6rem;
+}
+
+/* Copyable text (messages, scripts, prompts) */
+.lab-copy {
+  border: 1px solid var(--lab-line);
+  background: var(--lab-surface);
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+.lab-copy h3 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+.lab-copy-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  background: var(--lab-bg);
+  border-left: 3px solid var(--lab-accent);
+  padding: 0.8rem 1rem;
+  margin: 0;
+  color: var(--lab-ink);
+}
+.lab-copy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1rem;
+}
+.lab-copy-actions button,
+.lab-copy-actions a {
+  min-height: 44px;
+}
+.lab-copy-status {
+  font-size: 0.85rem;
+  color: var(--lab-good);
+}
+
+/* Watch-out and tip lines */
+.lab-watch {
+  border-left: 3px solid var(--lab-warn);
+  background: var(--lab-warn-tint);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.92rem;
+  margin: 0.6rem 0;
+}
+.lab-watch strong {
+  color: var(--lab-warn);
+}
+
+/* Question checker */
+.lab-checker-results {
+  list-style: none !important;
+  padding: 0 !important;
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.lab-checker-results > li {
+  border: 1px solid var(--lab-line);
+  background: var(--lab-surface);
+  padding: 0.9rem 1rem;
+  margin: 0 !important;
+}
+.lab-checker-question {
+  font-weight: 600;
+  margin-bottom: 0.4rem !important;
+  overflow-wrap: anywhere;
+}
+.lab-verdict {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid currentColor;
+  margin-right: 0.5rem;
+}
+.lab-verdict-good {
+  color: var(--lab-good);
+}
+.lab-verdict-fix {
+  color: var(--lab-warn);
+}
+.lab-verdict-ok {
+  color: var(--lab-muted);
+}
+.lab-checker-flags {
+  margin: 0.4rem 0 0 1.1rem !important;
+  font-size: 0.9rem;
+}
+.lab-checker-flags li {
+  margin-bottom: 0.3rem;
+}
+
+/* Daily checklist inside the 14-day plan */
+.lab-days {
+  list-style: none !important;
+  padding: 0 !important;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.lab-day {
+  border: 1px solid var(--lab-line);
+  background: var(--lab-surface);
+  padding: 1.1rem 1.2rem;
+  margin: 0 !important;
+  scroll-margin-top: 1rem;
+}
+.lab-day h4 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0.2rem 0 0.6rem;
+}
+.lab-day-label {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--lab-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.lab-today {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 0.4rem !important;
+}
+.lab-today li {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.35rem;
+}
+.lab-today li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.38em;
+  width: 0.95rem;
+  height: 0.95rem;
+  border: 1.5px solid var(--lab-accent);
+  border-radius: 2px;
+}
+.lab-day details {
+  margin-top: 0.5rem;
+  font-size: 0.92rem;
+}
+.lab-day summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: var(--lab-accent);
+}
+
+/* Progress tracker */
+.lab-progress {
+  border: 1px solid var(--lab-line);
+  background: var(--lab-surface);
+  padding: 1.2rem 1.3rem;
+  margin-top: 1.2rem;
+}
+.lab-progress-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+}
+.lab-progress-head h3 {
+  font-size: 1.35rem;
+  margin: 0;
+}
+.lab-progress-bar {
+  height: 0.6rem;
+  background: var(--lab-tint);
+  margin: 0.8rem 0 1rem;
+  overflow: hidden;
+}
+.lab-progress-bar span {
+  display: block;
+  height: 100%;
+  background: var(--lab-accent);
+  transition: width 0.25s ease;
+}
+.lab-progress-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.5rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.lab-progress-days label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  border: 1px solid var(--lab-line);
+  background: var(--lab-bg);
+  font-size: 0.85rem;
+  cursor: pointer;
+  user-select: none;
+}
+.lab-progress-days input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--lab-accent);
+}
+.lab-progress-days label:has(input:checked) {
+  border-color: var(--lab-accent);
+  background: var(--lab-tint);
+  font-weight: 600;
+}
+.lab-progress-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.2rem;
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
+}
+
+/* Fear ladder and signal ladder */
+.lab-ladder {
+  list-style: none !important;
+  padding: 0 !important;
+  display: grid;
+  gap: 0.6rem;
+}
+.lab-ladder li {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  border-top: 1px solid var(--lab-line);
+  padding-top: 0.7rem;
+  margin: 0 !important;
+}
+.lab-ladder-rung {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.78rem;
+  color: var(--lab-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.lab-playbook ol {
+  margin-bottom: 0.8rem;
+}
+.lab-playbook dl {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.3rem 0.9rem;
+  font-size: 0.92rem;
+  margin: 0.6rem 0;
+}
+.lab-playbook dt {
+  font-weight: 600;
+}
+.lab-playbook dd {
+  margin: 0;
+}
+
+.lab-idea-statement {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 1100px) {
+  .lab-days {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 850px) {
+  .lab-days {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .lab-progress-days {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .lab-ladder li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.2rem;
+  }
+  .lab-playbook dl {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media print {
+  .lab-copy-actions,
+  .lab-progress {
+    display: none;
+  }
+}

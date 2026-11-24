@@ -5,6 +5,7 @@ import { labPublicConfig } from "../config";
 
 const navigation = [
   ["14-day venture", "/learning-lab/venture-experiment"],
+  ["Free toolkit", "/learning-lab/toolkit"],
   ["Catalogue", "/learning-lab/catalogue"],
   ["Free courses", "/learning-lab/free-courses"],
   ["Programmes", "/learning-lab/programmes"],
@@ -93,6 +94,7 @@ export function LabShell({
           </div>
           <nav aria-label="Learning Lab information">
             <Link href="/learning-lab/venture-experiment">Free 14-day venture experiment</Link>
+            <Link href="/learning-lab/toolkit">Free founder toolkit</Link>
             <Link href="/learning-lab/purpose">Our purpose and planned pathways</Link>
             <Link href="/learning-lab/weekly-notes">Weekly practice and timeline</Link>
             <Link href="/learning-lab/pilot">Volunteer pilot</Link>
