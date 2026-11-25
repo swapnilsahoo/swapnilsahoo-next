@@ -11,6 +11,8 @@
  *                 out of `public/`, which load Tailwind/Chart.js from CDNs.
  *   3. Checkout — the application policy plus Razorpay's exact origins.
  *   4. API      — no scripts, frames or embedding.
+ *   5. AI Viva Bot — the Lab's hosted single-file prototype: Gemini API, pdf.js,
+ *                 Google Fonts, and camera/microphone for in-browser proctoring.
  *
  * `'unsafe-inline'` is present in `script-src` for both policies. It is not
  * avoidable here without giving up static generation: nonce-based CSP requires
@@ -32,8 +34,11 @@ const microphonePolicy = avatarFrameOrigins.length
   ? `(self ${avatarFrameOrigins.map((origin) => `"${origin}"`).join(" ")})`
   : "(self)";
 
-/** Matches any path ending in `.html`, i.e. the static decks under `public/`. */
-export const STATIC_DECK_SOURCE = "/:path(.*\\.html)";
+/** The Lab's AI Viva Bot prototype: one static file under `public/` with its own policy. */
+export const VIVA_SOURCE = "/learning-lab/products/ai-viva-bot.html";
+
+/** Matches any path ending in `.html` (the static decks under `public/`), except AI Viva Bot. */
+export const STATIC_DECK_SOURCE = "/:path((?!learning-lab/products/ai-viva-bot\\.html$).*\\.html)";
 
 /**
  * Everything except `.html` decks, `/api` routes and checkout, so that each
@@ -97,7 +102,30 @@ const DECK_CSP = collapse(`
   upgrade-insecure-requests;
 `);
 
-/** Applied to every response, alongside exactly one of the two policies above. */
+/**
+ * AI Viva Bot runs entirely in the browser: inline scripts and styles, pdf.js from cdnjs
+ * (its worker starts from a blob URL), Google Fonts, and direct calls to the Gemini API
+ * with the visitor's own key. No analytics or third-party frames load on this page.
+ */
+const VIVA_CSP = collapse(`
+  default-src 'self';
+  base-uri 'self';
+  object-src 'none';
+  frame-ancestors 'self';
+  frame-src 'none';
+  form-action 'self';
+  script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src 'self' data: https://fonts.gstatic.com;
+  img-src 'self' data: blob:;
+  media-src 'self' blob: mediastream:;
+  worker-src 'self' blob: https://cdnjs.cloudflare.com;
+  connect-src 'self' https://generativelanguage.googleapis.com https://cdnjs.cloudflare.com;
+  manifest-src 'self';
+  upgrade-insecure-requests;
+`);
+
+/** Applied to every response, alongside exactly one content policy. */
 export const BASE_SECURITY_HEADERS = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
@@ -131,6 +159,17 @@ export const CHECKOUT_SECURITY_HEADERS = [
       "payment=()",
       'payment=(self "https://api.razorpay.com" "https://checkout.razorpay.com")'
     ),
+  },
+];
+
+// One CSP on this page, and camera access for proctoring on this page only.
+export const VIVA_SECURITY_HEADERS = [
+  { key: "Content-Security-Policy", value: VIVA_CSP },
+  {
+    key: "Permissions-Policy",
+    value: BASE_SECURITY_HEADERS.find(
+      (header) => header.key === "Permissions-Policy"
+    )!.value.replace("camera=()", "camera=(self)"),
   },
 ];
 
