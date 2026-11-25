@@ -9,6 +9,8 @@ import {
   CHECKOUT_SOURCE,
   DECK_CSP_HEADER,
   STATIC_DECK_SOURCE,
+  VIVA_SECURITY_HEADERS,
+  VIVA_SOURCE,
 } from "./security-headers";
 
 const nextConfig: NextConfig = {
@@ -32,6 +34,7 @@ const nextConfig: NextConfig = {
       { source: STATIC_DECK_SOURCE, headers: [DECK_CSP_HEADER] },
       { source: APP_SOURCE, headers: [APP_CSP_HEADER] },
       { source: CHECKOUT_SOURCE, headers: CHECKOUT_SECURITY_HEADERS },
+      { source: VIVA_SOURCE, headers: VIVA_SECURITY_HEADERS },
       { source: "/api/:path*", headers: API_SECURITY_HEADERS },
     ];
   },

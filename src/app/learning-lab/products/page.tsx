@@ -123,8 +123,31 @@ export default function ProductsPage() {
             Contact the founder →
           </Link>
         </div>
+      </LabSection>
+
+      <LabSection
+        id="adopt"
+        className="lab-band"
+        eyebrow="For institutions, professors and students"
+        title="Use it at your own institution."
+      >
+        <div className="lab-grid">
+          {product.adopt.map((item) => (
+            <article className="lab-card" key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+        <div className="lab-actions">
+          <Link href="/learning-lab/contact" className="lab-button">
+            Plan a pilot at your institution →
+          </Link>
+          <DemoLink className="lab-text-link">Try it first</DemoLink>
+        </div>
         <p className="lab-small" style={{ marginTop: "1.2rem" }}>
-          {product.brandingNote} Everything the Lab offers learners is free.
+          Students can practise a viva on their own submission using their own Gemini key.
+          Everything the Lab offers learners is free.
         </p>
       </LabSection>
     </>

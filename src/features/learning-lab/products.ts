@@ -2,10 +2,12 @@ import { sideQuests } from "@/features/profile/data/side-quests";
 
 export const labProductsPath = "/learning-lab/products";
 
+/** The Lab hosts AI Viva Bot itself: public/learning-lab/products/ai-viva-bot.html. */
+export const aiVivaBotAppPath = "/learning-lab/products/ai-viva-bot.html";
+
 // One demo address for the whole site: the side-quests page and the Lab products page share it.
 const vivaDemoUrl =
-  sideQuests.find((quest) => quest.slug === "ai-viva-bot")?.href ||
-  "https://aivivabotv90.netlify.app/";
+  sideQuests.find((quest) => quest.slug === "ai-viva-bot")?.href || aiVivaBotAppPath;
 
 export type LabProduct = {
   slug: string;
@@ -18,16 +20,16 @@ export type LabProduct = {
   solution: string;
   flow: { title: string; detail: string }[];
   tryIt: { step: string; detail: string }[];
+  adopt: { title: string; detail: string }[];
   builtWith: string[];
-  brandingNote: string;
 };
 
 /**
- * Facts here were checked against the live demo on 25 November 2026:
+ * Facts here were checked against the hosted app on 25 November 2026:
  * the four personas, 6–18 questions, the Faculty and Student demo buttons,
  * the sample roster and scores, PDF/email dossier, backup and restore,
- * and the browser-stored Gemini key. Do not add usage numbers or customers
- * without evidence.
+ * the institution-name setting and the tab-only Gemini key.
+ * Do not add usage numbers or customers without evidence.
  */
 export const aiVivaBot: LabProduct = {
   slug: "ai-viva-bot",
@@ -35,7 +37,8 @@ export const aiVivaBot: LabProduct = {
   status: "Working prototype · live demo",
   tagline: "An AI oral examiner that questions each student on their own submission.",
   demoUrl: vivaDemoUrl,
-  forWhom: "Universities, business schools and faculty who assess students through oral exams.",
+  forWhom:
+    "Universities, business schools, professors and students who use oral exams, at any institution.",
   problem:
     "A viva is the clearest way to check that students understand their own work. It takes hours of faculty time per class, and it tends to reward confident delivery over understanding.",
   solution:
@@ -44,7 +47,7 @@ export const aiVivaBot: LabProduct = {
     {
       title: "Faculty set up the exam",
       detail:
-        "Course and topic, 6 to 18 questions, and one of four examiner personas: Socratic Challenger, Rigorous Academic, Balanced & Supportive or Industry Practitioner.",
+        "Institution name, course and topic, 6 to 18 questions, and one of four examiner personas: Socratic Challenger, Rigorous Academic, Balanced & Supportive or Industry Practitioner.",
     },
     {
       title: "Students join and upload",
@@ -79,16 +82,31 @@ export const aiVivaBot: LabProduct = {
     {
       step: "Run a live AI viva",
       detail:
-        "Select 🔑 API Key and paste your own Google AI Studio (Gemini) key. It is stored only in your browser, never on a server.",
+        "Select 🔑 API Key and paste your own Google AI Studio (Gemini) key. It stays only in that browser tab and goes only to Google’s Gemini API.",
+    },
+  ],
+  adopt: [
+    {
+      title: "Make it yours",
+      detail:
+        "Enter your institution’s name in the faculty setup. It appears on the welcome screen, the dashboard and in the AI examiner’s instructions. No other institution’s branding is built in.",
+    },
+    {
+      title: "Set your own standards",
+      detail:
+        "Choose the course, topic, number of questions, examiner persona, rubric and question bank for each exam.",
+    },
+    {
+      title: "Keep data with faculty",
+      detail:
+        "Rosters, settings and results stay in the faculty member’s browser, with backup and restore as a file. Each faculty member uses their own Gemini key.",
     },
   ],
   builtWith: [
     "Google Gemini API for questioning and evaluation",
     "Runs entirely in the browser; exam data stays on the device",
-    "Faculty backup and restore, with no server database",
+    "Hosted by the Lab at swapnilsahoo.com, with no server database",
   ],
-  brandingNote:
-    "The demo currently shows Great Lakes Institute of Management branding and sample addresses. This does not mean the institute sponsors, endorses or partners with the Lab.",
 };
 
 export const labProducts: LabProduct[] = [aiVivaBot];
