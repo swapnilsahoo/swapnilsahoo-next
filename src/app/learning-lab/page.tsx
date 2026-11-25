@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { VentureQuestion } from "@/features/learning-lab/components/ToolkitParts";
 import { labPublicConfig, labSupportLine } from "@/features/learning-lab/config";
+import { aiVivaBot, labProductsPath } from "@/features/learning-lab/products";
 import {
   toolkitFreeStatement,
   toolkitHref,
@@ -210,6 +211,33 @@ export default function LearningLabPage() {
       </LabSection>
       <LabSection
         className="lab-band"
+        eyebrow="Products"
+        title="A working prototype you can try today."
+      >
+        <div className="lab-split">
+          <div>
+            <p className="lab-lead">
+              <strong>{aiVivaBot.name}</strong>: {aiVivaBot.tagline}
+            </p>
+            <p>{aiVivaBot.solution}</p>
+          </div>
+          <div className="lab-actions" style={{ marginTop: 0 }}>
+            <a
+              href={aiVivaBot.demoUrl}
+              className="lab-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Try the live demo <span aria-hidden="true">↗</span>
+              <span className="sr-only"> (opens the demo in a new tab)</span>
+            </a>
+            <Link href={labProductsPath} className="lab-text-link">
+              See how it works →
+            </Link>
+          </div>
+        </div>
+      </LabSection>
+      <LabSection
         eyebrow="About the Lab"
         title="Independent, and free for every learner."
       >

@@ -95,7 +95,7 @@ export default function ProductsPage() {
         eyebrow="How it works"
         title="From exam setup to evaluation."
       >
-        <div className="lab-grid">
+        <div className="lab-grid lab-grid-two">
           {product.flow.map((stage, index) => (
             <article className="lab-card" key={stage.title}>
               <p className="lab-card-number">{String(index + 1).padStart(2, "0")}</p>
