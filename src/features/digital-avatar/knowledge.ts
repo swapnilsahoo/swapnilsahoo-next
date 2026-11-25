@@ -59,10 +59,7 @@ const topics: GuidedTopic[] = [
       /\b(ai[- ]?viva|viva[- ]?(bot|voce)|oral (exams?|examinations?|assessments?)|(your|lab|lab's|learning lab) products?|products? (does|do) (the lab|you) (have|offer|make|build))\b/i,
     reply: answer(
       "The Lab’s first product is AI Viva Bot, a working prototype of an AI oral examiner. Faculty set up the exam, each student uploads their submission, and the bot asks questions grounded in that student’s own claims, then prepares an evaluation for faculty. On the Products page, open the live demo: Faculty Demo and Student Demo show sample data without a key, and a live AI viva needs your own Google AI Studio (Gemini) key, stored only in your browser.",
-      [
-        { label: "See AI Viva Bot and the live demo", href: `${lab}/products` },
-        contact,
-      ],
+      [{ label: "See AI Viva Bot and the live demo", href: `${lab}/products` }, contact],
       ["Who is Dr. Swapnil Sahoo?", "What can I learn for free?", "Contact the Lab"]
     ),
   },

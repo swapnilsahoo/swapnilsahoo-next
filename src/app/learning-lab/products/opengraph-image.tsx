@@ -1,6 +1,7 @@
 import { labShareCard, ogContentType, ogSize } from "@/features/learning-lab/og-card";
 
-export const alt = "AI Viva Bot by Swapnil Sahoo Learning Lab: an AI oral examiner with a live demo.";
+export const alt =
+  "AI Viva Bot by Swapnil Sahoo Learning Lab: an AI oral examiner with a live demo.";
 export const size = ogSize;
 export const contentType = ogContentType;
 

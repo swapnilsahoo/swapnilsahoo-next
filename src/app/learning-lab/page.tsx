@@ -237,10 +237,7 @@ export default function LearningLabPage() {
           </div>
         </div>
       </LabSection>
-      <LabSection
-        eyebrow="About the Lab"
-        title="Independent, and free for every learner."
-      >
+      <LabSection eyebrow="About the Lab" title="Independent, and free for every learner.">
         <div className="lab-split">
           <div>
             <p>
