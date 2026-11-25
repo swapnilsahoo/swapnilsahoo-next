@@ -221,20 +221,28 @@ export default function LearningLabPage() {
             </p>
             <p>{aiVivaBot.solution}</p>
           </div>
-          <div className="lab-actions" style={{ marginTop: 0 }}>
-            <a
-              href={aiVivaBot.demoUrl}
-              className="lab-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Try the live demo <span aria-hidden="true">↗</span>
-              <span className="sr-only"> (opens the demo in a new tab)</span>
-            </a>
-            <Link href={labProductsPath} className="lab-text-link">
-              See how it works →
-            </Link>
-          </div>
+          <aside className="lab-callout">
+            <p className="lab-eyebrow">{aiVivaBot.status}</p>
+            <h3>See it working in three minutes</h3>
+            <p>
+              Open the demo and select Faculty Demo to explore a sample exam, students and scores.
+              No sign-up is needed to look around.
+            </p>
+            <div className="lab-actions" style={{ marginTop: "0.8rem", alignItems: "center" }}>
+              <a
+                href={aiVivaBot.demoUrl}
+                className="lab-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Try the live demo <span aria-hidden="true">↗</span>
+                <span className="sr-only"> (opens the demo in a new tab)</span>
+              </a>
+              <Link href={labProductsPath} className="lab-text-link">
+                See how it works →
+              </Link>
+            </div>
+          </aside>
         </div>
       </LabSection>
       <LabSection eyebrow="About the Lab" title="Independent, and free for every learner.">
