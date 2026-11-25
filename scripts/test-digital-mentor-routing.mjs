@@ -48,6 +48,22 @@ routesTo("Do you store my conversation?", "/policies/privacy");
 routesTo("How do I test a business idea?", "/learning-lab/venture-experiment");
 routesTo("Who is Dr. Swapnil Sahoo?", "/learning-lab/founder");
 
+// Lab products reach the Products page; a student's own "products" questions still reach the toolkit.
+const products = [
+  "What products does the Lab have?",
+  "Show me the AI Viva Bot",
+  "Can I try the oral exam tool?",
+];
+for (const question of products) routesTo(question, "/learning-lab/products");
+for (const question of [
+  "What products should I sell in my hostel?",
+  "How should I price my product?",
+])
+  assert.ok(
+    !hrefs(question).some((href) => href.includes("/learning-lab/products")),
+    `${question} should not reach the Lab products page`
+  );
+
 console.log(
-  `PASS mentor routing: ${existing.length} existing answers unchanged, ${student.length} student questions reach the founder toolkit.`
+  `PASS mentor routing: ${existing.length} existing answers unchanged, ${student.length} student questions reach the founder toolkit, ${products.length} product questions reach AI Viva Bot.`
 );
