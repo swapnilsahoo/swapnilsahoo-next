@@ -16,7 +16,12 @@ if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
 const artifacts = "artifacts/learning-lab";
 const output = `${artifacts}/screenshots`;
 await mkdir(output, { recursive: true });
-const browser = await chromium.launch({ headless: true });
+// PLAYWRIGHT_CHANNEL (for example "chrome" or "msedge") uses an installed browser instead of
+// Playwright's bundled Chromium, as scripts/test-digital-mentor.mjs already allows.
+const browser = await chromium.launch({
+  headless: true,
+  ...(process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {}),
+});
 const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
 const page = await context.newPage();
 const errors = [];
