@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { labPublicConfig } from "@/features/learning-lab/config";
@@ -6,12 +7,8 @@ import { aiVivaBot, labProductsPath } from "@/features/learning-lab/products";
 
 const description =
   "Working prototypes from Swapnil Sahoo Learning Lab. AI Viva Bot is an AI oral examiner that questions each student on their own submission. Try the live demo.";
-const shareImage = {
-  url: "/learning-lab/products/opengraph-image",
-  width: 1200,
-  height: 630,
-  alt: "AI Viva Bot by Swapnil Sahoo Learning Lab: an AI oral examiner with a live demo.",
-};
+// A static JPEG with a real screenshot: small enough for WhatsApp and LinkedIn previews.
+const shareImage = aiVivaBot.shareImage;
 
 export const metadata: Metadata = {
   title: "Products: AI Viva Bot",
@@ -56,6 +53,41 @@ export default function ProductsPage() {
           Try it in three minutes
         </a>
       </LabHero>
+
+      <LabSection id="preview" eyebrow="Preview" title="See it before you try it.">
+        <div className="lab-grid lab-grid-two">
+          {product.previews.map((preview, index) => (
+            <figure key={preview.src} style={{ margin: 0 }}>
+              <a
+                href={product.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "block" }}
+              >
+                <Image
+                  src={preview.src}
+                  alt={preview.alt}
+                  width={1440}
+                  height={900}
+                  sizes="(max-width: 850px) 100vw, 50vw"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "0.75rem",
+                    border: "1px solid var(--lab-line)",
+                  }}
+                />
+                <span className="sr-only"> (opens the live demo in a new tab)</span>
+              </a>
+              <figcaption className="lab-small" style={{ marginTop: "0.7rem" }}>
+                {preview.caption} Sample data.
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </LabSection>
 
       <LabSection id={product.slug} eyebrow={product.status} title={product.name}>
         <div className="lab-split">
