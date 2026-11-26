@@ -3,6 +3,11 @@ import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { VentureQuestion } from "@/features/learning-lab/components/ToolkitParts";
 import { labPublicConfig, labSupportLine } from "@/features/learning-lab/config";
+import {
+  entrepreneurshipJourneyPath,
+  journeyAvailability,
+  journeyModules,
+} from "@/features/learning-lab/entrepreneurship-journey";
 import { aiVivaBot, labProductsPath } from "@/features/learning-lab/products";
 import {
   toolkitFreeStatement,
@@ -146,9 +151,38 @@ export default function LearningLabPage() {
       </LabSection>
       <LabSection
         className="lab-band"
-        eyebrow="What you get"
-        title="Guidance, feedback and honest evidence."
+        eyebrow="Free learning journey"
+        title="From startup idea to venture growth."
       >
+        <p className="lab-lead">
+          Seven free modules for the gap between knowing entrepreneurship and doing it. The 14-day
+          experiment is where Module 01 begins.
+        </p>
+        <ol className="lab-journey-compact">
+          {journeyModules.map((journeyModule) => (
+            <li key={journeyModule.number}>
+              <Link href={`${entrepreneurshipJourneyPath}#module-${journeyModule.number}`}>
+                <span className="lab-journey-number">{journeyModule.number}</span>
+                {journeyModule.title}
+              </Link>
+              <span
+                className={`lab-journey-status lab-journey-status-${journeyModule.availability}`}
+              >
+                {journeyAvailability[journeyModule.availability].label}
+              </span>
+            </li>
+          ))}
+        </ol>
+        <div className="lab-actions" style={{ alignItems: "center" }}>
+          <Link href={entrepreneurshipJourneyPath} className="lab-button">
+            See the seven modules →
+          </Link>
+          <Link href={`${entrepreneurshipJourneyPath}#gap`} className="lab-text-link">
+            The gap we are trying to solve →
+          </Link>
+        </div>
+      </LabSection>
+      <LabSection eyebrow="What you get" title="Guidance, feedback and honest evidence.">
         <div className="lab-grid">
           <article>
             <h3>A plan that fits you</h3>
@@ -184,7 +218,7 @@ export default function LearningLabPage() {
           </Link>
         </div>
       </LabSection>
-      <LabSection eyebrow="Keep learning" title="More free learning.">
+      <LabSection className="lab-band" eyebrow="Keep learning" title="More free learning.">
         <div className="lab-grid">
           <article className="lab-card">
             <h3>Six short courses</h3>
@@ -209,11 +243,7 @@ export default function LearningLabPage() {
           </article>
         </div>
       </LabSection>
-      <LabSection
-        className="lab-band"
-        eyebrow="Products"
-        title="A working prototype you can try today."
-      >
+      <LabSection eyebrow="Products" title="A working prototype you can try today.">
         <div className="lab-split">
           <div>
             <p className="lab-lead">
@@ -245,7 +275,11 @@ export default function LearningLabPage() {
           </aside>
         </div>
       </LabSection>
-      <LabSection eyebrow="About the Lab" title="Independent, and free for every learner.">
+      <LabSection
+        className="lab-band"
+        eyebrow="About the Lab"
+        title="Independent, and free for every learner."
+      >
         <div className="lab-split">
           <div>
             <p>

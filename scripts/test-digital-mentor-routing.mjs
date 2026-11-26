@@ -64,6 +64,24 @@ for (const question of [
     `${question} should not reach the Lab products page`
   );
 
+// The seven-module journey answers questions about the journey itself, without taking over
+// "How do I test a business idea?" (asserted above) or the student questions.
+const journey = [
+  "What are the seven modules?",
+  "Show me the entrepreneurship journey",
+  "Is there a startup curriculum?",
+  "Tell me about From Startup Idea to Venture Growth",
+  "What is the knowing-doing gap?",
+  "What is in module 5?",
+];
+for (const question of journey) routesTo(question, "/learning-lab/entrepreneurship");
+for (const question of ["How do I test a business idea?", "Is my idea good?"])
+  assert.ok(
+    !hrefs(question).some((href) => href.startsWith("/learning-lab/entrepreneurship")),
+    `${question} should keep its own answer`
+  );
+routesTo("I want to become an entrepreneur", "/learning-lab/entrepreneurship");
+
 console.log(
-  `PASS mentor routing: ${existing.length} existing answers unchanged, ${student.length} student questions reach the founder toolkit, ${products.length} product questions reach AI Viva Bot.`
+  `PASS mentor routing: ${existing.length} existing answers unchanged, ${student.length} student questions reach the founder toolkit, ${products.length} product questions reach AI Viva Bot, ${journey.length} journey questions reach the seven-module journey.`
 );

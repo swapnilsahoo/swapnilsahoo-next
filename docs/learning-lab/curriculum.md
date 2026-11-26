@@ -1,5 +1,7 @@
 # Learning Lab curriculum and demonstration lessons
 
+**26 November 2026:** the free seven-module journey "From Startup Idea to Venture Growth" (`/learning-lab/entrepreneurship`, data in `src/features/learning-lab/entrepreneurship-journey.ts`) now frames the Lab's entrepreneurship learning. It links existing free resources and has no enrolment, assessment or certificate, so it is not a fourth programme. Its framing of the "knowing–doing gap" credits Jeffrey Pfeffer and Robert I. Sutton, *The Knowing-Doing Gap* (Harvard Business School Press, 2000). See [the entrepreneurship journey](entrepreneurship-journey.md).
+
 The three proposed programmes target adults in management education and early-career work. They use original hypothetical scenarios and publicly linked framework references. They do not reuse employer teaching materials, proprietary teaching cases, student work, institutional branding or unverifiable venture outcomes.
 
 Original programme defaults are maintained in `src/features/learning-lab/programmes.ts` and seeded into the relational database. The protected administration workspace provides the operational editing approach: one complete programme JSON editor. Each programme has six sessions, observable outputs, a capstone, a rubric totalling 100 and machine-readable certificate requirements. Proposed durations are curriculum assumptions, not announced dates or capacity. Paid enrolment remains subject to founder approval and the launch conditions documented elsewhere.
