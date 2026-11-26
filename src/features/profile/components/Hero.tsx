@@ -40,6 +40,14 @@ export function Hero() {
               Start your venture experiment
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
+            <p className="mt-3 text-sm">
+              <Link
+                href="/learning-lab/products"
+                className="text-brand-700 dark:text-brand-300 font-semibold underline-offset-4 hover:underline"
+              >
+                Products: try the AI Viva Bot prototype →
+              </Link>
+            </p>
           </div>
           <p className="text-ink-700 dark:text-ink-200 mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
             Before joining academia, I spent 17 years in strategic roles at Wipro, Accenture,

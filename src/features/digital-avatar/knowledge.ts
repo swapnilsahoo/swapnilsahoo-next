@@ -53,6 +53,16 @@ function answer(text: string, links: AvatarReply["links"], suggestions: string[]
 // Prepared website guidance only. This module has no network, storage, account,
 // assessment or payment actions and does not generate answers with a language model.
 const topics: GuidedTopic[] = [
+  // The Lab's products. Narrow wording so a student's own "products" questions still reach the toolkit.
+  {
+    matches:
+      /\b(ai[- ]?viva|viva[- ]?(bot|voce)|oral (exams?|examinations?|assessments?)|(your|lab|lab's|learning lab) products?|products? (does|do) (the lab|you) (have|offer|make|build))\b/i,
+    reply: answer(
+      "The Lab’s first product is AI Viva Bot, a working prototype of an AI oral examiner. Faculty set up the exam, each student uploads their submission, and the bot asks questions grounded in that student’s own claims, then prepares an evaluation for faculty. On the Products page, open the live demo: Faculty Demo and Student Demo show sample data without a key, and a live AI viva needs your own Google AI Studio (Gemini) key, kept only in that browser tab. Any institution can set its own name, course and rubric.",
+      [{ label: "See AI Viva Bot and the live demo", href: `${lab}/products` }, contact],
+      ["Who is Dr. Swapnil Sahoo?", "What can I learn for free?", "Contact the Lab"]
+    ),
+  },
   // Real first-time founder questions. Listed first so that words such as "college",
   // "save", "store" or "price" in a student's question reach the toolkit, not Lab admin answers.
   {

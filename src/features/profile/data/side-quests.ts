@@ -32,7 +32,8 @@ export const sideQuests: SideQuest[] = [
           "Were they actually anchored to what you wrote, or did they feel generic? That gap is the thing most worth fixing next.",
       },
     ],
-    href: "https://aivivabotv90.netlify.app/",
+    // Hosted by the Learning Lab on this site; see src/features/learning-lab/products.ts.
+    href: "/learning-lab/products/ai-viva-bot.html",
     external: true,
   },
 ];
