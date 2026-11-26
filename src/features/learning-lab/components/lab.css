@@ -949,3 +949,205 @@
     display: inline;
   }
 }
+
+/* Entrepreneurship journey: /learning-lab/entrepreneurship and its Lab homepage summary. */
+.lab .lab-journey,
+.lab .lab-journey-compact,
+.lab .lab-value-flow,
+.lab .lab-journey-links {
+  list-style: none;
+  padding: 0;
+}
+.lab .lab-journey > li + li,
+.lab .lab-journey-compact > li + li,
+.lab .lab-value-flow > li + li,
+.lab .lab-journey-links > li + li {
+  margin-top: 0;
+}
+.lab-journey {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.6rem;
+}
+.lab-journey-module {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 2.4rem;
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-line);
+  padding: 1.8rem;
+}
+.lab-journey-number {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.8rem;
+  color: var(--lab-accent);
+  margin: 0 0 0.9rem;
+}
+.lab-journey-module h3 {
+  font-size: 1.45rem;
+  margin: 0 0 0.8rem;
+}
+.lab-journey-module p {
+  font-size: 0.9rem;
+}
+.lab-journey-description {
+  color: var(--lab-muted);
+}
+.lab-journey-status {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  padding: 0.2rem 0.6rem;
+  margin: 0 0 1rem;
+  color: var(--lab-muted);
+}
+.lab-journey-status-open {
+  color: var(--lab-accent);
+  font-weight: 600;
+}
+.lab-journey-status-planned {
+  border-style: dashed;
+}
+.lab .lab-journey-label {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+  margin: 0 0 0.4rem;
+}
+.lab-journey-links > li {
+  border-top: 1px solid var(--lab-line);
+  padding: 0.75rem 0;
+}
+.lab-journey-kind {
+  display: block;
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--lab-muted);
+  margin-bottom: 0.15rem;
+}
+.lab-journey-links a {
+  color: var(--lab-accent);
+  font-weight: 500;
+  text-decoration: underline;
+}
+.lab-journey-use {
+  display: block;
+  font-size: 0.84rem;
+  color: var(--lab-muted);
+  margin-top: 0.2rem;
+}
+.lab-journey-gap {
+  color: var(--lab-muted);
+  margin: 0.4rem 0 0;
+}
+.lab-journey-caution {
+  border-left: 3px solid var(--lab-accent);
+  background: var(--lab-tint);
+  padding: 0.7rem 0.9rem;
+  margin: 0.9rem 0 0;
+}
+.lab-journey-compact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 2.4rem;
+  margin-top: 1.6rem;
+}
+.lab-journey-compact > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 1rem;
+  border-top: 1px solid var(--lab-line);
+  padding: 0.85rem 0;
+}
+.lab-journey-compact a {
+  color: var(--lab-ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--lab-line);
+}
+.lab-journey-compact a:hover {
+  text-decoration-color: currentColor;
+}
+.lab-journey-compact .lab-journey-number {
+  display: inline;
+  margin: 0 0.6rem 0 0;
+}
+.lab-journey-compact .lab-journey-status {
+  margin: 0;
+}
+.lab-value-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.4rem;
+  margin-top: 1.6rem;
+}
+.lab-value-flow > li {
+  position: relative;
+}
+.lab-value-flow h3 {
+  font-size: 1.3rem;
+}
+.lab-value-arrow {
+  position: absolute;
+  top: 50%;
+  right: -1.75rem;
+  transform: translateY(-50%);
+  color: var(--lab-accent);
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.lab-value-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  color: var(--lab-accent);
+}
+.lab-value-chain .lab-tag {
+  margin: 0;
+  color: var(--lab-ink);
+}
+.lab-table-fluid {
+  min-width: 0;
+}
+
+@media (max-width: 1100px) {
+  .lab-value-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+  .lab-value-arrow {
+    display: none;
+  }
+}
+@media (max-width: 850px) {
+  .lab-journey-module {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.2rem;
+  }
+  .lab-journey-compact {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 560px) {
+  .lab-journey-module {
+    padding: 1.3rem;
+  }
+  .lab-value-flow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lab-table-fluid th,
+  .lab-table-fluid td {
+    padding: 0.75rem 0.6rem;
+  }
+}
