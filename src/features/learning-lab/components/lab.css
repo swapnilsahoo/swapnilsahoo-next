@@ -1078,7 +1078,7 @@
   text-decoration-color: currentColor;
 }
 .lab-journey-compact .lab-journey-number {
-  display: inline;
+  display: inline-block;
   margin: 0 0.6rem 0 0;
 }
 .lab-journey-compact .lab-journey-status {

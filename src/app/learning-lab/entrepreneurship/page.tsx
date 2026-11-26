@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Fragment } from "react";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { labFreeLine } from "@/features/learning-lab/config";
 import {
@@ -160,14 +161,16 @@ export default function EntrepreneurshipJourneyPage() {
         <div className="lab-prose">
           <p className="lab-lead">{problemStatement.summary}</p>
         </div>
-        <aside className="lab-callout" aria-label="How might we">
+        <div className="lab-callout">
           <p className="lab-eyebrow">How might we</p>
           <p className="lab-lead">
             <strong>{problemStatement.howMightWe}</strong>
           </p>
-        </aside>
-        <h3 style={{ marginTop: "2.4rem" }}>Core problems to address</h3>
-        <div className="lab-grid" style={{ marginTop: "1.2rem" }}>
+        </div>
+        <p className="lab-eyebrow" style={{ marginTop: "2.4rem" }}>
+          Core problems to address
+        </p>
+        <div className="lab-grid" style={{ marginTop: "1rem" }}>
           {problemStatement.gaps.map((gap) => (
             <article className="lab-card" key={gap.name}>
               <h3>{gap.name}</h3>
@@ -187,12 +190,12 @@ export default function EntrepreneurshipJourneyPage() {
             </article>
           ))}
         </div>
-        <aside className="lab-callout" style={{ marginTop: "2rem" }} aria-label="One-line problem statement">
+        <div className="lab-callout" style={{ marginTop: "2rem" }}>
           <p className="lab-eyebrow">One-line problem statement</p>
           <p className="lab-lead">
             <strong>{problemStatement.oneLine}</strong>
           </p>
-        </aside>
+        </div>
       </LabSection>
 
       <LabSection
@@ -209,10 +212,10 @@ export default function EntrepreneurshipJourneyPage() {
               {"chain" in step ? (
                 <p className="lab-value-chain">
                   {step.chain.map((stage, stageIndex) => (
-                    <span key={stage} style={{ display: "contents" }}>
+                    <Fragment key={stage}>
                       {stageIndex > 0 && <span aria-hidden="true">→</span>}
                       <span className="lab-tag">{stage}</span>
-                    </span>
+                    </Fragment>
                   ))}
                 </p>
               ) : (
@@ -238,13 +241,13 @@ export default function EntrepreneurshipJourneyPage() {
           </p>
           <p>{differentiation.hypothesis}</p>
         </div>
-        <aside className="lab-callout" aria-label="How we test our own hypothesis">
+        <div className="lab-callout">
           <h3>We test our own idea too</h3>
           <p>{differentiation.testing}</p>
           <p>
             {differentiation.claims} {differentiation.us}
           </p>
-        </aside>
+        </div>
       </LabSection>
 
       <LabSection className="lab-band" eyebrow="Start here" title="Begin with Module 01 this week.">
