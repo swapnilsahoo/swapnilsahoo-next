@@ -165,7 +165,9 @@ export default function LearningLabPage() {
                 <span className="lab-journey-number">{journeyModule.number}</span>
                 {journeyModule.title}
               </Link>
-              <span className={`lab-journey-status lab-journey-status-${journeyModule.availability}`}>
+              <span
+                className={`lab-journey-status lab-journey-status-${journeyModule.availability}`}
+              >
                 {journeyAvailability[journeyModule.availability].label}
               </span>
             </li>

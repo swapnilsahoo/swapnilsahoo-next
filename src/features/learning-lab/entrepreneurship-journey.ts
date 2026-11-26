@@ -24,17 +24,16 @@ export const entrepreneurshipJourney = {
 
 export type JourneyAvailability = "open" | "partial" | "planned";
 
-export const journeyAvailability: Record<
-  JourneyAvailability,
-  { label: string; meaning: string }
-> = {
-  open: { label: "Open now", meaning: "you can practise the core of it today" },
-  partial: { label: "Partly open", meaning: "free resources cover part of it" },
-  planned: {
-    label: "Planned",
-    meaning: "only early readings so far; dates and format will be published before anything opens",
-  },
-};
+export const journeyAvailability: Record<JourneyAvailability, { label: string; meaning: string }> =
+  {
+    open: { label: "Open now", meaning: "you can practise the core of it today" },
+    partial: { label: "Partly open", meaning: "free resources cover part of it" },
+    planned: {
+      label: "Planned",
+      meaning:
+        "only early readings so far; dates and format will be published before anything opens",
+    },
+  };
 
 export type JourneyResourceKind =
   | "14-day experiment"
@@ -377,7 +376,8 @@ export const problemStatement = {
     {
       name: "Resource gap",
       text: "Accessing high-quality learning resources, frameworks and tools.",
-      today: "A free founder toolkit, six short courses and an open catalogue. No paid tool is needed.",
+      today:
+        "A free founder toolkit, six short courses and an open catalogue. No paid tool is needed.",
       href: toolkit,
       action: "Open the free toolkit →",
     },
@@ -405,7 +405,11 @@ export const problemStatement = {
 export const valueProposition = [
   { title: "Entrepreneurial Intent", text: "Desire to start a venture" },
   { title: "The Knowing–Doing Gap", text: "Knowledge, execution, resources and guidance" },
-  { title: "Our Learning Platform", text: "", chain: ["Learn", "Apply", "Experiment", "Validate", "Build"] },
+  {
+    title: "Our Learning Platform",
+    text: "",
+    chain: ["Learn", "Apply", "Experiment", "Validate", "Build"],
+  },
   { title: "Entrepreneurial Action", text: "Venture creation and growth" },
 ] as const;
 
@@ -417,7 +421,8 @@ export const differentiation = {
     "The underlying problem hypothesis is not information scarcity, but the inability to translate abundant information into meaningful entrepreneurial action.",
   testing:
     "This is a proposed problem hypothesis, not a finding. We are testing it through customer discovery, the way we ask you to test an idea: by talking to aspiring entrepreneurs about what they actually did, before we build more of the journey.",
-  claims: "This is a new pilot. No completion rates, learning gains or comparisons are claimed yet.",
+  claims:
+    "This is a new pilot. No completion rates, learning gains or comparisons are claimed yet.",
   us: "Continue, change or stop applies to us too.",
 } as const;
 

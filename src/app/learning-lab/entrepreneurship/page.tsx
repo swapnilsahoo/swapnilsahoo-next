@@ -90,7 +90,11 @@ export default function EntrepreneurshipJourneyPage() {
           {journeyModules.map((journeyModule) => {
             const status = journeyAvailability[journeyModule.availability];
             return (
-              <li className="lab-journey-module" id={`module-${journeyModule.number}`} key={journeyModule.number}>
+              <li
+                className="lab-journey-module"
+                id={`module-${journeyModule.number}`}
+                key={journeyModule.number}
+              >
                 <div>
                   <p className="lab-journey-number">Module {journeyModule.number}</p>
                   <h3>{journeyModule.title}</h3>
@@ -117,7 +121,9 @@ export default function EntrepreneurshipJourneyPage() {
                       <strong>Not covered yet:</strong> {journeyModule.notCoveredYet}
                     </p>
                   )}
-                  {journeyModule.caution && <p className="lab-journey-caution">{journeyModule.caution}</p>}
+                  {journeyModule.caution && (
+                    <p className="lab-journey-caution">{journeyModule.caution}</p>
+                  )}
                 </div>
               </li>
             );
