@@ -22,6 +22,10 @@ export type LabProduct = {
   tryIt: { step: string; detail: string }[];
   adopt: { title: string; detail: string }[];
   builtWith: string[];
+  /** Screenshots of the hosted app with its built-in sample data (1440 × 900). */
+  previews: { src: string; alt: string; caption: string }[];
+  /** 1200 × 630 card for link previews on WhatsApp, LinkedIn and others. */
+  shareImage: { url: string; width: number; height: number; alt: string; type: string };
 };
 
 /**
@@ -107,6 +111,27 @@ export const aiVivaBot: LabProduct = {
     "Runs entirely in the browser; exam data stays on the device",
     "Hosted by the Lab at swapnilsahoo.com, with no server database",
   ],
+  previews: [
+    {
+      src: "/images/learning-lab/products/ai-viva-bot-dashboard.jpg",
+      alt: "AI Viva Bot faculty dashboard showing a sample course, four sample students and the class average score",
+      caption:
+        "Faculty dashboard: the course, the roster, the class average and students waiting for their viva.",
+    },
+    {
+      src: "/images/learning-lab/products/ai-viva-bot-dossier.jpg",
+      alt: "AI Viva Bot evaluation dossier for a sample student: grade A+, index 96 out of 100, with six scored dimensions",
+      caption:
+        "An evaluation dossier: the overall grade, six evidence-based scores, and PDF or email export.",
+    },
+  ],
+  shareImage: {
+    url: "/images/learning-lab/products/ai-viva-bot-share.jpg",
+    width: 1200,
+    height: 630,
+    alt: "AI Viva Bot by Swapnil Sahoo Learning Lab: an AI oral examiner, shown on its faculty dashboard.",
+    type: "image/jpeg",
+  },
 };
 
 export const labProducts: LabProduct[] = [aiVivaBot];
