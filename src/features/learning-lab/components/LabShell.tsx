@@ -4,6 +4,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { labPublicConfig } from "../config";
 
 const navigation = [
+  ["Entrepreneurship", "/learning-lab/entrepreneurship"],
   ["14-day venture", "/learning-lab/venture-experiment"],
   ["Free toolkit", "/learning-lab/toolkit"],
   ["Free courses", "/learning-lab/free-courses"],
@@ -91,6 +92,7 @@ export function LabShell({
             </p>
           </div>
           <nav aria-label="Learning Lab information">
+            <Link href="/learning-lab/entrepreneurship">From startup idea to venture growth</Link>
             <Link href="/learning-lab/venture-experiment">Free 14-day venture experiment</Link>
             <Link href="/learning-lab/toolkit">Free founder toolkit</Link>
             <Link href="/learning-lab/products">Products: AI Viva Bot</Link>

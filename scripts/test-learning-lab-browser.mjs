@@ -40,6 +40,7 @@ const assert = (condition, message) => {
 };
 const routes = [
   "/learning-lab",
+  "/learning-lab/entrepreneurship",
   "/learning-lab/venture-experiment",
   "/learning-lab/toolkit",
   ...toolkitTools.map((tool) => `/learning-lab/toolkit/${tool.slug}`),

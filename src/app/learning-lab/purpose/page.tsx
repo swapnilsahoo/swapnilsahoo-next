@@ -82,11 +82,8 @@ export default function PurposePage() {
           resources do not confer school qualifications, a B.Tech, an MBA or a doctorate. Current
           interactive courses, enquiries and the volunteer pilot are for adults aged 18 and over.
         </p>
-        <Link
-          href="/learning-lab/paths/entrepreneurship-under-constraint"
-          className="lab-text-link"
-        >
-          Try practical entrepreneurship learning →
+        <Link href="/learning-lab/entrepreneurship" className="lab-text-link">
+          Follow the free seven-module entrepreneurship journey →
         </Link>
       </LabSection>
       <LabSection

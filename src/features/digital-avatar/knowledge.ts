@@ -372,6 +372,25 @@ const topics: GuidedTopic[] = [
       ]
     ),
   },
+  // The seven-module journey itself. Narrow wording, placed before the 14-day answer because
+  // "From startup idea to venture growth" contains "startup idea".
+  {
+    matches:
+      /\b(seven|7)[- ]modules?\b|\bidea to (venture )?growth\b|\bknowing[- –]?doing\b|\b(entrepreneurship|startup|venture|founder) (journey|curriculum|syllabus|roadmap|modules?|pathway)\b|\b(journey|curriculum|syllabus|roadmap|modules?|pathway) (for|of|in|on) (entrepreneurship|startups?|ventures?|founders?)\b|\bmodule 0?[1-7]\b/i,
+    reply: answer(
+      "From Startup Idea to Venture Growth is the Lab’s free learning journey in seven modules: generate and validate startup ideas; design business models and find customers; design and build products; launch, grow and scale; prepare to raise capital; build an entrepreneurial organisation; and manage uncertainty, failure and pivots. Each module links free resources you can use today and is marked open now, partly open or planned. Module 01 starts with the free 14-day venture experiment. It is a self-paced learning map, not a course you enrol in: there is no fee, assessment or certificate, and the Lab does not arrange funding or introduce investors.",
+      [
+        { label: "See the seven modules", href: `${lab}/entrepreneurship` },
+        { label: "The gap we are trying to solve", href: `${lab}/entrepreneurship#gap` },
+        venture,
+      ],
+      [
+        "How do I test a business idea?",
+        "How do I set an affordable loss?",
+        "What can I learn for free?",
+      ]
+    ),
+  },
   {
     matches:
       /\b(14[- ]?day|fourteen[- ]?day|student entrepreneur\w*|business idea|startup idea|venture experiment|founder feedback)\b/i,
@@ -484,9 +503,10 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(entrepreneur\w*|startup\w*|start[- ]up|venture\w*|start a business|start my business|budget|constraints?)\b/i,
     reply: answer(
-      "For entrepreneurship, start the free 14-day venture experiment for adult college students with an idea and limited money. Bound your commitment, investigate recent customer behaviour, run a small test and make an evidence-based decision. Stopping can be a successful outcome. The public planner is open without registration; the optional founder-feedback pilot has up to 20 active places. The affordable-loss and customer-question mini-courses offer extra practice. The separate full Entrepreneurship Under Constraint programme remains proposed.",
+      "For entrepreneurship, start the free 14-day venture experiment for adult college students with an idea and limited money. Bound your commitment, investigate recent customer behaviour, run a small test and make an evidence-based decision. Stopping can be a successful outcome. The public planner is open without registration; the optional founder-feedback pilot has up to 20 active places. The affordable-loss and customer-question mini-courses offer extra practice. The seven-module journey, From Startup Idea to Venture Growth, maps what comes after a first test. The separate full Entrepreneurship Under Constraint programme remains proposed.",
       [
         venture,
+        { label: "See the seven-module journey", href: `${lab}/entrepreneurship` },
         { label: "Set an affordable-loss limit", href: `${free}/set-an-affordable-loss` },
         { label: "Ask better customer questions", href: `${free}/ask-better-customer-questions` },
         {
