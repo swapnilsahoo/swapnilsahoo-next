@@ -38,15 +38,15 @@ const founderModules = [
 ];
 assert.equal(entrepreneurshipJourneyPath, "/learning-lab/entrepreneurship");
 assert.equal(journeyModules.length, 7);
-journeyModules.forEach((module, index) => {
+journeyModules.forEach((item, index) => {
   const [number, title, description] = founderModules[index];
-  assert.equal(module.number, number);
-  assert.equal(module.title, title, `Module ${number} title is the founder's`);
-  assert.equal(module.description, description, `Module ${number} description is the founder's`);
-  assert.ok(module.resources.length >= 3, `Module ${number} links at least three free resources`);
-  assert.ok(["open", "partial", "planned"].includes(module.availability));
-  if (module.availability !== "open") assert.ok(module.notCoveredYet, `Module ${number} says what is not covered yet`);
-  const hrefs = module.resources.map((resource) => resource.href);
+  assert.equal(item.number, number);
+  assert.equal(item.title, title, `Module ${number} title is the founder's`);
+  assert.equal(item.description, description, `Module ${number} description is the founder's`);
+  assert.ok(item.resources.length >= 3, `Module ${number} links at least three free resources`);
+  assert.ok(["open", "partial", "planned"].includes(item.availability));
+  if (item.availability !== "open") assert.ok(item.notCoveredYet, `Module ${number} says what is not covered yet`);
+  const hrefs = item.resources.map((resource) => resource.href);
   assert.equal(new Set(hrefs).size, hrefs.length, `Module ${number} has no duplicate links`);
 });
 assert.equal(entrepreneurshipJourney.title, "From Startup Idea to Venture Growth");
@@ -56,7 +56,7 @@ assert.equal(
 );
 
 // Advice boundaries: fundraising and governance are education, not advice or introductions.
-const byNumber = Object.fromEntries(journeyModules.map((module) => [module.number, module]));
+const byNumber = Object.fromEntries(journeyModules.map((item) => [item.number, item]));
 assert.match(byNumber["05"].caution, /Not investment, legal or tax advice/);
 assert.match(byNumber["05"].caution, /does not arrange funding or introduce investors/);
 assert.match(byNumber["06"].caution, /Not legal or tax advice/);
@@ -98,7 +98,7 @@ for (const phrase of [
 
 // Every link resolves to a real route file.
 const links = [
-  ...journeyModules.flatMap((module) => module.resources.map((resource) => resource.href)),
+  ...journeyModules.flatMap((item) => item.resources.map((resource) => resource.href)),
   ...problemStatement.gaps.map((gap) => gap.href).filter((href) => !href.startsWith("#")),
   "/learning-lab/venture-experiment#start",
 ];
@@ -148,7 +148,7 @@ if (base) {
     if (fragment) assert.ok(pages.get(pathname).includes(`id="${fragment}"`), `${href}: #${fragment} exists on the rendered page`);
   }
   const page = pages.get(entrepreneurshipJourneyPath);
-  for (const module of journeyModules) assert.ok(page.includes(`id="module-${module.number}"`), `module-${module.number} anchor`);
+  for (const item of journeyModules) assert.ok(page.includes(`id="module-${item.number}"`), `module-${item.number} anchor`);
   for (const id of ["modules", "gap", "problem", "value", "difference"]) assert.ok(page.includes(`id="${id}"`), `#${id} section`);
   fragmentNote = `${pages.size} rendered pages and every #fragment checked at ${url.origin}`;
 }

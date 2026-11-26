@@ -159,14 +159,14 @@ export default function LearningLabPage() {
           experiment is where Module 01 begins.
         </p>
         <ol className="lab-journey-compact">
-          {journeyModules.map((module) => (
-            <li key={module.number}>
-              <Link href={`${entrepreneurshipJourneyPath}#module-${module.number}`}>
-                <span className="lab-journey-number">{module.number}</span>
-                {module.title}
+          {journeyModules.map((journeyModule) => (
+            <li key={journeyModule.number}>
+              <Link href={`${entrepreneurshipJourneyPath}#module-${journeyModule.number}`}>
+                <span className="lab-journey-number">{journeyModule.number}</span>
+                {journeyModule.title}
               </Link>
-              <span className={`lab-journey-status lab-journey-status-${module.availability}`}>
-                {journeyAvailability[module.availability].label}
+              <span className={`lab-journey-status lab-journey-status-${journeyModule.availability}`}>
+                {journeyAvailability[journeyModule.availability].label}
               </span>
             </li>
           ))}

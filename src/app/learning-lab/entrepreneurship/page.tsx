@@ -87,24 +87,24 @@ export default function EntrepreneurshipJourneyPage() {
           ))}
         </p>
         <ol className="lab-journey">
-          {journeyModules.map((module) => {
-            const status = journeyAvailability[module.availability];
+          {journeyModules.map((journeyModule) => {
+            const status = journeyAvailability[journeyModule.availability];
             return (
-              <li className="lab-journey-module" id={`module-${module.number}`} key={module.number}>
+              <li className="lab-journey-module" id={`module-${journeyModule.number}`} key={journeyModule.number}>
                 <div>
-                  <p className="lab-journey-number">Module {module.number}</p>
-                  <h3>{module.title}</h3>
+                  <p className="lab-journey-number">Module {journeyModule.number}</p>
+                  <h3>{journeyModule.title}</h3>
                   <p
-                    className={`lab-journey-status lab-journey-status-${module.availability}`}
+                    className={`lab-journey-status lab-journey-status-${journeyModule.availability}`}
                   >
                     {status.label}
                   </p>
-                  <p className="lab-journey-description">{module.description}</p>
+                  <p className="lab-journey-description">{journeyModule.description}</p>
                 </div>
                 <div>
                   <p className="lab-journey-label">Start with</p>
                   <ul className="lab-journey-links">
-                    {module.resources.map((resource) => (
+                    {journeyModule.resources.map((resource) => (
                       <li key={`${resource.href}-${resource.title}`}>
                         <span className="lab-journey-kind">{resource.kind}</span>
                         <Link href={resource.href}>{resource.title}</Link>
@@ -112,12 +112,12 @@ export default function EntrepreneurshipJourneyPage() {
                       </li>
                     ))}
                   </ul>
-                  {module.notCoveredYet && (
+                  {journeyModule.notCoveredYet && (
                     <p className="lab-journey-gap">
-                      <strong>Not covered yet:</strong> {module.notCoveredYet}
+                      <strong>Not covered yet:</strong> {journeyModule.notCoveredYet}
                     </p>
                   )}
-                  {module.caution && <p className="lab-journey-caution">{module.caution}</p>}
+                  {journeyModule.caution && <p className="lab-journey-caution">{journeyModule.caution}</p>}
                 </div>
               </li>
             );
