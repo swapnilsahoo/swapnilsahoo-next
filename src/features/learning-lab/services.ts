@@ -6,7 +6,7 @@
 
 export const labServicesPath = "/learning-lab/services";
 
-export type ServiceStatus = "open" | "pilot" | "prototype" | "proposed";
+export type ServiceStatus = "open" | "pilot" | "prototype" | "proposed" | "planned";
 
 export const serviceStatus: Record<
   ServiceStatus,
@@ -25,7 +25,12 @@ export const serviceStatus: Record<
   },
   proposed: {
     label: "Proposed",
-    meaning: "planned; dates, format and capacity will be published before it opens",
+    meaning: "designed; dates, format and capacity will be published before it opens",
+    chip: "planned",
+  },
+  planned: {
+    label: "Planned",
+    meaning: "on our roadmap; not open yet",
     chip: "planned",
   },
 };
@@ -203,7 +208,156 @@ export const serviceGroups: readonly ServiceGroup[] = [
       },
     ],
   },
+  {
+    id: "roadmap",
+    audience: "On our roadmap",
+    title: "From school to doctoral study.",
+    intro:
+      "Our vision is free learning at every stage. These pathways are planned, not open. Today the Lab is for adults aged 18 and over.",
+    services: [
+      {
+        id: "school-learning",
+        name: "School learning",
+        status: "planned",
+        summary:
+          "KG 1 through Class 12: literacy, numeracy, scientific curiosity and independent thinking.",
+        format: "Planned · not available yet; current services are not for children",
+        href: "/learning-lab/purpose#school-learning",
+        action: "Read the school-learning plan",
+      },
+      {
+        id: "engineering",
+        name: "Engineering",
+        status: "planned",
+        summary:
+          "B.Tech-level learning in computer science and electronics, connecting concepts with practical projects.",
+        format: "Planned · introductory applied-AI exercises are open today",
+        href: "/learning-lab/purpose#engineering",
+        action: "Read the engineering plan",
+      },
+    ],
+  },
 ];
+
+/** Homepage "Choose where to start": one goal per audience, each pointing to a service. */
+export const startGoals = [
+  {
+    audience: "First-time founders",
+    goal: "Test a business idea",
+    detail: "14 days · about 30 minutes a day",
+    href: "/learning-lab/venture-experiment",
+  },
+  {
+    audience: "Aspiring entrepreneurs",
+    goal: "Learn entrepreneurship step by step",
+    detail: "Seven modules · self-paced",
+    href: "/learning-lab/entrepreneurship",
+  },
+  {
+    audience: "Student founders",
+    goal: "Use ready-made founder tools",
+    detail: "Eight tools · no sign-up",
+    href: "/learning-lab/toolkit",
+  },
+  {
+    audience: "Adult learners",
+    goal: "Take a short course",
+    detail: "Six courses · 20–25 minutes each",
+    href: "/learning-lab/free-courses",
+  },
+  {
+    audience: "E-Cells and faculty",
+    goal: "Bring the Lab to your college",
+    detail: "Workshop kit · AI Viva Bot · proposed pilots",
+    href: "/learning-lab/services#institutions",
+  },
+  {
+    audience: "Professionals",
+    goal: "Build skills for work",
+    detail: "Three proposed programmes · sample lessons open",
+    href: "/learning-lab/services#professionals",
+  },
+] as const;
+
+/** What every service shares. */
+export const whyLearnWithLab = [
+  {
+    title: "Learn by doing",
+    text: "Every path ends in action: learn, apply, experiment, validate, then build.",
+  },
+  {
+    title: "A plan that fits you",
+    text: "Enter your time, skills, customer access and budget to get your next task. It never spends money or contacts anyone for you.",
+  },
+  {
+    title: "Feedback from the founder",
+    text: "Up to 20 learners at a time get written feedback from Dr. Swapnil Sahoo at each stage of the experiment. Turnaround is not guaranteed.",
+  },
+  {
+    title: "An AI mentor on hand",
+    text: "Ask by text or voice. Prepared answers point you to the right free resource; it does not invent answers or contact anyone for you.",
+  },
+  {
+    title: "Evidence over opinion",
+    text: "Count what customers do, not what they say. Stopping after an honest test is a valid result.",
+  },
+  {
+    title: "Free for everyone",
+    text: "No fees, no paid version and no checkout for learning. Voluntary support never buys anything.",
+  },
+] as const;
+
+/** How a learner moves through the Lab. */
+export const howItWorks = [
+  {
+    title: "Choose your goal",
+    text: "Pick a service above, or ask the AI mentor where to begin.",
+  },
+  {
+    title: "Learn the essentials",
+    text: "Short courses, the founder toolkit and the seven-module journey give you the ideas and templates.",
+  },
+  {
+    title: "Apply it for real",
+    text: "Run the 14-day experiment with real customers, about 30 minutes a day.",
+  },
+  {
+    title: "Decide on evidence",
+    text: "Continue, change or stop. Up to 20 learners at a time also get written founder feedback.",
+  },
+] as const;
+
+/** Questions about the services. Answers repeat the policies and the FAQ page. */
+export const serviceFaqs = [
+  [
+    "Is everything really free?",
+    "Yes. The Lab charges no fees for any service, including future programmes. The only payment on the website is an optional voluntary contribution, and it buys nothing.",
+  ],
+  [
+    "Who can use the Lab?",
+    "Adults aged 18 and over. Most services need no account. A school-learning pathway is planned, not open.",
+  ],
+  [
+    "Do you run live classes?",
+    "Not yet. Everything open today is self-paced. The three programmes with live sessions are proposed; their dates, format and capacity will be published before they open.",
+  ],
+  [
+    "Will I get a certificate?",
+    "Not for the free self-paced services. A Certificate of Completion is proposed for future programmes, under the published certificate policy. It is not a degree or accreditation.",
+  ],
+  [
+    "How does founder feedback work?",
+    "During the 14-day experiment, adults at college can register for one of up to 20 active places and get written feedback from Dr. Swapnil Sahoo at each stage. Turnaround is not guaranteed.",
+  ],
+  [
+    "Can my college or E-Cell use the Lab?",
+    "Yes. The free kit for E-Cells and faculty runs a 75-minute customer-test workshop. Pilots of full programmes are proposed; request a pilot discussion to explore one.",
+  ],
+  [
+    "Will the Lab help me raise funding?",
+    "No. The Lab teaches how fundraising works as general education. It does not arrange funding or introduce investors.",
+  ],
+] as const;
 
 /** How every service works: price, eligibility, delivery, limits, data and contact. */
 export const serviceTerms = [
