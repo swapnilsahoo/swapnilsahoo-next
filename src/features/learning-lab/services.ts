@@ -13,7 +13,11 @@ export const serviceStatus: Record<
   { label: string; meaning: string; chip: "open" | "partial" | "planned" }
 > = {
   open: { label: "Open now", meaning: "use it today", chip: "open" },
-  pilot: { label: "Pilot · limited places", meaning: "open to a small number at a time", chip: "partial" },
+  pilot: {
+    label: "Pilot · limited places",
+    meaning: "open to a small number at a time",
+    chip: "partial",
+  },
   prototype: {
     label: "Working prototype",
     meaning: "try it today; it is still being developed",
@@ -174,8 +178,7 @@ export const serviceGroups: readonly ServiceGroup[] = [
         id: "ai-for-managers",
         name: "AI for Managers",
         status: "proposed",
-        summary:
-          "Practise workflow design, evidence checking, privacy choices and human review.",
+        summary: "Practise workflow design, evidence checking, privacy choices and human review.",
         format: "Proposed: four weeks · six live sessions · sample lesson open now",
         href: "/learning-lab/programmes/ai-for-managers#demo",
         action: "Try the sample lesson",
@@ -193,8 +196,7 @@ export const serviceGroups: readonly ServiceGroup[] = [
         id: "entrepreneurship-under-constraint",
         name: "Entrepreneurship Under Constraint Bootcamp",
         status: "proposed",
-        summary:
-          "Define an affordable experiment, use the means you have and decide on evidence.",
+        summary: "Define an affordable experiment, use the means you have and decide on evidence.",
         format: "Proposed: four weeks · six live sessions · sample lesson open now",
         href: "/learning-lab/programmes/entrepreneurship-under-constraint#demo",
         action: "Try the sample lesson",
