@@ -36,13 +36,29 @@ The mission describes today's focus only. The vision repeats the long-term schoo
 | | AI Viva Bot | Working prototype |
 | | Institution pilot programmes | Proposed |
 | Professionals and adult learners | AI for Managers; Strategy and Case Thinking Lab; Entrepreneurship Under Constraint Bootcamp | Proposed (sample lessons open now) |
+| On our roadmap | School learning (KG 1 to Class 12); Engineering (B.Tech level) | Planned (not open; current services are not for children) |
 
-The page also states the terms that apply to every service: free, adults 18 and over, online delivery, what is not promised, data and contact. It names the provider, Swapnil Sahoo Learning Lab Private Limited, and links voluntary support without making it a service. Each fact repeats what the linked page already says. Check that page before changing a line.
+## How the services page is organised
+
+The page is laid out the way a learner chooses a service, from "where do I start?" to the fine print:
+
+1. **Hero:** "What we offer, and who it is for", with two actions: start the 14-day experiment, or ask the AI mentor.
+2. **Facts at a glance:** ₹0 fees, adults 18+, seven modules, a 14-day experiment, eight tools and six short courses. These are facts about the offering, counted from the same data that renders it. The page shows no learner numbers, testimonials or results; none are claimed until there is evidence.
+3. **Services by audience:** aspiring entrepreneurs and students; colleges, E-Cells and faculty; professionals; and the roadmap (planned school and engineering pathways).
+4. **Why learn with the Lab:** learn by doing; a plan that fits you; feedback from the founder (up to 20 learners at a time); an AI mentor on hand; evidence over opinion; free for everyone.
+5. **How it works:** choose your goal, learn the essentials, apply it for real, decide on evidence.
+6. **Questions:** seven short answers. Everything is free, it is for adults 18+, there are no live classes yet, no certificate comes from the free self-paced services, founder feedback has capped places, colleges can use the E-Cell kit, and the Lab does not help raise funding.
+7. **Terms:** free, adults 18 and over, online delivery, what is not promised, data and contact, with links to the policies.
+8. **Who provides them:** Swapnil Sahoo Learning Lab Private Limited, its purpose, the founder, and voluntary support (which buys nothing).
+
+The Lab homepage has a matching **"Choose where to start"** band under the opening question. It offers six goals: test a business idea, learn entrepreneurship step by step, use founder tools, take a short course, bring the Lab to your college, or build skills for work. It also has a "Have a question? Ask the AI mentor" link.
+
+Each fact repeats what the linked page already says. Check that page before changing a line. The test compares written counts ("eight tools", "six courses", "seven modules") with the data.
 
 ## Where they appear
 
-- The Lab top menu ("Services") and footer ("Our services"; "Our purpose, mission and vision").
-- The Lab homepage "About the Lab" section, which now leads with the purpose statement.
+- The Lab top menu ("Services") and footer ("Our services"; "Our purpose, mission and vision"). The footer's About column now starts with the purpose statement.
+- The Lab homepage: the "Choose where to start" band, and the "About the Lab" section, which now leads with the purpose statement.
 - `src/app/sitemap.ts` (the services page; the purpose page was already listed) and the browser test's route list (both pages).
 - A new FAQ entry, "What services does the Lab offer?".
 - An AI mentor prepared answer for questions about the Lab's services, purpose, mission or vision. Its wording is narrow, so a student's own questions about their services or purpose keep their existing answers. `scripts/test-digital-mentor-routing.mjs` asserts both.
