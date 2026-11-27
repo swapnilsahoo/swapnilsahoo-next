@@ -9,6 +9,7 @@ import { freeCourses } from "../src/features/learning-lab/free-courses.ts";
 import { learningPaths } from "../src/features/learning-lab/catalogue.ts";
 import { weeklyNotes } from "../src/features/learning-lab/weekly-notes.ts";
 import { programmes } from "../src/features/learning-lab/programmes.ts";
+import { labPolicies } from "../src/features/learning-lab/policies.ts";
 import { toolkitTools } from "../src/features/learning-lab/founder-toolkit.ts";
 import { researchBranches } from "../src/features/research/data/researchAgenda.ts";
 
@@ -17,6 +18,7 @@ const dynamicRoutes = [
   ["/learning-lab/paths/", learningPaths, "src/app/learning-lab/paths/[slug]/page.tsx"],
   ["/learning-lab/weekly-notes/", weeklyNotes, "src/app/learning-lab/weekly-notes/[slug]/page.tsx"],
   ["/learning-lab/programmes/", programmes, "src/app/learning-lab/programmes/[slug]/page.tsx"],
+  ["/learning-lab/policies/", labPolicies, "src/app/learning-lab/policies/[slug]/page.tsx"],
 ];
 
 export function routeSource(root, pathname) {
