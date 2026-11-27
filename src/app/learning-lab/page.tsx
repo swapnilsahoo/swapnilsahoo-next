@@ -8,7 +8,9 @@ import {
   journeyAvailability,
   journeyModules,
 } from "@/features/learning-lab/entrepreneurship-journey";
+import { labPurpose } from "@/features/learning-lab/mission";
 import { aiVivaBot, labProductsPath } from "@/features/learning-lab/products";
+import { labServicesPath, startGoals } from "@/features/learning-lab/services";
 import {
   toolkitFreeStatement,
   toolkitHref,
@@ -69,6 +71,33 @@ export default function LearningLabPage() {
         </Link>
       </LabHero>
       <VentureQuestion />
+      <LabSection
+        id="choose"
+        className="lab-band"
+        eyebrow="Choose where to start"
+        title="Pick the goal that fits you."
+      >
+        <div className="lab-grid">
+          {startGoals.map((item) => (
+            <article className="lab-card" key={item.goal}>
+              <span className="lab-tag">{item.audience}</span>
+              <h3>{item.goal}</h3>
+              <p>{item.detail}</p>
+              <Link href={item.href} className="lab-text-link">
+                Start here →<span className="sr-only">: {item.goal}</span>
+              </Link>
+            </article>
+          ))}
+        </div>
+        <div className="lab-actions" style={{ alignItems: "center" }}>
+          <Link href={labServicesPath} className="lab-text-link">
+            See all services →
+          </Link>
+          <Link href="/digital-guide" className="lab-text-link">
+            Have a question? Ask the AI mentor →
+          </Link>
+        </div>
+      </LabSection>
       <LabSection eyebrow="Why it exists" title="An idea, little money and no clear next step?">
         <div className="lab-split">
           <div className="lab-prose">
@@ -158,7 +187,7 @@ export default function LearningLabPage() {
           Seven free modules for the gap between knowing entrepreneurship and doing it. The 14-day
           experiment is where Module 01 begins.
         </p>
-        <ol className="lab-journey-compact">
+        <ol className="lab-journey-compact" role="list">
           {journeyModules.map((journeyModule) => (
             <li key={journeyModule.number}>
               <Link href={`${entrepreneurshipJourneyPath}#module-${journeyModule.number}`}>
@@ -282,6 +311,7 @@ export default function LearningLabPage() {
       >
         <div className="lab-split">
           <div>
+            <p className="lab-lead">{labPurpose.statement}</p>
             <p>
               Run by {labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo. The long-term goal
               is free learning from school to doctoral study. Today&rsquo;s focus is helping
@@ -290,11 +320,14 @@ export default function LearningLabPage() {
             <p>Everything is free. {labSupportLine}</p>
           </div>
           <div className="lab-actions" style={{ marginTop: 0 }}>
-            <Link href="/learning-lab/founder" className="lab-text-link">
-              Meet the founder →
+            <Link href={labServicesPath} className="lab-text-link">
+              Our services →
             </Link>
             <Link href="/learning-lab/purpose" className="lab-text-link">
-              Our long-term purpose →
+              Our purpose, mission and vision →
+            </Link>
+            <Link href="/learning-lab/founder" className="lab-text-link">
+              Meet the founder →
             </Link>
             <Link href="/learning-lab/support" className="lab-text-link">
               Support free learning →
