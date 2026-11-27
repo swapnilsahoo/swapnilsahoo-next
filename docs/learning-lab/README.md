@@ -1,5 +1,7 @@
 # Learning Lab implementation and local handover
 
+**Status, 27 November 2026:** the company's purpose, mission, vision and values are on `/learning-lab/purpose`, and every service is listed by audience on `/learning-lab/services`, with honest statuses and the terms that apply. See [services and purpose](services-and-purpose.md).
+
 **Status, 26 November 2026:** the founder's seven-module entrepreneurship journey, "From Startup Idea to Venture Growth", is part of the Lab at `/learning-lab/entrepreneurship`, with the founder's problem statement, knowing–doing gap, value proposition and differentiation. It is a free learning map that links existing resources and marks each module open now, partly open or planned. See [the entrepreneurship journey](entrepreneurship-journey.md) for the source wording, publication edits and sources.
 
 **Status, 24 November 2026:** the founder confirmed that the Lab is incorporated as Swapnil Sahoo Learning Lab Private Limited (the single source is `src/features/learning-lab/entity.ts`). Everything the Lab offers is free, including future programmes, and the website has no checkout. Voluntary financial assistance and support for infrastructure and services are welcome and never required. This supersedes the unincorporated, not-for-profit, proposed-entity and paid-programme statements below, which are kept as history. The CIN and registered office are not yet published.

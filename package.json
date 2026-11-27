@@ -37,6 +37,7 @@
     "lab:test:venture-plan": "node --import tsx scripts/test-learning-lab-venture-experiment.mjs",
     "lab:test:toolkit": "node --import tsx scripts/test-learning-lab-founder-toolkit.mjs && node --import tsx scripts/test-digital-mentor-routing.mjs",
     "lab:test:entrepreneurship": "node --import tsx scripts/test-learning-lab-entrepreneurship.mjs",
+    "lab:test:services": "node --import tsx scripts/test-learning-lab-services.mjs",
     "lab:test:unconfigured": "node scripts/test-learning-lab-unconfigured.mjs",
     "lab:preview": "node scripts/learning-lab-preview.mjs",
     "check:scriptures": "node scripts/check-scripture-corpora.mjs",

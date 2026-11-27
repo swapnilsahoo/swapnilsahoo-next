@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { labPublicConfig } from "../config";
+import { labPurpose } from "../mission";
 
 const navigation = [
   ["Entrepreneurship", "/learning-lab/entrepreneurship"],
@@ -9,6 +10,7 @@ const navigation = [
   ["Free toolkit", "/learning-lab/toolkit"],
   ["Free courses", "/learning-lab/free-courses"],
   ["Catalogue", "/learning-lab/catalogue"],
+  ["Services", "/learning-lab/services"],
   ["For colleges", "/learning-lab/for-colleges"],
   ["Products", "/learning-lab/products"],
   ["Founder", "/learning-lab/founder"],
@@ -78,6 +80,7 @@ export function LabShell({
         <div className="lab-container lab-footer-grid">
           <div>
             <p className="lab-eyebrow">{labPublicConfig.name}</p>
+            <p className="lab-small">{labPurpose.statement}</p>
             <p className="lab-small">{labPublicConfig.description}</p>
             <p className="lab-small">
               Run by {labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo. His academic and
@@ -96,7 +99,8 @@ export function LabShell({
             <Link href="/learning-lab/venture-experiment">Free 14-day venture experiment</Link>
             <Link href="/learning-lab/toolkit">Free founder toolkit</Link>
             <Link href="/learning-lab/products">Products: AI Viva Bot</Link>
-            <Link href="/learning-lab/purpose">Our purpose and planned pathways</Link>
+            <Link href="/learning-lab/services">Our services</Link>
+            <Link href="/learning-lab/purpose">Our purpose, mission and vision</Link>
             <Link href="/learning-lab/weekly-notes">Weekly practice and timeline</Link>
             <Link href="/learning-lab/pilot">Volunteer pilot</Link>
             <Link href="/learning-lab/catalogue">Open catalogue and learning paths</Link>

@@ -20,6 +20,10 @@ function getQuestions(enquiriesAvailable: boolean) {
       `Swapnil Sahoo Learning Lab helps first-time student entrepreneurs turn a business idea into a small, affordable customer experiment in 14 days, with practical guidance and feedback, free of charge. It is run by ${labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo. Everything the Lab offers is free. Wider school-to-doctoral learning remains a long-term ambition.`,
     ],
     [
+      "What services does the Lab offer?",
+      "Free services for adults aged 18 and over. For aspiring entrepreneurs: the 14-day venture experiment, written founder feedback for up to 20 adults at college at a time, the seven-module journey From Startup Idea to Venture Growth, the founder toolkit, six short courses, the open catalogue and the AI learning mentor. For colleges and faculty: a workshop kit for E-Cells and the AI Viva Bot prototype. Institution pilots and three programmes for professionals are proposed. The Services page lists each one with its status.",
+    ],
+    [
       "How does the free 14-day venture experiment work?",
       "Read the daily plan, set a time and cost boundary, investigate a real customer problem, run one small test and decide to continue, change or stop. The public planner and worksheets need no account. Adults at college can register for one of up to 20 active founder-feedback places. Successful registration provides a private access code for stage submissions and actual human reviews; no email or general newsletter subscription is created. Review timing is not guaranteed. The code expires after 90 days. A successful decision to stop is a valid learning outcome; a plan or role-play is not an actual customer experiment.",
     ],
@@ -93,6 +97,11 @@ export default function FaqPage() {
             <details key={question} className="lab-faq">
               <summary>{question}</summary>
               <p>{answer}</p>
+              {question === "What services does the Lab offer?" && (
+                <p>
+                  <Link href="/learning-lab/services">See all services →</Link>
+                </p>
+              )}
               {question === "How can I support the Lab?" && (
                 <p>
                   <Link href="/learning-lab/support">Support the Lab →</Link>
