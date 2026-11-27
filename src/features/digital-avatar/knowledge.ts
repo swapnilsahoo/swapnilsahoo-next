@@ -63,6 +63,21 @@ const topics: GuidedTopic[] = [
       ["Who is Dr. Swapnil Sahoo?", "What can I learn for free?", "Contact the Lab"]
     ),
   },
+  // The company's services and purpose. Narrow wording so a student's own questions about
+  // "services" or "purpose" (their business, their customers) do not reach the Lab's pages.
+  {
+    matches:
+      /\b(what|which) services (do|does|can) (you|the (learning )?lab) (offer|provide|have)\b|\bwhat (do|does) (you|the (learning )?lab) offer\b|\b(your|lab'?s?|learning lab'?s?) (services|offerings?|service offering)\b|\b(purpose|mission|vision|values) of (the (learning )?lab|your (company|lab|organi[sz]ation))\b|\b(the (learning )?lab'?s|your (company'?s|lab'?s)) (purpose|mission|vision|values)\b|\bwhy (does|did) (the )?(learning )?lab exist\b|\bwhy was (the )?(learning )?lab (started|founded|created)\b/i,
+    reply: answer(
+      `${labLegalName} exists to make learning freely accessible to everyone, and to help people turn what they learn into action. Its services are free for adults aged 18 and over. For aspiring entrepreneurs: the 14-day venture experiment, written founder feedback for up to 20 learners at a time, the seven-module journey From Startup Idea to Venture Growth, the founder toolkit, six short courses, the open catalogue and this AI mentor. For colleges and faculty: a workshop kit for E-Cells and the AI Viva Bot prototype. Institution pilots and three programmes for professionals are proposed. Nothing is charged, and no funding, job or certificate is guaranteed.`,
+      [
+        { label: "See all services", href: `${lab}/services` },
+        { label: "Our purpose, mission and vision", href: `${lab}/purpose` },
+        venture,
+      ],
+      ["How do I test a business idea?", "What can I learn for free?", "Who is Dr. Swapnil Sahoo?"]
+    ),
+  },
   // Real first-time founder questions. Listed first so that words such as "college",
   // "save", "store" or "price" in a student's question reach the toolkit, not Lab admin answers.
   {
