@@ -993,9 +993,12 @@
 .lab-journey-description {
   color: var(--lab-muted);
 }
-.lab-journey-status {
+/* Scoped under .lab so card and module paragraph rules (.lab-card p, .lab-journey-module p)
+   do not override the chip's size, colour or spacing. */
+.lab .lab-journey-status {
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
   font-size: 0.68rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1005,11 +1008,11 @@
   margin: 0 0 1rem;
   color: var(--lab-muted);
 }
-.lab-journey-status-open {
+.lab .lab-journey-status-open {
   color: var(--lab-accent);
   font-weight: 600;
 }
-.lab-journey-status-planned {
+.lab .lab-journey-status-planned {
   border-style: dashed;
 }
 .lab .lab-journey-label {
