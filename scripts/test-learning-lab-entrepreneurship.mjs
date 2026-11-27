@@ -4,7 +4,7 @@
 // (for example http://localhost:3110), it also fetches each linked page and confirms every
 // #fragment exists in the rendered HTML.
 import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import {
   differentiation,
@@ -16,11 +16,7 @@ import {
   problemStatement,
   valueProposition,
 } from "../src/features/learning-lab/entrepreneurship-journey.ts";
-import { freeCourses } from "../src/features/learning-lab/free-courses.ts";
-import { learningPaths } from "../src/features/learning-lab/catalogue.ts";
-import { weeklyNotes } from "../src/features/learning-lab/weekly-notes.ts";
-import { researchBranches } from "../src/features/research/data/researchAgenda.ts";
-import { toolkitTools } from "../src/features/learning-lab/founder-toolkit.ts";
+import { checkLabLinks } from "./learning-lab-links.mjs";
 
 const root = process.cwd();
 const pageFile = path.join(root, "src/app/learning-lab/entrepreneurship/page.tsx");
@@ -102,55 +98,14 @@ const links = [
   ...problemStatement.gaps.map((gap) => gap.href).filter((href) => !href.startsWith("#")),
   "/learning-lab/venture-experiment#start",
 ];
-async function routeSource(pathname) {
-  const segments = pathname.split("/").filter(Boolean);
-  const slug = segments.at(-1);
-  if (pathname.endsWith(".html")) return path.join(root, "public", pathname);
-  if (pathname.startsWith("/learning-lab/free-courses/")) {
-    assert.ok(freeCourses.some((course) => course.slug === slug), `Free course exists: ${slug}`);
-    return path.join(root, "src/app/learning-lab/free-courses/[slug]/page.tsx");
-  }
-  if (pathname.startsWith("/learning-lab/paths/")) {
-    assert.ok(learningPaths.some((item) => item.slug === slug), `Learning path exists: ${slug}`);
-    return path.join(root, "src/app/learning-lab/paths/[slug]/page.tsx");
-  }
-  if (pathname.startsWith("/learning-lab/weekly-notes/")) {
-    assert.ok(weeklyNotes.some((note) => note.slug === slug), `Weekly note exists: ${slug}`);
-    return path.join(root, "src/app/learning-lab/weekly-notes/[slug]/page.tsx");
-  }
-  if (pathname.startsWith("/learning-lab/toolkit/"))
-    assert.ok(toolkitTools.some((tool) => tool.slug === slug), `Toolkit tool exists: ${slug}`);
-  if (/^\/research\/[^/]+$/.test(pathname) && slug !== "phd-coursework") {
-    assert.ok(researchBranches.some((branch) => branch.slug === slug), `Research branch exists: ${slug}`);
-    return path.join(root, "src/app/research/[slug]/page.tsx");
-  }
-  return path.join(root, "src/app", pathname, "page.tsx");
-}
-for (const href of links) {
-  assert.ok(href.startsWith("/") && !href.startsWith("//"), `Internal link: ${href}`);
-  await access(await routeSource(href.split("#")[0]));
-}
-
-// Optional: rendered pages and fragments on a local server.
-const base = process.env.LAB_BASE_URL;
-let fragmentNote = "fragments not checked (set LAB_BASE_URL to a local server to check them)";
-if (base) {
-  const url = new URL(base);
-  assert.ok(["localhost", "127.0.0.1", "[::1]"].includes(url.hostname), "LAB_BASE_URL must be a local server");
-  const pages = new Map();
-  for (const href of [...links, entrepreneurshipJourneyPath]) {
-    const [pathname, fragment] = href.split("#");
-    if (!pages.has(pathname)) {
-      const response = await fetch(new URL(pathname, url), { redirect: "manual" });
-      assert.equal(response.status, 200, `${pathname} returns 200`);
-      pages.set(pathname, await response.text());
-    }
-    if (fragment) assert.ok(pages.get(pathname).includes(`id="${fragment}"`), `${href}: #${fragment} exists on the rendered page`);
-  }
-  const page = pages.get(entrepreneurshipJourneyPath);
+const { pages, note: fragmentNote } = await checkLabLinks(links, {
+  root,
+  extraPages: [entrepreneurshipJourneyPath],
+});
+const page = pages.get(entrepreneurshipJourneyPath);
+if (page) {
   for (const item of journeyModules) assert.ok(page.includes(`id="module-${item.number}"`), `module-${item.number} anchor`);
   for (const id of ["modules", "gap", "problem", "value", "difference"]) assert.ok(page.includes(`id="${id}"`), `#${id} section`);
-  fragmentNote = `${pages.size} rendered pages and every #fragment checked at ${url.origin}`;
 }
 
 console.log(

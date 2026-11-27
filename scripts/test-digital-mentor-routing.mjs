@@ -82,6 +82,26 @@ for (const question of ["How do I test a business idea?", "Is my idea good?"])
   );
 routesTo("I want to become an entrepreneur", "/learning-lab/entrepreneurship");
 
+// The company's services and purpose; a student's own "services" or "purpose" questions stay out.
+const company = [
+  "What services do you offer?",
+  "What does the Lab offer?",
+  "Show me your services",
+  "What is the purpose of the Learning Lab?",
+  "What is your company's mission?",
+  "Why does the Lab exist?",
+];
+for (const question of company) routesTo(question, "/learning-lab/services");
+for (const question of [
+  "What services should I offer to customers?",
+  "How do I improve my customer service?",
+  "What is the purpose of my business?",
+])
+  assert.ok(
+    !hrefs(question).some((href) => href.startsWith("/learning-lab/services")),
+    `${question} should not reach the Lab services page`
+  );
+
 console.log(
-  `PASS mentor routing: ${existing.length} existing answers unchanged, ${student.length} student questions reach the founder toolkit, ${products.length} product questions reach AI Viva Bot, ${journey.length} journey questions reach the seven-module journey.`
+  `PASS mentor routing: ${existing.length} existing answers unchanged, ${student.length} student questions reach the founder toolkit, ${products.length} product questions reach AI Viva Bot, ${journey.length} journey questions reach the seven-module journey, ${company.length} company questions reach the services and purpose.`
 );
