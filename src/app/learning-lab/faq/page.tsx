@@ -21,7 +21,7 @@ function getQuestions(enquiriesAvailable: boolean) {
     ],
     [
       "What services does the Lab offer?",
-      "Free services for adults aged 18 and over. For aspiring entrepreneurs: the 14-day venture experiment, written founder feedback for up to 20 learners at a time, the seven-module journey From Startup Idea to Venture Growth, the founder toolkit, six short courses, the open catalogue and the AI learning mentor. For colleges and faculty: a workshop kit for E-Cells and the AI Viva Bot prototype. Institution pilots and three programmes for professionals are proposed. The Services page lists each one with its status.",
+      "Free services for adults aged 18 and over. For aspiring entrepreneurs: the 14-day venture experiment, written founder feedback for up to 20 adults at college at a time, the seven-module journey From Startup Idea to Venture Growth, the founder toolkit, six short courses, the open catalogue and the AI learning mentor. For colleges and faculty: a workshop kit for E-Cells and the AI Viva Bot prototype. Institution pilots and three programmes for professionals are proposed. The Services page lists each one with its status.",
     ],
     [
       "How does the free 14-day venture experiment work?",

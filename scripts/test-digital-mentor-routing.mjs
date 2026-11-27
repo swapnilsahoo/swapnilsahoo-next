@@ -72,14 +72,38 @@ const journey = [
   "Is there a startup curriculum?",
   "Tell me about From Startup Idea to Venture Growth",
   "What is the knowing-doing gap?",
-  "What is in module 5?",
+  "What is in module 5 of the journey?",
 ];
-for (const question of journey) routesTo(question, "/learning-lab/entrepreneurship");
+// The dedicated journey answer leads with the journey; the general entrepreneurship answer also
+// links it, but second.
+for (const question of journey)
+  assert.equal(
+    hrefs(question)[0],
+    "/learning-lab/entrepreneurship",
+    `${question} -> dedicated journey answer`
+  );
 for (const question of ["How do I test a business idea?", "Is my idea good?"])
   assert.ok(
     !hrefs(question).some((href) => href.startsWith("/learning-lab/entrepreneurship")),
     `${question} should keep its own answer`
   );
+// Other pages with their own modules, pathways or journeys keep their answers.
+for (const question of [
+  "What was Dr. Sahoo's founder journey?",
+  "What are the modules in Entrepreneurship Under Constraint?",
+  "What does module 3 of Hiring Your First Five People cover?",
+  "Tell me about the Research & Entrepreneurship pathway",
+])
+  assert.notEqual(
+    hrefs(question)[0],
+    "/learning-lab/entrepreneurship",
+    `${question} should not get the journey answer`
+  );
+routesTo("What was Dr. Sahoo's founder journey?", "/learning-lab/founder");
+routesTo(
+  "What are the modules in Entrepreneurship Under Constraint?",
+  "entrepreneurship-under-constraint"
+);
 routesTo("I want to become an entrepreneur", "/learning-lab/entrepreneurship");
 
 // The company's services and purpose; a student's own "services" or "purpose" questions stay out.
@@ -91,7 +115,12 @@ const company = [
   "What is your company's mission?",
   "Why does the Lab exist?",
 ];
-for (const question of company) routesTo(question, "/learning-lab/services");
+for (const question of company)
+  assert.equal(
+    hrefs(question)[0],
+    "/learning-lab/services",
+    `${question} -> dedicated services answer`
+  );
 for (const question of [
   "What services should I offer to customers?",
   "How do I improve my customer service?",

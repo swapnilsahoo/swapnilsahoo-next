@@ -31,8 +31,7 @@ export const journeyAvailability: Record<JourneyAvailability, { label: string; m
     partial: { label: "Partly open", meaning: "free resources cover part of it" },
     planned: {
       label: "Planned",
-      meaning:
-        "only early resources so far; more will be added here as they are ready",
+      meaning: "only early resources so far; more will be added here as they are ready",
     },
   };
 

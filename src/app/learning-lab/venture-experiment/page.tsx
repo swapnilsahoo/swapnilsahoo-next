@@ -267,6 +267,9 @@ export default function VentureExperimentPage() {
           Independent resources. No partnership is implied.
         </p>
         <div className="lab-actions">
+          <Link className="lab-text-link" href="/learning-lab/entrepreneurship">
+            Continue with the seven-module journey →
+          </Link>
           <Link className="lab-text-link" href={toolkitHref("test-playbooks", "experiment-record")}>
             Make your one-page experiment record →
           </Link>

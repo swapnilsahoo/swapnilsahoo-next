@@ -157,6 +157,15 @@ const links = [
   ...problemStatement.gaps.map((gap) => gap.href).filter((href) => !href.startsWith("#")),
   "/learning-lab/venture-experiment#start",
 ];
+// Anchors other pages link to (#module-NN, #gap) must exist in the page source, even without a server.
+const pageSource = await readFile(pageFile, "utf8");
+assert.ok(
+  pageSource.includes("id={`module-${journeyModule.number}`}"),
+  "module anchors in page.tsx"
+);
+for (const id of ["modules", "gap", "problem", "value", "difference"])
+  assert.ok(pageSource.includes(`id="${id}"`), `#${id} in page.tsx`);
+
 const { pages, note: fragmentNote } = await checkLabLinks(links, {
   root,
   extraPages: [entrepreneurshipJourneyPath],

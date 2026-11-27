@@ -157,7 +157,7 @@ export const serviceGroups: readonly ServiceGroup[] = [
         status: "prototype",
         summary:
           "An AI oral examiner that questions each student on their own submission and prepares an evaluation for faculty.",
-        format: "Live demo · a live viva uses your own Google AI Studio (Gemini) key",
+        format: "Live demo · a live viva needs your own AI key (details on the Products page)",
         href: "/learning-lab/products",
         action: "See AI Viva Bot",
       },
@@ -291,7 +291,7 @@ export const whyLearnWithLab = [
   },
   {
     title: "Feedback from the founder",
-    text: "Up to 20 learners at a time get written feedback from Dr. Swapnil Sahoo at each stage of the experiment. Turnaround is not guaranteed.",
+    text: "Up to 20 learners at a time (adults at college) get written feedback from Dr. Swapnil Sahoo at each stage of the experiment. Turnaround is not guaranteed.",
   },
   {
     title: "An AI mentor on hand",
@@ -323,7 +323,7 @@ export const howItWorks = [
   },
   {
     title: "Decide on evidence",
-    text: "Continue, change or stop. Up to 20 learners at a time also get written founder feedback.",
+    text: "Continue, change or stop. Up to 20 learners at a time (adults at college) also get written founder feedback.",
   },
 ] as const;
 

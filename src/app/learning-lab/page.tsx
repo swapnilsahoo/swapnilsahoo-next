@@ -187,7 +187,7 @@ export default function LearningLabPage() {
           Seven free modules for the gap between knowing entrepreneurship and doing it. The 14-day
           experiment is where Module 01 begins.
         </p>
-        <ol className="lab-journey-compact">
+        <ol className="lab-journey-compact" role="list">
           {journeyModules.map((journeyModule) => (
             <li key={journeyModule.number}>
               <Link href={`${entrepreneurshipJourneyPath}#module-${journeyModule.number}`}>

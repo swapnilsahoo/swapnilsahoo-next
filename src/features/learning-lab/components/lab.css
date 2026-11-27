@@ -977,7 +977,7 @@
   border: 1px solid var(--lab-line);
   padding: 1.8rem;
 }
-.lab-journey-number {
+.lab .lab-journey-number {
   font-family: var(--font-jetbrains-mono), monospace;
   font-size: 0.8rem;
   color: var(--lab-accent);
@@ -1046,11 +1046,18 @@
   color: var(--lab-muted);
   margin-top: 0.2rem;
 }
-.lab-journey-gap {
+.lab .lab-journey-gap {
   color: var(--lab-muted);
   margin: 0.4rem 0 0;
 }
-.lab-journey-caution {
+.lab-journey-module > div > :last-child {
+  margin-bottom: 0;
+}
+.lab .lab-journey-sources a {
+  color: var(--lab-accent);
+  text-decoration: underline;
+}
+.lab .lab-journey-caution {
   border-left: 3px solid var(--lab-accent);
   background: var(--lab-tint);
   padding: 0.7rem 0.9rem;
@@ -1075,7 +1082,7 @@
   color: var(--lab-ink);
   font-weight: 500;
   text-decoration: underline;
-  text-decoration-color: var(--lab-line);
+  text-decoration-color: var(--lab-muted);
 }
 .lab-journey-compact a:hover {
   text-decoration-color: currentColor;
@@ -1108,7 +1115,7 @@
   font-size: 1.3rem;
   line-height: 1;
 }
-.lab-value-chain {
+.lab .lab-value-chain {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

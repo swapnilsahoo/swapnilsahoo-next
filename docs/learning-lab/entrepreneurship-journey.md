@@ -1,8 +1,8 @@
 # From Startup Idea to Venture Growth (entrepreneurship journey)
 
-Updated 26 November 2026.
+Updated 27 November 2026.
 
-The Lab's free seven-module entrepreneurship journey lives at `/learning-lab/entrepreneurship`. Its text lives in `src/features/learning-lab/entrepreneurship-journey.ts`. The page, the Lab homepage summary, the top menu and footer, the sitemap and the AI mentor all read it. `scripts/test-learning-lab-entrepreneurship.mjs` (`pnpm lab:test:entrepreneurship`) keeps the published text in step with the founder's wording.
+The Lab's free seven-module entrepreneurship journey lives at `/learning-lab/entrepreneurship`. Its text lives in `src/features/learning-lab/entrepreneurship-journey.ts`, which the page, the Lab homepage summary and the sitemap read. The top menu and footer (`LabShell.tsx`) and the AI mentor's prepared answer (`knowledge.ts`) repeat the path and the module themes by hand, so update them whenever a module title or the path changes. `scripts/test-learning-lab-entrepreneurship.mjs` (`pnpm lab:test:entrepreneurship`) keeps the published text in step with the founder's wording and checks the page's anchors.
 
 ## What it is
 
@@ -10,9 +10,9 @@ The journey is a free, self-paced learning map, not a programme anyone enrols in
 
 - **Open now:** you can practise its core today (01 and 07).
 - **Partly open:** free resources cover part of it (02, 03, 05 and 06).
-- **Planned:** early readings only (04).
+- **Planned:** early resources only (04).
 
-Each module that is not fully open names what is "Not covered yet". Modules 05 and 06 carry a caution: general education only, not investment, legal or tax advice. The Lab does not arrange funding or introduce investors. The journey is separate from the catalogue's four learning paths, its 25 resources and the proposed live programmes. It does not change their counts.
+Each module that is not fully open names what is "Not covered yet". Modules 05 and 06 carry a caution: general education only. Module 05 is not investment, legal or tax advice, and Module 06 is not legal or tax advice. The Lab does not arrange funding or introduce investors. The journey is separate from the catalogue's four learning paths, its 25 resources and the proposed live programmes. It does not change their counts.
 
 ## Source wording and publication edits
 
@@ -25,9 +25,20 @@ On 26 November 2026 the founder supplied the seven modules, a problem statement,
 | "Two additional modules worth incorporating" (heading before 06 and 07) | Not published; 06 and 07 appear as ordinary modules | Advice to the founder, not public copy. |
 | "I have interpreted your outline as the foundation of an entrepreneurship learning programme…" and "The two additional modules address…" | Not published | Advice to the founder. |
 | "For your EdTech initiative, I would position this as addressing the entrepreneurial knowing–doing gap…" | Not published; the knowing–doing gap framing is used throughout | Advice to the founder. |
-| "This is a proposed problem hypothesis that should subsequently be validated through customer discovery." and "This needs to be validated through customer discovery before developing the platform." | "This is a proposed problem hypothesis, not a finding. We are testing it through customer discovery, the way we ask you to test an idea: by talking to aspiring entrepreneurs about what they actually did, before we build more of the journey." | The Lab already exists, so "before developing the platform" would contradict the page. The hypothesis framing is kept. |
+| "This is a proposed problem hypothesis that should subsequently be validated through customer discovery." and "This needs to be validated through customer discovery before developing the platform." | "This is a proposed problem hypothesis, not a finding. We will test it through customer discovery, the way we ask you to test an idea: by talking to aspiring entrepreneurs about what they actually did, before we build more of the journey." | The Lab already exists, so "before developing the platform" would contradict the page. "Should be validated" is published as a commitment ("We will test it"), not as a claim that interviews are under way. Change it to "We are testing it" only once discovery conversations are actually happening. (The first release on 27 November 2026 said "We are testing it"; corrected the same day.) |
 
-Additions that are not the founder's wording: the open/partly open/planned labels, the "Start with" resource lists, "Not covered yet", the "Today:" line under each of the five gaps, the cautions on Modules 05 and 06, "Stopping after an honest test is a valid result too.", the Lab's existing line "No completion rates, learning gains or comparisons are claimed yet." and the source citations. The page is for adults aged 18 and over, like the rest of the Lab.
+Additions that are not the founder's wording:
+
+- the open/partly open/planned labels, the "Start with" resource lists and "Not covered yet";
+- the hero line "Seven free modules. Start with one honest test with real customers." and the scope sentence ("This is a free, self-paced learning map…");
+- the modules lead paragraph, the section titles ("Seven modules, one journey.", "The problem we are working on.", "From intent to action.", "What makes this different.") and the "Begin with Module 01 this week" band;
+- the "Today:" line under each of the five gaps and the cautions on Modules 05 and 06;
+- "Stopping after an honest test is a valid result too.";
+- the callout heading "We test our own idea too" and "Continue, change or stop applies to us too.";
+- the Lab's existing line "This is a new pilot. No completion rates, learning gains or comparisons are claimed yet." (reused, not new);
+- the source citations and "The Lab is independent of these authors and publishers."
+
+The page is for adults aged 18 and over, like the rest of the Lab.
 
 The testing sentence describes customer-discovery conversations only. It does not use learners' pilot data, which the privacy notice (`policies.ts`) does not cover for research. If the Lab later reports anything from the pilot as evidence for this hypothesis, update the privacy notice first and report totals only.
 

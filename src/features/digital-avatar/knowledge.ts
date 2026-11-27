@@ -69,7 +69,7 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(what|which) services (do|does|can) (you|the (learning )?lab) (offer|provide|have)\b|\bwhat (do|does) (you|the (learning )?lab) offer\b|\b(your|lab'?s?|learning lab'?s?) (services|offerings?|service offering)\b|\b(purpose|mission|vision|values) of (the (learning )?lab|your (company|lab|organi[sz]ation))\b|\b(the (learning )?lab'?s|your (company'?s|lab'?s)) (purpose|mission|vision|values)\b|\bwhy (does|did) (the )?(learning )?lab exist\b|\bwhy was (the )?(learning )?lab (started|founded|created)\b/i,
     reply: answer(
-      `${labLegalName} exists to make learning freely accessible to everyone, and to help people turn what they learn into action. Its services are free for adults aged 18 and over. For aspiring entrepreneurs: the 14-day venture experiment, written founder feedback for up to 20 learners at a time, the seven-module journey From Startup Idea to Venture Growth, the founder toolkit, six short courses, the open catalogue and this AI mentor. For colleges and faculty: a workshop kit for E-Cells and the AI Viva Bot prototype. Institution pilots and three programmes for professionals are proposed. Nothing is charged, and no funding, job or certificate is guaranteed.`,
+      `${labLegalName} exists to make learning freely accessible to everyone, and to help people turn what they learn into action. Its services are free for adults aged 18 and over. For aspiring entrepreneurs: the 14-day venture experiment, written founder feedback for up to 20 adults at college at a time, the seven-module journey From Startup Idea to Venture Growth, the founder toolkit, six short courses, the open catalogue and this AI mentor. For colleges and faculty: a workshop kit for E-Cells and the AI Viva Bot prototype. Institution pilots and three programmes for professionals are proposed. Nothing is charged, and no funding, job or certificate is guaranteed.`,
       [
         { label: "See all services", href: `${lab}/services` },
         { label: "Our purpose, mission and vision", href: `${lab}/purpose` },
@@ -388,10 +388,13 @@ const topics: GuidedTopic[] = [
     ),
   },
   // The seven-module journey itself. Narrow wording, placed before the 14-day answer because
-  // "From startup idea to venture growth" contains "startup idea".
+  // "From startup idea to venture growth" contains "startup idea". Questions naming another page
+  // with its own modules or pathways (the Under Constraint programme, the Research &
+  // Entrepreneurship pathway, colleges, the Founder's Playbook) keep their own answers, and a bare
+  // "module N" is left alone because those pages number their sections too.
   {
     matches:
-      /\b(seven|7)[- ]modules?\b|\bidea to (venture )?growth\b|\bknowing[- –]?doing\b|\b(entrepreneurship|startup|venture|founder) (journey|curriculum|syllabus|roadmap|modules?|pathway)\b|\b(journey|curriculum|syllabus|roadmap|modules?|pathway) (for|of|in|on) (entrepreneurship|startups?|ventures?|founders?)\b|\bmodule 0?[1-7]\b/i,
+      /^(?!.*\b(under constraint|research (and|&) entrepreneurship|colleges?|playbook)\b).*(\b(seven|7)[- ]modules?\b|\bidea to (venture )?growth\b|\bknowing ?[-–—]? ?doing\b|\b(entrepreneurship|startup|venture) (journey|curriculum|syllabus|roadmap|modules?|pathway)\b|\b(journey|curriculum|syllabus|roadmap|modules?|pathway) (for|of|in|on) (entrepreneurship|startups?|ventures?|founders?)\b|\bmodule 0?[1-7] (of|in) the (entrepreneurship )?journey\b)/is,
     reply: answer(
       "From Startup Idea to Venture Growth is the Lab’s free learning journey in seven modules: generate and validate startup ideas; design business models and find customers; design and build products; launch, grow and scale; prepare to raise capital; build an entrepreneurial organisation; and manage uncertainty, failure and pivots. Each module links free resources you can use today and is marked open now, partly open or planned. Module 01 starts with the free 14-day venture experiment. It is a self-paced learning map, not a course you enrol in: there is no fee, assessment or certificate, and the Lab does not arrange funding or introduce investors.",
       [
@@ -518,7 +521,7 @@ const topics: GuidedTopic[] = [
     matches:
       /\b(entrepreneur\w*|startup\w*|start[- ]up|venture\w*|start a business|start my business|budget|constraints?)\b/i,
     reply: answer(
-      "For entrepreneurship, start the free 14-day venture experiment for adult college students with an idea and limited money. Bound your commitment, investigate recent customer behaviour, run a small test and make an evidence-based decision. Stopping can be a successful outcome. The public planner is open without registration; the optional founder-feedback pilot has up to 20 active places. The affordable-loss and customer-question mini-courses offer extra practice. The seven-module journey, From Startup Idea to Venture Growth, maps what comes after a first test. The separate full Entrepreneurship Under Constraint programme remains proposed.",
+      "For entrepreneurship, start the free 14-day venture experiment for adult college students with an idea and limited money. Bound your commitment, investigate recent customer behaviour, run a small test and make an evidence-based decision. Stopping can be a successful outcome. The public planner is open without registration; the optional founder-feedback pilot has up to 20 active places. The affordable-loss and customer-question mini-courses offer extra practice. The seven-module journey, From Startup Idea to Venture Growth, starts with this experiment and maps the stages beyond it. The separate full Entrepreneurship Under Constraint programme remains proposed.",
       [
         venture,
         { label: "See the seven-module journey", href: `${lab}/entrepreneurship` },

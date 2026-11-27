@@ -33,7 +33,7 @@ The mission describes today's focus only. The vision repeats the long-term schoo
 | | Open catalogue and learning paths | Open now |
 | | AI learning mentor | Open now |
 | Colleges, E-Cells and faculty | Kit for E-Cells and faculty | Open now |
-| | AI Viva Bot | Working prototype |
+| | AI Viva Bot (a live viva needs the faculty member's own AI key; details on the Products page) | Working prototype |
 | | Institution pilot programmes | Proposed |
 | Professionals and adult learners | AI for Managers; Strategy and Case Thinking Lab; Entrepreneurship Under Constraint Bootcamp | Proposed (sample lessons open now) |
 | On our roadmap | School learning (KG 1 to Class 12); Engineering (B.Tech level) | Planned (not open; current services are not for children) |
