@@ -86,7 +86,7 @@ export default function EntrepreneurshipJourneyPage() {
             </span>
           ))}
         </p>
-        <ol className="lab-journey">
+        <ol className="lab-journey" role="list">
           {journeyModules.map((journeyModule) => {
             const status = journeyAvailability[journeyModule.availability];
             return (
@@ -107,14 +107,21 @@ export default function EntrepreneurshipJourneyPage() {
                 </div>
                 <div>
                   <p className="lab-journey-label">Start with</p>
-                  <ul className="lab-journey-links">
-                    {journeyModule.resources.map((resource) => (
-                      <li key={`${resource.href}-${resource.title}`}>
-                        <span className="lab-journey-kind">{resource.kind}</span>
-                        <Link href={resource.href}>{resource.title}</Link>
-                        <span className="lab-journey-use">{resource.use}</span>
-                      </li>
-                    ))}
+                  <ul className="lab-journey-links" role="list">
+                    {journeyModule.resources.map((resource) => {
+                      // Static lesson files are plain documents, not app routes.
+                      const LinkTag = resource.href.includes(".html") ? "a" : Link;
+                      return (
+                        <li key={`${resource.href}-${resource.title}`}>
+                          <span className="lab-journey-kind">{resource.kind}</span>
+                          <LinkTag href={resource.href}>
+                            {resource.title}
+                            <span className="sr-only"> (Module {journeyModule.number})</span>
+                          </LinkTag>
+                          <span className="lab-journey-use">{resource.use}</span>
+                        </li>
+                      );
+                    })}
                   </ul>
                   {journeyModule.notCoveredYet && (
                     <p className="lab-journey-gap">
@@ -210,7 +217,7 @@ export default function EntrepreneurshipJourneyPage() {
         eyebrow="Our proposed value proposition"
         title="From intent to action."
       >
-        <ol className="lab-value-flow">
+        <ol className="lab-value-flow" role="list">
           {valueProposition.map((step, index) => (
             <li className="lab-card" key={step.title}>
               <p className="lab-card-number">{String(index + 1).padStart(2, "0")}</p>
@@ -273,7 +280,7 @@ export default function EntrepreneurshipJourneyPage() {
           {labFreeLine} For adults aged 18 and over. No funding, business success or certificate is
           promised.
         </p>
-        <p className="lab-small">
+        <p className="lab-small lab-journey-sources">
           Sources:{" "}
           {journeySources.map((source, index) => (
             <span key={source.href}>

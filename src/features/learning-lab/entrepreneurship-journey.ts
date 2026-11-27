@@ -1,6 +1,7 @@
 // "From Startup Idea to Venture Growth": the Lab's free seven-module entrepreneurship journey.
-// Pure data (no React, CSS or server-only imports) so the page, the Lab homepage, the sitemap,
-// the AI mentor and plain-Node checks can all read it.
+// Pure data (no React, CSS or server-only imports) so the page, the Lab homepage, the sitemap
+// and plain-Node checks can read it. The Lab menu and footer (LabShell.tsx) and the AI mentor's
+// prepared answer (knowledge.ts) repeat the path and module themes by hand: update them too.
 //
 // The module titles and descriptions, the problem statement, the knowing–doing gap table, the
 // value proposition and the differentiation are the founder's own text (26 November 2026).
@@ -31,7 +32,7 @@ export const journeyAvailability: Record<JourneyAvailability, { label: string; m
     planned: {
       label: "Planned",
       meaning:
-        "only early readings so far; dates and format will be published before anything opens",
+        "only early resources so far; more will be added here as they are ready",
     },
   };
 
@@ -145,7 +146,7 @@ export const journeyModules: readonly JourneyModule[] = [
       },
     ],
     notCoveredYet:
-      "comparing revenue models, customer acquisition cost and lifetime value, and choosing between customer segments.",
+      "comparing revenue models, customer acquisition cost and lifetime value, and systematic market segmentation.",
   },
   {
     number: "03",
@@ -328,7 +329,8 @@ export const journeyModules: readonly JourneyModule[] = [
         use: "The founder’s research on making do with what is at hand, and how it grows into effectual action.",
       },
     ],
-    notCoveredYet: "structured pivot decisions and learning from failure after it happens.",
+    notCoveredYet:
+      "pivots across several test cycles (deciding what to change next each time) and post-mortems after a venture has closed.",
   },
 ];
 
@@ -364,7 +366,7 @@ export const problemStatement = {
       text: "Understanding what to do at different stages of the entrepreneurial journey.",
       today: "Seven modules, each with free resources for that stage.",
       href: "#modules",
-      action: "See the seven modules ↓",
+      action: "Back to the seven modules ↑",
     },
     {
       name: "Execution gap",
@@ -420,7 +422,7 @@ export const differentiation = {
   hypothesis:
     "The underlying problem hypothesis is not information scarcity, but the inability to translate abundant information into meaningful entrepreneurial action.",
   testing:
-    "This is a proposed problem hypothesis, not a finding. We are testing it through customer discovery, the way we ask you to test an idea: by talking to aspiring entrepreneurs about what they actually did, before we build more of the journey.",
+    "This is a proposed problem hypothesis, not a finding. We will test it through customer discovery, the way we ask you to test an idea: by talking to aspiring entrepreneurs about what they actually did, before we build more of the journey.",
   claims:
     "This is a new pilot. No completion rates, learning gains or comparisons are claimed yet.",
   us: "Continue, change or stop applies to us too.",
