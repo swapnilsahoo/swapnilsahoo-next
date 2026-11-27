@@ -26,13 +26,22 @@ export function routeSource(root, pathname) {
   if (pathname.endsWith(".html")) return path.join(root, "public", pathname);
   for (const [prefix, items, file] of dynamicRoutes)
     if (pathname.startsWith(prefix)) {
-      assert.ok(items.some((item) => item.slug === slug), `${pathname}: "${slug}" exists`);
+      assert.ok(
+        items.some((item) => item.slug === slug),
+        `${pathname}: "${slug}" exists`
+      );
       return path.join(root, file);
     }
   if (pathname.startsWith("/learning-lab/toolkit/"))
-    assert.ok(toolkitTools.some((tool) => tool.slug === slug), `Toolkit tool exists: ${slug}`);
+    assert.ok(
+      toolkitTools.some((tool) => tool.slug === slug),
+      `Toolkit tool exists: ${slug}`
+    );
   if (/^\/research\/[^/]+$/.test(pathname) && slug !== "phd-coursework") {
-    assert.ok(researchBranches.some((branch) => branch.slug === slug), `Research branch exists: ${slug}`);
+    assert.ok(
+      researchBranches.some((branch) => branch.slug === slug),
+      `Research branch exists: ${slug}`
+    );
     return path.join(root, "src/app/research/[slug]/page.tsx");
   }
   return path.join(root, "src/app", pathname, "page.tsx");
@@ -50,9 +59,15 @@ export async function checkLabLinks(links, { root = process.cwd(), extraPages = 
   const pages = new Map();
   const base = process.env.LAB_BASE_URL;
   if (!base)
-    return { pages, note: "fragments not checked (set LAB_BASE_URL to a local server to check them)" };
+    return {
+      pages,
+      note: "fragments not checked (set LAB_BASE_URL to a local server to check them)",
+    };
   const url = new URL(base);
-  assert.ok(["localhost", "127.0.0.1", "[::1]"].includes(url.hostname), "LAB_BASE_URL must be a local server");
+  assert.ok(
+    ["localhost", "127.0.0.1", "[::1]"].includes(url.hostname),
+    "LAB_BASE_URL must be a local server"
+  );
   for (const href of [...links, ...extraPages]) {
     const [pathname, fragment] = href.split("#");
     if (!pages.has(pathname)) {
@@ -61,7 +76,13 @@ export async function checkLabLinks(links, { root = process.cwd(), extraPages = 
       pages.set(pathname, await response.text());
     }
     if (fragment)
-      assert.ok(pages.get(pathname).includes(`id="${fragment}"`), `${href}: #${fragment} exists on the rendered page`);
+      assert.ok(
+        pages.get(pathname).includes(`id="${fragment}"`),
+        `${href}: #${fragment} exists on the rendered page`
+      );
   }
-  return { pages, note: `${pages.size} rendered pages and every #fragment checked at ${url.origin}` };
+  return {
+    pages,
+    note: `${pages.size} rendered pages and every #fragment checked at ${url.origin}`,
+  };
 }

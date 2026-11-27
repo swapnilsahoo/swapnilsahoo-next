@@ -24,13 +24,41 @@ const dataFile = path.join(root, "src/features/learning-lab/entrepreneurship-jou
 
 // The founder's module text, 26 November 2026. Published verbatim.
 const founderModules = [
-  ["01", "Generate and Validate Startup Ideas", "Identify meaningful problems, discover entrepreneurial opportunities, assess market potential and validate customer needs before committing resources."],
-  ["02", "Design Business Models and Find Customers", "Develop compelling value propositions, identify customer segments, evaluate revenue models and understand unit economics."],
-  ["03", "Design and Build Great Products", "Build a Minimum Viable Product (MVP), experiment with prototypes, incorporate customer feedback and work towards product-market fit."],
-  ["04", "Launch, Grow and Scale Your Venture", "Develop go-to-market strategies, acquire and retain customers, build distribution channels and experiment with sustainable growth mechanisms."],
-  ["05", "Prepare to Raise Capital", "Understand entrepreneurial finance, startup valuation, bootstrapping, angel investment, venture capital, pitch decks, capitalisation tables and term sheets."],
-  ["06", "Build an Entrepreneurial Organisation", "Assemble founding teams, develop organisational capabilities, manage partnerships and establish effective governance mechanisms."],
-  ["07", "Manage Uncertainty, Failure and Strategic Pivots", "Apply effectuation, entrepreneurial bricolage and experimentation to make decisions under uncertainty, overcome resource constraints and respond to changing market conditions."],
+  [
+    "01",
+    "Generate and Validate Startup Ideas",
+    "Identify meaningful problems, discover entrepreneurial opportunities, assess market potential and validate customer needs before committing resources.",
+  ],
+  [
+    "02",
+    "Design Business Models and Find Customers",
+    "Develop compelling value propositions, identify customer segments, evaluate revenue models and understand unit economics.",
+  ],
+  [
+    "03",
+    "Design and Build Great Products",
+    "Build a Minimum Viable Product (MVP), experiment with prototypes, incorporate customer feedback and work towards product-market fit.",
+  ],
+  [
+    "04",
+    "Launch, Grow and Scale Your Venture",
+    "Develop go-to-market strategies, acquire and retain customers, build distribution channels and experiment with sustainable growth mechanisms.",
+  ],
+  [
+    "05",
+    "Prepare to Raise Capital",
+    "Understand entrepreneurial finance, startup valuation, bootstrapping, angel investment, venture capital, pitch decks, capitalisation tables and term sheets.",
+  ],
+  [
+    "06",
+    "Build an Entrepreneurial Organisation",
+    "Assemble founding teams, develop organisational capabilities, manage partnerships and establish effective governance mechanisms.",
+  ],
+  [
+    "07",
+    "Manage Uncertainty, Failure and Strategic Pivots",
+    "Apply effectuation, entrepreneurial bricolage and experimentation to make decisions under uncertainty, overcome resource constraints and respond to changing market conditions.",
+  ],
 ];
 assert.equal(entrepreneurshipJourneyPath, "/learning-lab/entrepreneurship");
 assert.equal(journeyModules.length, 7);
@@ -41,7 +69,8 @@ journeyModules.forEach((item, index) => {
   assert.equal(item.description, description, `Module ${number} description is the founder's`);
   assert.ok(item.resources.length >= 3, `Module ${number} links at least three free resources`);
   assert.ok(["open", "partial", "planned"].includes(item.availability));
-  if (item.availability !== "open") assert.ok(item.notCoveredYet, `Module ${number} says what is not covered yet`);
+  if (item.availability !== "open")
+    assert.ok(item.notCoveredYet, `Module ${number} says what is not covered yet`);
   const hrefs = item.resources.map((resource) => resource.href);
   assert.equal(new Set(hrefs).size, hrefs.length, `Module ${number} has no duplicate links`);
 });
@@ -56,7 +85,10 @@ const byNumber = Object.fromEntries(journeyModules.map((item) => [item.number, i
 assert.match(byNumber["05"].caution, /Not investment, legal or tax advice/);
 assert.match(byNumber["05"].caution, /does not arrange funding or introduce investors/);
 assert.match(byNumber["06"].caution, /Not legal or tax advice/);
-assert.match(problemStatement.gaps.find((gap) => gap.name === "Ecosystem gap").today, /does not arrange funding or introduce investors/);
+assert.match(
+  problemStatement.gaps.find((gap) => gap.name === "Ecosystem gap").today,
+  /does not arrange funding or introduce investors/
+);
 
 // The founder's problem statement, gap table, value proposition and differentiation.
 assert.equal(problemStatement.gaps.length, 5);
@@ -64,16 +96,42 @@ assert.deepEqual(
   problemStatement.gaps.map((gap) => gap.name),
   ["Knowledge gap", "Execution gap", "Resource gap", "Decision-making gap", "Ecosystem gap"]
 );
-assert.match(problemStatement.howMightWe, /^How might we bridge the gap between entrepreneurial knowledge and entrepreneurial action/);
-assert.match(problemStatement.oneLine, /^Aspiring entrepreneurs lack an integrated, accessible and action-oriented learning ecosystem/);
-assert.equal(knowingDoingGap.line, "The gap between knowing entrepreneurship and doing entrepreneurship.");
+assert.match(
+  problemStatement.howMightWe,
+  /^How might we bridge the gap between entrepreneurial knowledge and entrepreneurial action/
+);
+assert.match(
+  problemStatement.oneLine,
+  /^Aspiring entrepreneurs lack an integrated, accessible and action-oriented learning ecosystem/
+);
+assert.equal(
+  knowingDoingGap.line,
+  "The gap between knowing entrepreneurship and doing entrepreneurship."
+);
 assert.deepEqual(knowingDoingGap.columns, ["What exists today", "What is missing"]);
 assert.equal(knowingDoingGap.rows.length, 7);
-assert.deepEqual(knowingDoingGap.rows[4], ["Selective, often costly accelerator programmes", "Accessible, free entrepreneurial learning"]);
-assert.deepEqual(valueProposition.map((step) => step.title), ["Entrepreneurial Intent", "The Knowing–Doing Gap", "Our Learning Platform", "Entrepreneurial Action"]);
+assert.deepEqual(knowingDoingGap.rows[4], [
+  "Selective, often costly accelerator programmes",
+  "Accessible, free entrepreneurial learning",
+]);
+assert.deepEqual(
+  valueProposition.map((step) => step.title),
+  [
+    "Entrepreneurial Intent",
+    "The Knowing–Doing Gap",
+    "Our Learning Platform",
+    "Entrepreneurial Action",
+  ]
+);
 assert.deepEqual(valueProposition[2].chain, ["Learn", "Apply", "Experiment", "Validate", "Build"]);
-assert.equal(differentiation.capability, "We are democratising the capability to become an entrepreneur.");
-assert.match(differentiation.claims, /No completion rates, learning gains or comparisons are claimed yet/);
+assert.equal(
+  differentiation.capability,
+  "We are democratising the capability to become an entrepreneur."
+);
+assert.match(
+  differentiation.claims,
+  /No completion rates, learning gains or comparisons are claimed yet/
+);
 assert.equal(journeySources.length, 3);
 for (const source of journeySources) assert.match(source.href, /^https:\/\//);
 
@@ -90,7 +148,8 @@ for (const phrase of [
   "before developing the platform",
   "affordable entrepreneurial learning",
   "Expensive accelerator",
-]) assert.ok(!published.includes(phrase), `Not published: ${phrase}`);
+])
+  assert.ok(!published.includes(phrase), `Not published: ${phrase}`);
 
 // Every link resolves to a real route file.
 const links = [
@@ -104,8 +163,10 @@ const { pages, note: fragmentNote } = await checkLabLinks(links, {
 });
 const page = pages.get(entrepreneurshipJourneyPath);
 if (page) {
-  for (const item of journeyModules) assert.ok(page.includes(`id="module-${item.number}"`), `module-${item.number} anchor`);
-  for (const id of ["modules", "gap", "problem", "value", "difference"]) assert.ok(page.includes(`id="${id}"`), `#${id} section`);
+  for (const item of journeyModules)
+    assert.ok(page.includes(`id="module-${item.number}"`), `module-${item.number} anchor`);
+  for (const id of ["modules", "gap", "problem", "value", "difference"])
+    assert.ok(page.includes(`id="${id}"`), `#${id} section`);
 }
 
 console.log(
