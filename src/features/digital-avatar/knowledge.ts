@@ -394,7 +394,7 @@ const topics: GuidedTopic[] = [
   // "module N" is left alone because those pages number their sections too.
   {
     matches:
-      /^(?!.*\b(under constraint|research (and|&) entrepreneurship|colleges?|playbook)\b).*(\b(seven|7)[- ]modules?\b|\bidea to (venture )?growth\b|\bknowing ?[-–—]? ?doing\b|\b(entrepreneurship|startup|venture) (journey|curriculum|syllabus|roadmap|modules?|pathway)\b|\b(journey|curriculum|syllabus|roadmap|modules?|pathway) (for|of|in|on) (entrepreneurship|startups?|ventures?|founders?)\b|\bmodule 0?[1-7] (of|in) the (entrepreneurship )?journey\b)/is,
+      /^(?![\s\S]*\b(under constraint|research (and|&) entrepreneurship|colleges?|playbook)\b)[\s\S]*?(\b(seven|7)[- ]modules?\b|\bidea to (venture )?growth\b|\bknowing ?[-–—]? ?doing\b|\b(entrepreneurship|startup|venture) (journey|curriculum|syllabus|roadmap|modules?|pathway)\b|\b(journey|curriculum|syllabus|roadmap|modules?|pathway) (for|of|in|on) (entrepreneurship|startups?|ventures?|founders?)\b|\bmodule 0?[1-7] (of|in) the (entrepreneurship )?journey\b)/i,
     reply: answer(
       "From Startup Idea to Venture Growth is the Lab’s free learning journey in seven modules: generate and validate startup ideas; design business models and find customers; design and build products; launch, grow and scale; prepare to raise capital; build an entrepreneurial organisation; and manage uncertainty, failure and pivots. Each module links free resources you can use today and is marked open now, partly open or planned. Module 01 starts with the free 14-day venture experiment. It is a self-paced learning map, not a course you enrol in: there is no fee, assessment or certificate, and the Lab does not arrange funding or introduce investors.",
       [
