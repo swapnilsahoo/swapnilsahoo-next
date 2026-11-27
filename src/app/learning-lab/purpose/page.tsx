@@ -2,34 +2,52 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LabHero, LabSection } from "@/features/learning-lab/components/LabShell";
 import { labPublicConfig, labSupportLine } from "@/features/learning-lab/config";
-import { educationPathways, labMission } from "@/features/learning-lab/mission";
+import { educationPathways, labMission, labPurpose } from "@/features/learning-lab/mission";
+import { labServicesPath } from "@/features/learning-lab/services";
 
 const description =
-  "Free learning across school, engineering, management, research and entrepreneurship: explore what is available today and what is planned. Everything is free.";
+  "Why Swapnil Sahoo Learning Lab Private Limited exists: to make learning freely accessible to everyone and to help people act on it. Our mission, vision, values and learning pathways.";
 export const metadata: Metadata = {
-  title: "Our Purpose and Learning Pathways",
+  title: "Our Purpose, Mission and Vision",
   description,
   alternates: { canonical: "/learning-lab/purpose" },
-  openGraph: { title: labMission.purpose, description, url: "/learning-lab/purpose", images: [] },
-  twitter: { card: "summary", title: labMission.purpose, description, images: [] },
+  openGraph: {
+    title: labPurpose.headline,
+    description,
+    url: "/learning-lab/purpose",
+    images: [],
+  },
+  twitter: { card: "summary", title: labPurpose.headline, description, images: [] },
 };
 
 export default function PurposePage() {
   return (
     <>
       <LabHero
-        eyebrow="Our purpose"
-        title={labMission.purpose}
-        description="Swapnil Sahoo Learning Lab makes learning free for everyone. It was founded by Dr. Swapnil Sahoo. School-to-doctoral learning is our long-term ambition. Our immediate focus is a free 14-day customer experiment for first-time student entrepreneurs."
+        eyebrow={`Our purpose · ${labPublicConfig.legalName}`}
+        title={labPurpose.headline}
+        description={labPurpose.statement}
       >
-        <Link href="/learning-lab/venture-experiment" className="lab-button">
+        <Link href={labServicesPath} className="lab-button">
+          See what we offer →
+        </Link>
+        <Link href="/learning-lab/venture-experiment" className="lab-text-link">
           Start the free 14-day venture experiment →
         </Link>
-        <Link href="/learning-lab/catalogue" className="lab-text-link">
-          Explore other open resources →
-        </Link>
       </LabHero>
-      <LabSection title="Understand. Apply. Question. Act.">
+      <LabSection id="purpose" title="Purpose, mission and vision.">
+        <p className="lab-lead">{labPurpose.why}</p>
+        <div className="lab-grid">
+          {labPurpose.pillars.map((pillar) => (
+            <article className="lab-card" key={pillar.label}>
+              <p className="lab-eyebrow">{pillar.label}</p>
+              <h3>{pillar.question}</h3>
+              <p>{pillar.text}</p>
+            </article>
+          ))}
+        </div>
+      </LabSection>
+      <LabSection className="lab-band" title="Understand. Apply. Question. Act.">
         <p className="lab-lead">
           We want learners to understand ideas, apply them, question assumptions and develop the
           confidence to act.
@@ -54,6 +72,16 @@ export default function PurposePage() {
           Our commitment is to provide learning resources free of charge and progressively build
           clear, accessible pathways through them.
         </p>
+      </LabSection>
+      <LabSection id="values" eyebrow="Our values" title="How we work.">
+        <div className="lab-grid">
+          {labPurpose.values.map((value) => (
+            <article key={value.title}>
+              <h3>{value.title}</h3>
+              <p>{value.text}</p>
+            </article>
+          ))}
+        </div>
       </LabSection>
       <LabSection
         className="lab-band"
@@ -99,6 +127,9 @@ export default function PurposePage() {
               Free courses, the 14-day venture experiment, the founder toolkit and open resources at
               swapnilsahoo.com/learning-lab.
             </p>
+            <Link href={labServicesPath} className="lab-text-link">
+              See our services →
+            </Link>
           </article>
           <article className="lab-card">
             <p className="lab-eyebrow">The company</p>

@@ -9,6 +9,7 @@ const navigation = [
   ["Free toolkit", "/learning-lab/toolkit"],
   ["Free courses", "/learning-lab/free-courses"],
   ["Catalogue", "/learning-lab/catalogue"],
+  ["Services", "/learning-lab/services"],
   ["For colleges", "/learning-lab/for-colleges"],
   ["Products", "/learning-lab/products"],
   ["Founder", "/learning-lab/founder"],
@@ -96,7 +97,8 @@ export function LabShell({
             <Link href="/learning-lab/venture-experiment">Free 14-day venture experiment</Link>
             <Link href="/learning-lab/toolkit">Free founder toolkit</Link>
             <Link href="/learning-lab/products">Products: AI Viva Bot</Link>
-            <Link href="/learning-lab/purpose">Our purpose and planned pathways</Link>
+            <Link href="/learning-lab/services">Our services</Link>
+            <Link href="/learning-lab/purpose">Our purpose, mission and vision</Link>
             <Link href="/learning-lab/weekly-notes">Weekly practice and timeline</Link>
             <Link href="/learning-lab/pilot">Volunteer pilot</Link>
             <Link href="/learning-lab/catalogue">Open catalogue and learning paths</Link>

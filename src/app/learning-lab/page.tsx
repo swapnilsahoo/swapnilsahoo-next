@@ -8,7 +8,9 @@ import {
   journeyAvailability,
   journeyModules,
 } from "@/features/learning-lab/entrepreneurship-journey";
+import { labPurpose } from "@/features/learning-lab/mission";
 import { aiVivaBot, labProductsPath } from "@/features/learning-lab/products";
+import { labServicesPath } from "@/features/learning-lab/services";
 import {
   toolkitFreeStatement,
   toolkitHref,
@@ -282,6 +284,7 @@ export default function LearningLabPage() {
       >
         <div className="lab-split">
           <div>
+            <p className="lab-lead">{labPurpose.statement}</p>
             <p>
               Run by {labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo. The long-term goal
               is free learning from school to doctoral study. Today&rsquo;s focus is helping
@@ -290,11 +293,14 @@ export default function LearningLabPage() {
             <p>Everything is free. {labSupportLine}</p>
           </div>
           <div className="lab-actions" style={{ marginTop: 0 }}>
-            <Link href="/learning-lab/founder" className="lab-text-link">
-              Meet the founder →
+            <Link href={labServicesPath} className="lab-text-link">
+              Our services →
             </Link>
             <Link href="/learning-lab/purpose" className="lab-text-link">
-              Our long-term purpose →
+              Our purpose, mission and vision →
+            </Link>
+            <Link href="/learning-lab/founder" className="lab-text-link">
+              Meet the founder →
             </Link>
             <Link href="/learning-lab/support" className="lab-text-link">
               Support free learning →
