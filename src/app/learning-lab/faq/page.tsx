@@ -97,6 +97,11 @@ export default function FaqPage() {
             <details key={question} className="lab-faq">
               <summary>{question}</summary>
               <p>{answer}</p>
+              {question === "What services does the Lab offer?" && (
+                <p>
+                  <Link href="/learning-lab/services">See all services →</Link>
+                </p>
+              )}
               {question === "How can I support the Lab?" && (
                 <p>
                   <Link href="/learning-lab/support">Support the Lab →</Link>

@@ -5,11 +5,18 @@ import assert from "node:assert/strict";
 import { labLegalName } from "../src/features/learning-lab/entity.ts";
 import { labMission, labPurpose } from "../src/features/learning-lab/mission.ts";
 import {
+  howItWorks,
   labServicesPath,
+  serviceFaqs,
   serviceGroups,
   serviceStatus,
   serviceTerms,
+  startGoals,
+  whyLearnWithLab,
 } from "../src/features/learning-lab/services.ts";
+import { journeyModules } from "../src/features/learning-lab/entrepreneurship-journey.ts";
+import { toolkitTools } from "../src/features/learning-lab/founder-toolkit.ts";
+import { freeCourses } from "../src/features/learning-lab/free-courses.ts";
 import { checkLabLinks } from "./learning-lab-links.mjs";
 
 // The founder's own lines stay word for word.
@@ -39,7 +46,17 @@ assert.ok(
 assert.equal(labServicesPath, "/learning-lab/services");
 assert.deepEqual(
   serviceGroups.map((group) => group.id),
-  ["entrepreneurs", "institutions", "professionals"]
+  ["entrepreneurs", "institutions", "professionals", "roadmap"]
+);
+// Roadmap pathways are planned, never presented as open; the Lab is for adults today.
+for (const service of serviceGroups.find((group) => group.id === "roadmap").services)
+  assert.equal(service.status, "planned", `${service.id}: roadmap stays planned`);
+assert.ok(
+  serviceGroups
+    .flatMap((group) => group.services)
+    .filter((service) => service.status === "planned")
+    .every((service) => service.href.startsWith("/learning-lab/purpose#")),
+  "Only roadmap pathways are planned"
 );
 const services = serviceGroups.flatMap((group) => group.services);
 assert.equal(
@@ -88,8 +105,30 @@ assert.match(
   /not investment, legal or tax advice/
 );
 
+// Counts written as words must match the data they describe.
+assert.equal(journeyModules.length, 7, "Seven modules");
+assert.equal(toolkitTools.length, 8, "Eight tools");
+assert.equal(freeCourses.length, 6, "Six courses");
+assert.equal(startGoals.length, 6);
+assert.equal(whyLearnWithLab.length, 6);
+assert.equal(howItWorks.length, 4);
+assert.match(
+  whyLearnWithLab.find((item) => item.title === "Feedback from the founder").text,
+  /Up to 20 learners at a time .* Turnaround is not guaranteed\./
+);
+// Questions are answered honestly: no live classes yet, no funding help, nothing charged.
+const faq = Object.fromEntries(serviceFaqs);
+assert.match(faq["Do you run live classes?"], /^Not yet\./);
+assert.match(
+  faq["Will the Lab help me raise funding?"],
+  /^No\..*does not arrange funding or introduce investors/
+);
+assert.match(faq["Is everything really free?"], /^Yes\. The Lab charges no fees/);
+assert.match(faq["Will I get a certificate?"], /^Not for the free self-paced services\./);
+
 const links = [
   ...services.map((service) => service.href),
+  ...startGoals.map((item) => item.href),
   "/learning-lab/purpose",
   "/learning-lab/policies",
   "/learning-lab/policies/refunds",
@@ -104,8 +143,10 @@ if (servicesPage) {
     assert.ok(servicesPage.includes(`id="${group.id}"`), `#${group.id} section`);
   for (const service of services)
     assert.ok(servicesPage.includes(`id="service-${service.id}"`), `service-${service.id} anchor`);
-  for (const id of ["how-it-works", "provider"])
+  for (const id of ["why", "how", "questions", "terms", "provider"])
     assert.ok(servicesPage.includes(`id="${id}"`), `#${id} section`);
+  const homeResponse = await fetch(new URL("/learning-lab", process.env.LAB_BASE_URL));
+  assert.ok((await homeResponse.text()).includes('id="choose"'), "homepage goal selector");
   const purposePage = pages.get("/learning-lab/purpose");
   for (const id of ["purpose", "values"])
     assert.ok(purposePage.includes(`id="${id}"`), `purpose #${id}`);

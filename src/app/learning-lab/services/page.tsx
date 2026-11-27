@@ -7,12 +7,18 @@ import {
   labSupportLimits,
   labSupportLine,
 } from "@/features/learning-lab/config";
+import { journeyModules } from "@/features/learning-lab/entrepreneurship-journey";
+import { toolkitTools } from "@/features/learning-lab/founder-toolkit";
+import { freeCourses } from "@/features/learning-lab/free-courses";
 import { labPurpose } from "@/features/learning-lab/mission";
 import {
+  howItWorks,
   labServicesPath,
+  serviceFaqs,
   serviceGroups,
   serviceStatus,
   serviceTerms,
+  whyLearnWithLab,
 } from "@/features/learning-lab/services";
 import { ventureExperimentPath } from "@/features/learning-lab/venture-experiment";
 
@@ -46,45 +52,54 @@ export const metadata: Metadata = {
   },
 };
 
-const statusOrder = ["open", "pilot", "prototype", "proposed"] as const;
+// Facts about the offering itself, counted from the data that renders each service.
+const facts = [
+  ["Fees", "₹0"],
+  ["Who", "Adults 18+"],
+  ["Journey", `${journeyModules.length} modules`],
+  ["Experiment", "14 days"],
+  ["Toolkit", `${toolkitTools.length} tools`],
+  ["Short courses", `${freeCourses.length} free`],
+] as const;
+
+const statusOrder = ["open", "pilot", "prototype", "proposed", "planned"] as const;
+const band = (index: number) => (index % 2 === 1 ? "lab-band" : "");
 
 export default function ServicesPage() {
+  const after = serviceGroups.length;
   return (
     <>
       <LabHero
         eyebrow="Our services · Free for adults aged 18+"
         title="What we offer, and who it is for."
-        description="Every service is free. Each one says who it is for, how it works and whether it is open now or still proposed."
+        description="Every service is free. Choose where to start: each one says who it is for, how it works and whether it is open now or still proposed."
       >
         <Link href={`${ventureExperimentPath}#start`} className="lab-button">
           Start the 14-day experiment →
         </Link>
-        <Link href="/learning-lab/purpose" className="lab-button lab-button-secondary">
-          Our purpose
+        <Link href="/digital-guide" className="lab-button lab-button-secondary">
+          Ask the AI mentor
         </Link>
       </LabHero>
       <div className="lab-container">
-        <div className="lab-stat-row" style={{ marginTop: 0 }}>
-          <div>
-            <span>Price</span>
-            <strong>Free</strong>
-          </div>
-          <div>
-            <span>Delivery</span>
-            <strong>Online</strong>
-          </div>
-          <div>
-            <span>Who</span>
-            <strong>Adults 18+</strong>
-          </div>
-        </div>
+        <dl className="lab-facts">
+          {facts.map(([label, value]) => (
+            <div key={label}>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
         <nav className="lab-anchor-links" aria-label="Services by audience">
           {serviceGroups.map((group) => (
             <a href={`#${group.id}`} key={group.id}>
               {group.audience}
             </a>
           ))}
-          <a href="#how-it-works">How our services work</a>
+          <a href="#why">Why learn with the Lab</a>
+          <a href="#how">How it works</a>
+          <a href="#questions">Questions</a>
+          <a href="#terms">Terms</a>
           <a href="#provider">Who provides them</a>
         </nav>
         <p className="lab-small">
@@ -101,7 +116,7 @@ export default function ServicesPage() {
         <LabSection
           id={group.id}
           key={group.id}
-          className={groupIndex % 2 === 0 ? "" : "lab-band"}
+          className={band(groupIndex)}
           eyebrow={group.audience}
           title={group.title}
         >
@@ -127,8 +142,68 @@ export default function ServicesPage() {
       ))}
 
       <LabSection
-        id="how-it-works"
-        className={serviceGroups.length % 2 === 0 ? "" : "lab-band"}
+        id="why"
+        className={band(after)}
+        eyebrow="Why learn with the Lab"
+        title="Practical, personal and free."
+      >
+        <div className="lab-grid">
+          {whyLearnWithLab.map((item) => (
+            <article key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </LabSection>
+
+      <LabSection
+        id="how"
+        className={band(after + 1)}
+        eyebrow="How it works"
+        title="Four steps from idea to decision."
+      >
+        <div className="lab-grid lab-grid-two">
+          {howItWorks.map((step, index) => (
+            <article className="lab-card" key={step.title}>
+              <p className="lab-card-number">{String(index + 1).padStart(2, "0")}</p>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))}
+        </div>
+        <div className="lab-actions" style={{ alignItems: "center" }}>
+          <Link href={`${ventureExperimentPath}#start`} className="lab-button">
+            Start free →
+          </Link>
+          <Link href="/digital-guide" className="lab-text-link">
+            Have a question? Ask the AI mentor →
+          </Link>
+        </div>
+      </LabSection>
+
+      <LabSection
+        id="questions"
+        className={band(after + 2)}
+        eyebrow="Questions"
+        title="Before you start."
+      >
+        <div className="lab-prose">
+          {serviceFaqs.map(([question, answer]) => (
+            <details key={question} className="lab-faq">
+              <summary>{question}</summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
+        <Link href="/learning-lab/faq" className="lab-text-link">
+          More answers in the FAQs →
+        </Link>
+      </LabSection>
+
+      <LabSection
+        id="terms"
+        className={band(after + 3)}
         eyebrow="How our services work"
         title="Free, online and honest about limits."
       >
@@ -155,7 +230,7 @@ export default function ServicesPage() {
 
       <LabSection
         id="provider"
-        className={serviceGroups.length % 2 === 0 ? "lab-band" : ""}
+        className={band(after + 4)}
         eyebrow="Who provides them"
         title={labPublicConfig.legalName}
       >

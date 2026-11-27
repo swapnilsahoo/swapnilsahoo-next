@@ -1151,3 +1151,33 @@
     padding: 0.75rem 0.6rem;
   }
 }
+
+/* Services: facts about the offering at a glance. */
+.lab-facts {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-block: 1px solid var(--lab-line);
+  margin: 0;
+}
+.lab-facts > div {
+  padding: 1.2rem 1rem 1.2rem 0;
+}
+.lab-facts dt {
+  font-size: 0.73rem;
+  color: var(--lab-muted);
+}
+.lab-facts dd {
+  margin: 0.2rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+@media (max-width: 850px) {
+  .lab-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .lab-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

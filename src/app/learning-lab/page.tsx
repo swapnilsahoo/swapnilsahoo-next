@@ -10,7 +10,7 @@ import {
 } from "@/features/learning-lab/entrepreneurship-journey";
 import { labPurpose } from "@/features/learning-lab/mission";
 import { aiVivaBot, labProductsPath } from "@/features/learning-lab/products";
-import { labServicesPath } from "@/features/learning-lab/services";
+import { labServicesPath, startGoals } from "@/features/learning-lab/services";
 import {
   toolkitFreeStatement,
   toolkitHref,
@@ -71,6 +71,33 @@ export default function LearningLabPage() {
         </Link>
       </LabHero>
       <VentureQuestion />
+      <LabSection
+        id="choose"
+        className="lab-band"
+        eyebrow="Choose where to start"
+        title="Pick the goal that fits you."
+      >
+        <div className="lab-grid">
+          {startGoals.map((item) => (
+            <article className="lab-card" key={item.goal}>
+              <span className="lab-tag">{item.audience}</span>
+              <h3>{item.goal}</h3>
+              <p>{item.detail}</p>
+              <Link href={item.href} className="lab-text-link">
+                Start here →<span className="sr-only">: {item.goal}</span>
+              </Link>
+            </article>
+          ))}
+        </div>
+        <div className="lab-actions" style={{ alignItems: "center" }}>
+          <Link href={labServicesPath} className="lab-text-link">
+            See all services →
+          </Link>
+          <Link href="/digital-guide" className="lab-text-link">
+            Have a question? Ask the AI mentor →
+          </Link>
+        </div>
+      </LabSection>
       <LabSection eyebrow="Why it exists" title="An idea, little money and no clear next step?">
         <div className="lab-split">
           <div className="lab-prose">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { labPublicConfig } from "../config";
+import { labPurpose } from "../mission";
 
 const navigation = [
   ["Entrepreneurship", "/learning-lab/entrepreneurship"],
@@ -79,6 +80,7 @@ export function LabShell({
         <div className="lab-container lab-footer-grid">
           <div>
             <p className="lab-eyebrow">{labPublicConfig.name}</p>
+            <p className="lab-small">{labPurpose.statement}</p>
             <p className="lab-small">{labPublicConfig.description}</p>
             <p className="lab-small">
               Run by {labPublicConfig.legalName}, founded by Dr. Swapnil Sahoo. His academic and
